@@ -1,9 +1,15 @@
 package cinemax;
+
 /**
- * 
+ * Classe che gestisce l'interfaccia testuale (TUI - Terminal User Interface).
+ * Si occupa della formattazione grafica, della stampa dei loghi e della 
+ * renderizzazione dei menu in base allo stato corrente dell'applicazione.
+ * @author Modena Matteo (Matricola: 765099 ) - VA
+ * @author Baroncelli Luca (Matricola: ) - VA
+ * @author Bin Alessio (Matricola: ) - VA
  */
 
-public class CinemaxUI {
+public class CinemaxTUI {
 
 // ======================================================
 //          SEZIONE CREAZIONE INTERFACCIA
@@ -18,11 +24,14 @@ public class CinemaxUI {
     }
 
     /**
+     * Renderizza la parte visibile a schermo in base allo stato del programma ti trovi.
      * 
-     * @param logo
-     * @param opzioni
+     * @param logo String, contienene il nome del logo, che servirà per decidere quale logo mndare a schermo
+     * @param opzioni Array di stringhe, contenente tutte le possibili opzioni di scelta che l'utente può fare
+     * in base allo stato del programma in cui si trova.
+     * @param posizione String, necessaria a decidere come allineare il testo
      */
-    public static void renderizzaMenu(String logo,String[] opzioni){
+    public static void renderizzaMenu(String logo,String[] opzioni, String posizione){
         clearConsole();
         System.out.println("╔════════════════════════════════════════════════════════════════════════════════╗"); //82 caratteri di larghezza
         System.out.println("║                                                                                ║");
@@ -31,9 +40,7 @@ public class CinemaxUI {
         System.out.println("╠════════════════════════════════════════════════════════════════════════════════╣");
         System.out.println("║                                                                                ║");
         System.out.println("║                                                                                ║");
-        for (String opzione : opzioni) {
-            formattaOpzione(opzione);
-        }
+        formattaOpzione(opzioni, posizione);
         System.out.println("║                                                                                ║");
         System.out.println("║                                                                                ║");
         System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
@@ -96,10 +103,7 @@ public class CinemaxUI {
     public static void formattaLogo(String[] logo){
         int lunghezza = logo[1].length();
         int padding = (80 - lunghezza)/2;
-        String pad= "";
-
-        for(int i = 0; i < padding; i++)
-            pad += " ";
+        String pad= " ".repeat(padding);
 
         for (String linea : logo) {
             System.out.println("║"+ pad + ((80-lunghezza)%2 !=0? " ":"" ) + linea+ pad +"║");
@@ -109,24 +113,56 @@ public class CinemaxUI {
     }
 
 // ======================================================    
+// ======================================================    
 
 
 
 // ====================================================== 
 //                   SEZIONE OPZIONI
 // ====================================================== 
-    public static void formattaOpzione(String opzione){
 
+    /**
+     * Stampa le opzioni del menu formattate in base allo stato in cui ci si trova.
+     * 
+     * @param opzioni Array di stringhe che contiene le voci del menu
+     * @param posizione String che indica come allineare le opzioni
+     */
+    public static void formattaOpzione(String[] opzioni, String posizione){
+
+        int cont = 1;
+
+        for(String tmpOpzione : opzioni){
+            
+            String testoOpzioneNumerata = "["+ cont++ +"] " + tmpOpzione;
+
+            switch (posizione.toLowerCase()) {
+                case "centro":
+                    System.out.println(formattaPosizione(testoOpzioneNumerata, 30));
+                    break;
+                case "sinistra":
+                    System.out.println(formattaPosizione(testoOpzioneNumerata, 5));
+                    break;
+                default:
+                    System.out.println(formattaPosizione(testoOpzioneNumerata, 5));
+            }
+        }
     }
 
-
-
-
-
-    public static void main(String[] args) {
-
-        renderizzaMenu("cinemax", args);
-        renderizzaMenu("film", args);
-
+    /**
+     * Calcola lo spazio da lasciare a destra per allinare il contenuto.
+     * 
+     * @param opzione Stringa contentenete il nome dell'opzione
+     * @param padding int, numero di caselle vuote lasciare per allineare il tutto
+     * @return String, contenente la linea da stampare a schermo.
+     */
+    public static String formattaPosizione(String opzione, int padding){
+        String paddingFisso = " ".repeat(padding);
+        String paddingDestro = " ".repeat(80-padding-opzione.length());
+        return "║"+ paddingFisso + opzione + paddingDestro + "║";
     }
+
+// ======================================================
+// ======================================================
+
+
 }

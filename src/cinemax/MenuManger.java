@@ -2,7 +2,11 @@ package cinemax;
 /**
  * Classe che gestisce la logica di navigazione e gli stati del sistema CineMax.
  * Utilizza un'enumerazione per definire le fasi dell'applicazione e le relative opzioni.
- */
+ *
+ * @author Modena Matteo (Matricola: 765099 ) - VA
+ * @author Baroncelli Luca (Matricola: ) - VA
+ * @author Bin Alessio (Matricola: ) - VA
+*/
 
 public class MenuManger {
     
