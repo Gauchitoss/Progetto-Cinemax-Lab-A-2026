@@ -7,4 +7,4 @@
 # Team
 - **Baroncelli Luca** (Matricola: 761582 ) - VA
 - **Modena Matteo** (Matricola: 765099 ) - VA
-- **Bin Alessio** (Matricola:  ) - VA
+- **Bin Alessio** (Matricola: 762387 ) - VA
