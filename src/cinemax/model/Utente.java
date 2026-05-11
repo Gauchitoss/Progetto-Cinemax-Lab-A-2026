@@ -9,7 +9,7 @@ package cinemax.model;
  * @author Bin Alessio (Matricola: 762387 ) - VA
  */
 
-public class Utente {
+public abstract class Utente {
 
 // ======================================================
 //          			CAMPI
@@ -36,6 +36,14 @@ public class Utente {
 		this.dataDiNascita =dataDiNascita;
 		this. domicilio=domicilio;
 		this. ruolo=ruolo;
+	}
+
+// ======================================================
+//          		  COSTRUTTORE SENZA CAMPI FACOLTATIVI
+// ======================================================
+
+	public Utente(String nome, String cognome, String username, String password, String domicilio, String ruolo) {
+		this(nome, cognome, username, password, null, domicilio, ruolo);
 	}
 
 // ======================================================
