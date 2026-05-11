@@ -5,8 +5,8 @@ package cinemax.model;
  * Gestisce le informazioni anagrafiche, le credenziali di accesso
  * e il ruolo gerarchico all'interno dell'applicazione. 
  * @author Modena Matteo (Matricola: 765099 ) - VA
- * @author Baroncelli Luca (Matricola: ) - VA
- * @author Bin Alessio (Matricola: ) - VA
+ * @author Baroncelli Luca (Matricola: 765099 ) - VA
+ * @author Bin Alessio (Matricola: 762387 ) - VA
  */
 
 public class Utente {
