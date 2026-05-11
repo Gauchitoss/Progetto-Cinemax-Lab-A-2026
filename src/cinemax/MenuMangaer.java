@@ -22,26 +22,26 @@ public class MenuMangaer {
             "centro"
         ),
         LOGIN(
-            new String[]{"username","password","annulla"},
+            new String[]{"username","password"},
             false,
             "custom",
             "sinistra"
         ),
         REGISTRAZIONE(
-            new String[]{"nome","cognome","username","password","conferma password","data di nascita", "domicilio*", "codice ruolo*", "Annulla"},
+            new String[]{"nome","cognome","username","password","conferma password","data di nascita", "domicilio*"},
             false,
             "custom",
             "sinistra"
         ),
 
         MENU_GUEST(
-            new String[]{"visualizza programmazione", "cerca film", "indietro"},
+            new String[]{"cerca film","accedi", "indietro"},
             true,
             "custom",
             "centro"
         ),
         MENU_CLIENTI(
-            new String[]{"visualizza programmazione", "cerca film", "prenota posti", "mie prenotazioni", "logout"},
+            new String[]{"cerca film", "mie prenotazioni", "logout"},
             true,
             "custom",
             "centro"
@@ -57,7 +57,69 @@ public class MenuMangaer {
             true,
             "custom",
             "centro"
-        );
+        ),
+        CERCA_FILM(
+            new String[]{"cerca per titolo", "cerca per data", "cerca per costo", "cerca per durata","cerca per genere","indietro"},
+            true,
+            "custom",
+            "centro"
+        ),
+        VISUALIZZA_PROGRAMMAZAIONE(
+            new String[]{},
+            true,
+            "custom",
+            "sinistra"
+        ),
+        PRENOTA_POSTI(
+            new String[]{},
+            true,
+            "custom",
+            "sinistra"
+        ),
+        MIE_PRENOTAZIONI(
+            new String[]{},
+            true,
+            "custom",
+            "sinistra"
+        ),
+        INSERISCI_PROEZIONE(
+            new String[]{},
+            true,
+            "custom",
+            "sinistra"
+        ),
+        RIMUOVI_PROEZIONE(
+            new String[]{},
+            true,
+            "custom",
+            "sinistra"
+        ),
+        GESTISCI_PROEZIONE(
+            new String[]{},
+            true,
+            "custom",
+            "sinistra"
+        ),
+        CERCA_PRENOTAZIONE(
+            new String[]{},
+            true,
+            "custom",
+            "sinistra"
+        ),
+        VENDITA_DIRETTA(
+            new String[]{},
+            true,
+            "custom",
+            "sinistra"
+        ),
+        STATO_SALA(
+            new String[]{},
+            true,
+            "custom",
+            "sinistra"
+        ),
+        ;
+
 
 // ======================================================
 //                      CAMPI
