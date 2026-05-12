@@ -31,6 +31,7 @@ public class CineMax {
             // cambio stato
             // aggiungere o togliere stato allo stack
             // fine iterazione
+            System.out.println(stackRecord);
 
         }
     }

@@ -41,6 +41,8 @@ public class CinemaxTUI {
         System.out.println("╔════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("║                                                                                ║");
         sceltaLogo(statoMenu.getNomeLogo());
+        if(statoMenu.getNomeLogo().equals("custom"))
+        System.err.println("║"+statoMenu.getNomeLogo().toUpperCase()+"║");  // ricalcolo righe
         System.out.println("║                                                                                ║");
         System.out.println("╠════════════════════════════════════════════════════════════════════════════════╣");
         System.out.println("║                                                                                ║");
@@ -49,7 +51,7 @@ public class CinemaxTUI {
         System.out.println("║                                                                                ║");
         System.out.println("║                                                                                ║");
         System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
-        System.out.print("\nSELEZIONA UN'OPZIONE PER INIZIARE: ");
+        System.out.print("\nSELEZIONA UN'OPZIONE: ");
         
     }
 
