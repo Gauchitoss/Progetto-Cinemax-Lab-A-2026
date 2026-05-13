@@ -1,20 +1,48 @@
-# Progetto Cinemax Lab A 2026
+# 🎬 CineMax - Project Lab A 2026
 
-# Prossime cose da fare 
-- [ ] Implemenatre stack, conentenente i vari record di stato del programma
-- [ ] modificare parte annulla nei primi in accesso e registrazione
-- [ ] creare magari variabile diversa per la differenzazione tra lista nuerata e lista di richiesta campi
-- [ ] iniziare a introdurre le eccezioni
-- [x] Gestire tutti i parametri da passare unicamente aggiungendo campi all'enum, passare come parametro solamente lo StatoMenu.esempio
+Benvenuti nel repository ufficiale di **CineMax**, un sistema di gestione cinematografica basato su interfaccia testuale (TUI), sviluppato per il progetto di Laboratorio A 2026.
 
-# Ultime modifiche
-- inizio implmentazione sistema dinamico di inserimento delle credenziali, presneta diverse complessità:
-  - calcolo manuale dello spostamento del puntatore
-  - in caso di aggiunta di opzione potrebbe dare problemi
-  utlizzabile magari solo per la parte di accesso e registrazione
-- implementazione variabile che autorizza o meno l'accesso.
+---
 
-# Team
-- **Baroncelli Luca** (Matricola: 761582 ) - VA
-- **Modena Matteo** (Matricola: 765099 ) - VA
-- **Bin Alessio** (Matricola: 762387 ) - VA
+## Ultime Modifiche 
+
+- **Centralizzazione dello Stack**: Implementato lo `stackRecord` globale nella classe `CineMax`. Questo ha permesso di ripulire le firme di tutti i metodi in `LogicaStatiManager`, eliminando il passaggio ridondante dei parametri.
+- **Gestione delle Eccezioni**: Introdotti blocchi `try-catch` specifici per `NumberFormatException` e `ArrayIndexOutOfBoundsException`. Ora il sistema non crasha in caso di input errati, ma reindirizza l'utente a uno `STATO_ERRORE` dedicato.
+- **Sistema di Navigazione Dinamico**: Il metodo `statoMenuSuccessivo` ora mappa automaticamente l'input numerico dell'utente agli stati definiti nell'Enum, rendendo l'aggiunta di nuovi menu estremamente rapida.
+- **UI & UX Improvement**: 
+  - Creazione di un nuovo logo **ERROR** simmetrico e stilizzato in ANSI Art per il feedback degli errori.
+  - Implementazione del comando `:q` per annullare l'inserimento nei form e tornare indietro nello stack.
+  - Ottimizzazione del sistema di coordinate ANSI (`\033[...]`) per l'input dinamico nei box.
+
+---
+
+## TODO
+
+### 🔴 Priorità Alta
+- [ ] **Logica di Autenticazione**: Collegare il form di Login al sistema di controllo credenziali (utilizzando la classe `Cifratura` già esistente).
+- [ ] **Persistenza Utenti**: Implementare il salvataggio e la lettura dei profili utente su file CSV, similmente a quanto fatto per le proiezioni.
+- [ ] **Validazione Campi**: Aggiungere controlli specifici nei form (es. formato data di nascita, corrispondenza password nella registrazione).
+
+### 🟡 Priorità Media
+- [ ] **Gestione Prenotazioni**: Sviluppare la logica per permettere ai clienti di selezionare i posti e salvare la prenotazione.
+- [ ] **Filtri di Ricerca**: Completare la logica nel metodo `gestisciCercaFlm` per filtrare la lista proiezioni per titolo, genere o prezzo.
+- [ ] **Stato Sala**: Implementare la visualizzazione grafica dei posti occupati/liberi per il Bigliettaio.
+
+### 🟢 Ottimizzazioni
+- [ ] Creare un set di eccezioni personalizzate (es. `InvalidLoginException`, `DataFormatException`) per una gestione ancora più granulare.
+- [ ] Differenziare graficamente i messaggi tra "Errore di Formato" (input non numerico) e "Errore di Scelta" (numero fuori range).
+
+---
+
+## Team
+
+| Nome | Matricola | Sede |
+| :--- | :--- | :--- |
+| **Baroncelli Luca** | 761582 | VA |
+| **Modena Matteo** | 765099 | VA |
+| **Bin Alessio** | 762387 | VA |
+
+---
+
+## 📐 Note Tecniche
+Il progetto utilizza un'architettura **State Machine** basata su uno **Stack LIFO** (Last-In-First-Out). Ogni azione dell'utente può effettuare un `push` (avanzamento), un `pop` (ritorno) o un `clear` (reset/logout) dello stato applicativo.

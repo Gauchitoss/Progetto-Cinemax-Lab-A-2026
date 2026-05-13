@@ -133,7 +133,16 @@ public class MenuMangaer {
 
         STATO_SALA(new String[]{}, true, "custom", "sinistra") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_BIGLIETTAIO}; }
-    };
+        },
+
+        STATO_ERRORE(
+            new String[]{"premi invio per tornare indietro"},
+            true,
+            "error",
+            "centro"
+        ){
+            @Override public StatoMenu[] prossimi() {return new StatoMenu[]{null};};
+        };
 
 
 // ======================================================

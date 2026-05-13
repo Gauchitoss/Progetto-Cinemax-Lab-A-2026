@@ -11,9 +11,10 @@ import java.util.Stack;
 import cinemax.MenuMangaer.StatoMenu;
 
 public class CineMax {
+
+    public static Stack<StatoMenu> stackRecord = new Stack<>();
     public static void main(String[] args) {
 
-        Stack<StatoMenu> stackRecord = new Stack<>();
         stackRecord.push(StatoMenu.BENVENUTO);
         StatoMenu statoAttuale;
 
@@ -27,7 +28,7 @@ public class CineMax {
             //  render(statoAttuale)
             CinemaxTUI.renderizzaMenu(statoAttuale);
             // azioni statoAttule
-            LogicaStatiManager.gestisciStati(stackRecord);
+            LogicaStatiManager.gestisciStati();
             // cambio stato
             // aggiungere o togliere stato allo stack
             // fine iterazione

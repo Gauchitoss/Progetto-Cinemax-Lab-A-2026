@@ -1,7 +1,8 @@
 /**
- * Classe che gestisce l'interfaccia testuale (TUI - Terminal User Interface).
- * Si occupa della formattazione grafica, della stampa dei loghi e della 
- * renderizzazione dei menu in base allo stato corrente dell'applicazione.
+ * Classe LogicaStatiManager
+ * Funge da Controller centrale per la gestione degli stati e della navigazione.
+ * Coordina l'interazione tra l'input dell'utente e il cambiamento del contesto applicativo
+ * manipolando direttamente lo stack globale dei record.
  * @author Modena Matteo (Matricola: 765099 ) - VA
  * @author Baroncelli Luca (Matricola: 765099 ) - VA
  * @author Bin Alessio (Matricola: 762387 ) - VA
@@ -14,136 +15,90 @@ import cinemax.MenuMangaer.StatoMenu;
 import cinemax.CostantiForm.Campi;
 
 public class LogicaStatiManager {
+
     static Scanner input = new Scanner(System.in);
 
 // ======================================================
-//              GESTIONE STATI GENERALE
+//                 GESTORE DEL FLUSSO
 // ======================================================
     
     /**
-     * Gestisce lo stato auttuale in cui l'utente si trova
-     * 
-     * @param stack contenente tutti i record, viene modificato dinamicamente
+     * Punto di ingresso principale per la logica di ogni stato.
+     * Legge lo stato in cima allo stack e delega l'esecuzione al metodo specifico.
      */
-    public static void gestisciStati(Stack<StatoMenu> stack){
-        StatoMenu statoMenu = stack.peek();
+    public static void gestisciStati(){
+        StatoMenu statoMenu = CineMax.stackRecord.peek();
 
         switch(statoMenu){
-            case BENVENUTO:
-                gestisciBenvenuto(stack);
-                break;
-            case LOGIN:
-                gestisciLogin(stack);
-                break;
-            case REGISTRAZIONE:
-                gestisciRegistrazione(stack);
-                break;
-            case MENU_GUEST:
-                gestisciMenuGuest(stack);
-                break;
-            case MENU_CLIENTI:
-                gestisciMenuClienti(stack);
-                break;
-            case MENU_PROEZIONISTA:
-                gestisciMenuProezionisti(stack);
-                break;
-            case MENU_BIGLIETTAIO:
-                gestisciMenuBigliettai(stack);
-                break;
-            case CERCA_FILM:
-                gestisciCercaFlm(stack);
-                break;
-            case VISUALIZZA_PROGRAMMAZAIONE:
-                break;
-            case PRENOTA_POSTI:
-                break;
-            case MIE_PRENOTAZIONI:
-                break;
-            case INSERISCI_PROEZIONE:
-                break;
-            case RIMUOVI_PROEZIONE:
-                break;
-            case GESTISCI_PROEZIONE:
-                break;
-            case CERCA_PRENOTAZIONE:
-                break;
-            case VENDITA_DIRETTA:
-                break;
-            case STATO_SALA:
-                break;
+            case BENVENUTO:             gestisciBenvenuto();        break;
+            case LOGIN:                 gestisciLogin();            break;
+            case REGISTRAZIONE:         gestisciRegistrazione();    break;
+            case MENU_GUEST:            gestisciMenuGuest();        break;
+            case MENU_CLIENTI:          gestisciMenuClienti();      break;
+            case MENU_PROEZIONISTA:     gestisciMenuProezionisti(); break;
+            case MENU_BIGLIETTAIO:      gestisciMenuBigliettai();   break;
+            case CERCA_FILM:            gestisciCercaFlm();         break;
+            case STATO_ERRORE:          gestisciErrore();           break;
+            default:                                                break;
         }
     }
 
-    public static void statoMenuSuccessivo(Stack<StatoMenu> stack, String indice){
-
-        int scelta = Integer.parseInt(indice);
-        StatoMenu statoAttuale = stack.peek();
-
-        StatoMenu[] possibiliStatiSucc = statoAttuale.prossimi();
-        StatoMenu statoSuccessivo = possibiliStatiSucc[scelta-1];
-        // ULTIMO ELEMENTO ARRAY CONTIENE L'INDIETRO
-
-        if(statoSuccessivo == null){
-            stack.pop();
-            return;
-        }
-        if(statoSuccessivo == StatoMenu.BENVENUTO){
-            stack.clear();
-        }
-
-        stack.push(statoSuccessivo);
-    }
-
-
-// ======================================================
-//              GESTISCI MENU PRICIPALI
-// ======================================================
     /**
-     * Gestisce logica pagina iniziale
+     * Gestisce la logica di transizione tra i vari stati del menu.
+     * Questa funzione crea una corrispondenza diretta tra l'input numerico dell'utente 
+     * e l'array degli stati successivi definiti nell'enum StatoMenu.
+     * * Nota: È progettata per menu a selezione numerica e non per i form di inserimento dati.
+     * @param indice La stringa inserita dall'utente che rappresenta la scelta nel menu
      */
-    public static void gestisciBenvenuto(Stack<StatoMenu> stack){
+    public static void statoMenuSuccessivo(String indice){
+        try{
+            int scelta = Integer.parseInt(indice);
+            StatoMenu statoAttuale = CineMax.stackRecord.peek();
+            StatoMenu[] possibiliStatiSucc = statoAttuale.prossimi();
+            StatoMenu statoSuccessivo = possibiliStatiSucc[scelta-1];
+
+            if(statoSuccessivo == null){
+                CineMax.stackRecord.pop();
+                return;
+            }
+            if(statoSuccessivo == StatoMenu.BENVENUTO){
+                CineMax.stackRecord.clear();
+            }
+
+            CineMax.stackRecord.push(statoSuccessivo);
+        }catch(NumberFormatException | ArrayIndexOutOfBoundsException e){
+            CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+        }
+    }
+
+// ======================================================
+//              GESTORE DEI MENU
+// ======================================================
+
+    public static void gestisciBenvenuto(){
         String scelta = input.nextLine();
         if(scelta.equals("4"))
             System.exit(0);
-        statoMenuSuccessivo(stack, scelta);
+        statoMenuSuccessivo(scelta);
     }
 
-    /**
-    * 
-    */
-    public static void gestisciMenuGuest(Stack<StatoMenu> stack){
-        String scelta = input.nextLine();
-        statoMenuSuccessivo(stack, scelta);
-    }
+    public static void gestisciMenuGuest()          { statoMenuSuccessivo(input.nextLine()); }
+    public static void gestisciMenuClienti()        { statoMenuSuccessivo(input.nextLine()); }
+    public static void gestisciMenuProezionisti()   { statoMenuSuccessivo(input.nextLine()); } 
+    public static void gestisciMenuBigliettai()     { statoMenuSuccessivo(input.nextLine()); }
 
     /**
-    * 
-    * @param stack
-    */
-    public static void gestisciMenuClienti(Stack<StatoMenu> stack){
-        String scelta = input.nextLine();
-        statoMenuSuccessivo(stack, scelta);
-    }
-
-    /**
-     * 
+     * Gestione dello stato di errore.
+     * Blocca l'esecuzione finché l'utente non preme Invio, permettendo la lettura del messaggio,
+     * quindi rimuove lo stato di errore per tornare al menu precedente.
      */
-    public static void gestisciMenuProezionisti(Stack<StatoMenu> stack){
-        String scelta = input.nextLine();
-        statoMenuSuccessivo(stack, scelta);
-    }  
-    
-    /**
-     * 
-     * @param stack
-     */
-    public static void gestisciMenuBigliettai(Stack<StatoMenu> stack){
-        String scelta = input.nextLine();
-        statoMenuSuccessivo(stack, scelta);
+    public static void gestisciErrore(){
+        input.nextLine();
+        CineMax.stackRecord.pop();
     }
-    
+
 // ======================================================
-//                    GESTISCI FORM
+//                    GESTORE INPUT
 // ======================================================
 
     /**
@@ -151,33 +106,29 @@ public class LogicaStatiManager {
      * Attraverso la funziozione `prendiDatiForm()` riceve i vari imput dell'utente.
      * Viene poi eseguito un controllo degli input dell'utente.
      * Infine, in base al ruolo viene renderizzato al menu dedicato.
-     * 
-     * @param stack utilizzato per istanziare l'array che contiene gli input.
      */
-    public static void gestisciLogin(Stack<StatoMenu> stack){
-        String[] datiFormTmp = new String[stack.peek().getOpzioni().length];
-        prendiDatiForm(datiFormTmp, stack);
+    public static void gestisciLogin(){
+        String[] datiFormTmp = new String[CineMax.stackRecord.peek().getOpzioni().length];
+        prendiDatiForm(datiFormTmp);
 
         String username = datiFormTmp[Campi.LOGIN_USER.i];
         String password = datiFormTmp[Campi.LOGIN_PASSWORD.i];
 
         if(username == null || password == null){
-            // STAMPA SCHERMATA DI ERRORE
+            // TODO: STAMPA SCHERMATA DI ERRORE
         }else{
-            // CONTROLLO VALIDITà CREDENZIALI
-            // ASSEGNAZIONE A MENU DEDICATO
-            stack.push(StatoMenu.MENU_CLIENTI);
-        }
-        
+            // TODO: CONTROLLO VALIDITà CREDENZIALI
+            // TODO: ASSEGNAZIONE A MENU DEDICATO
+            CineMax.stackRecord.push(StatoMenu.MENU_CLIENTI);
+        }   
     }
 
     /**
-     * 
-     * @param stack
+     * Gestisce la validazione dei campi di registrazione.
      */
-    public static void gestisciRegistrazione(Stack<StatoMenu> stack){
-        String[] datiFormTmp = new String[stack.peek().getOpzioni().length];
-        prendiDatiForm(datiFormTmp, stack);
+    public static void gestisciRegistrazione(){
+        String[] datiFormTmp = new String[CineMax.stackRecord.peek().getOpzioni().length];
+        prendiDatiForm(datiFormTmp);
 
         String  nome = datiFormTmp[Campi.REG_NOME.i];
         String  cognome = datiFormTmp[Campi.REG_COGNOME.i];
@@ -195,23 +146,15 @@ public class LogicaStatiManager {
         }
         
         if(valido){
-            stack.push(StatoMenu.MENU_CLIENTI);
+            CineMax.stackRecord.push(StatoMenu.MENU_CLIENTI);
         }else{
 
         }
     }
 
-// ======================================================
-//              GESTISCI RICERCA FILM
-// ======================================================
-    
-    /**
-     * 
-     * @param stack
-     */
-    public static void gestisciCercaFlm(Stack<StatoMenu> stack){
-        String[] datiFormTmp = new String[stack.peek().getOpzioni().length];
-        prendiDatiForm(datiFormTmp, stack);
+    public static void gestisciCercaFlm(){
+        String[] datiFormTmp = new String[CineMax.stackRecord.peek().getOpzioni().length];
+        prendiDatiForm(datiFormTmp);
 
         //titolo", "data", "costo", "durata", "genere"
         String titolo = datiFormTmp[Campi.CERCA_TITOLO.i];
@@ -220,7 +163,7 @@ public class LogicaStatiManager {
         String durata = datiFormTmp[Campi.CERCA_DURATA.i];
         String genere = datiFormTmp[Campi.CERCA_GENERE.i];
 
-        stack.push(StatoMenu.VISUALIZZA_PROGRAMMAZAIONE);
+        CineMax.stackRecord.push(StatoMenu.VISUALIZZA_PROGRAMMAZAIONE);
     }
 
 // ======================================================
@@ -230,7 +173,7 @@ public class LogicaStatiManager {
      * 
      * @param stack
      */
-    public static void gestisciPrenotazionePosti(Stack<StatoMenu> stack){
+    public static void gestisciPrenotazionePosti(){
         
     }
 
@@ -238,17 +181,20 @@ public class LogicaStatiManager {
      * 
      * @param stack
      */
-    public static void gestisciLeMieProezioni(Stack<StatoMenu> stack){
+    public static void gestisciLeMieProezioni(){
         
     }
-
-
-
 
 // ======================================================
 // LOGICA RICHIESTA DINAMICA DEI CAMPI NE FORM
 // ======================================================
-    public static void prendiDatiForm(String[] campiForm, Stack<StatoMenu> stack){
+
+    /**
+     * Metodo pruncipale per la gestione dei Form.
+     * Utilizza sequenze di escape ANSI per posizionare il cursore all'interno dei box grafici
+     * disegnati dalla TUI e popola l'array passato come parametro.
+     */
+    public static void prendiDatiForm(String[] campiForm){
         // ciclo for che crea ciclicamente i le richieste del form in base all'iterazione lo salva in un array di stringhe
         int altezzaLineaRichiesta = 10;
         String campoTmp="";
@@ -261,7 +207,7 @@ public class LogicaStatiManager {
                 continue;
             }
             if(campoTmp.equals(":q")){
-                stack.pop();
+                CineMax.stackRecord.pop();
                 return;
             }
             campiForm[indiceCampo] = campoTmp;
@@ -269,8 +215,7 @@ public class LogicaStatiManager {
 
         System.out.println(java.util.Arrays.toString(campiForm));
     }
+    
 // ======================================================
 // ======================================================
 }
-
-    
