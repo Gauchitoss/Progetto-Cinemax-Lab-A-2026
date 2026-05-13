@@ -137,27 +137,14 @@ public class CinemaxTUI {
     public static void formattaOpzione(String[] opzioni, String posizione, boolean visualizzaNumeri){
 
         int indiceOpzione = 1;
-        
 
-        for(String tmpOpzione : opzioni){
-            
-            String testoOpzionePronto = ((visualizzaNumeri)?"["+ indiceOpzione++ +"] ":"") + tmpOpzione;
-            testoOpzionePronto = testoOpzionePronto.toUpperCase();
-            
-            int spaziaturaSinistra;
-            switch (posizione.toLowerCase()) {
-                case "centro":
-                    spaziaturaSinistra = 30;
-                    break;
-                case "sinistra":
-                    spaziaturaSinistra = 5;
-                    break;
-                default:
-                    spaziaturaSinistra = 5;
+        for (String tmpOpzione : opzioni) {
+                String testoOpzionePronto = ((visualizzaNumeri)?"["+ indiceOpzione++ +"] ":"") + tmpOpzione;
+                testoOpzionePronto = testoOpzionePronto.toUpperCase();
+
+                System.out.println(creaRigaFormattata(testoOpzionePronto, ((visualizzaNumeri)? 30 : 5), visualizzaNumeri));
             }
 
-            System.out.println(creaRigaFormattata(testoOpzionePronto, spaziaturaSinistra, visualizzaNumeri));
-        }
     }
 
     /**
@@ -200,6 +187,7 @@ public class CinemaxTUI {
 
         return boxInput;
     }
+
 // ======================================================
 // ======================================================
 

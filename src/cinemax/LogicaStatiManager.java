@@ -11,6 +11,7 @@ package cinemax;
 
 import java.util.*;
 import cinemax.MenuMangaer.StatoMenu;
+import cinemax.CostantiForm.Campi;
 
 public class LogicaStatiManager {
     static Scanner input = new Scanner(System.in);
@@ -73,7 +74,7 @@ public class LogicaStatiManager {
         }
     }
 
-    public static void statoSuccesivo(Stack<StatoMenu> stack, String indice){
+    public static void statoMenuSuccessivo(Stack<StatoMenu> stack, String indice){
 
         int scelta = Integer.parseInt(indice);
         StatoMenu statoAttuale = stack.peek();
@@ -104,7 +105,7 @@ public class LogicaStatiManager {
         String scelta = input.nextLine();
         if(scelta.equals("4"))
             System.exit(0);
-        statoSuccesivo(stack, scelta);
+        statoMenuSuccessivo(stack, scelta);
     }
 
     /**
@@ -112,7 +113,7 @@ public class LogicaStatiManager {
     */
     public static void gestisciMenuGuest(Stack<StatoMenu> stack){
         String scelta = input.nextLine();
-        statoSuccesivo(stack, scelta);
+        statoMenuSuccessivo(stack, scelta);
     }
 
     /**
@@ -121,7 +122,7 @@ public class LogicaStatiManager {
     */
     public static void gestisciMenuClienti(Stack<StatoMenu> stack){
         String scelta = input.nextLine();
-        statoSuccesivo(stack, scelta);
+        statoMenuSuccessivo(stack, scelta);
     }
 
     /**
@@ -129,7 +130,7 @@ public class LogicaStatiManager {
      */
     public static void gestisciMenuProezionisti(Stack<StatoMenu> stack){
         String scelta = input.nextLine();
-        statoSuccesivo(stack, scelta);
+        statoMenuSuccessivo(stack, scelta);
     }  
     
     /**
@@ -138,7 +139,7 @@ public class LogicaStatiManager {
      */
     public static void gestisciMenuBigliettai(Stack<StatoMenu> stack){
         String scelta = input.nextLine();
-        statoSuccesivo(stack, scelta);
+        statoMenuSuccessivo(stack, scelta);
     }
     
 // ======================================================
@@ -146,25 +147,28 @@ public class LogicaStatiManager {
 // ======================================================
 
     /**
-     * Gestisce logica de login
+     * Gestisce la logica di un login.
+     * Attraverso la funziozione `prendiDatiForm()` riceve i vari imput dell'utente.
+     * Viene poi eseguito un controllo degli input dell'utente.
+     * Infine, in base al ruolo viene renderizzato al menu dedicato.
+     * 
+     * @param stack utilizzato per istanziare l'array che contiene gli input.
      */
     public static void gestisciLogin(Stack<StatoMenu> stack){
+        String[] datiFormTmp = new String[stack.peek().getOpzioni().length];
+        prendiDatiForm(datiFormTmp, stack);
 
-        System.out.print("\033[9;11H");
-        String username = input.nextLine();
-        if(username.equals(":q")){
-            stack.pop();
-            return;
+        String username = datiFormTmp[Campi.LOGIN_USER.i];
+        String password = datiFormTmp[Campi.LOGIN_PASSWORD.i];
+
+        if(username == null || password == null){
+            // STAMPA SCHERMATA DI ERRORE
+        }else{
+            // CONTROLLO VALIDITà CREDENZIALI
+            // ASSEGNAZIONE A MENU DEDICATO
+            stack.push(StatoMenu.MENU_CLIENTI);
         }
-
-
-        System.out.print("\033[12;11H");
-        String password = input.nextLine();
-        if(password.equals(":q")){
-            stack.pop();
-            return;
-        }
-        stack.push(StatoMenu.MENU_CLIENTI);
+        
     }
 
     /**
@@ -172,69 +176,29 @@ public class LogicaStatiManager {
      * @param stack
      */
     public static void gestisciRegistrazione(Stack<StatoMenu> stack){
-        int salto = 4;
+        String[] datiFormTmp = new String[stack.peek().getOpzioni().length];
+        prendiDatiForm(datiFormTmp, stack);
 
-        System.out.print("\033["+salto+";11H");
-        salto+=3;
-        String nome = input.nextLine();
-        if(nome.equals(":q")){
-            stack.pop();
-            return;
-        }
+        String  nome = datiFormTmp[Campi.REG_NOME.i];
+        String  cognome = datiFormTmp[Campi.REG_COGNOME.i];
+        String  username = datiFormTmp[Campi.REG_USERNAME.i];
+        String  password = datiFormTmp[Campi.REG_PASSWORD.i];
+        String  confermaPassword = datiFormTmp[Campi.REG_CONFERMA_PASSWORD.i];
+        String  dataNascita = datiFormTmp[Campi.REG_DATA.i];
+        String  domicilio = datiFormTmp[Campi.REG_DOMICILIO.i];
 
+        boolean valido = true;
+        
+        for (String campo : datiFormTmp) {
+            if(campo == null)
+                valido = false;
+        }
+        
+        if(valido){
+            stack.push(StatoMenu.MENU_CLIENTI);
+        }else{
 
-        System.out.print("\033["+salto+";11H");
-        salto+=3;
-        String cognome = input.nextLine();
-        if(cognome.equals(":q")){
-            stack.pop();
-            return;
         }
-
-        System.out.print("\033["+salto+";11H");
-        salto+=3;
-        String username = input.nextLine();
-        if(username.equals(":q")){
-            stack.pop();
-            return;
-        }
-        System.out.print("\033["+salto+";11H");
-        salto+=3;
-        String password = input.nextLine();
-        if(password.equals(":q")){
-            stack.pop();
-            return;
-        }
-        System.out.print("\033["+salto+";11H");
-        salto+=3;
-        String confermaPassword = input.nextLine();
-        if(confermaPassword.equals(":q")){
-            stack.pop();
-            return;
-        }
-        System.out.print("\033["+salto+";11H");
-        salto+=3;
-        String dataNascita = input.nextLine();
-        if(dataNascita.equals(":q")){
-            stack.pop();
-            return;
-        }
-        System.out.print("\033["+salto+";11H");
-        salto+=3;
-        String domicilio = input.nextLine();
-        if(domicilio.equals(":q")){
-            stack.pop();
-            return;
-        }
-
-        /**
-         * switch(ruolo){
-         *  case proezionista:
-         *      stack.push(StatoMenu.Proezionista);
-         *      break;
-         * }
-        */
-        stack.push(StatoMenu.MENU_CLIENTI);
     }
 
 // ======================================================
@@ -246,28 +210,17 @@ public class LogicaStatiManager {
      * @param stack
      */
     public static void gestisciCercaFlm(Stack<StatoMenu> stack){
-        String scelta = input.nextLine();
-        statoSuccesivo(stack, scelta);
+        String[] datiFormTmp = new String[stack.peek().getOpzioni().length];
+        prendiDatiForm(datiFormTmp, stack);
 
-        /**
-         * IDEA PER RICERCA FILM
-         * 
-         * OPZIONE 1
-         * 1) chiedo utente se vuole cercare con più filtri
-         * 2) seleziona fino a un massimo di 6 filtri (numero caratteri di un film), può anche metterne solo due
-         * 3) salvo questi filtri in un array
-         * 4) renderizzo un nuovo form dove richiede i seguenti dati
-         * 5) ciclo for itera ogni azione e crea lo spazio e mette campi a un possibile costruttore (gestire il fatto che non sai bene il nome del dato
-         * 6) mostra soluzione
-         * 
-         * OPZIONE 2
-         * 1) stampo il form contenente tutti i campi
-         * 2) utente libero di compilare quelli che vuole
-         * 3) se preme invio salta il filtro aggiuntivo
-         * 4) mostra soluzione
-         * implementazione più semplice e forse anche più bella e user-friendly
-         */
+        //titolo", "data", "costo", "durata", "genere"
+        String titolo = datiFormTmp[Campi.CERCA_TITOLO.i];
+        String data = datiFormTmp[Campi.CERCA_DATA.i];
+        String costo = datiFormTmp[Campi.CERCA_COSTO.i];
+        String durata = datiFormTmp[Campi.CERCA_DURATA.i];
+        String genere = datiFormTmp[Campi.CERCA_GENERE.i];
 
+        stack.push(StatoMenu.VISUALIZZA_PROGRAMMAZAIONE);
     }
 
 // ======================================================
@@ -289,6 +242,33 @@ public class LogicaStatiManager {
         
     }
 
+
+
+
+// ======================================================
+// LOGICA RICHIESTA DINAMICA DEI CAMPI NE FORM
+// ======================================================
+    public static void prendiDatiForm(String[] campiForm, Stack<StatoMenu> stack){
+        // ciclo for che crea ciclicamente i le richieste del form in base all'iterazione lo salva in un array di stringhe
+        int altezzaLineaRichiesta = 10;
+        String campoTmp="";
+        for(int indiceCampo = 0; indiceCampo < campiForm.length; indiceCampo++){
+            System.out.print("\033["+altezzaLineaRichiesta+";11H");
+            altezzaLineaRichiesta += 3;
+            campoTmp = input.nextLine();
+            if(campoTmp.equals("")){
+                campiForm[indiceCampo] = null;
+                continue;
+            }
+            if(campoTmp.equals(":q")){
+                stack.pop();
+                return;
+            }
+            campiForm[indiceCampo] = campoTmp;
+        }
+
+        System.out.println(java.util.Arrays.toString(campiForm));
+    }
 // ======================================================
 // ======================================================
 }
