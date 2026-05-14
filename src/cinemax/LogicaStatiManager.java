@@ -124,13 +124,13 @@ public class LogicaStatiManager {
             Utente u = GestoreUtenti.login(username, password);
 
             switch (u.getRuolo()) {
-                case "Proiezionista":
+                case "proiezionista":
                     CineMax.stackRecord.push(StatoMenu.MENU_PROEZIONISTA);
                     break;
-                case "Cliente Registrato":
+                case "cliente registrato":
                     CineMax.stackRecord.push(StatoMenu.MENU_CLIENTI);
                     break;
-                case "Bigliettaio":
+                case "bigliettaio":
                     CineMax.stackRecord.push(StatoMenu.MENU_BIGLIETTAIO);
                     break;
             }

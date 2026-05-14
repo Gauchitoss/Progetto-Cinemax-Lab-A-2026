@@ -16,7 +16,7 @@ public class Bigliettai extends Utente{
 // ======================================================
 
     public Bigliettai(String nome, String cognome, String username, String password, String dataDiNascita, String domicilio) {
-        super(nome, cognome, username, password, dataDiNascita, domicilio, "Bigliettaio");
+        super(nome, cognome, username, password, dataDiNascita, domicilio, "bigliettaio");
     }
 
 // ======================================================
@@ -24,7 +24,7 @@ public class Bigliettai extends Utente{
 // ======================================================
 
     public Bigliettai(String nome, String cognome, String username, String password, String domicilio) {
-        super(nome, cognome, username, password, domicilio, "Bigliettaio");
+        super(nome, cognome, username, password, domicilio, "bigliettaio");
     }
     
 }
