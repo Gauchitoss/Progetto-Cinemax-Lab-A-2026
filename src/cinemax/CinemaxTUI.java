@@ -47,7 +47,10 @@ public class CinemaxTUI {
         System.out.println("╠════════════════════════════════════════════════════════════════════════════════╣");
         System.out.println("║                                                                                ║");
         System.out.println("║                                                                                ║");
-        formattaOpzione(statoMenu.getOpzioni(), statoMenu.getPosizione(), statoMenu.getVisualizzaNumeri());
+        if(statoMenu == StatoMenu.STATO_ERRORE){
+            System.out.println(creaRigaFormattata(LogicaStatiManager.messaggioErroreCorrente.toUpperCase(), 5, true));
+        }else
+            formattaOpzione(statoMenu.getOpzioni(), statoMenu.getPosizione(), statoMenu.getVisualizzaNumeri());
         System.out.println("║                                                                                ║");
         System.out.println("║                                                                                ║");
         System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
@@ -202,12 +205,4 @@ public class CinemaxTUI {
 // ======================================================
 // ======================================================
 
-
 }
-
-
-
-
-
-
-

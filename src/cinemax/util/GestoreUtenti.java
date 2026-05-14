@@ -77,6 +77,7 @@ public class GestoreUtenti {
          
          salvaUtenti(); // salva i dati iniziali nel file   
         }
+        
         public static Utente login(String username, String password) {
             String passwordCifrata =  Cifratura.cifra(password); // cifra la password inserita
             for (Utente u : listaUtenti) {
@@ -85,6 +86,25 @@ public class GestoreUtenti {
                 }
             }
             return null; // restituisce null se le credenziali sono errate
+        }
+
+        public static void registraUtente(String nome, String cognome, String username, String password, String confermaPassword, String dataDiNascita, String domicilio)throws IllegalArgumentException{
+            
+            if(nome == null || cognome == null || username == null || password == null || dataDiNascita == null)
+                throw new IllegalArgumentException("tutti i campi obbligatori devono essere compilati");
+
+            if(!password.equals(confermaPassword))
+                throw new IllegalArgumentException("le password inserite non corrispondono");
+
+            for(Utente u : listaUtenti){
+                if(u.getUsername().equals(username))
+                    throw new IllegalArgumentException("username già esistente");
+            }
+
+            String domicilioEffettivo = (domicilio==null)? "N/D" : domicilio;
+
+            listaUtenti.add(new ClientiRegistrati(nome, cognome, username, Cifratura.cifra(confermaPassword), dataDiNascita, domicilioEffettivo));
+            salvaUtenti();
         }
 
 }

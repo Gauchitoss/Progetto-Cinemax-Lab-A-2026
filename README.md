@@ -4,7 +4,7 @@ Benvenuti nel repository ufficiale di **CineMax**, un sistema di gestione cinema
 
 ---
 
-## Ultime Modifiche 
+## Ultime Modifiche
 
 - **Centralizzazione dello Stack**: Implementato lo `stackRecord` globale nella classe `CineMax`. Questo ha permesso di ripulire le firme di tutti i metodi in `LogicaStatiManager`, eliminando il passaggio ridondante dei parametri.
 - **Gestione delle Eccezioni**: Introdotti blocchi `try-catch` specifici per `NumberFormatException` e `ArrayIndexOutOfBoundsException`. Ora il sistema non crasha in caso di input errati, ma reindirizza l'utente a uno `STATO_ERRORE` dedicato.
@@ -19,16 +19,19 @@ Benvenuti nel repository ufficiale di **CineMax**, un sistema di gestione cinema
 ## TODO
 
 ### 🔴 Priorità Alta
+
 - [ ] **Logica di Autenticazione**: Collegare il form di Login al sistema di controllo credenziali (utilizzando la classe `Cifratura` già esistente).
 - [ ] **Persistenza Utenti**: Implementare il salvataggio e la lettura dei profili utente su file CSV, similmente a quanto fatto per le proiezioni.
 - [ ] **Validazione Campi**: Aggiungere controlli specifici nei form (es. formato data di nascita, corrispondenza password nella registrazione).
 
 ### 🟡 Priorità Media
+
 - [ ] **Gestione Prenotazioni**: Sviluppare la logica per permettere ai clienti di selezionare i posti e salvare la prenotazione.
 - [ ] **Filtri di Ricerca**: Completare la logica nel metodo `gestisciCercaFlm` per filtrare la lista proiezioni per titolo, genere o prezzo.
 - [ ] **Stato Sala**: Implementare la visualizzazione grafica dei posti occupati/liberi per il Bigliettaio.
 
 ### 🟢 Ottimizzazioni
+
 - [ ] Creare un set di eccezioni personalizzate (es. `InvalidLoginException`, `DataFormatException`) per una gestione ancora più granulare.
 - [ ] Differenziare graficamente i messaggi tra "Errore di Formato" (input non numerico) e "Errore di Scelta" (numero fuori range).
 
@@ -45,4 +48,5 @@ Benvenuti nel repository ufficiale di **CineMax**, un sistema di gestione cinema
 ---
 
 ## 📐 Note Tecniche
+
 Il progetto utilizza un'architettura **State Machine** basata su uno **Stack LIFO** (Last-In-First-Out). Ogni azione dell'utente può effettuare un `push` (avanzamento), un `pop` (ritorno) o un `clear` (reset/logout) dello stato applicativo.

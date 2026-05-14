@@ -13,8 +13,14 @@ package cinemax;
 import java.util.*;
 import cinemax.MenuMangaer.StatoMenu;
 import cinemax.CostantiForm.Campi;
+import cinemax.util.GestoreUtenti;
+import cinemax.model.*;
+
+
 
 public class LogicaStatiManager {
+
+    public static String messaggioErroreCorrente = "spiacenti si è verificato un errore";
 
     static Scanner input = new Scanner(System.in);
 
@@ -114,13 +120,24 @@ public class LogicaStatiManager {
         String username = datiFormTmp[Campi.LOGIN_USER.i];
         String password = datiFormTmp[Campi.LOGIN_PASSWORD.i];
 
-        if(username == null || password == null){
-            // TODO: STAMPA SCHERMATA DI ERRORE
-        }else{
-            // TODO: CONTROLLO VALIDITà CREDENZIALI
-            // TODO: ASSEGNAZIONE A MENU DEDICATO
-            CineMax.stackRecord.push(StatoMenu.MENU_CLIENTI);
-        }   
+        try {
+            Utente u = GestoreUtenti.login(username, password);
+
+            switch (u.getRuolo()) {
+                case "Proiezionista":
+                    CineMax.stackRecord.push(StatoMenu.MENU_PROEZIONISTA);
+                    break;
+                case "Cliente Registrato":
+                    CineMax.stackRecord.push(StatoMenu.MENU_CLIENTI);
+                    break;
+                case "Bigliettaio":
+                    CineMax.stackRecord.push(StatoMenu.MENU_BIGLIETTAIO);
+                    break;
+            }
+        } catch (Exception e) {
+            messaggioErroreCorrente = "credenziali non valide o utente inesistente";
+            CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+        }
     }
 
     /**
@@ -130,25 +147,29 @@ public class LogicaStatiManager {
         String[] datiFormTmp = new String[CineMax.stackRecord.peek().getOpzioni().length];
         prendiDatiForm(datiFormTmp);
 
-        String  nome = datiFormTmp[Campi.REG_NOME.i];
-        String  cognome = datiFormTmp[Campi.REG_COGNOME.i];
-        String  username = datiFormTmp[Campi.REG_USERNAME.i];
-        String  password = datiFormTmp[Campi.REG_PASSWORD.i];
-        String  confermaPassword = datiFormTmp[Campi.REG_CONFERMA_PASSWORD.i];
-        String  dataNascita = datiFormTmp[Campi.REG_DATA.i];
-        String  domicilio = datiFormTmp[Campi.REG_DOMICILIO.i];
+        try{
+            // Estrazione dei dati usando le costanti per evitare errori di indice
+            String  nome = datiFormTmp[Campi.REG_NOME.i];
+            String  cognome = datiFormTmp[Campi.REG_COGNOME.i];
+            String  username = datiFormTmp[Campi.REG_USERNAME.i];
+            String  password = datiFormTmp[Campi.REG_PASSWORD.i];
+            String  confermaPassword = datiFormTmp[Campi.REG_CONFERMA_PASSWORD.i];
+            String  dataNascita = datiFormTmp[Campi.REG_DATA.i];
+            String  domicilio = datiFormTmp[Campi.REG_DOMICILIO.i];
 
-        boolean valido = true;
-        
-        for (String campo : datiFormTmp) {
-            if(campo == null)
-                valido = false;
-        }
-        
-        if(valido){
+            GestoreUtenti.registraUtente(nome, cognome, username, password, confermaPassword, dataNascita, domicilio);
+
+            CineMax.stackRecord.clear();
+            CineMax.stackRecord.push(StatoMenu.BENVENUTO);      // Reset di sicurezza
             CineMax.stackRecord.push(StatoMenu.MENU_CLIENTI);
-        }else{
+        
 
+        }catch(IllegalArgumentException e){
+            messaggioErroreCorrente = e.getMessage();
+            CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+        }catch(Exception e){
+            messaggioErroreCorrente = "Errore imprevisto durante la registrazione.";
+            CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         }
     }
 
