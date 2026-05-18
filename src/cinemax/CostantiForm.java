@@ -16,10 +16,15 @@ public class CostantiForm {
         REG_DOMICILIO(6),
         // CAMPI CERCA FILM
         CERCA_TITOLO(0),
-        CERCA_DATA(1),
-        CERCA_COSTO(2),
-        CERCA_DURATA(3),
-        CERCA_GENERE(4);
+        CERCA_GIORNO_1(1),
+        CERCA_MESE_1(2),
+        CERCA_ANNO_1(3),
+        CERCA_GIORNO_2(4),
+        CERCA_MESE_2(5),
+        CERCA_ANNO_2(6),
+        CERCA_COSTO(7),
+        CERCA_DURATA(8),
+        CERCA_GENERE(9);
 
 
         public final int i;

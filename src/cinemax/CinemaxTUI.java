@@ -177,7 +177,12 @@ public class CinemaxTUI {
             return "║"+ paddingSinistro + opzione + paddingDestro + "║";
         }
         else{
-            String[] righeBoxInput = generaBoxInputUnicode(opzione);
+            String[] righeBoxInput;
+            if(opzione.equals("DATAINIZIO")||opzione.equals("DATAFINE"))
+                righeBoxInput = chiediData();
+            else
+                righeBoxInput = generaBoxInputUnicode(opzione);
+
             String paddingDestroUnicoede = " ".repeat(LARGHEZZA_MENU-padding-righeBoxInput[0].length());
             return  "║"+ paddingSinistro + righeBoxInput[0] + paddingDestroUnicoede + "║\n"+
                     "║"+ paddingSinistro + righeBoxInput[1] + paddingDestroUnicoede + "║\n"+
@@ -198,8 +203,18 @@ public class CinemaxTUI {
         boxInput[0]= "┌─ "+opzione+" "+lineaSuperioreDinamica+"┐";
         boxInput[1]= "│ >                                 │";
         boxInput[2]= "└───────────────────────────────────┘";
-
+        
         return boxInput;
+    }
+
+    public static String[] chiediData(){
+        String[] dataInput = new String[3];
+
+        dataInput[0] = "┌─ GIORNO ─┐ ┌─ MESE ──┐ ┌─ ANNO ───┐";
+        dataInput[1] = "│ >        │ │ >       │ │ >        │";
+        dataInput[2] = "└──────────┘ └─────────┘ └──────────┘";
+
+        return dataInput;
     }
 
 // ======================================================

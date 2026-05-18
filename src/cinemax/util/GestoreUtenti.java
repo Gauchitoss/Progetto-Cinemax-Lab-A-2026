@@ -2,7 +2,7 @@ package cinemax.util;
 import cinemax.model.*;
 import java.io.*;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.List;  
 
 public class GestoreUtenti {
         

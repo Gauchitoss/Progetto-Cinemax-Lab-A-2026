@@ -20,9 +20,10 @@ Benvenuti nel repository ufficiale di **CineMax**, un sistema di gestione cinema
 
 ### 🔴 Priorità Alta
 
-- [ ] **Logica di Autenticazione**: Collegare il form di Login al sistema di controllo credenziali (utilizzando la classe `Cifratura` già esistente).
-- [ ] **Persistenza Utenti**: Implementare il salvataggio e la lettura dei profili utente su file CSV, similmente a quanto fatto per le proiezioni.
-- [ ] **Validazione Campi**: Aggiungere controlli specifici nei form (es. formato data di nascita, corrispondenza password nella registrazione).
+  - [x] **Refactoring del codice**, cercare di eliminare l schiere di switch case all'interno di LogicaStatiManager.
+  Aggiungere la logica degli stati all'enumerativo MenuManager.
+- [ ] **Correzione di bug e sistemazione errori**, aggiungere eccezzioni personalizzate
+  - [ ] **Visualizza Proezioni**, terminare questa parte e mandare a schermo i film.
 
 ### 🟡 Priorità Media
 

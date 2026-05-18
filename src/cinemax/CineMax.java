@@ -25,7 +25,9 @@ public class CineMax {
         //boolean accessoAutorizzato = false;
         boolean running = true;
 
-        while (running) {    
+        while (running) {   
+
+            System.out.println(stackRecord); 
 
             // prendi stato attuale
             statoAttuale = stackRecord.peek();
@@ -36,8 +38,6 @@ public class CineMax {
             // cambio stato
             // aggiungere o togliere stato allo stack
             // fine iterazione
-            System.out.println(stackRecord);
-
         }
     }
 }

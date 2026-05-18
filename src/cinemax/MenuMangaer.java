@@ -1,7 +1,5 @@
 package cinemax;
 
-import cinemax.MenuMangaer.StatoMenu;
-
 /**
  * Classe che gestisce la logica di navigazione e gli stati del sistema CineMax.
  * Utilizza un'enumerazione per definire le fasi dell'applicazione e le relative opzioni.
@@ -78,7 +76,7 @@ public class MenuMangaer {
                 return new StatoMenu[]{INSERISCI_PROEZIONE, RIMUOVI_PROEZIONE, GESTISCI_PROEZIONE, BENVENUTO};
             }
         },
-
+        
         MENU_BIGLIETTAIO(
             new String[]{"visualizza programmazione", "cerca prenotazione", "vendita diretta", "stato sala", "logout"},
             true, "custom", "centro"
@@ -90,12 +88,12 @@ public class MenuMangaer {
         },
 
         CERCA_FILM(
-            new String[]{"titolo", "data", "costo", "durata", "genere"},
+            new String[]{"titolo","dataInizio","dataFine", "costo", "durata", "genere"},
             false, "custom", "sinistra"
         ) {
             @Override
             public StatoMenu[] prossimi() {
-                return new StatoMenu[]{VISUALIZZA_PROGRAMMAZAIONE, VISUALIZZA_PROGRAMMAZAIONE, VISUALIZZA_PROGRAMMAZAIONE, VISUALIZZA_PROGRAMMAZAIONE, VISUALIZZA_PROGRAMMAZAIONE, null};
+                return new StatoMenu[]{VISUALIZZA_PROGRAMMAZAIONE, null};
             }
         },
 

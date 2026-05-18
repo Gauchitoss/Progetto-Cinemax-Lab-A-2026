@@ -36,16 +36,17 @@ public class LogicaStatiManager {
         StatoMenu statoMenu = CineMax.stackRecord.peek();
 
         switch(statoMenu){
-            case BENVENUTO:             gestisciBenvenuto();        break;
-            case LOGIN:                 gestisciLogin();            break;
-            case REGISTRAZIONE:         gestisciRegistrazione();    break;
-            case MENU_GUEST:            gestisciMenuGuest();        break;
-            case MENU_CLIENTI:          gestisciMenuClienti();      break;
-            case MENU_PROEZIONISTA:     gestisciMenuProezionisti(); break;
-            case MENU_BIGLIETTAIO:      gestisciMenuBigliettai();   break;
-            case CERCA_FILM:            gestisciCercaFlm();         break;
-            case STATO_ERRORE:          gestisciErrore();           break;
-            default:                                                break;
+            case BENVENUTO:                 gestisciBenvenuto();                        break;
+            case LOGIN:                     gestisciLogin();                            break;
+            case REGISTRAZIONE:             gestisciRegistrazione();                    break;
+            case MENU_GUEST:                gestisciMenuGuest();                        break;
+            case MENU_CLIENTI:              gestisciMenuClienti();                      break;
+            case MENU_PROEZIONISTA:         gestisciMenuProezionisti();                 break;
+            case MENU_BIGLIETTAIO:          gestisciMenuBigliettai();                   break;
+            case CERCA_FILM:                gestisciCercaFlm();                         break;
+            case STATO_ERRORE:              gestisciErrore();                           break;
+            case VISUALIZZA_PROGRAMMAZAIONE:gestisciVisualizzaProgrammazione();         break;
+            default:                                                                    break;
         }
     }
 
@@ -115,7 +116,10 @@ public class LogicaStatiManager {
      */
     public static void gestisciLogin(){
         String[] datiFormTmp = new String[CineMax.stackRecord.peek().getOpzioni().length];
-        prendiDatiForm(datiFormTmp);
+
+        StatoMenu statoMenu = CineMax.stackRecord.peek();
+        String[] opzioniStatoMenu = statoMenu.getOpzioni();
+        prendiDatiForm(datiFormTmp, opzioniStatoMenu);
 
         String username = datiFormTmp[Campi.LOGIN_USER.i];
         String password = datiFormTmp[Campi.LOGIN_PASSWORD.i];
@@ -145,17 +149,20 @@ public class LogicaStatiManager {
      */
     public static void gestisciRegistrazione(){
         String[] datiFormTmp = new String[CineMax.stackRecord.peek().getOpzioni().length];
-        prendiDatiForm(datiFormTmp);
+        
+        StatoMenu statoMenu = CineMax.stackRecord.peek();
+        String[] opzioniStatoMenu = statoMenu.getOpzioni();
+        prendiDatiForm(datiFormTmp, opzioniStatoMenu);
 
         try{
             // Estrazione dei dati usando le costanti per evitare errori di indice
-            String  nome = datiFormTmp[Campi.REG_NOME.i];
-            String  cognome = datiFormTmp[Campi.REG_COGNOME.i];
-            String  username = datiFormTmp[Campi.REG_USERNAME.i];
-            String  password = datiFormTmp[Campi.REG_PASSWORD.i];
-            String  confermaPassword = datiFormTmp[Campi.REG_CONFERMA_PASSWORD.i];
-            String  dataNascita = datiFormTmp[Campi.REG_DATA.i];
-            String  domicilio = datiFormTmp[Campi.REG_DOMICILIO.i];
+            String  nome                = datiFormTmp[Campi.REG_NOME.i];
+            String  cognome             = datiFormTmp[Campi.REG_COGNOME.i];
+            String  username            = datiFormTmp[Campi.REG_USERNAME.i];
+            String  password            = datiFormTmp[Campi.REG_PASSWORD.i];
+            String  confermaPassword    = datiFormTmp[Campi.REG_CONFERMA_PASSWORD.i];
+            String  dataNascita         = datiFormTmp[Campi.REG_DATA.i];
+            String  domicilio           = datiFormTmp[Campi.REG_DOMICILIO.i];
 
             GestoreUtenti.registraUtente(nome, cognome, username, password, confermaPassword, dataNascita, domicilio);
 
@@ -174,17 +181,29 @@ public class LogicaStatiManager {
     }
 
     public static void gestisciCercaFlm(){
-        String[] datiFormTmp = new String[CineMax.stackRecord.peek().getOpzioni().length];
-        prendiDatiForm(datiFormTmp);
+        String[] datiFormTmp = new String[10]; //10 numero opzioni disponibili
+        StatoMenu statoMenu = CineMax.stackRecord.peek();
+        String[] opzioniStatoMenu = statoMenu.getOpzioni();
 
-        //titolo", "data", "costo", "durata", "genere"
-        String titolo = datiFormTmp[Campi.CERCA_TITOLO.i];
-        String data = datiFormTmp[Campi.CERCA_DATA.i];
-        String costo = datiFormTmp[Campi.CERCA_COSTO.i];
-        String durata = datiFormTmp[Campi.CERCA_DURATA.i];
-        String genere = datiFormTmp[Campi.CERCA_GENERE.i];
+        prendiDatiForm(datiFormTmp, opzioniStatoMenu);
 
-        CineMax.stackRecord.push(StatoMenu.VISUALIZZA_PROGRAMMAZAIONE);
+        try{
+
+            String  titolo          = datiFormTmp[Campi.CERCA_TITOLO.i];
+            String  giornoInizio    = datiFormTmp[Campi.CERCA_GIORNO_1.i];
+            String  meseInizio      = datiFormTmp[Campi.CERCA_MESE_1.i];
+            String  annoInizio      = datiFormTmp[Campi.CERCA_ANNO_1.i];
+            String  giornoFine      = datiFormTmp[Campi.CERCA_GIORNO_2.i];
+            String  meseFine        = datiFormTmp[Campi.CERCA_MESE_2.i];
+            String  annoFine        = datiFormTmp[Campi.CERCA_ANNO_2.i];
+            String  costo           = datiFormTmp[Campi.CERCA_COSTO.i];
+            String  durata          = datiFormTmp[Campi.CERCA_DURATA.i];
+            String  genere          = datiFormTmp[Campi.CERCA_GENERE.i];
+
+        }catch(IllegalArgumentException e){
+
+        }
+
     }
 
 // ======================================================
@@ -192,10 +211,16 @@ public class LogicaStatiManager {
 // ======================================================
     /**
      * 
+     */
+    public static void gestisciVisualizzaProgrammazione(){
+        input.nextLine();
+    }
+    /**
+     * 
      * @param stack
      */
     public static void gestisciPrenotazionePosti(){
-        
+        input.nextLine();
     }
 
     /**
@@ -203,7 +228,7 @@ public class LogicaStatiManager {
      * @param stack
      */
     public static void gestisciLeMieProezioni(){
-        
+        input.nextLine();
     }
 
 // ======================================================
@@ -215,26 +240,65 @@ public class LogicaStatiManager {
      * Utilizza sequenze di escape ANSI per posizionare il cursore all'interno dei box grafici
      * disegnati dalla TUI e popola l'array passato come parametro.
      */
-    public static void prendiDatiForm(String[] campiForm){
+    public static void prendiDatiForm(String[] campiForm, String[] opzioniStatoMenu){
         // ciclo for che crea ciclicamente i le richieste del form in base all'iterazione lo salva in un array di stringhe
         int altezzaLineaRichiesta = 10;
+        int altezzaColonnaRichiesta = 11;
         String campoTmp="";
-        for(int indiceCampo = 0; indiceCampo < campiForm.length; indiceCampo++){
-            System.out.print("\033["+altezzaLineaRichiesta+";11H");
-            altezzaLineaRichiesta += 3;
-            campoTmp = input.nextLine();
-            if(campoTmp.equals("")){
-                campiForm[indiceCampo] = null;
-                continue;
+
+        // indiceOpzioni        scorre array di stringhe della classe MenuManager
+        // indicieRisultati     scorre array dove vengono salvati gli input
+        for(int indiceOpzioni = 0, indiceRisultati = 0; indiceOpzioni < opzioniStatoMenu.length; indiceOpzioni ++){
+            
+            if(opzioniStatoMenu[indiceOpzioni].toUpperCase().equals("DATAINIZIO")||opzioniStatoMenu[indiceOpzioni].toUpperCase().equals("DATAFINE")){
+                for(int i = 0; i<3; i++){
+                    System.out.print("\033["+altezzaLineaRichiesta+";"+altezzaColonnaRichiesta+"H");
+                    campoTmp = input.nextLine();
+
+                    String ris = convalidaInput(campoTmp);
+                    if(ris != null && ris.equals("!_EXIT_!"))
+                        return;
+                    campiForm[indiceRisultati++] = ris;
+
+                    altezzaColonnaRichiesta += 12;
+                }
+
+                altezzaColonnaRichiesta = 11;
+                altezzaLineaRichiesta += 3;
+            }else{
+                System.out.print("\033["+altezzaLineaRichiesta+";"+altezzaColonnaRichiesta+"H");
+                campoTmp = input.nextLine();
+                
+                String ris = convalidaInput(campoTmp);
+                if(ris != null && ris.equals("!_EXIT_!"))
+                        return;
+                    
+                campiForm[indiceRisultati++] = ris;
+
+                altezzaLineaRichiesta += 3;
             }
-            if(campoTmp.equals(":q")){
-                CineMax.stackRecord.pop();
-                return;
-            }
-            campiForm[indiceCampo] = campoTmp;
+        }
+        System.out.println(java.util.Arrays.toString(campiForm));
+
+    }
+
+    /**
+     * 
+     * @param campoTmp
+     * @return
+     */
+    public static String convalidaInput(String campoTmp){
+        
+        if(campoTmp.equals(":q")){
+            CineMax.stackRecord.pop();
+            return "!_EXIT_!";
         }
 
-        System.out.println(java.util.Arrays.toString(campiForm));
+        if(campoTmp.equals("")){
+            return null;
+        }
+
+        return campoTmp;
     }
     
 // ======================================================
