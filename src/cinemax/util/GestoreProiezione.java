@@ -94,34 +94,24 @@ import java.time.DateTimeException;
 // ======================================================
 //                   metodo cercaProiezione
 // ======================================================
-        public static void visualizzaProiezione(String titolo, String giorno1, String mese1, String anno1, String giorno2, String mese2, String anno2, String prezzo, String genere){
-            
-            try{    
-                int giornoInizio    = Integer.parseInt(giorno1);
-                int meseInizio      = Integer.parseInt(mese1);
-                int annoInizio      = Integer.parseInt(anno1);
-                int giornoFine      = Integer.parseInt(giorno2);
-                int meseFine        = Integer.parseInt(mese2);
-                int annoFine        = Integer.parseInt(anno2);
 
-                cercaProiezione(titolo, giornoInizio, meseInizio, annoInizio, giornoFine, meseFine, annoFine, prezzo, genere);
-            }catch(NumberFormatException e){
-    
-            }
-
-        }
-
-        public static List<Proiezione> cercaProiezione(String titolo, int daGiorno, int daMese, int daAnno, int aGiorno, int aMese, int aAnno, String prezzoStr, String genere){
+        public static List<Proiezione> cercaProiezione(String titolo, String daGiorno, String daMese, String daAnno, String aGiorno, String aMese, String aAnno, String prezzoStr, String genere){
             LocalDate daData = null;
             LocalDate aData = null;
             try{
-                if(daAnno != 0 && daMese != 0 && daGiorno != 0){
-                    daData = LocalDate.of(daAnno, daMese, daGiorno);
+                if(daAnno != null && daMese != null && daGiorno != null){
+                    int giornoInizio = Integer.parseInt(daGiorno);
+                    int meseInizio = Integer.parseInt(daMese);
+                    int annoInizio = Integer.parseInt(daAnno);
+                    daData = LocalDate.of(annoInizio, meseInizio, giornoInizio);
                 }
-                if(aAnno != 0 && aMese != 0 && aGiorno != 0){
-                    aData = LocalDate.of(aAnno, aMese, aGiorno);
+                if(aAnno != null && aMese != null && aGiorno != null){
+                    int giornoFine = Integer.parseInt(aGiorno);
+                    int meseFine = Integer.parseInt(aMese);
+                    int annoFine = Integer.parseInt(aAnno);
+                    aData = LocalDate.of(annoFine, meseFine, giornoFine);
                 }
-            } catch(DateTimeException e){
+            } catch(DateTimeException | NumberFormatException e){
                 System.err.println("L'intervallo di date inserito per la ricerca non risulta valido");
                 return new ArrayList<>();
             }
@@ -170,7 +160,7 @@ import java.time.DateTimeException;
 //                   metodo visualizzaProiezioni
 // ======================================================
 
-        public static void visualizzaProiezione(String titolo, int daGiorno, int daMese, int daAnno, int aGiorno, int aMese, int aAnno, String prezzoStr, String genere){
+        public static void visualizzaProiezione(String titolo, String daGiorno, String daMese, String daAnno, String aGiorno, String aMese, String aAnno, String prezzoStr, String genere){
             List<Proiezione> risultato = cercaProiezione(titolo, daGiorno, daMese, daAnno, aGiorno, aMese, aAnno, prezzoStr, genere);
             if(risultato.isEmpty()){
                 System.out.println("Nessuna proiezione trovata con i filtri inseriti");
