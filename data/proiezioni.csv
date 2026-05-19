@@ -1,364 +1,364 @@
-data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,prezzo_biglietto
-"2026-12-31 15:30:00","The Killing Fields",Biography,"Roland Joffé",1984,141,12,8.50
-"2026-12-31 12:30:00","Pirates of the Caribbean: The Curse of the Black Pearl",Azione,"Gore Verbinski",2003,143,12,8.00
-"2026-12-31 10:00:00","Aguirre, der Zorn Gottes",Azione,"Werner Herzog",1972,95,12,7.00
-"2026-12-30 17:00:00","Pulp Fiction",Crime,"Quentin Tarantino",1994,154,12,7.50
-"2026-12-30 14:00:00","One Flew Over the Cuckoo's Nest",Drama,"Milos Forman",1975,133,12,8.50
-"2026-12-30 10:30:00","Breaking the Waves",Drama,"Lars von Trier",1996,159,16,8.50
-"2026-12-29 13:00:00",Stalker,Drama,"Andrei Tarkovsky",1979,162,0,8.00
-"2026-12-29 10:30:00","Kung fu",Azione,"Stephen Chow",2004,99,12,6.50
-"2026-12-28 15:30:00","The Day of the Jackal",Crime,"Fred Zinnemann",1973,143,12,8.50
-"2026-12-28 12:30:00","Pirates of the Caribbean: The Curse of the Black Pearl",Azione,"Gore Verbinski",2003,143,12,7.00
-"2026-12-28 10:00:00",Sanjuro,Azione,"Akira Kurosawa",1962,96,0,6.50
-"2026-12-27 16:00:00","Kung fu",Azione,"Stephen Chow",2004,99,12,8.00
-"2026-12-27 13:00:00","Pirates of the Caribbean: The Curse of the Black Pearl",Azione,"Gore Verbinski",2003,143,12,7.00
-"2026-12-27 10:30:00","His Girl Friday",Comedy,"Howard Hawks",1940,92,12,7.00
-"2026-12-26 16:00:00","Bringing Up Baby",Comedy,"Howard Hawks",1938,102,12,8.50
-"2026-12-26 13:00:00","Rear Window",Mystery,"Alfred Hitchcock",1954,112,0,8.50
-"2026-12-26 10:30:00","Harold and Maude",Comedy,"Hal Ashby",1971,91,6,7.00
-"2026-12-25 15:30:00","Aguirre, der Zorn Gottes",Azione,"Werner Herzog",1972,95,12,7.00
-"2026-12-25 12:30:00","The Fifth Element",Azione,"Luc Besson",1997,126,12,6.50
-"2026-12-25 10:00:00","Planes, Trains & Automobiles",Comedy,"John Hughes",1987,93,0,8.00
-"2026-12-24 10:00:00","The Little Mermaid",Animation,"Ron Clements",1989,83,0,7.50
-"2026-12-23 10:30:00","Toy Story",Animation,"John Lasseter",1995,81,0,7.50
-"2026-12-22 10:30:00","The Princess Bride",Adventure,"Rob Reiner",1987,98,0,6.50
-"2026-12-21 15:30:00",Brazil,Drama,"Terry Gilliam",1985,132,0,8.00
-"2026-12-21 13:00:00","The Princess Bride",Adventure,"Rob Reiner",1987,98,0,7.50
-"2026-12-21 10:00:00","The Untouchables",Crime,"Brian De Palma",1987,119,12,8.50
-"2026-12-20 16:30:00","The Untouchables",Crime,"Brian De Palma",1987,119,12,7.00
-"2026-12-20 14:00:00","Le charme discret de la bourgeoisie",Comedy,"Luis Buñuel",1972,102,6,8.50
-"2026-12-20 10:00:00",Giant,Drama,"George Stevens",1956,201,0,6.50
-"2026-12-19 17:30:00",Giant,Drama,"George Stevens",1956,201,0,6.50
-"2026-12-19 15:00:00","The Little Mermaid",Animation,"Ron Clements",1989,83,0,7.00
-"2026-12-19 10:30:00","Once Upon a Time in America",Crime,"Sergio Leone",1984,229,12,7.00
-"2026-12-18 16:30:00","Toy Story",Animation,"John Lasseter",1995,81,0,6.50
-"2026-12-18 13:30:00","Tôkyô monogatari",Drama,"Yasujirô Ozu",1953,136,0,7.00
-"2026-12-18 10:00:00","The Day of the Jackal",Crime,"Fred Zinnemann",1973,143,12,8.50
-"2026-12-17 16:30:00","This Is England",Crime,"Shane Meadows",2006,101,12,6.50
-"2026-12-17 13:30:00","Rear Window",Mystery,"Alfred Hitchcock",1954,112,0,8.00
-"2026-12-17 10:30:00","The Untouchables",Crime,"Brian De Palma",1987,119,12,8.00
-"2026-12-16 12:30:00","Stand by Me",Adventure,"Rob Reiner",1986,89,0,7.50
-"2026-12-16 10:00:00","Det sjunde inseglet",Drama,"Ingmar Bergman",1957,96,12,8.00
-"2026-12-15 10:00:00","Toy Story",Animation,"John Lasseter",1995,81,0,8.50
-"2026-12-14 14:00:00",Sanjuro,Azione,"Akira Kurosawa",1962,96,0,8.00
-"2026-12-14 10:30:00","The Lives of Others",Drama,"Florian Henckel von Donnersmarck",2006,137,12,6.50
-"2026-12-13 21:30:00","This Is England",Crime,"Shane Meadows",2006,101,12,9.00
-"2026-12-13 18:00:00","Pulp Fiction",Crime,"Quentin Tarantino",1994,154,12,10.00
-"2026-12-13 15:00:00","The Killing Fields",Biography,"Roland Joffé",1984,141,12,8.00
-"2026-12-13 10:30:00","Once Upon a Time in America",Crime,"Sergio Leone",1984,229,12,7.00
-"2026-12-12 15:30:00","The Little Mermaid",Animation,"Ron Clements",1989,83,0,6.50
-"2026-12-12 12:30:00","Donnie Darko",Drama,"Richard Kelly",2001,113,16,6.50
-"2026-12-12 10:00:00",Psycho,Horror,"Alfred Hitchcock",1960,109,12,8.00
-"2026-12-11 10:00:00","The Little Mermaid",Animation,"Ron Clements",1989,83,0,7.00
-"2026-12-10 16:30:00",Blow,Biography,"Ted Demme",2001,124,16,8.50
-"2026-12-10 13:30:00","Das Experiment",Drama,"Oliver Hirschbiegel",2001,120,16,8.50
-"2026-12-10 10:00:00",Stalker,Drama,"Andrei Tarkovsky",1979,162,0,7.00
-"2026-12-09 15:30:00","Harry Potter and the Sorcerer's Stone",Adventure,"Chris Columbus",2001,152,0,7.00
-"2026-12-09 13:00:00","The Lost Weekend",Drama,"Billy Wilder",1945,101,12,7.00
-"2026-12-09 10:30:00","Hannah and Her Sisters",Comedy,"Woody Allen",1986,107,12,7.50
-"2026-12-08 15:30:00",Stalker,Drama,"Andrei Tarkovsky",1979,162,0,8.00
-"2026-12-08 13:00:00","Das Experiment",Drama,"Oliver Hirschbiegel",2001,120,16,7.50
-"2026-12-08 10:00:00",Psycho,Horror,"Alfred Hitchcock",1960,109,12,7.50
-"2026-12-07 12:30:00","Bringing Up Baby",Comedy,"Howard Hawks",1938,102,12,8.00
-"2026-12-07 10:00:00","Stand by Me",Adventure,"Rob Reiner",1986,89,0,8.50
-"2026-12-06 16:30:00","Once Upon a Time in America",Crime,"Sergio Leone",1984,229,12,7.00
-"2026-12-06 13:00:00","The Day of the Jackal",Crime,"Fred Zinnemann",1973,143,12,6.50
-"2026-12-06 10:00:00","Salinui chueok",Crime,"Bong Joon Ho",2003,131,12,8.00
-"2026-12-05 17:00:00","Donnie Darko",Drama,"Richard Kelly",2001,113,16,6.50
-"2026-12-05 14:30:00","Le charme discret de la bourgeoisie",Comedy,"Luis Buñuel",1972,102,6,7.00
-"2026-12-05 10:00:00","Once Upon a Time in America",Crime,"Sergio Leone",1984,229,12,6.50
-"2026-12-04 10:00:00","Breaking the Waves",Drama,"Lars von Trier",1996,159,16,8.00
-"2026-12-03 10:00:00",Smultronstället,Drama,"Ingmar Bergman",1957,91,0,7.00
-"2026-12-02 15:30:00",Notorious,Drama,"Alfred Hitchcock",1946,102,0,8.00
-"2026-12-02 12:30:00","The Exorcist",Horror,"William Friedkin",1973,122,12,6.50
-"2026-12-02 10:00:00","Aguirre, der Zorn Gottes",Azione,"Werner Herzog",1972,95,12,7.50
-"2026-12-01 12:30:00","Stand by Me",Adventure,"Rob Reiner",1986,89,0,6.50
-"2026-12-01 10:00:00",Psycho,Horror,"Alfred Hitchcock",1960,109,12,6.50
-"2026-11-30 12:30:00","Dawn of the Dead",Azione,"George A. Romero",1978,127,12,8.00
-"2026-11-30 10:00:00","Planes, Trains & Automobiles",Comedy,"John Hughes",1987,93,0,7.00
-"2026-11-29 15:30:00","The Lost Weekend",Drama,"Billy Wilder",1945,101,12,6.50
-"2026-11-29 13:00:00","Le charme discret de la bourgeoisie",Comedy,"Luis Buñuel",1972,102,6,7.50
-"2026-11-29 10:30:00","Office Space",Comedy,"Mike Judge",1999,89,16,6.50
-"2026-11-28 19:00:00","The Exorcist",Horror,"William Friedkin",1973,122,12,8.50
-"2026-11-28 16:30:00",Shrek,Animation,"Andrew Adamson",2001,90,0,7.00
-"2026-11-28 14:00:00",Shrek,Animation,"Andrew Adamson",2001,90,0,8.50
-"2026-11-28 10:30:00","Breaking the Waves",Drama,"Lars von Trier",1996,159,16,8.50
-"2026-11-27 10:00:00","Le charme discret de la bourgeoisie",Comedy,"Luis Buñuel",1972,102,6,7.00
-"2026-11-26 10:30:00",Dogville,Crime,"Lars von Trier",2003,178,16,7.50
-"2026-11-25 12:30:00","The Little Mermaid",Animation,"Ron Clements",1989,83,0,8.50
-"2026-11-25 10:00:00",Sanjuro,Azione,"Akira Kurosawa",1962,96,0,7.00
-"2026-11-24 10:00:00","The Day of the Jackal",Crime,"Fred Zinnemann",1973,143,12,6.50
-"2026-11-23 10:30:00","The Kid",Comedy,"Charles Chaplin",1921,68,12,7.00
-"2026-11-22 16:30:00","Salinui chueok",Crime,"Bong Joon Ho",2003,131,12,8.50
-"2026-11-22 13:30:00","The Killing Fields",Biography,"Roland Joffé",1984,141,12,8.00
-"2026-11-22 10:00:00","Harry Potter and the Sorcerer's Stone",Adventure,"Chris Columbus",2001,152,0,8.50
-"2026-11-21 16:30:00","Rang De Basanti",Comedy,"Rakeysh Omprakash Mehra",2006,167,12,7.00
-"2026-11-21 13:30:00","L.A. Confidential",Crime,"Curtis Hanson",1997,138,12,8.00
-"2026-11-21 10:30:00","Dead Man",Adventure,"Jim Jarmusch",1995,121,16,7.00
-"2026-11-20 15:30:00","Once Upon a Time in America",Crime,"Sergio Leone",1984,229,12,8.00
-"2026-11-20 13:00:00",Hana-bi,Crime,"Takeshi Kitano",1997,103,12,7.00
-"2026-11-20 10:30:00",Sanjuro,Azione,"Akira Kurosawa",1962,96,0,6.50
-"2026-11-19 10:00:00",Gilda,Drama,"Charles Vidor",1946,110,12,7.50
-"2026-11-18 12:30:00","The 39 Steps",Crime,"Alfred Hitchcock",1935,86,12,7.50
-"2026-11-18 10:00:00","Double Indemnity",Crime,"Billy Wilder",1944,107,12,8.50
-"2026-11-17 16:00:00","L.A. Confidential",Crime,"Curtis Hanson",1997,138,12,7.50
-"2026-11-17 13:30:00","Trois couleurs: Bleu",Drama,"Krzysztof Kieslowski",1993,94,0,8.50
-"2026-11-17 10:30:00","Dancer in the Dark",Crime,"Lars von Trier",2000,140,0,8.00
-"2026-11-16 16:00:00",Shrek,Animation,"Andrew Adamson",2001,90,0,8.50
-"2026-11-16 12:30:00","Giù la testa",Drama,"Sergio Leone",1971,157,6,8.00
-"2026-11-16 10:30:00","Stand by Me",Adventure,"Rob Reiner",1986,89,0,7.50
-"2026-11-15 15:30:00",Hana-bi,Crime,"Takeshi Kitano",1997,103,12,7.00
-"2026-11-15 13:00:00",Shrek,Animation,"Andrew Adamson",2001,90,0,8.00
-"2026-11-15 10:00:00",Goodfellas,Biography,"Martin Scorsese",1990,146,12,6.50
-"2026-11-14 17:00:00",Goodfellas,Biography,"Martin Scorsese",1990,146,12,8.50
-"2026-11-14 13:00:00",Dogville,Crime,"Lars von Trier",2003,178,16,7.50
-"2026-11-14 10:30:00","Majo no takkyûbin",Animation,"Hayao Miyazaki",1989,103,0,6.50
-"2026-11-13 12:30:00","Majo no takkyûbin",Animation,"Hayao Miyazaki",1989,103,0,7.00
-"2026-11-13 10:00:00",Smultronstället,Drama,"Ingmar Bergman",1957,91,0,6.50
-"2026-11-12 10:00:00","Dà hóng denglong gaogao guà",Drama,"Yimou Zhang",1991,125,6,7.50
-"2026-11-11 10:30:00","Toy Story 2",Animation,"John Lasseter",1999,92,0,7.00
-"2026-11-10 12:30:00","Dà hóng denglong gaogao guà",Drama,"Yimou Zhang",1991,125,6,7.50
-"2026-11-10 10:00:00","The Station Agent",Comedy,"Tom McCarthy",2003,89,16,6.50
-"2026-11-09 10:30:00",Gilda,Drama,"Charles Vidor",1946,110,12,8.50
-"2026-11-08 18:00:00","Per un pugno di dollari",Azione,"Sergio Leone",1964,99,12,9.50
-"2026-11-08 14:30:00","Giù la testa",Drama,"Sergio Leone",1971,157,6,6.50
-"2026-11-08 12:30:00","The 39 Steps",Crime,"Alfred Hitchcock",1935,86,12,8.50
-"2026-11-08 10:00:00","The 39 Steps",Crime,"Alfred Hitchcock",1935,86,12,8.00
-"2026-11-07 19:00:00","The King of Comedy",Comedy,"Martin Scorsese",1982,109,0,9.50
-"2026-11-07 16:00:00","V for Vendetta",Azione,"James McTeigue",2005,132,12,7.50
-"2026-11-07 13:00:00",Brazil,Drama,"Terry Gilliam",1985,132,0,7.50
-"2026-11-07 10:00:00","Dà hóng denglong gaogao guà",Drama,"Yimou Zhang",1991,125,6,7.50
-"2026-11-06 15:00:00","Dancer in the Dark",Crime,"Lars von Trier",2000,140,0,8.00
-"2026-11-06 12:30:00","The 39 Steps",Crime,"Alfred Hitchcock",1935,86,12,8.00
-"2026-11-06 10:30:00","The Kid",Comedy,"Charles Chaplin",1921,68,12,7.00
-"2026-11-05 10:00:00","Annie Hall",Comedy,"Woody Allen",1977,93,12,8.50
-"2026-11-04 10:00:00","Dead Man",Adventure,"Jim Jarmusch",1995,121,16,8.50
-"2026-11-03 10:00:00",Laura,Drama,"Otto Preminger",1944,88,12,7.00
-"2026-11-02 13:00:00",Notorious,Drama,"Alfred Hitchcock",1946,102,0,6.50
-"2026-11-02 10:30:00",Shrek,Animation,"Andrew Adamson",2001,90,0,8.50
-"2026-11-01 18:30:00",Brazil,Drama,"Terry Gilliam",1985,132,0,9.00
-"2026-11-01 16:00:00","Majo no takkyûbin",Animation,"Hayao Miyazaki",1989,103,0,8.00
-"2026-11-01 13:00:00","Dead Man",Adventure,"Jim Jarmusch",1995,121,16,8.50
-"2026-11-01 10:30:00",Shrek,Animation,"Andrew Adamson",2001,90,0,8.00
-"2026-10-31 18:00:00","All About Eve",Drama,"Joseph L. Mankiewicz",1950,138,12,9.00
-"2026-10-31 15:30:00","Toy Story 2",Animation,"John Lasseter",1999,92,0,8.50
-"2026-10-31 13:00:00",Hana-bi,Crime,"Takeshi Kitano",1997,103,12,6.50
-"2026-10-31 10:30:00","The Day the Earth Stood Still",Drama,"Robert Wise",1951,92,0,8.50
-"2026-10-30 10:30:00","V for Vendetta",Azione,"James McTeigue",2005,132,12,7.00
-"2026-10-29 10:30:00","The Station Agent",Comedy,"Tom McCarthy",2003,89,16,7.50
-"2026-10-28 10:30:00",Gilda,Drama,"Charles Vidor",1946,110,12,8.50
-"2026-10-27 16:00:00","Dancer in the Dark",Crime,"Lars von Trier",2000,140,0,7.50
-"2026-10-27 13:30:00","Toy Story 2",Animation,"John Lasseter",1999,92,0,8.50
-"2026-10-27 10:30:00","Dip huet seung hung",Azione,"John Woo",1989,111,16,8.50
-"2026-10-26 16:30:00","Giù la testa",Drama,"Sergio Leone",1971,157,6,8.00
-"2026-10-26 13:30:00",Blow,Biography,"Ted Demme",2001,124,16,8.00
-"2026-10-26 10:30:00",Brazil,Drama,"Terry Gilliam",1985,132,0,8.50
-"2026-10-25 15:00:00","Dancer in the Dark",Crime,"Lars von Trier",2000,140,0,7.50
-"2026-10-25 12:30:00","Per un pugno di dollari",Azione,"Sergio Leone",1964,99,12,6.50
-"2026-10-25 10:00:00","Bacheha-Ye aseman",Drama,"Majid Majidi",1997,89,6,8.00
-"2026-10-24 18:00:00",Notorious,Drama,"Alfred Hitchcock",1946,102,0,9.00
-"2026-10-24 15:00:00","Star Trek II: The Wrath of Khan",Azione,"Nicholas Meyer",1982,113,0,8.00
-"2026-10-24 12:30:00",Notorious,Drama,"Alfred Hitchcock",1946,102,0,7.50
-"2026-10-24 10:00:00","Majo no takkyûbin",Animation,"Hayao Miyazaki",1989,103,0,8.50
-"2026-10-23 10:00:00","La leggenda del pianista sull'oceano",Drama,"Giuseppe Tornatore",1998,169,0,7.50
-"2026-10-22 13:00:00","The King of Comedy",Comedy,"Martin Scorsese",1982,109,0,7.50
-"2026-10-22 10:30:00","To Be or Not to Be",Comedy,"Ernst Lubitsch",1942,99,12,8.00
-"2026-10-21 10:00:00","The Day the Earth Stood Still",Drama,"Robert Wise",1951,92,0,8.50
-"2026-10-20 10:00:00","The Station Agent",Comedy,"Tom McCarthy",2003,89,16,8.00
-"2026-10-19 10:00:00",8½,Drama,"Federico Fellini",1963,138,12,8.00
-"2026-10-18 15:00:00","Bacheha-Ye aseman",Drama,"Majid Majidi",1997,89,6,8.50
-"2026-10-18 12:00:00","L.A. Confidential",Crime,"Curtis Hanson",1997,138,12,8.00
-"2026-10-18 10:00:00","Lola rennt",Crime,"Tom Tykwer",1998,81,12,7.50
-"2026-10-17 19:00:00",Brazil,Drama,"Terry Gilliam",1985,132,0,8.50
-"2026-10-17 16:00:00","Dancer in the Dark",Crime,"Lars von Trier",2000,140,0,7.50
-"2026-10-17 13:00:00",8½,Drama,"Federico Fellini",1963,138,12,7.50
-"2026-10-17 10:00:00","The Sting",Comedy,"George Roy Hill",1973,129,0,8.50
-"2026-10-16 12:30:00","Donnie Darko",Drama,"Richard Kelly",2001,113,16,6.50
-"2026-10-16 10:00:00","Majo no takkyûbin",Animation,"Hayao Miyazaki",1989,103,0,8.50
-"2026-10-15 10:00:00","Bacheha-Ye aseman",Drama,"Majid Majidi",1997,89,6,7.50
-"2026-10-14 15:30:00","Secrets & Lies",Comedy,"Mike Leigh",1996,136,0,7.50
-"2026-10-14 13:00:00",Hana-bi,Crime,"Takeshi Kitano",1997,103,12,7.00
-"2026-10-14 10:00:00","Efter brylluppet",Drama,"Susanne Bier",2006,120,16,8.00
-"2026-10-13 13:00:00","Before Sunrise",Drama,"Richard Linklater",1995,101,16,7.00
-"2026-10-13 10:00:00","All About Eve",Drama,"Joseph L. Mankiewicz",1950,138,12,7.50
-"2026-10-12 16:00:00","What's Eating Gilbert Grape",Drama,"Lasse Hallström",1993,118,0,7.50
-"2026-10-12 13:00:00","Dancer in the Dark",Crime,"Lars von Trier",2000,140,0,6.50
-"2026-10-12 10:30:00","Aguirre, der Zorn Gottes",Azione,"Werner Herzog",1972,95,12,8.00
-"2026-10-11 18:30:00","Efter brylluppet",Drama,"Susanne Bier",2006,120,16,8.50
-"2026-10-11 16:00:00","The Shop Around the Corner",Comedy,"Ernst Lubitsch",1940,99,12,8.00
-"2026-10-11 13:30:00","To Be or Not to Be",Comedy,"Ernst Lubitsch",1942,99,12,8.00
-"2026-10-11 10:00:00",Goodfellas,Biography,"Martin Scorsese",1990,146,12,8.50
-"2026-10-10 18:00:00","The Station Agent",Comedy,"Tom McCarthy",2003,89,16,9.00
-"2026-10-10 15:00:00",Goodfellas,Biography,"Martin Scorsese",1990,146,12,8.00
-"2026-10-10 12:30:00","Bacheha-Ye aseman",Drama,"Majid Majidi",1997,89,6,6.50
-"2026-10-10 10:00:00","Annie Hall",Comedy,"Woody Allen",1977,93,12,8.50
-"2026-10-09 10:00:00","Brokeback Mountain",Drama,"Ang Lee",2005,134,12,7.50
-"2026-10-08 12:30:00","The Sting",Comedy,"George Roy Hill",1973,129,0,8.00
-"2026-10-08 10:00:00","Aguirre, der Zorn Gottes",Azione,"Werner Herzog",1972,95,12,8.00
-"2026-10-07 15:30:00","Secrets & Lies",Comedy,"Mike Leigh",1996,136,0,8.50
-"2026-10-07 13:00:00","Aguirre, der Zorn Gottes",Azione,"Werner Herzog",1972,95,12,8.50
-"2026-10-07 10:00:00","Secrets & Lies",Comedy,"Mike Leigh",1996,136,0,6.50
-"2026-10-06 14:30:00","Efter brylluppet",Drama,"Susanne Bier",2006,120,16,7.00
-"2026-10-06 12:30:00","Lola rennt",Crime,"Tom Tykwer",1998,81,12,7.00
-"2026-10-06 10:00:00","Kung fu",Azione,"Stephen Chow",2004,99,12,7.50
-"2026-10-05 10:30:00","Funny Games",Crime,"Michael Haneke",1997,108,12,8.00
-"2026-10-04 16:00:00",Awakenings,Biography,"Penny Marshall",1990,121,0,7.50
-"2026-10-04 13:00:00","Die Hard",Azione,"John McTiernan",1988,132,12,8.50
-"2026-10-04 10:30:00","To Be or Not to Be",Comedy,"Ernst Lubitsch",1942,99,12,6.50
-"2026-10-03 18:00:00","The Sting",Comedy,"George Roy Hill",1973,129,0,9.00
-"2026-10-03 15:00:00","Ed Wood",Biography,"Tim Burton",1994,127,0,8.50
-"2026-10-03 12:30:00","O Brother, Where Art Thou?",Adventure,"Joel Coen",2000,107,0,8.50
-"2026-10-03 10:00:00","Kung fu",Azione,"Stephen Chow",2004,99,12,7.00
-"2026-10-02 12:30:00","Brokeback Mountain",Drama,"Ang Lee",2005,134,12,7.50
-"2026-10-02 10:00:00","The Night of the Hunter",Crime,"Charles Laughton",1955,92,12,8.50
-"2026-10-01 14:00:00","Die Hard: With a Vengeance",Azione,"John McTiernan",1995,128,12,7.50
-"2026-10-01 10:00:00","La leggenda del pianista sull'oceano",Drama,"Giuseppe Tornatore",1998,169,0,8.00
-"2026-09-30 10:00:00","Annie Hall",Comedy,"Woody Allen",1977,93,12,6.50
-"2026-09-29 15:30:00","Die Hard",Azione,"John McTiernan",1988,132,12,8.00
-"2026-09-29 13:00:00","Aguirre, der Zorn Gottes",Azione,"Werner Herzog",1972,95,12,8.00
-"2026-09-29 10:00:00","Guess Who's Coming to Dinner",Comedy,"Stanley Kramer",1967,108,12,7.00
-"2026-09-28 13:00:00","O Brother, Where Art Thou?",Adventure,"Joel Coen",2000,107,0,6.50
-"2026-09-28 10:30:00","O Brother, Where Art Thou?",Adventure,"Joel Coen",2000,107,0,8.50
-"2026-09-27 17:00:00","Once Were Warriors",Crime,"Lee Tamahori",1994,102,12,8.00
-"2026-09-27 14:30:00",Laura,Drama,"Otto Preminger",1944,88,12,7.00
-"2026-09-27 12:30:00","Lola rennt",Crime,"Tom Tykwer",1998,81,12,8.00
-"2026-09-27 10:00:00","Brief Encounter",Drama,"David Lean",1945,86,0,8.00
-"2026-09-26 18:00:00","Dead Man",Adventure,"Jim Jarmusch",1995,121,16,10.00
-"2026-09-26 15:00:00","Witness for the Prosecution",Crime,"Billy Wilder",1957,116,0,7.00
-"2026-09-26 12:30:00","To Be or Not to Be",Comedy,"Ernst Lubitsch",1942,99,12,7.00
-"2026-09-26 10:00:00","The Night of the Hunter",Crime,"Charles Laughton",1955,92,12,7.00
-"2026-09-25 15:30:00","Central do Brasil",Drama,"Walter Salles",1998,110,16,8.00
-"2026-09-25 13:00:00","Brief Encounter",Drama,"David Lean",1945,86,0,7.00
-"2026-09-25 10:30:00","Donnie Darko",Drama,"Richard Kelly",2001,113,16,7.50
-"2026-09-24 13:00:00","Star Trek II: The Wrath of Khan",Azione,"Nicholas Meyer",1982,113,0,8.00
-"2026-09-24 10:30:00","Strangers on a Train",Crime,"Alfred Hitchcock",1951,101,12,8.50
-"2026-09-23 13:00:00",Laura,Drama,"Otto Preminger",1944,88,12,6.50
-"2026-09-23 10:00:00","V for Vendetta",Azione,"James McTeigue",2005,132,12,6.50
-"2026-09-22 10:30:00",Sholay,Azione,"Ramesh Sippy",1975,204,0,8.50
-"2026-09-21 12:30:00","Wo hu cang long",Azione,"Ang Lee",2000,120,12,7.00
-"2026-09-21 10:00:00","A Christmas Story",Comedy,"Bob Clark",1983,93,0,7.50
-"2026-09-20 19:30:00","Funny Games",Crime,"Michael Haneke",1997,108,12,10.00
-"2026-09-20 17:00:00","The Night of the Hunter",Crime,"Charles Laughton",1955,92,12,8.50
-"2026-09-20 13:30:00","Paris, Texas",Drama,"Wim Wenders",1984,145,0,8.50
-"2026-09-20 10:30:00","Efter brylluppet",Drama,"Susanne Bier",2006,120,16,7.00
-"2026-09-19 20:00:00","Ed Wood",Biography,"Tim Burton",1994,127,0,8.50
-"2026-09-19 17:00:00",Anand,Drama,"Hrishikesh Mukherjee",1971,122,0,7.50
-"2026-09-19 14:00:00","Wo hu cang long",Azione,"Ang Lee",2000,120,12,7.00
-"2026-09-19 10:30:00",Stalker,Drama,"Andrei Tarkovsky",1979,162,0,6.50
-"2026-09-18 10:00:00","A Christmas Story",Comedy,"Bob Clark",1983,93,0,6.50
-"2026-09-17 13:00:00","Mad Max 2",Azione,"George Miller",1981,96,12,7.00
-"2026-09-17 10:30:00","No Man's Land",Comedy,"Danis Tanovic",2001,98,16,6.50
-"2026-09-16 16:00:00","Ed Wood",Biography,"Tim Burton",1994,127,0,8.00
-"2026-09-16 12:30:00","Once Upon a Time in the West",Western,"Sergio Leone",1968,165,0,7.50
-"2026-09-16 10:00:00","Mad Max 2",Azione,"George Miller",1981,96,12,7.50
-"2026-09-15 16:30:00","Yeopgijeogin geunyeo",Comedy,"Jae-young Kwak",2001,137,12,7.50
-"2026-09-15 13:30:00",Kumonosu-jô,Drama,"Akira Kurosawa",1957,110,12,8.00
-"2026-09-15 10:30:00","Witness for the Prosecution",Crime,"Billy Wilder",1957,116,0,8.50
-"2026-09-14 16:00:00","Star Wars",Azione,"George Lucas",1977,121,12,7.50
-"2026-09-14 13:30:00","Roman Holiday",Comedy,"William Wyler",1953,118,12,7.00
-"2026-09-14 10:30:00","Efter brylluppet",Drama,"Susanne Bier",2006,120,16,7.00
-"2026-09-13 20:00:00","Star Trek II: The Wrath of Khan",Azione,"Nicholas Meyer",1982,113,0,9.00
-"2026-09-13 16:30:00","Once Upon a Time in the West",Western,"Sergio Leone",1968,165,0,8.00
-"2026-09-13 13:30:00","Blood Diamond",Adventure,"Edward Zwick",2006,143,12,7.50
-"2026-09-13 10:00:00","Blood Diamond",Adventure,"Edward Zwick",2006,143,12,7.00
-"2026-09-12 15:30:00",Sleuth,Mystery,"Joseph L. Mankiewicz",1972,138,6,8.50
-"2026-09-12 13:00:00","The Station Agent",Comedy,"Tom McCarthy",2003,89,16,8.50
-"2026-09-12 10:30:00","Funny Games",Crime,"Michael Haneke",1997,108,12,7.00
-"2026-09-11 16:00:00","The Exorcist",Horror,"William Friedkin",1973,122,12,7.50
-"2026-09-11 13:30:00","O Brother, Where Art Thou?",Adventure,"Joel Coen",2000,107,0,7.00
-"2026-09-11 10:30:00","Star Trek II: The Wrath of Khan",Azione,"Nicholas Meyer",1982,113,0,8.50
-"2026-09-10 10:00:00","Once Upon a Time in the West",Western,"Sergio Leone",1968,165,0,8.50
-"2026-09-09 13:00:00","O Brother, Where Art Thou?",Adventure,"Joel Coen",2000,107,0,7.00
-"2026-09-09 10:00:00","Lat sau san taam",Azione,"John Woo",1992,128,16,7.50
-"2026-09-08 16:30:00","Stalag 17",Comedy,"Billy Wilder",1953,120,12,8.50
-"2026-09-08 13:00:00","Yeopgijeogin geunyeo",Comedy,"Jae-young Kwak",2001,137,12,6.50
-"2026-09-08 10:30:00","Guess Who's Coming to Dinner",Comedy,"Stanley Kramer",1967,108,12,6.50
-"2026-09-07 13:30:00","Funny Games",Crime,"Michael Haneke",1997,108,12,6.50
-"2026-09-07 10:00:00","Once Upon a Time in the West",Western,"Sergio Leone",1968,165,0,8.50
-"2026-09-06 15:00:00","Guess Who's Coming to Dinner",Comedy,"Stanley Kramer",1967,108,12,7.00
-"2026-09-06 12:30:00","The Night of the Hunter",Crime,"Charles Laughton",1955,92,12,6.50
-"2026-09-06 10:00:00",Rope,Crime,"Alfred Hitchcock",1948,80,12,8.00
-"2026-09-05 17:00:00","La Grande Illusion",Drama,"Jean Renoir",1937,113,12,8.50
-"2026-09-05 13:30:00","Once Upon a Time in the West",Western,"Sergio Leone",1968,165,0,7.00
-"2026-09-05 10:00:00","Once Upon a Time in the West",Western,"Sergio Leone",1968,165,0,7.50
-"2026-09-04 12:30:00","Efter brylluppet",Drama,"Susanne Bier",2006,120,16,8.00
-"2026-09-04 10:00:00","Once Were Warriors",Crime,"Lee Tamahori",1994,102,12,8.50
-"2026-09-03 10:30:00","What Ever Happened to Baby Jane?",Drama,"Robert Aldrich",1962,134,12,8.00
-"2026-09-02 10:00:00","Once Were Warriors",Crime,"Lee Tamahori",1994,102,12,6.50
-"2026-09-01 10:00:00","Paris, Texas",Drama,"Wim Wenders",1984,145,0,8.50
-"2026-08-31 12:00:00",Stalker,Drama,"Andrei Tarkovsky",1979,162,0,7.50
-"2026-08-31 10:00:00","The Circus",Comedy,"Charles Chaplin",1928,72,12,7.50
-"2026-08-30 15:00:00","V for Vendetta",Azione,"James McTeigue",2005,132,12,8.00
-"2026-08-30 12:30:00","The Truman Show",Comedy,"Peter Weir",1998,103,0,7.50
-"2026-08-30 10:00:00","Funny Games",Crime,"Michael Haneke",1997,108,12,6.50
-"2026-08-29 17:00:00",Kumonosu-jô,Drama,"Akira Kurosawa",1957,110,12,8.00
-"2026-08-29 14:00:00","The Bourne Identity",Azione,"Doug Liman",2002,119,12,7.50
-"2026-08-29 10:00:00","The Right Stuff",Adventure,"Philip Kaufman",1983,193,6,7.00
-"2026-08-28 10:30:00","The Color Purple",Drama,"Steven Spielberg",1985,154,0,8.50
-"2026-08-27 15:30:00","Blood Diamond",Adventure,"Edward Zwick",2006,143,12,6.50
-"2026-08-27 13:30:00","The General",Azione,"Clyde Bruckman",1926,67,12,6.50
-"2026-08-27 10:30:00","Lat sau san taam",Azione,"John Woo",1992,128,16,8.00
-"2026-08-26 10:30:00","The Notebook",Drama,"Nick Cassavetes",2004,123,12,6.50
-"2026-08-25 15:30:00",Rope,Crime,"Alfred Hitchcock",1948,80,12,7.00
-"2026-08-25 12:30:00","Stalag 17",Comedy,"Billy Wilder",1953,120,12,7.00
-"2026-08-25 10:30:00",Zelig,Comedy,"Woody Allen",1983,79,6,8.50
-"2026-08-24 10:00:00",Rope,Crime,"Alfred Hitchcock",1948,80,12,8.50
-"2026-08-22 19:00:00","Pride & Prejudice",Drama,"Joe Wright",2005,129,6,9.00
-"2026-08-21 14:30:00","Glengarry Glen Ross",Crime,"James Foley",1992,100,16,7.00
-"2026-08-21 10:30:00","Judgment at Nuremberg",Drama,"Stanley Kramer",1961,179,12,7.50
-"2026-08-20 10:00:00","The Color Purple",Drama,"Steven Spielberg",1985,154,0,7.50
-"2026-08-19 12:30:00",Spoorloos,Mystery,"George Sluizer",1988,107,12,7.00
-"2026-08-19 10:00:00","Harold and Maude",Comedy,"Hal Ashby",1971,91,6,8.00
-"2026-08-18 13:30:00","The Game",Azione,"David Fincher",1997,129,12,6.50
-"2026-08-18 10:30:00",Sleuth,Mystery,"Joseph L. Mankiewicz",1972,138,6,7.00
-"2026-08-17 15:00:00",Sleuth,Mystery,"Joseph L. Mankiewicz",1972,138,6,6.50
-"2026-08-16 10:30:00","Blood Diamond",Adventure,"Edward Zwick",2006,143,12,7.00
-"2026-08-14 13:30:00",Kumonosu-jô,Drama,"Akira Kurosawa",1957,110,12,8.00
-"2026-08-13 13:30:00","Doctor Zhivago",Drama,"David Lean",1965,197,12,8.50
-"2026-08-13 10:30:00","La battaglia di Algeri",Drama,"Gillo Pontecorvo",1966,121,12,8.50
-"2026-08-12 17:00:00","Blood Diamond",Adventure,"Edward Zwick",2006,143,12,7.00
-"2026-08-11 10:00:00","The Wild Bunch",Azione,"Sam Peckinpah",1969,145,12,6.50
-"2026-08-09 10:30:00","Das Cabinet des Dr. Caligari",Fantasy,"Robert Wiene",1920,76,12,8.00
-"2026-08-08 18:00:00","Being John Malkovich",Comedy,"Spike Jonze",1999,113,16,8.50
-"2026-08-07 10:30:00",Badlands,Azione,"Terrence Malick",1973,94,6,8.50
-"2026-08-06 10:30:00","On the Waterfront",Crime,"Elia Kazan",1954,108,12,8.00
-"2026-08-05 10:00:00","The Station Agent",Comedy,"Tom McCarthy",2003,89,16,8.50
-"2026-08-04 10:30:00","Pride & Prejudice",Drama,"Joe Wright",2005,129,6,8.50
-"2026-08-03 10:00:00","Midnight Cowboy",Drama,"John Schlesinger",1969,113,12,6.50
-"2026-08-02 16:00:00","No Man's Land",Comedy,"Danis Tanovic",2001,98,16,6.50
-"2026-08-02 13:00:00",Awakenings,Biography,"Penny Marshall",1990,121,0,7.50
-"2026-07-31 10:00:00","Das Cabinet des Dr. Caligari",Fantasy,"Robert Wiene",1920,76,12,8.00
-"2026-07-30 12:30:00","Miracle on 34th Street",Comedy,"George Seaton",1947,96,12,7.50
-"2026-07-30 10:00:00","On the Waterfront",Crime,"Elia Kazan",1954,108,12,8.50
-"2026-07-29 10:00:00","The Bridges of Madison County",Drama,"Clint Eastwood",1995,135,12,7.50
-"2026-07-28 15:30:00","The World's Fastest Indian",Biography,"Roger Donaldson",2005,127,0,6.50
-"2026-07-28 12:30:00","Being John Malkovich",Comedy,"Spike Jonze",1999,113,16,7.50
-"2026-07-27 10:30:00","The Wild Bunch",Azione,"Sam Peckinpah",1969,145,12,8.00
-"2026-07-26 19:00:00","Star Wars",Azione,"George Lucas",1977,121,12,8.50
-"2026-07-26 10:30:00","Pride & Prejudice",Drama,"Joe Wright",2005,129,6,8.50
-"2026-07-25 15:30:00",Rebecca,Drama,"Alfred Hitchcock",1940,130,12,8.50
-"2026-07-24 10:00:00",Manhattan,Comedy,"Woody Allen",1979,96,16,7.00
-"2026-07-23 13:00:00","On the Waterfront",Crime,"Elia Kazan",1954,108,12,6.50
-"2026-07-23 10:30:00","The Adventures of Robin Hood",Azione,"Michael Curtiz",1938,102,6,7.00
-"2026-07-22 13:30:00","Miracle on 34th Street",Comedy,"George Seaton",1947,96,12,8.50
-"2026-07-22 10:30:00","The Bridges of Madison County",Drama,"Clint Eastwood",1995,135,12,7.00
-"2026-07-20 10:00:00","Doctor Zhivago",Drama,"David Lean",1965,197,12,7.00
-"2026-07-19 10:00:00","Tôkyô goddofâzâzu",Animation,"Satoshi Kon",2003,90,12,8.000,8.50
-"2026-07-18 10:00:00","Tôkyô goddofâzâzu",Animation,"Satoshi Kon",2003,90,12,7.00
-"2026-07-17 10:00:00",Badlands,Azione,"Terrence Malick",1973,94,6,8.00
-"2026-07-16 15:00:00","The World's Fastest Indian",Biography,"Roger Donaldson",2005,127,0,8.50
-"2026-07-15 10:30:00","The Wild Bunch",Azione,"Sam Peckinpah",1969,145,12,7.50
-"2026-07-14 14:00:00","The World's Fastest Indian",Biography,"Roger Donaldson",2005,127,0,7.00
-"2026-07-13 10:00:00","The Graduate",Comedy,"Mike Nichols",1967,106,12,6.50
-"2026-07-12 10:30:00","Trois couleurs: Blanc",Comedy,"Krzysztof Kieslowski",1994,92,0,6.50
-"2026-07-11 16:30:00",Jungfrukällan,Drama,"Ingmar Bergman",1960,89,12,7.50
-"2026-07-10 10:30:00","The World's Fastest Indian",Biography,"Roger Donaldson",2005,127,0,8.50
-"2026-07-09 16:00:00",Manhattan,Comedy,"Woody Allen",1979,96,16,7.00
-"2026-07-08 10:30:00",Vizontele,Comedy,"Yilmaz Erdogan",2001,110,12,6.50
-"2026-07-07 10:30:00","Funny Games",Crime,"Michael Haneke",1997,108,12,8.00
-"2026-07-06 10:30:00","À bout de souffle",Crime,"Jean-Luc Godard",1960,90,0,8.00
-"2026-07-05 10:00:00","La battaglia di Algeri",Drama,"Gillo Pontecorvo",1966,121,12,7.00
-"2026-07-04 19:00:00",Spoorloos,Mystery,"George Sluizer",1988,107,12,9.00
-"2026-07-03 10:30:00","The World's Fastest Indian",Biography,"Roger Donaldson",2005,127,0,6.50
-"2026-07-02 10:00:00","Kal Ho Naa Ho",Comedy,"Nikkhil Advani",2003,186,0,8.50
-"2026-07-01 10:00:00","À bout de souffle",Crime,"Jean-Luc Godard",1960,90,0,7.50
+data_proiezione|ora_proiezione|titolo_film|genere|regista|anno|durata_minuti|eta_minima|prezzo_biglietto
+31-12-2026|15:30|The Killing Fields|Biography|Roland Joffé|1984|141|12|8.50
+31-12-2026|12:30|Pirates of the Caribbean: The Curse of the Black Pearl|Azione|Gore Verbinski|2003|143|12|8.00
+31-12-2026|10:00|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|7.00
+30-12-2026|17:00|Pulp Fiction|Crime|Quentin Tarantino|1994|154|12|7.50
+30-12-2026|14:00|One Flew Over the Cuckoo's Nest|Drama|Milos Forman|1975|133|12|8.50
+30-12-2026|10:30|Breaking the Waves|Drama|Lars von Trier|1996|159|16|8.50
+29-12-2026|13:00|Stalker|Drama|Andrei Tarkovsky|1979|162|0|8.00
+29-12-2026|10:30|Kung fu|Azione|Stephen Chow|2004|99|12|6.50
+28-12-2026|15:30|The Day of the Jackal|Crime|Fred Zinnemann|1973|143|12|8.50
+28-12-2026|12:30|Pirates of the Caribbean: The Curse of the Black Pearl|Azione|Gore Verbinski|2003|143|12|7.00
+28-12-2026|10:00|Sanjuro|Azione|Akira Kurosawa|1962|96|0|6.50
+27-12-2026|16:00|Kung fu|Azione|Stephen Chow|2004|99|12|8.00
+27-12-2026|13:00|Pirates of the Caribbean: The Curse of the Black Pearl|Azione|Gore Verbinski|2003|143|12|7.00
+27-12-2026|10:30|His Girl Friday|Comedy|Howard Hawks|1940|92|12|7.00
+26-12-2026|16:00|Bringing Up Baby|Comedy|Howard Hawks|1938|102|12|8.50
+26-12-2026|13:00|Rear Window|Mystery|Alfred Hitchcock|1954|112|0|8.50
+26-12-2026|10:30|Harold and Maude|Comedy|Hal Ashby|1971|91|6|7.00
+25-12-2026|15:30|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|7.00
+25-12-2026|12:30|The Fifth Element|Azione|Luc Besson|1997|126|12|6.50
+25-12-2026|10:00|Planes, Trains & Automobiles|Comedy|John Hughes|1987|93|0|8.00
+24-12-2026|10:00|The Little Mermaid|Animation|Ron Clements|1989|83|0|7.50
+23-12-2026|10:30|Toy Story|Animation|John Lasseter|1995|81|0|7.50
+22-12-2026|10:30|The Princess Bride|Adventure|Rob Reiner|1987|98|0|6.50
+21-12-2026|15:30|Brazil|Drama|Terry Gilliam|1985|132|0|8.00
+21-12-2026|13:00|The Princess Bride|Adventure|Rob Reiner|1987|98|0|7.50
+21-12-2026|10:00|The Untouchables|Crime|Brian De Palma|1987|119|12|8.50
+20-12-2026|16:30|The Untouchables|Crime|Brian De Palma|1987|119|12|7.00
+20-12-2026|14:00|Le charme discret de la bourgeoisie|Comedy|Luis Buñuel|1972|102|6|8.50
+20-12-2026|10:00|Giant|Drama|George Stevens|1956|201|0|6.50
+19-12-2026|17:30|Giant|Drama|George Stevens|1956|201|0|6.50
+19-12-2026|15:00|The Little Mermaid|Animation|Ron Clements|1989|83|0|7.00
+19-12-2026|10:30|Once Upon a Time in America|Crime|Sergio Leone|1984|229|12|7.00
+18-12-2026|16:30|Toy Story|Animation|John Lasseter|1995|81|0|6.50
+18-12-2026|13:30|Tôkyô monogatari|Drama|Yasujirô Ozu|1953|136|0|7.00
+18-12-2026|10:00|The Day of the Jackal|Crime|Fred Zinnemann|1973|143|12|8.50
+17-12-2026|16:30|This Is England|Crime|Shane Meadows|2006|101|12|6.50
+17-12-2026|13:30|Rear Window|Mystery|Alfred Hitchcock|1954|112|0|8.00
+17-12-2026|10:30|The Untouchables|Crime|Brian De Palma|1987|119|12|8.00
+16-12-2026|12:30|Stand by Me|Adventure|Rob Reiner|1986|89|0|7.50
+16-12-2026|10:00|Det sjunde inseglet|Drama|Ingmar Bergman|1957|96|12|8.00
+15-12-2026|10:00|Toy Story|Animation|John Lasseter|1995|81|0|8.50
+14-12-2026|14:00|Sanjuro|Azione|Akira Kurosawa|1962|96|0|8.00
+14-12-2026|10:30|The Lives of Others|Drama|Florian Henckel von Donnersmarck|2006|137|12|6.50
+13-12-2026|21:30|This Is England|Crime|Shane Meadows|2006|101|12|9.00
+13-12-2026|18:00|Pulp Fiction|Crime|Quentin Tarantino|1994|154|12|10.00
+13-12-2026|15:00|The Killing Fields|Biography|Roland Joffé|1984|141|12|8.00
+13-12-2026|10:30|Once Upon a Time in America|Crime|Sergio Leone|1984|229|12|7.00
+12-12-2026|15:30|The Little Mermaid|Animation|Ron Clements|1989|83|0|6.50
+12-12-2026|12:30|Donnie Darko|Drama|Richard Kelly|2001|113|16|6.50
+12-12-2026|10:00|Psycho|Horror|Alfred Hitchcock|1960|109|12|8.00
+11-12-2026|10:00|The Little Mermaid|Animation|Ron Clements|1989|83|0|7.00
+10-12-2026|16:30|Blow|Biography|Ted Demme|2001|124|16|8.50
+10-12-2026|13:30|Das Experiment|Drama|Oliver Hirschbiegel|2001|120|16|8.50
+10-12-2026|10:00|Stalker|Drama|Andrei Tarkovsky|1979|162|0|7.00
+09-12-2026|15:30|Harry Potter and the Sorcerer's Stone|Adventure|Chris Columbus|2001|152|0|7.00
+09-12-2026|13:00|The Lost Weekend|Drama|Billy Wilder|1945|101|12|7.00
+09-12-2026|10:30|Hannah and Her Sisters|Comedy|Woody Allen|1986|107|12|7.50
+08-12-2026|15:30|Stalker|Drama|Andrei Tarkovsky|1979|162|0|8.00
+08-12-2026|13:00|Das Experiment|Drama|Oliver Hirschbiegel|2001|120|16|7.50
+08-12-2026|10:00|Psycho|Horror|Alfred Hitchcock|1960|109|12|7.50
+07-12-2026|12:30|Bringing Up Baby|Comedy|Howard Hawks|1938|102|12|8.00
+07-12-2026|10:00|Stand by Me|Adventure|Rob Reiner|1986|89|0|8.50
+06-12-2026|16:30|Once Upon a Time in America|Crime|Sergio Leone|1984|229|12|7.00
+06-12-2026|13:00|The Day of the Jackal|Crime|Fred Zinnemann|1973|143|12|6.50
+06-12-2026|10:00|Salinui chueok|Crime|Bong Joon Ho|2003|131|12|8.00
+05-12-2026|17:00|Donnie Darko|Drama|Richard Kelly|2001|113|16|6.50
+05-12-2026|14:30|Le charme discret de la bourgeoisie|Comedy|Luis Buñuel|1972|102|6|7.00
+05-12-2026|10:00|Once Upon a Time in America|Crime|Sergio Leone|1984|229|12|6.50
+04-12-2026|10:00|Breaking the Waves|Drama|Lars von Trier|1996|159|16|8.00
+03-12-2026|10:00|Smultronstället|Drama|Ingmar Bergman|1957|91|0|7.00
+02-12-2026|15:30|Notorious|Drama|Alfred Hitchcock|1946|102|0|8.00
+02-12-2026|12:30|The Exorcist|Horror|William Friedkin|1973|122|12|6.50
+02-12-2026|10:00|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|7.50
+01-12-2026|12:30|Stand by Me|Adventure|Rob Reiner|1986|89|0|6.50
+01-12-2026|10:00|Psycho|Horror|Alfred Hitchcock|1960|109|12|6.50
+30-11-2026|12:30|Dawn of the Dead|Azione|George A. Romero|1978|127|12|8.00
+30-11-2026|10:00|Planes, Trains & Automobiles|Comedy|John Hughes|1987|93|0|7.00
+29-11-2026|15:30|The Lost Weekend|Drama|Billy Wilder|1945|101|12|6.50
+29-11-2026|13:00|Le charme discret de la bourgeoisie|Comedy|Luis Buñuel|1972|102|6|7.50
+29-11-2026|10:30|Office Space|Comedy|Mike Judge|1999|89|16|6.50
+28-11-2026|19:00|The Exorcist|Horror|William Friedkin|1973|122|12|8.50
+28-11-2026|16:30|Shrek|Animation|Andrew Adamson|2001|90|0|7.00
+28-11-2026|14:00|Shrek|Animation|Andrew Adamson|2001|90|0|8.50
+28-11-2026|10:30|Breaking the Waves|Drama|Lars von Trier|1996|159|16|8.50
+27-11-2026|10:00|Le charme discret di la bourgeoisie|Comedy|Luis Buñuel|1972|102|6|7.00
+26-11-26|10:30|Dogville|Crime|Lars von Trier|2003|178|16|7.50
+25-11-2026|12:30|The Little Mermaid|Animation|Ron Clements|1989|83|0|8.50
+25-11-2026|10:00|Sanjuro|Azione|Akira Kurosawa|1962|96|0|7.00
+24-11-2026|10:00|The Day of the Jackal|Crime|Fred Zinnemann|1973|143|12|6.50
+23-11-2026|10:30|The Kid|Comedy|Charles Chaplin|1921|68|12|7.00
+22-11-2026|16:30|Salinui chueok|Crime|Bong Joon Ho|2003|131|12|8.50
+22-11-2026|13:30|The Killing Fields|Biography|Roland Joffé|1984|141|12|8.00
+22-11-2026|10:00|Harry Potter and the Sorcerer's Stone|Adventure|Chris Columbus|2001|152|0|8.50
+21-11-2026|16:30|Rang De Basanti|Comedy|Rakeysh Omprakash Mehra|2006|167|12|7.00
+21-11-2026|13:30|L.A. Confidential|Crime|Curtis Hanson|1997|138|12|8.00
+21-11-2026|10:30|Dead Man|Adventure|Jim Jarmusch|1995|121|16|7.00
+20-11-2026|15:30|Once Upon a Time in America|Crime|Sergio Leone|1984|229|12|8.00
+20-11-2026|13:00|Hana-bi|Crime|Takeshi Kitano|1997|103|12|7.00
+20-11-2026|10:30|Sanjuro|Azione|Akira Kurosawa|1962|96|0|6.50
+19-11-2026|10:00|Gilda|Drama|Charles Vidor|1946|110|12|7.50
+18-11-2026|12:30|The 39 Steps|Crime|Alfred Hitchcock|1935|86|12|7.50
+18-11-2026|10:00|Double Indemnity|Crime|Billy Wilder|1944|107|12|8.50
+17-11-2026|16:00|L.A. Confidential|Crime|Curtis Hanson|1997|138|12|7.50
+17-11-2026|13:30|Trois couleurs: Bleu|Drama|Krzysztof Kieslowski|1993|94|0|8.50
+17-11-2026|10:30|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|8.00
+16-11-2026|16:00|Shrek|Animation|Andrew Adamson|2001|90|0|8.50
+16-11-2026|12:30|Giù la testa|Drama|Sergio Leone|1971|157|6|8.00
+16-11-2026|10:30|Stand by Me|Adventure|Rob Reiner|1986|89|0|7.50
+15-11-2026|15:30|Hana-bi|Crime|Takeshi Kitano|1997|103|12|7.00
+15-11-2026|13:00|Shrek|Animation|Andrew Adamson|2001|90|0|8.00
+15-11-2026|10:00|Goodfellas|Biography|Martin Scorsese|1990|146|12|6.50
+14-11-2026|17:00|Goodfellas|Biography|Martin Scorsese|1990|146|12|8.50
+14-11-2026|13:00|Dogville|Crime|Lars von Trier|2003|178|16|7.50
+14-11-2026|10:30|Majo no takkyûbin|Animation|Hayao Miyazaki|1989|103|0|6.50
+13-11-2026|12:30|Majo no takkyûbin|Animation|Hayao Miyazaki|1989|103|0|7.00
+13-11-2026|10:00|Smultronstället|Drama|Ingmar Bergman|1957|91|0|6.50
+12-11-2026|10:00|Dà hóng denglong gaogao guà|Drama|Yimou Zhang|1991|125|6|7.50
+11-11-2026|10:30|Toy Story 2|Animation|John Lasseter|1999|92|0|7.00
+10-11-2026|12:30|Dà hóng denglong gaogao guà|Drama|Yimou Zhang|1991|125|6|7.50
+10-11-2026|10:00|The Station Agent|Comedy|Tom McCarthy|2003|89|16|6.50
+09-11-2026|10:30|Gilda|Drama|Charles Vidor|1946|110|12|8.50
+08-11-2026|18:00|Per un pugno di dollari|Azione|Sergio Leone|1964|99|12|9.50
+08-11-2026|14:30|Giù la testa|Drama|Sergio Leone|1971|157|6|6.50
+08-11-2026|12:30|The 39 Steps|Crime|Alfred Hitchcock|1935|86|12|8.50
+08-11-2026|10:00|The 39 Steps|Crime|Alfred Hitchcock|1935|86|12|8.00
+07-11-2026|19:00|The King of Comedy|Comedy|Martin Scorsese|1982|109|0|9.50
+07-11-2026|16:00|V for Vendetta|Azione|James McTeigue|2005|132|12|7.50
+07-11-2026|13:00|Brazil|Drama|Terry Gilliam|1985|132|0|7.50
+07-11-2026|10:00|Dà hóng denglong gaogao guà|Drama|Yimou Zhang|1991|125|6|7.50
+06-11-2026|15:00|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|8.00
+06-11-2026|12:30|The 39 Steps|Crime|Alfred Hitchcock|1935|86|12|8.00
+06-11-2026|10:30|The Kid|Comedy|Charles Chaplin|1921|68|12|7.00
+05-11-2026|10:00|Annie Hall|Comedy|Woody Allen|1977|93|12|8.50
+04-11-2026|10:00|Dead Man|Adventure|Jim Jarmusch|1995|121|16|8.50
+03-11-2026|10:00|Laura|Drama|Otto Preminger|1944|88|12|7.00
+02-11-2026|13:00|Notorious|Drama|Alfred Hitchcock|1946|102|0|6.50
+02-11-2026|10:30|Shrek|Animation|Andrew Adamson|2001|90|0|8.50
+01-11-2026|18:30|Brazil|Drama|Terry Gilliam|1985|132|0|9.00
+01-11-2026|16:00|Majo no takkyûbin|Animation|Hayao Miyazaki|1989|103|0|8.00
+01-11-2026|13:00|Dead Man|Adventure|Jim Jarmusch|1995|121|16|8.50
+01-11-2026|10:30|Shrek|Animation|Andrew Adamson|2001|90|0|8.00
+31-10-2026|18:00|All About Eve|Drama|Joseph L. Mankiewicz|1950|138|12|9.00
+31-10-2026|15:30|Toy Story 2|Animation|John Lasseter|1999|92|0|8.50
+31-10-2026|13:00|Hana-bi|Crime|Takeshi Kitano|1997|103|12|6.50
+31-10-2026|10:30|The Day the Earth Stood Still|Drama|Robert Wise|1951|92|0|8.50
+30-10-2026|10:30|V for Vendetta|Azione|James McTeigue|2005|132|12|7.00
+29-10-2026|10:30|The Station Agent|Comedy|Tom McCarthy|2003|89|16|7.50
+28-10-2026|10:30|Gilda|Drama|Charles Vidor|1946|110|12|8.50
+27-10-2026|16:00|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|7.50
+27-10-2026|13:30|Toy Story 2|Animation|John Lasseter|1999|92|0|8.50
+27-10-2026|10:30|Dip huet seung hung|Azione|John Woo|1989|111|16|8.50
+26-10-2026|16:30|Giù la testa|Drama|Sergio Leone|1971|157|6|8.00
+26-10-2026|13:30|Blow|Biography|Ted Demme|2001|124|16|8.00
+26-10-2026|10:30|Brazil|Drama|Terry Gilliam|1985|132|0|8.50
+25-10-2026|15:00|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|7.50
+25-10-2026|12:30|Per un pugno di dollari|Azione|Sergio Leone|1964|99|12|6.50
+25-10-2026|10:00|Bacheha-Ye aseman|Drama|Majid Majidi|1997|89|6|8.00
+24-10-2026|18:00|Notorious|Drama|Alfred Hitchcock|1946|102|0|9.00
+24-10-2026|15:00|Star Trek II: The Wrath of Khan|Azione|Nicholas Meyer|1982|113|0|8.00
+24-10-2026|12:30|Notorious|Drama|Alfred Hitchcock|1946|102|0|7.50
+24-10-2026|10:00|Majo no takkyûbin|Animation|Hayao Miyazaki|1989|103|0|8.50
+23-10-2026|10:00|La leggenda del pianista sull'oceano|Drama|Giuseppe Tornatore|1998|169|0|7.50
+22-10-226|13:00|The King of Comedy|Comedy|Martin Scorsese|1982|109|0|7.50
+22-10-2026|10:30|To Be or Not to Be|Comedy|Ernst Lubitsch|1942|99|12|8.00
+21-10-2026|10:00|The Day the Earth Stood Still|Drama|Robert Wise|1951|92|0|8.50
+20-10-2026|10:00|The Station Agent|Comedy|Tom McCarthy|2003|89|16|8.00
+19-10-2026|10:00|8½|Drama|Federico Fellini|1963|138|12|8.00
+18-10-2026|15:00|Bacheha-Ye aseman|Drama|Majid Majidi|1997|89|6|8.50
+18-10-2026|12:00|L.A. Confidential|Crime|Curtis Hanson|1997|138|12|8.00
+18-10-2026|10:00|Lola rennt|Crime|Tom Tykwer|1998|81|12|7.50
+17-10-2026|19:00|Brazil|Drama|Terry Gilliam|1985|132|0|8.50
+17-10-2026|16:00|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|7.50
+17-10-2026|13:00|8½|Drama|Federico Fellini|1963|138|12|7.50
+17-10-2026|10:00|The Sting|Comedy|George Roy Hill|1973|129|0|8.50
+16-10-2026|12:30|Donnie Darko|Drama|Richard Kelly|2001|113|16|6.50
+16-10-2026|10:00|Majo no takkyûbin|Animation|Hayao Miyazaki|1989|103|0|8.50
+15-10-2026|10:00|Bacheha-Ye aseman|Drama|Majid Majidi|1997|89|6|7.50
+14-10-2026|15:30|Secrets & Lies|Comedy|Mike Leigh|1996|136|0|7.50
+14-10-2026|13:00|Hana-bi|Crime|Takeshi Kitano|1997|103|12|7.00
+14-10-2026|10:00|Efter brylluppet|Drama|Susanne Bier|2006|120|16|8.00
+13-10-2026|13:00|Before Sunrise|Drama|Richard Linklater|1995|101|16|7.00
+13-10-2026|10:00|All About Eve|Drama|Joseph L. Mankiewicz|1950|138|12|7.50
+12-10-2026|16:00|What's Eating Gilbert Grape|Drama|Lasse Hallström|1993|118|0|7.50
+12-10-2026|13:00|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|6.50
+12-10-2026|10:30|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|8.00
+11-10-2026|18:30|Efter brylluppet|Drama|Susanne Bier|2006|120|16|8.50
+11-10-2026|16:00|The Shop Around the Corner|Comedy|Ernst Lubitsch|1940|99|12|8.00
+11-10-2026|13:30|To Be or Not to Be|Comedy|Ernst Lubitsch|1942|99|12|8.00
+11-10-2026|10:00|Goodfellas|Biography|Martin Scorsese|1990|146|12|8.50
+10-10-2026|18:00|The Station Agent|Comedy|Tom McCarthy|2003|89|16|9.00
+10-10-2026|15:00|Goodfellas|Biography|Martin Scorsese|1990|146|12|8.00
+10-10-2026|12:30|Bacheha-Ye aseman|Drama|Majid Majidi|1997|89|6|6.50
+10-10-2026|10:00|Annie Hall|Comedy|Woody Allen|1977|93|12|8.50
+09-10-2026|10:00|Brokeback Mountain|Drama|Ang Lee|2005|134|12|7.50
+08-10-2026|12:30|The Sting|Comedy|George Roy Hill|1973|129|0|8.00
+08-10-2026|10:00|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|8.00
+07-10-2026|15:30|Secrets & Lies|Comedy|Mike Leigh|1996|136|0|8.50
+07-10-2026|13:00|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|8.50
+07-10-2026|10:00|Secrets & Lies|Comedy|Mike Leigh|1996|136|0|6.50
+06-10-2026|14:30|Efter brylluppet|Drama|Susanne Bier|2006|120|16|7.00
+06-10-2026|12:30|Lola rennt|Crime|Tom Tykwer|1998|81|12|7.00
+06-10-2026|10:00|Kung fu|Azione|Stephen Chow|2004|99|12|7.50
+05-10-2026|10:30|Funny Games|Crime|Michael Haneke|1997|108|12|8.00
+04-10-2026|16:00|Awakenings|Biography|Penny Marshall|1990|121|0|7.50
+04-10-2026|13:00|Die Hard|Azione|John McTiernan|1988|132|12|8.50
+04-10-2026|10:30|To Be or Not to Be|Comedy|Ernst Lubitsch|1942|99|12|6.50
+03-10-2026|18:00|The Sting|Comedy|George Roy Hill|1973|129|0|9.00
+03-10-2026|15:00|Ed Wood|Biography|Tim Burton|1994|127|0|8.50
+03-10-2026|12:30|O Brother, Where Art Thou?|Adventure|Joel Coen|2000|107|0|8.50
+03-10-2026|10:00|Kung fu|Azione|Stephen Chow|2004|99|12|7.00
+02-10-2026|12:30|Brokeback Mountain|Drama|Ang Lee|2005|134|12|7.50
+02-10-2026|10:00|The Night of the Hunter|Crime|Charles Laughton|1955|92|12|8.50
+01-10-2026|14:00|Die Hard: With a Vengeance|Azione|John McTiernan|1995|128|12|7.50
+01-10-2026|10:00|La leggenda del pianista sull'oceano|Drama|Giuseppe Tornatore|1998|169|0|8.00
+30-09-2026|10:00|Annie Hall|Comedy|Woody Allen|1977|93|12|6.50
+29-09-2026|15:30|Die Hard|Azione|John McTiernan|1988|132|12|8.00
+29-09-2026|13:00|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|8.00
+29-09-2026|10:00|Guess Who's Coming to Dinner|Comedy|Stanley Kramer|1967|108|12|7.00
+28-09-2026|13:00|O Brother, Where Art Thou?|Adventure|Joel Coen|2000|107|0|6.50
+28-09-2026|10:30|O Brother, Where Art Thou?|Adventure|Joel Coen|2000|107|0|8.50
+27-09-2026|17:00|Once Were Warriors|Crime|Lee Tamahori|1994|102|12|8.00
+27-09-2026|14:30|Laura|Drama|Otto Preminger|1944|88|12|7.00
+27-09-2026|12:30|Lola rennt|Crime|Tom Tykwer|1998|81|12|8.00
+27-09-2026|10:00|Brief Encounter|Drama|David Lean|1945|86|0|8.00
+26-09-2026|18:00|Dead Man|Adventure|Jim Jarmusch|1995|121|16|10.00
+26-09-2026|15:00|Witness for the Prosecution|Crime|Billy Wilder|1957|116|0|7.00
+26-09-2026|12:30|To Be or Not to Be|Comedy|Ernst Lubitsch|1942|99|12|7.00
+26-09-2026|10:00|The Night of the Hunter|Crime|Charles Laughton|1955|92|12|7.00
+25-09-2026|15:30|Central do Brasil|Drama|Walter Salles|1998|110|16|8.00
+25-09-2026|13:00|Brief Encounter|Drama|David Lean|1945|86|0|7.00
+25-09-2026|10:30|Donnie Darko|Drama|Richard Kelly|2001|113|16|7.50
+24-09-2026|13:00|Star Trek II: The Wrath of Khan|Azione|Nicholas Meyer|1982|113|0|8.00
+24-09-2026|10:30|Strangers on a Train|Crime|Alfred Hitchcock|1951|101|12|8.50
+23-09-2026|13:00|Laura|Drama|Otto Preminger|1944|88|12|6.50
+23-09-2026|10:00|V for Vendetta|Azione|James McTeigue|2005|132|12|6.50
+22-09-2026|10:30|Sholay|Azione|Ramesh Sippy|1975|204|0|8.50
+21-09-2026|12:30|Wo hu cang long|Azione|Ang Lee|2000|120|12|7.00
+21-09-2026|10:00|A Christmas Story|Comedy|Bob Clark|1983|93|0|7.50
+20-09-2026|19:30|Funny Games|Crime|Michael Haneke|1997|108|12|10.00
+20-09-2026|17:00|The Night of the Hunter|Crime|Charles Laughton|1955|92|12|8.50
+20-09-2026|13:30|Paris, Texas|Drama|Wim Wenders|1984|145|0|8.50
+20-09-2026|10:30|Efter brylluppet|Drama|Susanne Bier|2006|120|16|7.00
+19-09-2026|20:00|Ed Wood|Biography|Tim Burton|1994|127|0|8.50
+19-09-2026|17:00|Anand|Drama|Hrishikesh Mukherjee|1971|122|0|7.50
+19-09-2026|14:00|Wo hu cang long|Azione|Ang Lee|2000|120|12|7.00
+19-09-2026|10:30|Stalker|Drama|Andrei Tarkovsky|1979|162|0|6.50
+18-09-2026|10:00|A Christmas Story|Comedy|Bob Clark|1983|93|0|6.50
+17-09-2026|13:00|Mad Max 2|Azione|George Miller|1981|96|12|7.00
+17-09-2026|10:30|No Man's Land|Comedy|Danis Tanovic|2001|98|16|6.50
+16-09-2026|16:00|Ed Wood|Biography|Tim Burton|1994|127|0|8.00
+16-09-2026|12:30|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|7.50
+16-09-2026|10:00|Mad Max 2|Azione|George Miller|1981|96|12|7.50
+15-09-2026|16:30|Yeopgijeogin geunyeo|Comedy|Jae-young Kwak|2001|137|12|7.50
+15-09-2026|13:30|Kumonosu-jô|Drama|Akira Kurosawa|1957|110|12|8.00
+15-09-2026|10:30|Witness for the Prosecution|Crime|Billy Wilder|1957|116|0|8.50
+14-09-2026|16:00|Star Wars|Azione|George Lucas|1977|121|12|7.50
+14-09-2026|13:30|Roman Holiday|Comedy|William Wyler|1953|118|12|7.00
+14-09-2026|10:30|Efter brylluppet|Drama|Susanne Bier|2006|120|16|7.00
+13-09-2026|20:00|Star Trek II: The Wrath of Khan|Azione|Nicholas Meyer|1982|113|0|9.00
+13-09-2026|16:30|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|8.00
+13-09-2026|13:30|Blood Diamond|Adventure|Edward Zwick|2006|143|12|7.50
+13-09-2026|10:00|Blood Diamond|Adventure|Edward Zwick|2006|143|12|7.00
+12-09-2026|15:30|Sleuth|Mystery|Joseph L. Mankiewicz|1972|138|6|8.50
+12-09-2026|13:00|The Station Agent|Comedy|Tom McCarthy|2003|89|16|8.50
+12-09-2026|10:30|Funny Games|Crime|Michael Haneke|1997|108|12|7.00
+11-09-2026|16:00|The Exorcist|Horror|William Friedkin|1973|122|12|7.50
+11-09-2026|13:30|O Brother, Where Art Thou?|Adventure|Joel Coen|2000|107|0|7.00
+11-09-2026|10:30|Star Trek II: The Wrath of Khan|Azione|Nicholas Meyer|1982|113|0|8.50
+10-09-2026|10:00|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|8.50
+09-09-2026|13:00|O Brother, Where Art Thou?|Adventure|Joel Coen|2000|107|0|7.00
+09-09-2026|10:00|Lat sau san taam|Azione|John Woo|1992|128|16|7.50
+08-09-2026|16:30|Stalag 17|Comedy|Billy Wilder|1953|120|12|8.50
+08-09-2026|13:00|Yeopgijeogin geunyeo|Comedy|Jae-young Kwak|2001|137|12|6.50
+08-09-2026|10:30|Guess Who's Coming to Dinner|Comedy|Stanley Kramer|1967|108|12|6.50
+07-09-2026|13:30|Funny Games|Crime|Michael Haneke|1997|108|12|6.50
+07-09-2026|10:00|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|8.50
+06-09-2026|15:00|Guess Who's Coming to Dinner|Comedy|Stanley Kramer|1967|108|12|7.00
+06-09-2026|12:30|The Night of the Hunter|Crime|Charles Laughton|1955|92|12|6.50
+06-09-2026|10:00|Rope|Crime|Alfred Hitchcock|1948|80|12|8.00
+05-09-2026|17:00|La Grande Illusion|Drama|Jean Renoir|1937|113|12|8.50
+05-09-2026|13:30|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|7.00
+05-09-2026|10:00|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|7.50
+04-09-2026|12:30|Efter brylluppet|Drama|Susanne Bier|2006|120|16|8.00
+04-09-2026|10:00|Once Were Warriors|Crime|Lee Tamahori|1994|102|12|8.50
+03-09-2026|10:30|What Ever Happened to Baby Jane?|Drama|Robert Aldrich|1962|134|12|8.00
+02-09-2026|10:00|Once Were Warriors|Crime|Lee Tamahori|1994|102|12|6.50
+01-09-2026|10:00|Paris, Texas|Drama|Wim Wenders|1984|145|0|8.50
+31-08-2026|12:00|Stalker|Drama|Andrei Tarkovsky|1979|162|0|7.50
+31-08-2026|10:00|The Circus|Comedy|Charles Chaplin|1928|72|12|7.50
+30-08-2026|15:00|V for Vendetta|Azione|James McTeigue|2005|132|12|8.00
+30-08-2026|12:30|The Truman Show|Comedy|Peter Weir|1998|103|0|7.50
+30-08-2026|10:00|Funny Games|Crime|Michael Haneke|1997|108|12|6.50
+29-08-2026|17:00|Kumonosu-jô|Drama|Akira Kurosawa|1957|110|12|8.00
+29-08-2026|14:00|The Bourne Identity|Azione|Doug Liman|2002|119|12|7.50
+29-08-2026|10:00|The Right Stuff|Adventure|Philip Kaufman|1983|193|6|7.00
+28-08-2026|10:30|The Color Purple|Drama|Steven Spielberg|1985|154|0|8.50
+27-08-2026|15:30|Blood Diamond|Adventure|Edward Zwick|2006|143|12|6.50
+27-08-2026|13:30|The General|Azione|Clyde Bruckman|1926|67|12|6.50
+27-08-2026|10:30|Lat sau san taam|Azione|John Woo|1992|128|16|8.00
+26-08-2026|10:30|The Notebook|Drama|Nick Cassavetes|2004|123|12|6.50
+25-08-2026|15:30|Rope|Crime|Alfred Hitchcock|1948|80|12|7.00
+25-08-2026|12:30|Stalag 17|Comedy|Billy Wilder|1953|120|12|7.00
+25-08-2026|10:30|Zelig|Comedy|Woody Allen|1983|79|6|8.50
+24-08-2026|10:00|Rope|Crime|Alfred Hitchcock|1948|80|12|8.50
+22-08-2026|19:00|Pride & Prejudice|Drama|Joe Wright|2005|129|6|9.00
+21-08-2026|14:30|Glengarry Glen Ross|Crime|James Foley|1992|100|16|7.00
+21-08-2026|10:30|Judgment at Nuremberg|Drama|Stanley Kramer|1961|179|12|7.50
+20-08-2026|10:00|The Color Purple|Drama|Steven Spielberg|1985|154|0|7.50
+19-08-2026|12:30|Spoorloos|Mystery|George Sluizer|1988|107|12|7.00
+19-08-2026|10:00|Harold and Maude|Comedy|Hal Ashby|1971|91|6|8.00
+18-08-2026|13:30|The Game|Azione|David Fincher|1997|129|12|6.50
+18-08-2026|10:30|Sleuth|Mystery|Joseph L. Mankiewicz|1972|138|6|7.00
+17-08-2026|15:00|Sleuth|Mystery|Joseph L. Mankiewicz|1972|138|6|6.50
+16-08-2026|10:30|Blood Diamond|Adventure|Edward Zwick|2006|143|12|7.00
+14-08-2026|13:30|Kumonosu-jô|Drama|Akira Kurosawa|1957|110|12|8.00
+13-08-2026|13:30|Doctor Zhivago|Drama|David Lean|1965|197|12|8.50
+13-08-2026|10:30|La battaglia di Algeri|Drama|Gillo Pontecorvo|1966|121|12|8.50
+12-08-2026|17:00|Blood Diamond|Adventure|Edward Zwick|2006|143|12|7.00
+11-08-2026|10:00|The Wild Bunch|Azione|Sam Peckinpah|1969|145|12|6.50
+09-08-2026|10:30|Das Cabinet des Dr. Caligari|Fantasy|Robert Wiene|1920|76|12|8.00
+08-08-2026|18:00|Being John Malkovich|Comedy|Spike Jonze|1999|113|16|8.50
+07-08-2026|10:30|Badlands|Azione|Terrence Malick|1973|94|6|8.50
+06-08-2026|10:30|On the Waterfront|Crime|Elia Kazan|1954|108|12|8.00
+05-08-2026|10:00|The Station Agent|Comedy|Tom McCarthy|2003|89|16|8.50
+04-08-2026|10:30|Pride & Prejudice|Drama|Joe Wright|2005|129|6|8.50
+03-08-2026|10:00|Midnight Cowboy|Drama|John Schlesinger|1969|113|12|6.50
+02-08-2026|16:00|No Man's Land|Comedy|Danis Tanovic|2001|98|16|6.50
+02-08-2026|13:00|Awakenings|Biography|Penny Marshall|1990|121|0|7.50
+31-07-2026|10:00|Das Cabinet des Dr. Caligari|Fantasy|Robert Wiene|1920|76|12|8.00
+30-07-2026|12:30|Miracle on 34th Street|Comedy|George Seaton|1947|96|12|7.50
+30-07-2026|10:00|On the Waterfront|Crime|Elia Kazan|1954|108|12|8.00
+29-07-2026|10:00|The Bridges of Madison County|Drama|Clint Eastwood|1995|135|12|7.50
+28-07-2026|15:30|The World's Fastest Indian|Biography|Roger Donaldson|2005|127|0|6.50
+28-07-2026|12:30|Being John Malkovich|Comedy|Spike Jonze|1999|113|16|7.50
+27-07-2026|10:30|The Wild Bunch|Azione|Sam Peckinpah|1969|145|12|8.00
+26-07-2026|19:00|Star Wars|Azione|George Lucas|1977|121|12|8.50
+26-07-2026|10:30|Pride & Prejudice|Drama|Joe Wright|2005|129|6|8.50
+25-07-2026|15:30|Rebecca|Drama|Alfred Hitchcock|1940|130|12|8.50
+24-07-2026|10:00|Manhattan|Comedy|Woody Allen|1979|96|16|7.00
+23-07-2026|13:00|On the Waterfront|Crime|Elia Kazan|1954|108|12|6.50
+23-07-2026|10:30|The Adventures of Robin Hood|Azione|Michael Curtiz|1938|102|6|7.00
+22-07-2026|13:30|Miracle on 34th Street|Comedy|George Seaton|1947|96|12|8.50
+22-07-2026|10:30|The Bridges of Madison County|Drama|Clint Eastwood|1995|135|12|7.00
+20-07-2026|10:00|Doctor Zhivago|Drama|David Lean|1965|197|12|7.00
+19-07-2026|10:00|Tôkyô goddofâzâzu|Animation|Satoshi Kon|2003|90|12|8.50
+18-07-2026|10:00|Tôkyô goddofâzâzu|Animation|Satoshi Kon|2003|90|12|7.00
+17-07-2026|10:00|Badlands|Azione|Terrence Malick|1973|94|6|8.00
+16-07-2026|15:00|The World's Fastest Indian|Biography|Roger Donaldson|2005|127|0|8.50
+15-07-2026|10:30|The Wild Bunch|Azione|Sam Peckinpah|1969|145|12|7.50
+14-07-2026|14:00|The World's Fastest Indian|Biography|Roger Donaldson|2005|127|0|7.00
+13-07-2026|10:00|The Graduate|Comedy|Mike Nichols|1967|106|12|6.50
+12-07-2026|10:30|Trois couleurs: Blanc|Comedy|Krzysztof Kieslowski|1994|92|0|6.50
+11-07-2026|16:30|Jungfrukällan|Drama|Ingmar Bergman|1960|89|12|7.50
+10-07-2026|10:30|The World's Fastest Indian|Biography|Roger Donaldson|2005|127|0|8.50
+09-07-2026|16:00|Manhattan|Comedy|Woody Allen|1979|96|16|7.00
+08-07-2026|10:30|Vizontele|Comedy|Yilmaz Erdogan|2001|110|12|6.50
+07-07-2026|10:30|Funny Games|Crime|Michael Haneke|1997|108|12|8.00
+06-07-2026|10:30|À bout de souffle|Crime|Jean-Luc Godard|1960|90|0|8.00
+05-07-2026|10:00|La battaglia di Algeri|Drama|Gillo Pontecorvo|1966|121|12|7.00
+04-07-2026|19:00|Spoorloos|Mystery|George Sluizer|1988|107|12|9.00
+03-07-2026|10:30|The World's Fastest Indian|Biography|Roger Donaldson|2005|127|0|6.50
+02-07-2026|10:00|Kal Ho Naa Ho|Comedy|Nikkhil Advani|2003|186|0|8.50
+01-07-2026|10:00|À bout de souffle|Crime|Jean-Luc Godard|1960|90|0|7.50
