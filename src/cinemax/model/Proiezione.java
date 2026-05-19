@@ -16,13 +16,14 @@ public class Proiezione {
         private int anno;
         private int durata;
         private int etaMin;
+        private int postiSala;
         private double prezzo;
 
 // ====================================================== 
 //                   costruttore
 // ======================================================
 
-        public Proiezione(LocalDate data, String ora, String titolo, String genere, String regista, int anno, int durata, int etaMin, double prezzo) {
+        public Proiezione(LocalDate data, String ora, String titolo, String genere, String regista, int anno, int durata, int etaMin, double prezzo, int postiSala) {
             this.data = data;
             this.ora = ora;
             this.titolo = titolo;
@@ -32,6 +33,7 @@ public class Proiezione {
             this.durata = durata;
             this.etaMin = etaMin;
             this.prezzo = prezzo;
+            this.postiSala = postiSala;
         }
 
 // ====================================================== 
@@ -68,6 +70,10 @@ public class Proiezione {
 
         public int getEtaMin() {
             return etaMin;
+        }
+
+        public int getPostiSala(){
+            return postiSala;
         }
 
         public double getPrezzo() {
@@ -108,6 +114,10 @@ public class Proiezione {
 
         public void setEtaMin(int etaMin){
             this.etaMin = etaMin;
+        }
+
+        public void setPostiSala(int postiSala){
+            this.postiSala = postiSala;
         }
 
         public void setPrezzo(double prezzo){
