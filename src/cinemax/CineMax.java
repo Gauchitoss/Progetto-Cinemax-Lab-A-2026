@@ -27,14 +27,13 @@ public class CineMax {
 
         while (running) {   
 
-            System.out.println(stackRecord); 
-
             // prendi stato attuale
             statoAttuale = stackRecord.peek();
             //  render(statoAttuale)
             CinemaxTUI.renderizzaMenu(statoAttuale);
+
             // azioni statoAttule
-            LogicaStatiManager.gestisciStati();
+            statoAttuale.eseguiLogicaAssociata();
             // cambio stato
             // aggiungere o togliere stato allo stack
             // fine iterazione

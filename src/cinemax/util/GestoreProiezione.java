@@ -94,6 +94,22 @@ import java.time.DateTimeException;
 // ======================================================
 //                   metodo cercaProiezione
 // ======================================================
+        public static void visualizzaProiezione(String titolo, String giorno1, String mese1, String anno1, String giorno2, String mese2, String anno2, String prezzo, String genere){
+            
+            try{    
+                int giornoInizio    = Integer.parseInt(giorno1);
+                int meseInizio      = Integer.parseInt(mese1);
+                int annoInizio      = Integer.parseInt(anno1);
+                int giornoFine      = Integer.parseInt(giorno2);
+                int meseFine        = Integer.parseInt(mese2);
+                int annoFine        = Integer.parseInt(anno2);
+
+                cercaProiezione(titolo, giornoInizio, meseInizio, annoInizio, giornoFine, meseFine, annoFine, prezzo, genere);
+            }catch(NumberFormatException e){
+    
+            }
+
+        }
 
         public static List<Proiezione> cercaProiezione(String titolo, int daGiorno, int daMese, int daAnno, int aGiorno, int aMese, int aAnno, String prezzoStr, String genere){
             LocalDate daData = null;
