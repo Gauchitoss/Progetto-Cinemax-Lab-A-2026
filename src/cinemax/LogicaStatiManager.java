@@ -65,7 +65,7 @@ public class LogicaStatiManager {
      */
     public static void prendiDatiForm(String[] campiForm, String[] opzioniStatoMenu){
         int altezzaLineaRichiesta = 10;     // Altezza di base
-        int altezzaColonnaRichiesta = 11;   // Longitudine di base
+        int altezzaColonnaRichiesta = 52;   // Longitudine di base
         String campoTmp="";
 
         // indiceOpzioni        scorre array di stringhe della classe MenuManager
@@ -85,7 +85,7 @@ public class LogicaStatiManager {
                     altezzaColonnaRichiesta += 12;
                 }
 
-                altezzaColonnaRichiesta = 11;
+                altezzaColonnaRichiesta = 52;
                 altezzaLineaRichiesta += 3;
             }else{
                 System.out.print("\033["+altezzaLineaRichiesta+";"+altezzaColonnaRichiesta+"H");

@@ -40,89 +40,35 @@ public class Proiezione {
 //                   metodi getter
 // ======================================================
 
-        public LocalDate getData() {
-            return data;
-        }
+    public LocalDate getData()    { return data; }
+    public String getOra()        { return ora; }
+    public String getTitolo()     { return titolo; }
+    public String getGenere()     { return genere; }
+    public String getRegista()    { return regista; }
 
-        public String getOra(){
-            return ora;
-        }
+    public int getAnno()          { return anno; }
+    public int getDurata()        { return durata; }
+    public int getEtaMin()        { return etaMin; }
+    public int getPostiSala()     { return postiSala; }
 
-        public String getTitolo() {
-            return titolo;
-        }
-
-        public String getGenere() {
-            return genere;
-        }
-
-        public String getRegista() {
-            return regista;
-        }
-
-        public int getAnno() {
-            return anno;
-        }
-
-        public int getDurata() {
-            return durata;
-        }
-
-        public int getEtaMin() {
-            return etaMin;
-        }
-
-        public int getPostiSala(){
-            return postiSala;
-        }
-
-        public double getPrezzo() {
-            return prezzo;
-        }
+    public double getPrezzo()     { return prezzo; }
 
 // ====================================================== 
 //                   metodi setter
 // ======================================================
 
-        public void setData(LocalDate data){
-            this.data = data;
-        }
+    public void setData(LocalDate data)       { this.data = data; }
+    public void setOra(String ora)            { this.ora = ora; }
+    public void setTitolo(String titolo)      { this.titolo = titolo; }
+    public void setGenere(String genere)      { this.genere = genere; }
+    public void setRegista(String regista)    { this.regista = regista; }
 
-        public void setOra(String ora){
-            this.ora = ora;
-        }
+    public void setAnno(int anno)             { this.anno = anno; }
+    public void setDurata(int durata)         { this.durata = durata; }
+    public void setEtaMin(int etaMin)         { this.etaMin = etaMin; }
+    public void setPostiSala(int postiSala)   { this.postiSala = postiSala; }
 
-        public void setTitolo(String titolo){
-            this.titolo = titolo;
-        }
-
-        public void setGenere(String genere){
-            this.genere = genere;
-        }
-
-        public void setRegista(String regista){
-            this.regista = regista;
-        }
-
-        public void setAnno(int anno){
-            this.anno = anno;
-        }
-
-        public void setDurata(int durata){
-            this.durata = durata;
-        }
-
-        public void setEtaMin(int etaMin){
-            this.etaMin = etaMin;
-        }
-
-        public void setPostiSala(int postiSala){
-            this.postiSala = postiSala;
-        }
-
-        public void setPrezzo(double prezzo){
-            this.prezzo = prezzo;
-        }
+    public void setPrezzo(double prezzo)      { this.prezzo = prezzo; }
 
 // ======================================================
 
@@ -141,6 +87,6 @@ public class Proiezione {
 
         @Override
         public String toString(){ //ritorna la proiezione
-            return "Proiezione: " + titolo + " del " + data + " alle " + ora + " a " + prezzo + "€ (minimo anni: " + etaMin + ")";
+            return titolo + " ( " + data + " : " + ora + " ) |" + prezzo + " euro | età consigliata "  + etaMin + ")";
         }
 }

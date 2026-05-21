@@ -23,8 +23,7 @@ public class CostantiForm {
         CERCA_MESE_2(5),
         CERCA_ANNO_2(6),
         CERCA_COSTO(7),
-        CERCA_DURATA(8),
-        CERCA_GENERE(9);
+        CERCA_GENERE(8);
 
 
         public final int i;

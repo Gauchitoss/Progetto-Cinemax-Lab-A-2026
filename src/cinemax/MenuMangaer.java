@@ -31,27 +31,27 @@ public class MenuMangaer {
             }
         },
 
-        MENU_GUEST( new String[]{"cerca film", "accedi", "indietro"}, true, "custom", "centro"){
+        MENU_GUEST( new String[]{"cerca film", "accedi", "indietro"}, true, "cinemax", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{CERCA_FILM, LOGIN, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
 
-        MENU_CLIENTI( new String[]{"cerca film", "mie prenotazioni", "logout"}, true, "custom", "centro"){
+        MENU_CLIENTI( new String[]{"cerca film", "mie prenotazioni", "logout"}, true, "cinemax", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{CERCA_FILM, MIE_PRENOTAZIONI, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
 
-        MENU_PROEZIONISTA(new String[]{"inserisci film", "rimuovi Film", "gestisci orari", "logout"}, true, "custom", "centro"){
+        MENU_PROEZIONISTA(new String[]{"inserisci film", "rimuovi Film", "gestisci orari", "logout"}, true, "sezione proezionisti", "centro"){
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{INSERISCI_PROEZIONE, RIMUOVI_PROEZIONE, GESTISCI_PROEZIONE, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
         
-        MENU_BIGLIETTAIO(new String[]{"visualizza programmazione", "cerca prenotazione", "vendita diretta", "stato sala", "logout"}, true, "custom", "centro"){
+        MENU_BIGLIETTAIO(new String[]{"visualizza programmazione", "cerca prenotazione", "vendita diretta", "stato sala", "logout"}, true, "sezione bigliettaio", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{VISUALIZZA_PROGRAMMAZAIONE, CERCA_PRENOTAZIONE, VENDITA_DIRETTA, STATO_SALA, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
 
-        LOGIN(new String[]{"username", "password"}, false, "custom", "sinistra"){
+        LOGIN(new String[]{"username", "password"}, false, "accesso", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI, MENU_PROEZIONISTA, MENU_BIGLIETTAIO, BENVENUTO};}
             @Override 
             public void eseguiLogicaAssociata(){
@@ -61,7 +61,7 @@ public class MenuMangaer {
             }
         },
 
-        REGISTRAZIONE(new String[]{"nome", "cognome", "username", "password", "conferma password", "data di nascita", "domicilio"}, false, "custom", "sinistra"){
+        REGISTRAZIONE(new String[]{"nome", "cognome", "username", "password", "conferma password", "data di nascita", "domicilio"}, false, "registrazione", "centro"){
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{LOGIN, BENVENUTO};}
             @Override 
             public void eseguiLogicaAssociata(){
@@ -71,19 +71,19 @@ public class MenuMangaer {
             }
         },
 
-        CERCA_FILM(new String[]{"titolo","dataInizio","dataFine", "costo", "durata", "genere"}, false, "custom", "sinistra"){
+        CERCA_FILM(new String[]{"titolo","dataInizio","dataFine", "costo", "genere"}, false, "cerca film", "centro"){
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{VISUALIZZA_PROGRAMMAZAIONE, null};}
             @Override
             public void eseguiLogicaAssociata(){
-                String[] datiFormTmp = new String[10];  //non è la stessa lunghezza dei campi del cerca film
+                String[] datiFormTmp = new String[9];  //non è la stessa lunghezza dei campi del cerca film
                 LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni());
                 FilmController.gestisciCercaFlm(datiFormTmp);
             }
         },
 
-        VISUALIZZA_PROGRAMMAZAIONE(new String[]{}, true, "custom", "sinistra") {
+        VISUALIZZA_PROGRAMMAZAIONE(new String[]{}, true, "film", "sinistra") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{PRENOTA_POSTI, BENVENUTO};}
-            @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
+            @Override public void eseguiLogicaAssociata(){FilmController.gestisciVisualizzaProiezione(input.nextLine());}
         },
 
         PRENOTA_POSTI(new String[]{}, true, "custom", "sinistra") {

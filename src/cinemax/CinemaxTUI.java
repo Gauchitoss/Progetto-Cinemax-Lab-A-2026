@@ -1,5 +1,7 @@
 package cinemax;
 
+import java.util.List;
+
 import cinemax.MenuMangaer.StatoMenu;
 
 /**
@@ -13,8 +15,13 @@ import cinemax.MenuMangaer.StatoMenu;
 
 public class CinemaxTUI {
 
-    private static final int LARGHEZZA_MENU = 80;
+    private static final int LARGHEZZA_MENU = 130;
     private static final int LARGHEZZA_BOX_INPUT = 38;
+    
+    private static String bordoSuperiore = "╔"+"═".repeat(LARGHEZZA_MENU)+"╗";
+    private static String rigaVuota =      "║"+" ".repeat(LARGHEZZA_MENU)+"║";
+    private static String bordoMezzo =     "╠"+"═".repeat(LARGHEZZA_MENU)+"╣";
+    private static String bordoInferiore = "╚"+"═".repeat(LARGHEZZA_MENU)+"╝";
 
 // ======================================================
 //          SEZIONE CREAZIONE INTERFACCIA
@@ -37,23 +44,26 @@ public class CinemaxTUI {
     public static void renderizzaMenu(StatoMenu statoMenu){
         clearConsole();
 
-        // Lunghezza totale del menu 82 caratteri
-        System.out.println("╔════════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                                                                                ║");
-        sceltaLogo(statoMenu.getNomeLogo());
-        if(statoMenu.getNomeLogo().equals("custom"))
-        System.err.println("║"+statoMenu.getNomeLogo().toUpperCase()+"║");  // ricalcolo righe
-        System.out.println("║                                                                                ║");
-        System.out.println("╠════════════════════════════════════════════════════════════════════════════════╣");
-        System.out.println("║                                                                                ║");
-        System.out.println("║                                                                                ║");
+        System.out.println(bordoSuperiore);
+        System.out.println(rigaVuota);
+
+        formattaIntestazione(statoMenu.getNomeLogo());
+
+        System.out.println(rigaVuota);
+        System.out.println(bordoMezzo);
+        System.out.println(rigaVuota);
+        System.out.println(rigaVuota);
+
         if(statoMenu == StatoMenu.STATO_ERRORE){
-            System.out.println(creaRigaFormattata(LogicaStatiManager.messaggioErroreCorrente.toUpperCase(), 5, true));
+            formattaTesto(LogicaStatiManager.messaggioErroreCorrente.toUpperCase(), "centro", true);
+        }else if(statoMenu == StatoMenu.VISUALIZZA_PROGRAMMAZAIONE){
+            stampaPaginaProiezione();
         }else
-            formattaOpzione(statoMenu.getOpzioni(), statoMenu.getPosizione(), statoMenu.getVisualizzaNumeri());
-        System.out.println("║                                                                                ║");
-        System.out.println("║                                                                                ║");
-        System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
+            formattaTesto(statoMenu.getOpzioni(), statoMenu.getPosizione(), statoMenu.getVisualizzaNumeri());
+
+        System.out.println(rigaVuota);
+        System.out.println(rigaVuota);
+        System.out.println(bordoInferiore);
         System.out.print("\nSELEZIONA UN'OPZIONE: ");
         
     }
@@ -92,24 +102,14 @@ public class CinemaxTUI {
         " ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝"
 };
 
-// ======================================================
-// LOGICA DI STAMPA DEI LOGI
-// ======================================================
 
-    /**
-     * Funzione preliminare che decide quale logo stampare.
-     * 
-     * @param logo Identificatore testuale del logo da visualizzare ("cinemax" o "film")
-     */
-    public static void sceltaLogo(String logo){
-        if(logo.equals("cinemax"))
-            formattaLogo(logoCinemax);
+    public static void formattaIntestazione(String logo){
 
-        if(logo.equals("film"))
-            formattaLogo(logoFilm);
+        if(logo.equals("cinemax"))  {formattaLogo(logoCinemax); return;}
+        if(logo.equals("film"))     {formattaLogo(logoFilm); return;}
+        if(logo.equals("error"))    {formattaLogo(logoErrore); return;}
 
-        if(logo.equals("error"))
-            formattaLogo(logoErrore);
+        formattaTesto(logo, "centro", true);
     }
 
     /**
@@ -140,26 +140,6 @@ public class CinemaxTUI {
 //                   SEZIONE OPZIONI
 // ====================================================== 
 
-    /**
-     * Stampa le opzioni del menu formattate in base allo stato in cui ci si trova.
-     * 
-     * @param opzioni Array di stringhe che contiene le voci del menu
-     * @param posizione String che indica come allineare le opzioni
-     * @param visualizzaNumeri boolenao, dice se stampare i numeri o meno, inoltre il mancato utilizzo di stampare
-     * i nuemeri, detta che l'utente debba inserire qualche campo
-     */
-    public static void formattaOpzione(String[] opzioni, String posizione, boolean visualizzaNumeri){
-
-        int indiceOpzione = 1;
-
-        for (String tmpOpzione : opzioni) {
-                String testoOpzionePronto = ((visualizzaNumeri)?"["+ indiceOpzione++ +"] ":"") + tmpOpzione;
-                testoOpzionePronto = testoOpzionePronto.toUpperCase();
-
-                System.out.println(creaRigaFormattata(testoOpzionePronto, ((visualizzaNumeri)? 30 : 5), visualizzaNumeri));
-            }
-
-    }
 
     /**
      * Costruisce l'intera riga del menu completa di bordi `║`, calcolando gli spazi mancanti a destra.
@@ -169,25 +149,50 @@ public class CinemaxTUI {
      * @param visualizzaNumeri Booleano che indica se è un menu a scelta (true) o un form di input (false)
      * @return Stringa formattata (con eventuali \n), pronta per essere stampata a schermo
      */
-    public static String creaRigaFormattata(String opzione, int padding, boolean visualizzaNumeri){
-        String paddingSinistro = " ".repeat(padding);
+    public static void formattaTesto(String[] possibiliOpzioni, String posizione, boolean visualizzaNumeri){
+        
+        if(possibiliOpzioni == null || possibiliOpzioni.length == 0) return;
 
+        // idea quello di creare una singola riga per i meni in modo poi di appciccicarla e averr gia una lunghezza
         if(visualizzaNumeri){
-            String paddingDestro = " ".repeat(LARGHEZZA_MENU-padding-opzione.length());
-            return "║"+ paddingSinistro + opzione + paddingDestro + "║";
-        }
-        else{
-            String[] righeBoxInput;
-            if(opzione.equals("DATAINIZIO")||opzione.equals("DATAFINE"))
-                righeBoxInput = chiediData();
-            else
-                righeBoxInput = generaBoxInputUnicode(opzione);
+            int lunghezzaMax = 0;
+            String[] righeMenu = new String[possibiliOpzioni.length];
 
-            String paddingDestroUnicoede = " ".repeat(LARGHEZZA_MENU-padding-righeBoxInput[0].length());
-            return  "║"+ paddingSinistro + righeBoxInput[0] + paddingDestroUnicoede + "║\n"+
-                    "║"+ paddingSinistro + righeBoxInput[1] + paddingDestroUnicoede + "║\n"+
-                    "║"+ paddingSinistro + righeBoxInput[2] + paddingDestroUnicoede + "║";
+            for(int i = 0; i < possibiliOpzioni.length; i++){
+                righeMenu[i] = "["+ (i+1) +"] " + possibiliOpzioni[i];
+                if(righeMenu.length > lunghezzaMax) lunghezzaMax = righeMenu[i].length();
+            }
+            String spaziaturaSinstra = " ".repeat((LARGHEZZA_MENU-lunghezzaMax)/2);
+
+            for (String testoTmp : righeMenu) {
+                System.out.println("║" + spaziaturaSinstra + testoTmp.toUpperCase() + " ".repeat(LARGHEZZA_MENU-spaziaturaSinstra.length()-testoTmp.length()) + "║");
+            }
+        }else{
+            String[] boxInput;
+            String padding = " ".repeat((LARGHEZZA_MENU-LARGHEZZA_BOX_INPUT)/2);
+
+            for (String campo : possibiliOpzioni) {
+                if(campo.toUpperCase().equals("DATAINIZIO")||
+                   campo.toUpperCase().equals("DATAFINE")){
+                    boxInput = chiediData();
+                }else
+                    boxInput = generaBoxInputUnicode(campo);
+
+                for (String rigaInput : boxInput) {
+                    System.out.println("║" + padding + rigaInput + padding + " ║");
+                }
+            }
+
         }
+    }
+    public static void formattaTesto(String opzione, String posizione, boolean visualizzaNumeri){
+        int padding = (posizione.equals("centro"))? (LARGHEZZA_MENU - opzione.length())/2: 5;
+        String spaziaturaSinistra = " ".repeat(padding);
+        String spaziaturaDestra = "";
+
+        spaziaturaDestra = " ".repeat(LARGHEZZA_MENU-opzione.length()-spaziaturaSinistra.length());
+        System.out.println("║"+ spaziaturaSinistra + opzione.toUpperCase() + spaziaturaDestra + "║");
+        
     }
 
     /**
@@ -217,6 +222,54 @@ public class CinemaxTUI {
         return dataInput;
     }
 
+    /**
+     * Renderizza la schermata, mostrando le proezioni in base ai filtri di ricerca.
+     * Ne proietta un numero limitato alla volta (10), per vedere le altre, è presente
+     * una serie di opzioni.
+     * Comunica in modo diretto con il file `FilmController` da cui fa uso delle variabili globali.
+     */
+    public static void stampaPaginaProiezione(){
+
+        List<cinemax.model.Proiezione> listaPagina = cinemax.controller.FilmController.filmPaginaTmp;
+        int elementiPagina = cinemax.controller.FilmController.ELEMENTI_PAGINA;
+        int paginaCorrente = cinemax.controller.FilmController.paginaCorrente;
+
+        if(listaPagina.isEmpty()){
+            formattaTesto("NESSUNA PROIEZIONE TORVATA", "centro", true);
+            formattaTesto("PREMI INVIO PER TORNARE INDIETRO", "centro", true);
+            return;
+        }
+
+        //INFO PAGINA
+        int totalePagine = (cinemax.controller.FilmController.proiezioniTrovate.size() + elementiPagina - 1) / elementiPagina;
+        String infoPagina = "PAGINA " + (paginaCorrente + 1) + " DI " + totalePagine;
+        formattaTesto(infoPagina, "sinistra", true);
+
+        // SEZIONE GRAFICA PROIEZIONI
+        System.out.println(bordoMezzo);
+        System.out.println(rigaVuota);
+
+        int indiceSceltaMenu = 1;
+        for (cinemax.model.Proiezione proiezione : listaPagina) {
+            String rigaFilm = "["+ indiceSceltaMenu++ +"] " + proiezione.toString(); 
+            formattaTesto(rigaFilm, "sinistra", true);
+        }
+
+        System.out.println(rigaVuota);
+        System.out.println(bordoMezzo);
+        System.out.println(rigaVuota);
+
+        
+        // PAGINA SUCCESSIVA
+        if(cinemax.controller.FilmController.esistenzaPaginaSuccessiva)
+            formattaTesto("[N] PAGINA SUCCESSIVA", "centro", true);
+        // PAGINA PRECEDENTE
+        if(paginaCorrente>0)
+            formattaTesto("[B] PAGINA PRECEDENTE", "centro", true);
+        // ANNULLA
+        formattaTesto("[C] ANNULA / ESCI", "centro", true);
+
+    }
 // ======================================================
 // ======================================================
 
