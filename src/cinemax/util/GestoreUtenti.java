@@ -106,5 +106,16 @@ public class GestoreUtenti {
             listaUtenti.add(new ClientiRegistrati(nome, cognome, username, Cifratura.cifra(confermaPassword), dataDiNascita, domicilioEffettivo));
             salvaUtenti();
         }
+        // ====================================================== 
+        //  Metodo di supporto per cercare un utente tramite username
+        // ======================================================
+        public static Utente cercaPerUsername(String username) {
+            for (Utente u : listaUtenti) {
+                if (u.getUsername().equals(username)) {
+                    return u;
+                }
+            }
+            return null; // Ritorna null se lo username non esiste
+        }
 
 }
