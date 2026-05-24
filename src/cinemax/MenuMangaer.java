@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import cinemax.controller.AutenticazioniController;
 import cinemax.controller.FilmController;
+import cinemax.util.GestoreProiezione;
 
 public class MenuMangaer {
     static Scanner input = new Scanner(System.in);
@@ -21,6 +22,7 @@ public class MenuMangaer {
      */
     public enum StatoMenu {
 
+        // FATTO
         BENVENUTO(new String[]{"accedi", "entra come guest", "registrati", "esci"}, true, "cinemax", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{LOGIN, MENU_GUEST, REGISTRAZIONE};}
             @Override
@@ -30,102 +32,114 @@ public class MenuMangaer {
                 LogicaStatiManager.statoMenuSuccessivo(scelta);
             }
         },
-
+        //FATTO
         MENU_GUEST( new String[]{"cerca film", "accedi", "indietro"}, true, "cinemax", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{CERCA_FILM, LOGIN, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
-
+        //FATTO
         MENU_CLIENTI( new String[]{"cerca film", "mie prenotazioni", "logout"}, true, "cinemax", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{CERCA_FILM, MIE_PRENOTAZIONI, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
-
-        MENU_PROEZIONISTA(new String[]{"inserisci film", "rimuovi Film", "gestisci orari", "logout"}, true, "sezione proezionisti", "centro"){
-            @Override public StatoMenu[] prossimi() {return new StatoMenu[]{INSERISCI_PROEZIONE, RIMUOVI_PROEZIONE, GESTISCI_PROEZIONE, BENVENUTO};}
+        // FATTO
+        MENU_PROEZIONISTA(new String[]{"inserisci film", "cerca e modifica poiezione", "logout"}, true, "sezione proezionisti", "centro"){
+            @Override public StatoMenu[] prossimi() {return new StatoMenu[]{INSERISCI_PROEZIONE,CERCA_FILM, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
-        
-        MENU_BIGLIETTAIO(new String[]{"visualizza programmazione", "cerca prenotazione", "vendita diretta", "stato sala", "logout"}, true, "sezione bigliettaio", "centro"){
-            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{VISUALIZZA_PROGRAMMAZAIONE, CERCA_PRENOTAZIONE, VENDITA_DIRETTA, STATO_SALA, BENVENUTO};}
-            @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
-        },
-
+        // FATTO
+        MENU_BIGLIETTAIO(new String[]{"proiezioni del giorno", "cerca prenotazione", "cerca proiezione", "logout"}, true, "sezione bigliettaio", "centro"){
+            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{VISUALIZZA_PROGRAMMAZAIONE, CERCA_PRENOTAZIONE, CERCA_FILM, BENVENUTO};}
+            @Override public void eseguiLogicaAssociata(){
+                String scelta = input.nextLine();
+                if(scelta.equals("1"))
+                    FilmController.gestisciCercaFilm(GestoreProiezione.proiezioniDelGiorno());
+                else
+                    LogicaStatiManager.statoMenuSuccessivo(scelta);}
+        }, 
+        // FATTO
         LOGIN(new String[]{"username", "password"}, false, "accesso", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI, MENU_PROEZIONISTA, MENU_BIGLIETTAIO, BENVENUTO};}
             @Override 
             public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[getOpzioni().length];
-                LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni());
+                if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) return;
                 AutenticazioniController.gestisciLogin(datiFormTmp);
             }
         },
-
+        // FATTO
         REGISTRAZIONE(new String[]{"nome", "cognome", "username", "password", "conferma password", "data di nascita", "domicilio"}, false, "registrazione", "centro"){
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{LOGIN, BENVENUTO};}
             @Override 
             public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[getOpzioni().length];
-                LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni());
+                if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) return;
                 AutenticazioniController.gestisciRegistrazione(datiFormTmp);
             }
         },
-
+        // FATTO
         CERCA_FILM(new String[]{"titolo","dataInizio","dataFine", "costo", "genere"}, false, "cerca film", "centro"){
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{VISUALIZZA_PROGRAMMAZAIONE, null};}
             @Override
             public void eseguiLogicaAssociata(){
-                String[] datiFormTmp = new String[9];  //non è la stessa lunghezza dei campi del cerca film
-                LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni());
+                String[] datiFormTmp = new String[9];
+                if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) return;
                 FilmController.gestisciCercaFlm(datiFormTmp);
             }
         },
-
+        // FATTO
         VISUALIZZA_PROGRAMMAZAIONE(new String[]{}, true, "film", "sinistra") {
-            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{PRENOTA_POSTI, BENVENUTO};}
+            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{};}
             @Override public void eseguiLogicaAssociata(){FilmController.gestisciVisualizzaProiezione(input.nextLine());}
         },
-
+        // FATTO
+        MENU_INFO_FILM(new String[]{}, true, "informazioni aggiuntive", "centro"){
+            @Override public StatoMenu[] prossimi() {return new StatoMenu[]{};}
+            @Override public void eseguiLogicaAssociata(){FilmController.gestisciMenuInfoFilm(input.nextLine());}
+        }, 
+        //
         PRENOTA_POSTI(new String[]{}, true, "custom", "sinistra") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
-
+        //
         MIE_PRENOTAZIONI(new String[]{}, true, "custom", "sinistra") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
-
-        INSERISCI_PROEZIONE(new String[]{}, true, "custom", "sinistra") {
+        // FATTO
+        INSERISCI_PROEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "inserisci proiezione", "centro") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROEZIONISTA};}
-            @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
+            @Override public void eseguiLogicaAssociata(){
+                String[] datiFormTmp = new String[12];
+                if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) return;
+                FilmController.gestisciInserimentoProiezione(datiFormTmp);
+            }
         },
-
-        RIMUOVI_PROEZIONE(new String[]{}, true, "custom", "sinistra") {
-            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROEZIONISTA};}
-            @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
-        },
-
+        //
         GESTISCI_PROEZIONE(new String[]{}, true, "custom", "sinistra") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROEZIONISTA};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
-
-        CERCA_PRENOTAZIONE(new String[]{}, true, "custom", "sinistra") {
+        //
+        CERCA_PRENOTAZIONE(new String[]{"titolo film","dataInizio","nome","cognome","username"}, false, "cerca una prenotazione", "centro") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_BIGLIETTAIO};}
-            @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
+            @Override public void eseguiLogicaAssociata(){
+                String[] datiFormTmp =new String[8];    // opzione dataInizio vale 3
+                LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni());
+            }
         },
-
+        //
         VENDITA_DIRETTA(new String[]{}, true, "custom", "sinistra") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_BIGLIETTAIO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
-
+        //
         STATO_SALA(new String[]{}, true, "custom", "sinistra") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_BIGLIETTAIO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
-
+        // FATTO
         STATO_ERRORE(new String[]{"premi invio per tornare indietro"}, true, "error","centro"){
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{null};}
             @Override

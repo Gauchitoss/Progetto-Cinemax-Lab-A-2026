@@ -42,6 +42,7 @@ public class LogicaStatiManager {
             }
             if(statoSuccessivo == StatoMenu.BENVENUTO){
                 CineMax.stackRecord.clear();
+                CineMax.ruolo = "cliente ospite";
             }
 
             CineMax.stackRecord.push(statoSuccessivo);
@@ -63,7 +64,7 @@ public class LogicaStatiManager {
      * @param campiForm Array dove salvare cosa ha scritto l'utente
      * @param opzioniStatoMenu Array contente tutte le opzioni dello stato del programma
      */
-    public static void prendiDatiForm(String[] campiForm, String[] opzioniStatoMenu){
+    public static boolean prendiDatiForm(String[] campiForm, String[] opzioniStatoMenu){
         int altezzaLineaRichiesta = 10;     // Altezza di base
         int altezzaColonnaRichiesta = 52;   // Longitudine di base
         String campoTmp="";
@@ -79,7 +80,7 @@ public class LogicaStatiManager {
 
                     String ris = convalidaInput(campoTmp);
                     if(ris != null && ris.equals(":q"))
-                        return;
+                        return false;
 
                     campiForm[indiceRisultati++] = ris;
                     altezzaColonnaRichiesta += 12;
@@ -93,13 +94,14 @@ public class LogicaStatiManager {
                 
                 String ris = convalidaInput(campoTmp);
                 if(ris != null && ris.equals(":q"))
-                        return;
+                        return false;
                     
                 campiForm[indiceRisultati++] = ris;
 
                 altezzaLineaRichiesta += 3;
             }
         }
+        return true;
     }
 
     /**

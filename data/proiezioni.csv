@@ -30,7 +30,6 @@ data_proiezione|ora_proiezione|titolo_film|genere|regista|anno|durata_minuti|eta
 20-12-2026|10:00|Giant|Drama|George Stevens|1956|201|0|6.50|51
 19-12-2026|17:30|Giant|Drama|George Stevens|1956|201|0|6.50|79
 19-12-2026|15:00|The Little Mermaid|Animation|Ron Clements|1989|83|0|7.00|87
-19-12-2026|10:30|Once Upon a Time in America|Crime|Sergio Leone|1984|229|12|7.00|75
 18-12-2026|16:30|Toy Story|Animation|John Lasseter|1995|81|0|6.50|71
 18-12-2026|13:30|Tôkyô monogatari|Drama|Yasujirô Ozu|1953|136|0|7.00|98
 18-12-2026|10:00|The Day of the Jackal|Crime|Fred Zinnemann|1973|143|12|8.50|98
@@ -361,4 +360,4 @@ data_proiezione|ora_proiezione|titolo_film|genere|regista|anno|durata_minuti|eta
 04-07-2026|19:00|Spoorloos|Mystery|George Sluizer|1988|107|12|9.00|88
 03-07-2026|10:30|The World's Fastest Indian|Biography|Roger Donaldson|2005|127|0|6.50|63
 02-07-2026|10:00|Kal Ho Naa Ho|Comedy|Nikkhil Advani|2003|186|0|8.50|52
-01-07-2026|10:00|À bout de souffle|Crime|Jean-Luc Godard|1960|90|0|7.50|54
+24-05-2026|10:00|À bout de souffle|Crime|Jean-Luc Godard|1960|90|0|7.50|54

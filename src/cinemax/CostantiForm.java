@@ -23,7 +23,21 @@ public class CostantiForm {
         CERCA_MESE_2(5),
         CERCA_ANNO_2(6),
         CERCA_COSTO(7),
-        CERCA_GENERE(8);
+        CERCA_GENERE(8),
+        // CAMPI AGGUNGI PROIEZIONE
+        ADD_TITOLO(0),
+        ADD_GENERE(1),
+        ADD_REGISTA(2),
+        ADD_ANNO_PRODUZIONE(3),
+        ADD_DURATA(4),
+        ADD_ETA(5),
+        ADD_COSTO(6),
+        ADD_POSTI(7),
+        ADD_GIORNO(8),
+        ADD_MESE(9),
+        ADD_ANNO(10),
+        ADD_ORA(11)
+        ;
 
 
         public final int i;

@@ -160,30 +160,15 @@ import java.time.DateTimeException;
 //                   metodo visualizzaProiezioni
 // ======================================================
 
-        public static void visualizzaProiezione(String titolo, String daGiorno, String daMese, String daAnno, String aGiorno, String aMese, String aAnno, String prezzoStr, String genere){
-            List<Proiezione> risultato = cercaProiezione(titolo, daGiorno, daMese, daAnno, aGiorno, aMese, aAnno, prezzoStr, genere);
-            if(risultato.isEmpty()){
-                System.out.println("Nessuna proiezione trovata con i filtri inseriti");
-                return;
-            }
-            System.out.println("Il risultato della ricerca sono : " + risultato.size() + " proiezioni");
-            for(Proiezione p : risultato){
-                System.out.println("Titolo: " + p.getTitolo());
-                System.out.println("Data: " + p.getData().format(FORMATTA_DATA));
-                System.out.println("Ora: " + p.getOra());
-                System.out.println("Genere: " + p.getGenere());
-                System.out.println("Regista: " + p.getRegista());
-                System.out.println("Anno: " + p.getAnno());
-                System.out.println("Durata: " + p.getDurata());
-                System.out.println("Eta minima: " + p.getEtaMin());
-                System.out.println("Prezzo: " + p.getPrezzo());    
-                System.out.println("Posti in sala: " + p.getPostiSala()); 
-            }
-        }
 
 // ====================================================== 
 //                   metodi getter
 // ======================================================
+        public static List<Proiezione> proiezioniDelGiorno(){
+            LocalDate dataOggi = LocalDate.now();
+            List<Proiezione> proiezioniGiorno = cercaProiezione(null, ""+dataOggi.getDayOfMonth(), ""+dataOggi.getMonthValue(), ""+dataOggi.getYear(), null, null, null, null, null);
+            return proiezioniGiorno;
+        }
 
         public static List<Proiezione> getListaProiezioni(){
             return new ArrayList<>(listaProiezioni); //restituisce una copia della lista, non l'originale

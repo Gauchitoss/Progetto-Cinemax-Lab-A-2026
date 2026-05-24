@@ -22,6 +22,9 @@ public class AutenticazioniController {
                 case "cliente registrato":  CineMax.stackRecord.push(StatoMenu.MENU_CLIENTI);       break;
                 case "bigliettaio":         CineMax.stackRecord.push(StatoMenu.MENU_BIGLIETTAIO);   break;
             }
+
+            CineMax.ruolo = u.getRuolo();
+
         } catch (Exception e) {
             LogicaStatiManager.messaggioErroreCorrente = "credenziali non valide o utente inesistente";
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
@@ -43,7 +46,9 @@ public class AutenticazioniController {
 
             CineMax.stackRecord.clear();
             CineMax.stackRecord.push(StatoMenu.BENVENUTO);      // Reset di sicurezza
+            CineMax.ruolo = "cliente registrato";
             CineMax.stackRecord.push(StatoMenu.MENU_CLIENTI);
+
         
 
         }catch(IllegalArgumentException e){

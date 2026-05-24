@@ -3,6 +3,7 @@ package cinemax;
 import java.util.List;
 
 import cinemax.MenuMangaer.StatoMenu;
+import cinemax.model.Proiezione;
 
 /**
  * Classe che gestisce l'interfaccia testuale (TUI - Terminal User Interface).
@@ -31,6 +32,9 @@ public class CinemaxTUI {
      * Pulisce la console
      */
     public static void clearConsole() {
+        // Forza la finestra a 45 righe di altezza e 135 di larghezza
+        System.out.print("\033[8;45;135t");
+
         System.out.println("\033[H\033[2J");
         System.out.flush();
     }
@@ -58,14 +62,16 @@ public class CinemaxTUI {
             formattaTesto(LogicaStatiManager.messaggioErroreCorrente.toUpperCase(), "centro", true);
         }else if(statoMenu == StatoMenu.VISUALIZZA_PROGRAMMAZAIONE){
             stampaPaginaProiezione();
+        }else if(statoMenu == StatoMenu.MENU_INFO_FILM){
+            gestisciInformazioniFilm(cinemax.controller.FilmController.filmSelezionatoTmp);
         }else
             formattaTesto(statoMenu.getOpzioni(), statoMenu.getPosizione(), statoMenu.getVisualizzaNumeri());
 
         System.out.println(rigaVuota);
         System.out.println(rigaVuota);
         System.out.println(bordoInferiore);
-        System.out.print("\nSELEZIONA UN'OPZIONE: ");
-        
+        if(CineMax.stackRecord.peek().getVisualizzaNumeri())System.out.print("\nSELEZIONA UN'OPZIONE: ");
+
     }
 
 // ======================================================
@@ -205,7 +211,7 @@ public class CinemaxTUI {
         String[] boxInput = new String[3];
         // Lunghezza totale del box (38) - i 6 caratteri fissi ("┌─ ", " ", "┐") - lunghezza della stringa.
         String lineaSuperioreDinamica = "─".repeat(LARGHEZZA_BOX_INPUT-6-opzione.length());
-        boxInput[0]= "┌─ "+opzione+" "+lineaSuperioreDinamica+"┐";
+        boxInput[0]= "┌─ "+opzione.toUpperCase()+" "+lineaSuperioreDinamica+"┐";
         boxInput[1]= "│ >                                 │";
         boxInput[2]= "└───────────────────────────────────┘";
         
@@ -235,7 +241,7 @@ public class CinemaxTUI {
         int paginaCorrente = cinemax.controller.FilmController.paginaCorrente;
 
         if(listaPagina.isEmpty()){
-            formattaTesto("NESSUNA PROIEZIONE TORVATA", "centro", true);
+            formattaTesto("NESSUNA PROIEZIONE TROVATA", "centro", true);
             formattaTesto("PREMI INVIO PER TORNARE INDIETRO", "centro", true);
             return;
         }
@@ -267,8 +273,41 @@ public class CinemaxTUI {
         if(paginaCorrente>0)
             formattaTesto("[B] PAGINA PRECEDENTE", "centro", true);
         // ANNULLA
-        formattaTesto("[C] ANNULA / ESCI", "centro", true);
+        formattaTesto("[C] ANNULLA / ESCI", "centro", true);
 
+    }
+
+    public static void gestisciInformazioniFilm(Proiezione p){
+
+        formattaTesto("TITOLO: " + p.getTitolo(), "centro", true);
+
+        System.out.println(rigaVuota);
+        System.out.println(bordoMezzo);
+        System.out.println(rigaVuota);
+
+        String formatoColonne = "║  %-56s │ %-69s║";
+
+        System.out.println(String.format(formatoColonne, "REGISTA: " + p.getRegista(), "DURATA: " + p.getDurata() + " MINUTI"));
+        System.out.println(String.format(formatoColonne, "GENERE: " + p.getGenere(), "ETA' CONSIGLIATA: " + p.getEtaMin() + "+"));
+        System.out.println(String.format(formatoColonne, "ANNO DI PRODUZIONE: " + p.getAnno(), "PREZZO BIGLIETTO: " + String.format(java.util.Locale.US, "%.2f", p.getPrezzo()) + " EURO"));
+        System.out.println(String.format(formatoColonne, "DATA PROIEZIONE: " + p.getData(), "POSTI IN SALA: " + p.getPostiSala()));
+        System.out.println(String.format(formatoColonne, "ORARIO: " + p.getOra(), ""));
+
+        System.out.println(rigaVuota);
+        System.out.println(rigaVuota);
+
+        if(CineMax.ruolo.equals("cliente registrato")){
+            formattaTesto("[1] PRENOTA BIGLIETTI", "centro", true);
+            formattaTesto("[2] TORNA INDIETRO", "centro", true);
+        }else if(CineMax.ruolo.equals("proiezionista")){
+            formattaTesto("[1] ELIMINA PROIEZIONE", "centro", true);
+            formattaTesto("[2] MODIFICA PROIEZIONE", "centro", true);
+            formattaTesto("[3] TORNA INDIETRO", "centro", true);
+        } else if(CineMax.ruolo.equals("bigliettaio")){
+            formattaTesto("[1] PRENOTA BIGLIETTI", "centro", true);
+            formattaTesto("[2] TORNA INDIETRO", "centro", true);
+        } else
+            formattaTesto("INVIO PER TORNARE INDIETRO", "centro", true);
     }
 // ======================================================
 // ======================================================
