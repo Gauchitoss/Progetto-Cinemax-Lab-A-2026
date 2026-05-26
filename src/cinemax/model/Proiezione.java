@@ -1,6 +1,7 @@
 package cinemax.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Proiezione {
 
@@ -18,6 +19,7 @@ public class Proiezione {
         private int etaMin;
         private int postiSala;
         private double prezzo;
+        private static final DateTimeFormatter FORMATTA_DATA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 // ====================================================== 
 //                   costruttore
@@ -87,6 +89,7 @@ public class Proiezione {
 
         @Override
         public String toString(){ //ritorna la proiezione
-            return titolo + " ( " + data + " : " + ora + " ) |" + prezzo + " euro | età consigliata "  + etaMin + ")";
+
+            return titolo + " ( " + data.format(FORMATTA_DATA) + " : " + ora + " ) |" + prezzo + " euro | età consigliata "  + etaMin + ")";
         }
 }
