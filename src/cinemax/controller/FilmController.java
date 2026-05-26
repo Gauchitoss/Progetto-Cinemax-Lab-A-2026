@@ -197,4 +197,42 @@ public class FilmController {
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);            
         }
     }
+
+    public static void gestisciModificaProiezione(Proiezione p, String[] datiFormTmp){
+    
+        // cntrollare se salava anche in modod corretto su file o meno
+        try {
+            GestoreProiezione.leggiProiezioni();
+
+            String  titolo          = datiFormTmp[Campi.ADD_TITOLO.i];
+            String  genere          = datiFormTmp[Campi.ADD_GENERE.i];
+            String  regista         = datiFormTmp[Campi.ADD_REGISTA.i];
+            String  annoProduzione  = datiFormTmp[Campi.ADD_ANNO_PRODUZIONE.i];
+            String  durata          = datiFormTmp[Campi.ADD_DURATA.i];
+            String  etaMinima       = datiFormTmp[Campi.ADD_ETA.i];
+            String  costo           = datiFormTmp[Campi.ADD_COSTO.i];
+            String  posti           = datiFormTmp[Campi.ADD_POSTI.i];
+            String  giorno          = datiFormTmp[Campi.ADD_GIORNO.i];
+            String  mese            = datiFormTmp[Campi.ADD_MESE.i];
+            String  anno            = datiFormTmp[Campi.ADD_ANNO.i];
+            String  orario          = datiFormTmp[Campi.ADD_ORA.i];
+
+            if(titolo != null) p.setTitolo(titolo);
+            if(genere!= null) p.setGenere(genere);
+            if(regista != null) p.setRegista(regista);
+            if(annoProduzione != null) p.setAnno(Integer.parseInt(annoProduzione));
+            if(durata != null) p.setDurata(Integer.parseInt(durata));
+            if(etaMinima != null) p.setEtaMin(Integer.parseInt(etaMinima));
+            if(posti != null) p.setPostiSala(Integer.parseInt(posti));
+            if(etaMinima != null) p.setPrezzo(Double.parseDouble(costo.replace(",", ".")));
+            // TODO: modifica data
+            if(orario !=null) p.setOra(orario);
+
+            GestoreProiezione.salvaSuFile(); //non funziona
+            CineMax.stackRecord.pop();
+        }catch(Exception e){
+
+        }
+
+    }
 }

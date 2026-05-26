@@ -117,9 +117,12 @@ public class MenuMangaer {
             }
         },
         //
-        GESTISCI_PROEZIONE(new String[]{}, true, "custom", "sinistra") {
+        GESTISCI_PROEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "modifica proiezione", "centro") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROEZIONISTA};}
-            @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
+            @Override public void eseguiLogicaAssociata(){
+                String[] datiFormTmp = new String[12];
+                if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) return;
+                FilmController.gestisciModificaProiezione(cinemax.controller.FilmController.filmSelezionatoTmp, datiFormTmp);}
         },
         //
         CERCA_PRENOTAZIONE(new String[]{"titolo film","dataInizio","nome","cognome","username"}, false, "cerca una prenotazione", "centro") {
