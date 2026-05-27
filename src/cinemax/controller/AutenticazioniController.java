@@ -8,6 +8,7 @@ import cinemax.model.Utente;
 import cinemax.util.GestoreUtenti;
 
 public class AutenticazioniController {
+    public static Utente utente;
 
     public static void gestisciLogin(String[] datiFormTmp) {
 
@@ -24,6 +25,7 @@ public class AutenticazioniController {
             }
 
             CineMax.ruolo = u.getRuolo();
+            utente = u;
 
         } catch (Exception e) {
             LogicaStatiManager.messaggioErroreCorrente = "credenziali non valide o utente inesistente";

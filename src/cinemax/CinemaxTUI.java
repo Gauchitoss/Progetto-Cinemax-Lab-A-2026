@@ -60,8 +60,8 @@ public class CinemaxTUI {
 
         if(statoMenu == StatoMenu.STATO_ERRORE){
             formattaTesto(LogicaStatiManager.messaggioErroreCorrente.toUpperCase(), "centro", true);
-        }else if(statoMenu == StatoMenu.VISUALIZZA_PROGRAMMAZAIONE){
-            stampaPaginaProiezione();
+        }else if(statoMenu == StatoMenu.VISUALIZZA_PROGRAMMAZAIONE || statoMenu == StatoMenu.MIE_PRENOTAZIONI){
+            stampaListaPagina();
         }else if(statoMenu == StatoMenu.MENU_INFO_FILM){
             gestisciInformazioniFilm(cinemax.controller.FilmController.filmSelezionatoTmp);
         }else
@@ -229,25 +229,51 @@ public class CinemaxTUI {
     }
 
     /**
-     * Renderizza la schermata, mostrando le proezioni in base ai filtri di ricerca.
-     * Ne proietta un numero limitato alla volta (10), per vedere le altre, è presente
-     * una serie di opzioni.
-     * Comunica in modo diretto con il file `FilmController` da cui fa uso delle variabili globali.
+     * Renderizza la pagina in base allo stato in cui ci si trova.
+     * Proietta una lista di elementi, che possono essere prenotazioni o proiezioni.
+     * Un massimo di 10 elmeni per pagina.
+     * Possibilità di navigare avanti e indietro.
      */
-    public static void stampaPaginaProiezione(){
+    public static void stampaListaPagina(){
 
-        List<cinemax.model.Proiezione> listaPagina = cinemax.controller.FilmController.filmPaginaTmp;
-        int elementiPagina = cinemax.controller.FilmController.ELEMENTI_PAGINA;
-        int paginaCorrente = cinemax.controller.FilmController.paginaCorrente;
+        // Inizializzazione delle variabili
+        List<?> listaPagina;
+        int elementiPagina;
+        int paginaCorrente;
+        int totaleElementi;
+        boolean esistenzaPaginaSuccessiva;
+        String messaggioVuoto;
+    
+        // Controllo stato attuale, per capire quali dati leggere
+        StatoMenu statoAttuale = cinemax.CineMax.stackRecord.peek();
+
+        if(statoAttuale == StatoMenu.MIE_PRENOTAZIONI || statoAttuale == StatoMenu.CERCA_PRENOTAZIONE){
+            // LETTURA DA PRENOTAZIONICONTROLLER
+            listaPagina = cinemax.controller.PrenotazioniController.prenotazioniPaginaTmp;
+            elementiPagina = cinemax.controller.PrenotazioniController.ELEMENTI_PAGINA;
+            paginaCorrente = cinemax.controller.PrenotazioniController.paginaCorrente;
+            totaleElementi = cinemax.controller.PrenotazioniController.prenotazioniTrovate.size();
+            esistenzaPaginaSuccessiva = cinemax.controller.PrenotazioniController.esistenzaPaginaSuccessiva;
+            messaggioVuoto = "NESSUNA PRENOTAZIOE TROVATA";
+        } else{
+            // LETTURA DA FILMCONTROLLER
+            listaPagina = cinemax.controller.FilmController.filmPaginaTmp;
+            elementiPagina = cinemax.controller.FilmController.ELEMENTI_PAGINA;
+            paginaCorrente = cinemax.controller.FilmController.paginaCorrente;
+            totaleElementi = cinemax.controller.FilmController.proiezioniTrovate.size();
+            esistenzaPaginaSuccessiva = cinemax.controller.FilmController.esistenzaPaginaSuccessiva;
+            messaggioVuoto = "NESSUNA PROIEZIONE TROVATA";
+        }
+
 
         if(listaPagina.isEmpty()){
-            formattaTesto("NESSUNA PROIEZIONE TROVATA", "centro", true);
+            formattaTesto(messaggioVuoto, "centro", true);
             formattaTesto("PREMI INVIO PER TORNARE INDIETRO", "centro", true);
             return;
         }
 
         //INFO PAGINA
-        int totalePagine = (cinemax.controller.FilmController.proiezioniTrovate.size() + elementiPagina - 1) / elementiPagina;
+        int totalePagine = (totaleElementi + elementiPagina - 1) / elementiPagina;
         String infoPagina = "PAGINA " + (paginaCorrente + 1) + " DI " + totalePagine;
         formattaTesto(infoPagina, "sinistra", true);
 
@@ -256,8 +282,9 @@ public class CinemaxTUI {
         System.out.println(rigaVuota);
 
         int indiceSceltaMenu = 1;
-        for (cinemax.model.Proiezione proiezione : listaPagina) {
-            String rigaFilm = "["+ indiceSceltaMenu++ +"] " + proiezione.toString(); 
+        // Utilizzo di Object in modo che accetti sia prenotazioni che proiezioni
+        for (Object elemento : listaPagina) {
+            String rigaFilm = "["+ indiceSceltaMenu++ +"] " + elemento.toString(); 
             formattaTesto(rigaFilm, "sinistra", true);
         }
 
@@ -267,7 +294,7 @@ public class CinemaxTUI {
 
         
         // PAGINA SUCCESSIVA
-        if(cinemax.controller.FilmController.esistenzaPaginaSuccessiva)
+        if(esistenzaPaginaSuccessiva)
             formattaTesto("[N] PAGINA SUCCESSIVA", "centro", true);
         // PAGINA PRECEDENTE
         if(paginaCorrente>0)
@@ -309,6 +336,7 @@ public class CinemaxTUI {
         } else
             formattaTesto("INVIO PER TORNARE INDIETRO", "centro", true);
     }
+
 // ======================================================
 // ======================================================
 

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cinemax.CineMax;
-import cinemax.CinemaxTUI;
 import cinemax.CostantiForm.Campi;
 import cinemax.MenuMangaer.StatoMenu;
 import cinemax.model.Proiezione;
@@ -94,7 +93,10 @@ public class FilmController {
     
     public static void gestisciVisualizzaProiezione(String scelta){
         try{
-
+           if(scelta.trim().isEmpty()){
+                CineMax.stackRecord.pop();
+                return;
+            }
             if(scelta.toUpperCase().equals("C")){
                 CineMax.stackRecord.pop();
                 return;

@@ -39,6 +39,7 @@ public class GestorePrenotazione {
     // ======================================================
     public static void leggiPrenotazioni() {
         listaPrenotazioni.clear();
+
         File file = new File(FILE_PATH);
         if (!file.exists()) return;
 
@@ -67,9 +68,12 @@ public class GestorePrenotazione {
                     // 2. Recupero la proiezione corretta dalla vostra lista di GestoreProiezione
                     Proiezione proiezioneScelta = null;
                     for (Proiezione pr : GestoreProiezione.getListaProiezioni()) {
-                        if (pr.getTitolo().equals(titoloFilm) && 
-                            pr.getData().equals(dataProiezione) && 
-                            pr.getOra().equals(oraProiezione)) {
+
+                        boolean stessoTitolo = pr.getTitolo().trim().equalsIgnoreCase(titoloFilm);
+                        boolean stessaData = pr.getData().equals(dataProiezione);
+                        boolean stessaOra = pr.getOra().trim().equals(oraProiezione);
+                        
+                        if (stessoTitolo && stessaData && stessaOra) {
                             proiezioneScelta = pr;
                             break;
                         }
@@ -216,5 +220,14 @@ public class GestorePrenotazione {
 
     public static List<Prenotazione> getListaPrenotazioni() {
         return new ArrayList<>(listaPrenotazioni);
+    }
+
+    public static List<Prenotazione> getListaPrenotzioniUtente(String username){
+        List<Prenotazione> prenotzioniUtente = new ArrayList<>();
+        for(Prenotazione p: listaPrenotazioni){
+            if(p.getUsernameCliente().equals(username))
+                prenotzioniUtente.add(p);
+        }
+        return prenotzioniUtente;
     }
 }

@@ -64,8 +64,8 @@ public class Prenotazione {
 
     @Override
     public String toString() {
-        return "Prenotazione [" + codiceUnivoco + "] - " + getTitoloFilm() + 
-               " del " + proiezione.getData() + " ore " + proiezione.getOra() + 
-               " | Biglietti: " + numeroBiglietti + " | Totale: " + getCostoTotale() + "€";
+        return "[" + codiceUnivoco + "] " + getTitoloFilm() + 
+               " | " + proiezione.getData() + " " + proiezione.getOra() + 
+               " | Q.ta: " + numeroBiglietti + " | " + getCostoTotale() + "EURO";
     }
 }

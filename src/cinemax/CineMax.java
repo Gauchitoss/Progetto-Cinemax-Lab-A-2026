@@ -2,6 +2,8 @@ package cinemax;
 
 import java.util.Stack;
 import cinemax.MenuMangaer.StatoMenu;
+import cinemax.util.GestorePrenotazione;
+import cinemax.util.GestoreProiezione;
 import cinemax.util.GestoreUtenti;
 
 /**
@@ -22,7 +24,13 @@ public class CineMax {
     public static String ruolo;
     public static void main(String[] args) {
 
-        GestoreUtenti.caricaUtenti();
+        try{
+            GestoreUtenti.caricaUtenti();
+            GestoreProiezione.leggiProiezioni();
+            GestorePrenotazione.leggiPrenotazioni();
+        }catch(Exception e){
+            System.out.println("Errore durante il caricamento dei file CSV: "+ e.getMessage());
+        }
 
         stackRecord.push(StatoMenu.BENVENUTO);
         StatoMenu statoAttuale;

@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import cinemax.controller.AutenticazioniController;
 import cinemax.controller.FilmController;
+import cinemax.util.GestorePrenotazione;
 import cinemax.util.GestoreProiezione;
 
 public class MenuMangaer {
@@ -40,7 +41,13 @@ public class MenuMangaer {
         //FATTO
         MENU_CLIENTI( new String[]{"cerca film", "mie prenotazioni", "logout"}, true, "cinemax", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{CERCA_FILM, MIE_PRENOTAZIONI, BENVENUTO};}
-            @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
+            @Override public void eseguiLogicaAssociata(){
+                String scelta = input.nextLine();
+                if(scelta.equals("2"))
+                    cinemax.controller.PrenotazioniController.gestisciMiePrenotazioni();
+                else
+                    LogicaStatiManager.statoMenuSuccessivo(scelta);
+            }
         },
         // FATTO
         MENU_PROEZIONISTA(new String[]{"inserisci film", "cerca e modifica poiezione", "logout"}, true, "sezione proezionisti", "centro"){
@@ -97,15 +104,22 @@ public class MenuMangaer {
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{};}
             @Override public void eseguiLogicaAssociata(){FilmController.gestisciMenuInfoFilm(input.nextLine());}
         }, 
-        //
-        PRENOTA_POSTI(new String[]{}, true, "custom", "sinistra") {
+        // SEMI-FATTO
+        PRENOTA_POSTI(new String[]{"numeoro biglietti"}, false, "prenota biglietti", "centro") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI};}
-            @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
+            @Override public void eseguiLogicaAssociata(){
+                String[] datiFormTmp = new String[getOpzioni().length];
+                if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) return;
+                GestorePrenotazione.inserisciPrenotazione(cinemax.controller.AutenticazioniController.utente, cinemax.controller.FilmController.filmSelezionatoTmp, Integer.parseInt(datiFormTmp[0]));
+                CineMax.stackRecord.pop();
+            }
         },
         //
-        MIE_PRENOTAZIONI(new String[]{}, true, "custom", "sinistra") {
+        MIE_PRENOTAZIONI(new String[]{}, true, "le mie prenotazioni", "sinistra") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI};}
-            @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
+            @Override public void eseguiLogicaAssociata(){
+                cinemax.controller.PrenotazioniController.gestisciVisualizzaPrenotazione(input.nextLine(), this);
+            }
         },
         // FATTO
         INSERISCI_PROEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "inserisci proiezione", "centro") {
@@ -116,7 +130,7 @@ public class MenuMangaer {
                 FilmController.gestisciInserimentoProiezione(datiFormTmp);
             }
         },
-        //
+        // FATTO
         GESTISCI_PROEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "modifica proiezione", "centro") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROEZIONISTA};}
             @Override public void eseguiLogicaAssociata(){
@@ -144,6 +158,14 @@ public class MenuMangaer {
         },
         // FATTO
         STATO_ERRORE(new String[]{"premi invio per tornare indietro"}, true, "error","centro"){
+            @Override public StatoMenu[] prossimi() {return new StatoMenu[]{null};}
+            @Override
+            public void eseguiLogicaAssociata(){
+                input.nextLine();
+                CineMax.stackRecord.pop();
+            }
+        },
+        STATO_CONFERMA(new String[]{}, true, "error","centro"){
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{null};}
             @Override
             public void eseguiLogicaAssociata(){
