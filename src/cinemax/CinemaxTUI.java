@@ -16,8 +16,8 @@ import cinemax.model.Proiezione;
 
 public class CinemaxTUI {
 
-    private static final int LARGHEZZA_MENU = 130;
-    private static final int LARGHEZZA_BOX_INPUT = 38;
+    public static final int LARGHEZZA_MENU = 130;
+    public static final int LARGHEZZA_BOX_INPUT = 38;
     
     private static String bordoSuperiore = "╔"+"═".repeat(LARGHEZZA_MENU)+"╗";
     private static String rigaVuota =      "║"+" ".repeat(LARGHEZZA_MENU)+"║";
@@ -127,11 +127,13 @@ public class CinemaxTUI {
      */
     public static void formattaLogo(String[] righelogo){
         int lunghezzaRigaLogo = righelogo[1].length();
-        int padding = (LARGHEZZA_MENU - lunghezzaRigaLogo)/2;
+        // Utilizzo di Math.max() per evitare il cso in cui il programma va in crash se il logo è troppo largo
+        int padding = Math.max(0,(LARGHEZZA_MENU - lunghezzaRigaLogo)/2);
         String pad= " ".repeat(padding);
 
         for (String linea : righelogo) {
-            System.out.println("║"+ pad + ((LARGHEZZA_MENU-lunghezzaRigaLogo)%2 !=0? " ":"" ) + linea+ pad +"║");
+            int extraSpazio = Math.max(0, (LARGHEZZA_MENU - lunghezzaRigaLogo) % 2);
+            System.out.println("║"+ pad + (extraSpazio != 0 ? " " : "") + linea + pad +"║");
         }      
 
         return;
@@ -159,46 +161,97 @@ public class CinemaxTUI {
         
         if(possibiliOpzioni == null || possibiliOpzioni.length == 0) return;
 
-        // idea quello di creare una singola riga per i meni in modo poi di appciccicarla e averr gia una lunghezza
         if(visualizzaNumeri){
+            // =========================================================
+            // MENU NUMERATI (1 Colonna, allineati al centro)
+            // =========================================================
             int lunghezzaMax = 0;
             String[] righeMenu = new String[possibiliOpzioni.length];
 
             for(int i = 0; i < possibiliOpzioni.length; i++){
-                righeMenu[i] = "["+ (i+1) +"] " + possibiliOpzioni[i];
-                if(righeMenu.length > lunghezzaMax) lunghezzaMax = righeMenu[i].length();
+                String testoMenu = "["+ (i+1) +"] " + possibiliOpzioni[i];
+                
+                // Se il testo è troppo lungo aggiunge i puntini
+                if (testoMenu.length() > LARGHEZZA_MENU - 6) {
+                    testoMenu = testoMenu.substring(0, LARGHEZZA_MENU - 10) + "...";
+                }
+                
+                righeMenu[i] = testoMenu;
+                if(righeMenu[i].length() > lunghezzaMax) lunghezzaMax = righeMenu[i].length();
             }
-            String spaziaturaSinstra = " ".repeat((LARGHEZZA_MENU-lunghezzaMax)/2);
+
+            int paddingSinistra = Math.max(0, (LARGHEZZA_MENU - lunghezzaMax) / 2);
+            String spaziaturaSinstra = " ".repeat(paddingSinistra);
 
             for (String testoTmp : righeMenu) {
-                System.out.println("║" + spaziaturaSinstra + testoTmp.toUpperCase() + " ".repeat(LARGHEZZA_MENU-spaziaturaSinstra.length()-testoTmp.length()) + "║");
+                int paddingDestra = Math.max(0, LARGHEZZA_MENU - spaziaturaSinstra.length() - testoTmp.length());
+                System.out.println("║" + spaziaturaSinstra + testoTmp.toUpperCase() + " ".repeat(paddingDestra) + "║");
             }
-        }else{
-            String[] boxInput;
-            String padding = " ".repeat((LARGHEZZA_MENU-LARGHEZZA_BOX_INPUT)/2);
+        } else {
+            // =========================================================
+            // FORM DI INPUT (1 o 2 colonne in base al numero di campi)
+            // =========================================================
+            boolean dueColonne = possibiliOpzioni.length >= 8; 
+            int boxWidth = LARGHEZZA_BOX_INPUT; // vale 38 caratteri
+            int spazioCentrale = dueColonne ? 6 : 0;
+            
+            boolean primoCampo = true;
 
-            for (String campo : possibiliOpzioni) {
-                if(campo.toUpperCase().equals("DATAINIZIO")||
-                   campo.toUpperCase().equals("DATAFINE")){
-                    boxInput = chiediData();
-                }else
-                    boxInput = generaBoxInputUnicode(campo);
+            // Il ciclo fa passi da 2 se siamo in due colonne, sennò di 1
+            for (int i = 0; i < possibiliOpzioni.length; i += (dueColonne ? 2 : 1)) {
+                String campo1 = possibiliOpzioni[i];
+                String campo2 = (dueColonne && i + 1 < possibiliOpzioni.length) ? possibiliOpzioni[i+1] : null;
 
-                for (String rigaInput : boxInput) {
-                    System.out.println("║" + padding + rigaInput + padding + " ║");
+                // 1. GENERAZIONE DELLE ISTRUZIONI SOPRA I BOX
+                String istr1 = ottieniIstruzione(campo1, primoCampo);
+                primoCampo = false;
+                String istr2 = campo2 != null ? ottieniIstruzione(campo2, false) : "";
+                
+                String rigaIstr1 = centraTesto(istr1, boxWidth);
+                String rigaIstr2 = campo2 != null ? centraTesto(istr2, boxWidth) : (dueColonne ? " ".repeat(boxWidth) : "");
+                
+                // Unisco le stringhe delle istruzioni
+                String rigaIstruzioneTotale = dueColonne ? (rigaIstr1 + " ".repeat(spazioCentrale) + rigaIstr2) : rigaIstr1;
+                
+                // Stampo la riga con il padding perfetto
+                stampaRigaCentrataForm(rigaIstruzioneTotale);
+
+                // 2. GENERAZIONE DELLA GRAFICA DEI BOX
+                String[] box1 = generaBoxAvanzato(campo1);
+                String[] box2 = campo2 != null ? generaBoxAvanzato(campo2) : (dueColonne ? generaBoxVuoto(boxWidth) : null);
+
+                // Stampo le 3 righe che compongono il box (o i due box affiancati)
+                for (int r = 0; r < 3; r++) {
+                    String rigaBoxTotale = dueColonne ? (box1[r] + " ".repeat(spazioCentrale) + box2[r]) : box1[r];
+                    stampaRigaCentrataForm(rigaBoxTotale);
                 }
             }
-
-        }
+        }    
     }
-    public static void formattaTesto(String opzione, String posizione, boolean visualizzaNumeri){
-        int padding = (posizione.equals("centro"))? (LARGHEZZA_MENU - opzione.length())/2: 5;
-        String spaziaturaSinistra = " ".repeat(padding);
-        String spaziaturaDestra = "";
 
-        spaziaturaDestra = " ".repeat(LARGHEZZA_MENU-opzione.length()-spaziaturaSinistra.length());
+    /**
+     * Metodo di supporto per l'allineamento.
+     * Impedisce ai bordi destri di sbgagliare.
+     */
+    private static void stampaRigaCentrataForm(String contenuto) {
+        int spazioRimanente = LARGHEZZA_MENU - contenuto.length();
+        int padSx = Math.max(0, spazioRimanente / 2);
+        int padDx = Math.max(0, spazioRimanente - padSx);
+        System.out.println("║" + " ".repeat(padSx) + contenuto + " ".repeat(padDx) + "║");
+    }
+
+    public static void formattaTesto(String opzione, String posizione, boolean visualizzaNumeri){
+        if (opzione.length() > LARGHEZZA_MENU - 4) {
+            opzione = opzione.substring(0, LARGHEZZA_MENU - 7) + "...";
+        }
+
+        int padding = (posizione.equals("centro")) ? Math.max(0, (LARGHEZZA_MENU - opzione.length())/2) : 5;
+        String spaziaturaSinistra = " ".repeat(padding);
+
+        int padDestroCalc = Math.max(0, LARGHEZZA_MENU - opzione.length() - spaziaturaSinistra.length());
+        String spaziaturaDestra = " ".repeat(padDestroCalc);
+
         System.out.println("║"+ spaziaturaSinistra + opzione.toUpperCase() + spaziaturaDestra + "║");
-        
     }
 
     /**
@@ -209,8 +262,11 @@ public class CinemaxTUI {
      */
     public static String[] generaBoxInputUnicode(String opzione){
         String[] boxInput = new String[3];
-        // Lunghezza totale del box (38) - i 6 caratteri fissi ("┌─ ", " ", "┐") - lunghezza della stringa.
-        String lineaSuperioreDinamica = "─".repeat(LARGHEZZA_BOX_INPUT-6-opzione.length());
+        
+        // SICUREZZA: Proteggo il calcolo della larghezza della riga orizzontale
+        int lunghezzaLinea = Math.max(0, LARGHEZZA_BOX_INPUT - 6 - opzione.length());
+        String lineaSuperioreDinamica = "─".repeat(lunghezzaLinea);
+        
         boxInput[0]= "┌─ "+opzione.toUpperCase()+" "+lineaSuperioreDinamica+"┐";
         boxInput[1]= "│ >                                 │";
         boxInput[2]= "└───────────────────────────────────┘";
@@ -331,12 +387,43 @@ public class CinemaxTUI {
             formattaTesto("[2] MODIFICA PROIEZIONE", "centro", true);
             formattaTesto("[3] TORNA INDIETRO", "centro", true);
         } else if(CineMax.ruolo.equals("bigliettaio")){
-            formattaTesto("[1] PRENOTA BIGLIETTI", "centro", true);
+            formattaTesto("[1] VENDITA DIRETTA BIGLIETTI", "centro", true);
             formattaTesto("[2] TORNA INDIETRO", "centro", true);
         } else
             formattaTesto("INVIO PER TORNARE INDIETRO", "centro", true);
     }
 
+    // ======================================================
+    // HELPER PER I FORM (Supporto a 2 colonne)
+    // ======================================================
+    private static String ottieniIstruzione(String campo, boolean primoCampo){
+        if(primoCampo) return "(Digita :q per annullare)";
+        String c = campo.toUpperCase();
+        if(c.startsWith("DATAINIZIO")) return "(Inserisci data inziale)";
+        if(c.startsWith("DATAFINE")) return "(Inserisci data finale)";
+        if(c.startsWith("DOMICILIO")) return "(Campo facoltativo)";
+        if(c.startsWith("ORARIO")) return "(Es. 20:30)";
+        return "";
+    }
+
+    private static String centraTesto(String testo, int width){
+        if (testo.length() >= width) return testo.substring(0, width);
+        int padSx = (width - testo.length()) / 2;
+        int padDx = width - testo.length() - padSx;
+        return " ".repeat(padSx) + testo + " ".repeat(padDx);
+    }
+
+    private static String[] generaBoxAvanzato(String campo) {
+        if (campo.toUpperCase().startsWith("DATAINIZIO") || campo.toUpperCase().startsWith("DATAFINE")) {
+            return chiediData();
+        }
+        return generaBoxInputUnicode(campo);
+    }
+
+    private static String[] generaBoxVuoto(int width) {
+        String vuoto = " ".repeat(width);
+        return new String[]{vuoto, vuoto, vuoto};
+    }
 // ======================================================
 // ======================================================
 

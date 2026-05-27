@@ -25,7 +25,7 @@ public class GestorePrenotazione {
             folder.mkdirs();
         }
         try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_PATH))) {
-            pw.println("codice_prenotazione|username_cliente|data_proiezione|ora_proiezione|titolo_film|numero_biglietti");
+            pw.println("codice_prenotazione|nome_cliente|cognome_cliente|username_cliente|data_proiezione|ora_proiezione|titolo_film|numero_biglietti");
             for (Prenotazione p : listaPrenotazioni) {
                 pw.println(p.toCSV(FORMATTA_DATA));
             }
@@ -49,18 +49,20 @@ public class GestorePrenotazione {
             while ((riga = br.readLine()) != null) {
                 try {
                     String[] colonna = riga.split("\\|");
-                    if (colonna.length < 6) continue;
+                    if (colonna.length < 8) continue;
 
                     for (int i = 0; i < colonna.length; i++) {
                         colonna[i] = colonna[i].replace("\"", "").trim();
                     }
 
                     String codice = colonna[0];
-                    String username = colonna[1];
-                    LocalDate dataProiezione = LocalDate.parse(colonna[2], FORMATTA_DATA);
-                    String oraProiezione = colonna[3];
-                    String titoloFilm = colonna[4];
-                    int numeroBiglietti = Integer.parseInt(colonna[5]);
+                    // String nome = colonna[1];       
+                    // String cognome = colonna[2];    
+                    String username = colonna[3];
+                    LocalDate dataProiezione = LocalDate.parse(colonna[4], FORMATTA_DATA);
+                    String oraProiezione = colonna[5];
+                    String titoloFilm = colonna[6];
+                    int numeroBiglietti = Integer.parseInt(colonna[7]);
 
                     // 1. Recupero l'utente sfruttando il nuovo metodo aggiunto in GestoreUtenti
                     Utente cliente = GestoreUtenti.cercaPerUsername(username);
@@ -176,33 +178,44 @@ public class GestorePrenotazione {
     /**
      * Requisito Bigliettaio: Ricerca avanzata incrociata tramite Stream (Speculare a GestoreProiezione)
      */
-    public static List<Prenotazione> cercaPrenotazioni(String codice, String nomeCognome, String titolo, String dataInizioStr, String dataFineStr) {
-        LocalDate dataInizio = null;
-        LocalDate dataFine = null;
+    public static List<Prenotazione> cercaPrenotazioni(String codice, String nome, String cognome, String titolo, String dataInizioStr, String dataFineStr, String username) {
+        
+        final LocalDate dataDa;
+        final LocalDate dataA;
+
         try {
-            if (dataInizioStr != null && !dataInizioStr.isEmpty()) dataInizio = LocalDate.parse(dataInizioStr, FORMATTA_DATA);
-            if (dataFineStr != null && !dataFineStr.isEmpty()) dataFine = LocalDate.parse(dataFineStr, FORMATTA_DATA);
+            dataDa = (dataInizioStr != null && !dataInizioStr.trim().isEmpty())? LocalDate.parse(dataInizioStr.trim(), FORMATTA_DATA) : null;
+            dataA  = (dataFineStr != null && !dataFineStr.trim().isEmpty()) ? LocalDate.parse(dataFineStr.trim(), FORMATTA_DATA) : null;    
         } catch (DateTimeException e) {
             System.err.println("Formato intervallo date di ricerca non valido.");
             return new ArrayList<>();
         }
 
-        final LocalDate finalDa = dataInizio;
-        final LocalDate finalA = dataFine;
-
         return listaPrenotazioni.stream()
-            .filter(p -> codice == null || codice.isEmpty() || p.getCodiceUnivoco().equalsIgnoreCase(codice.trim()))
-            .filter(p -> titolo == null || titolo.isEmpty() || p.getTitoloFilm().toLowerCase().contains(titolo.trim().toLowerCase()))
-            .filter(p -> {
-                if (nomeCognome == null || nomeCognome.isEmpty()) return true;
-                String completo = p.getNomeCliente() + " " + p.getCognomeCliente();
-                return completo.toLowerCase().contains(nomeCognome.trim().toLowerCase());
-            })
+            // Filtro Username
+            .filter(p -> username == null || username.trim().isEmpty() ||
+                         p.getUsernameCliente().equalsIgnoreCase(username.trim()))
+
+            // Filtro Codice Univoco
+            .filter(p -> codice == null || codice.trim().isEmpty() || 
+                         p.getCodiceUnivoco().equalsIgnoreCase(codice.trim()))  
+
+            // Filtro Nome
+            .filter(p -> nome == null || nome.trim().isEmpty() || 
+                         p.getNomeCliente().toLowerCase().contains(nome.trim().toLowerCase()))
+
+            // Filtro Cognome
+            .filter(p -> cognome == null || cognome.trim().isEmpty() || 
+                         p.getCognomeCliente().toLowerCase().contains(cognome.trim().toLowerCase()))
+
+            
+            // Filtro Date (Inizio, Fine o Intervallo)
             .filter(p -> {
                 LocalDate pData = p.getProiezione().getData();
-                if (finalDa != null && finalA == null) return pData.isEqual(finalDa);
-                if (finalDa != null && finalA != null) return !pData.isBefore(finalDa) && !pData.isAfter(finalA);
-                if (finalDa == null && finalA != null) return !pData.isAfter(finalA);
+                if (dataDa != null && dataA == null) return pData.isEqual(dataDa);
+                if (dataDa != null && dataA != null) return !pData.isBefore(dataDa) && !pData.isAfter(dataA);
+                if (dataDa == null && dataA != null) return !pData.isAfter(dataA);
+                
                 return true;
             })
             .collect(Collectors.toList());

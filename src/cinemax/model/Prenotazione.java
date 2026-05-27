@@ -55,7 +55,9 @@ public class Prenotazione {
      */
     public String toCSV(java.time.format.DateTimeFormatter formatter) {
         return codiceUnivoco + "|" + 
-               cliente.getUsername() + "|" + 
+               getNomeCliente() + "|" + 
+               getCognomeCliente() + "|" + 
+               getUsernameCliente() + "|" + 
                proiezione.getData().format(formatter) + "|" + 
                proiezione.getOra() + "|" + 
                proiezione.getTitolo() + "|" + 
@@ -65,6 +67,7 @@ public class Prenotazione {
     @Override
     public String toString() {
         return "[" + codiceUnivoco + "] " + getTitoloFilm() + 
+               " | " + getUsernameCliente() + 
                " | " + proiezione.getData() + " " + proiezione.getOra() + 
                " | Q.ta: " + numeroBiglietti + " | " + getCostoTotale() + "EURO";
     }

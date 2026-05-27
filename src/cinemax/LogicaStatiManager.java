@@ -16,6 +16,7 @@ public class LogicaStatiManager {
 
     //Stringa globale di errore, modificabile in ogni punto del codice in base all'occornza
     public static String messaggioErroreCorrente = "spiacenti si è verificato un errore";
+    public static String messaggioConfermaCorrente = "operazione eseguita con successo";
     static Scanner input = new Scanner(System.in);
 
 // =========================================================================
@@ -65,61 +66,100 @@ public class LogicaStatiManager {
      * @param opzioniStatoMenu Array contente tutte le opzioni dello stato del programma
      */
     public static boolean prendiDatiForm(String[] campiForm, String[] opzioniStatoMenu){
-        int altezzaLineaRichiesta = 10;     // Altezza di base
-        int altezzaColonnaRichiesta = 52;   // Longitudine di base
-        String campoTmp="";
+        // CONFIGURAZIONE DEL CURSORE
+       int cursoreY = 11; // riga di partenza dall'alto
+        boolean dueColonne = opzioniStatoMenu.length >= 8; // attivazione della doppia colonna
+        
+        int larghezzaMeu = CinemaxTUI.LARGHEZZA_MENU; 
+        int larghezzaBox = CinemaxTUI.LARGHEZZA_BOX_INPUT; 
+        int spazioCentrale = 6;
 
-        // indiceOpzioni        scorre array di stringhe della classe MenuManager
-        // indicieRisultati     scorre array dove vengono salvati gli input
+        // CALCOLO DELLE X
+        int paddingCentrale = Math.max(0, (larghezzaMeu - larghezzaBox) / 2);
+        int paddingDueColonne = Math.max(0, (larghezzaMeu - (larghezzaBox * 2 + spazioCentrale)) / 2);
+        
+        // CALCOLO POSIZIONI CURSORE IN COLONNE
+        int offsetInternoBox = 5;
+        int colCentro = 1 + paddingCentrale + offsetInternoBox; 
+        int colSx = 1 + paddingDueColonne + offsetInternoBox;
+        int colDx = colSx + larghezzaBox + spazioCentrale;
+        
+        String campoTmp = "";
+
+        // CICLO LETTURA DEI CAMPI
         for(int indiceOpzioni = 0, indiceRisultati = 0; indiceOpzioni < opzioniStatoMenu.length; indiceOpzioni ++){
             
-            if(opzioniStatoMenu[indiceOpzioni].toUpperCase().equals("DATAINIZIO")||opzioniStatoMenu[indiceOpzioni].toUpperCase().equals("DATAFINE")){
+            // Determina in quale colonna posizionare il cursore
+            int cursoreX = colCentro;
+            if (dueColonne) {
+                cursoreX = (indiceOpzioni % 2 == 0)? colSx : colDx;
+            }
+            
+            String nomeCampo = opzioniStatoMenu[indiceOpzioni].toUpperCase();
+            
+            // Prendita ei vari input
+            if(nomeCampo.startsWith("DATAINIZIO") || nomeCampo.startsWith("DATAFINE")){
+                // formato speciale per le date 3 box vicini
                 for(int i = 0; i<3; i++){
-                    System.out.print("\033["+altezzaLineaRichiesta+";"+altezzaColonnaRichiesta+"H");
+                    System.out.print("\033[" + cursoreY + ";" + cursoreX + "H");
                     campoTmp = input.nextLine();
 
                     String ris = convalidaInput(campoTmp);
-                    if(ris != null && ris.equals(":q"))
-                        return false;
+                    if(ris != null && ris.equals(":q")) return false;
 
                     campiForm[indiceRisultati++] = ris;
-                    altezzaColonnaRichiesta += 12;
+                    cursoreX += 13; // Spostamento laterale per i boxini GG-MM-AAAA
                 }
-
-                altezzaColonnaRichiesta = 52;
-                altezzaLineaRichiesta += 3;
-            }else{
-                System.out.print("\033["+altezzaLineaRichiesta+";"+altezzaColonnaRichiesta+"H");
+            } else {
+                System.out.print("\033[" + cursoreY + ";" + cursoreX + "H");
                 campoTmp = input.nextLine();
                 
                 String ris = convalidaInput(campoTmp);
-                if(ris != null && ris.equals(":q"))
-                        return false;
+                if(ris != null && ris.equals(":q")) return false;
                     
                 campiForm[indiceRisultati++] = ris;
+            }
 
-                altezzaLineaRichiesta += 3;
+            // Aggiornamento della riga Y.
+            // scendiamo di 4 righe solo se:
+            // - modalita 1 colonna
+            // - oppure appena compilata la colonna di destra %2 != 0
+            // - oppure utlimo campo nella lista
+            if (!dueColonne || indiceOpzioni % 2 != 0 || indiceOpzioni == opzioniStatoMenu.length - 1) {
+                cursoreY += 4;
             }
         }
         return true;
     }
 
     /**
+     * Convalida e sanifica l'input dell'utente per evitare un crash della TUI
      * In base a l'inserimento o meno dell'utente del campo controlla se deve annulla o compilare con null
      * @param campoTmp Input dell'utente che aspetta di essere convalidato 
      * @return Input dell'utente convalidato
      */
     public static String convalidaInput(String campoTmp){
-        
-        if(campoTmp.equals(":q")){
-            CineMax.stackRecord.pop();
+        if(campoTmp == null) return null;
+
+        // Rimozione eventuali a-capo (copia-incolla multiriga accidentale)
+        campoTmp = campoTmp.replace("\n", "").replace("\r", "");
+
+        // PROTEZIONE DATABASE: Rimuovo i caratteri usati come separatori nei file CSV
+        campoTmp = campoTmp.replace("|", "-").replace(",", ".");
+
+        campoTmp = campoTmp.trim();
+
+        if(campoTmp.trim().equals(":q")){
             return ":q";
         }
-
-        if(campoTmp.equals("")){
+        if(campoTmp.isEmpty()){
             return null;
         }
 
+        // PROTEZIONE DELL'INTERFACCIA, tronca stringhe troppo lunghe
+        if(campoTmp.length() > 45){
+            campoTmp = campoTmp.substring(0, 45);
+        }
         return campoTmp;
     }
     

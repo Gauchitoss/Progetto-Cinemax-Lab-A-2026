@@ -36,7 +36,19 @@ public class CostantiForm {
         ADD_GIORNO(8),
         ADD_MESE(9),
         ADD_ANNO(10),
-        ADD_ORA(11)
+        ADD_ORA(11),
+        // CAMPI CERCA PRENOTAZIONE
+        PRENOTAZIONE_NOME(0),
+        PRENOTAZIONE_COGNOME(1),
+        PRENOTAZIONE_TITOLO(2),
+        PRENOTAZIONE_GIORNO1(3),
+        PRENOTAZIONE_MESE1(4),
+        PRENOTAZIONE_ANNO1(5),
+        PRENOTAZIONE_GIORNO2(6),
+        PRENOTAZIONE_MESE2(7),
+        PRENOTAZIONE_ANNO2(8),
+        PRENOTAZIONE_USERNAME(9),
+        PRENOTAZIONE_CODICE(10)
         ;
 
 

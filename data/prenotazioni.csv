@@ -1,4 +1,5 @@
-codice_prenotazione|username_cliente|data_proiezione|ora_proiezione|titolo_film|numero_biglietti
-440352C6|mucho2|31-12-2026|12:30|Pirates of the Caribbean: The Curse of the Black Pearl|2
-C0F80827|mucho2|08-09-2026|16:30|Stalag 17|3
-8607EDC3|mucho2|31-12-2026|12:30|Pirates of the Caribbean: The Curse of the Black Pearl|1
+codice_prenotazione|nome_cliente|cognome_cliente|username_cliente|data_proiezione|ora_proiezione|titolo_film|numero_biglietti
+885DD4FF|Matteo|Modena|mucho2|08-09-2026|16:30|Stalag 17|10
+53A7EF97|pietro|reina|mucho3|30-12-2026|17:00|Pulp Fiction|4
+983219E3|pietro|reina|peter|30-12-2026|17:00|Pulp Fiction|10
+B5BC394D|pietro|reina|mucho3|30-12-2026|17:00|Pulp Fiction|7
