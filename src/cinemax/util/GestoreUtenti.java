@@ -24,7 +24,7 @@ public class GestoreUtenti {
                String riga;
                br.readLine(); // legge e ignora l'intestazione del file
                while((riga= br.readLine())!=null){
-                    String[] dati=riga.split (",");//usa la virgola come separatore
+                    String[] dati=riga.split ("\\|");//usa la virgola come separatore
                      if (dati.length >=7 ) { // verifica che ci siano esattamente 7 campi
                            String nome = dati[0];
                            String cognome = dati[1];
@@ -57,9 +57,9 @@ public class GestoreUtenti {
                 folder.mkdirs(); // crea la cartella se non esiste
             }
             try (PrintWriter pw = new PrintWriter(new FileWriter(percorsoFile))) {
-                pw.println("nome,cognome,username,password,dataDiNascita,domicilio,ruolo"); // intestazione del file
+                pw.println("nome|cognome|username|password|dataDiNascita|domicilio|ruolo"); // intestazione del file
                 for (Utente u : listaUtenti) {
-                     pw.printf("%s,%s,%s,%s,%s,%s,%s%n", u.getNome(), u.getCognome(), u.getUsername(), u.getPassword(),u.getDataDiNascita(), u.getDomicilio(), u.getRuolo());
+                    pw.printf("%s|%s|%s|%s|%s|%s|%s%n", u.getNome(), u.getCognome(), u.getUsername(), u.getPassword(),u.getDataDiNascita(), u.getDomicilio(), u.getRuolo());
                   
                 }
             } catch (IOException e) {
