@@ -127,7 +127,7 @@ public class GestorePrenotazione {
         Prenotazione nuova = new Prenotazione(codice, cliente, proiezione, bigliettiRichiesti);
         listaPrenotazioni.add(nuova);
         salvaSuFile();
-        return nuova
+        return nuova;
     }
 
     /**
