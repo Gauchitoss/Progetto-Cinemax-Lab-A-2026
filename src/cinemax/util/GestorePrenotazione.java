@@ -100,15 +100,46 @@ public class GestorePrenotazione {
     public static Boolean inserisciPrenotazione(Utente cliente, Proiezione proiezione, int bigliettiRichiesti) {
         if(bigliettiRichiesti <= 0)
             throw new IllegalArgumentException("Il numero di biglietti deve essrere maggiore a 0.");
+        if(proiezione.getData().isBefore(LocalDate.now()))
+            throw new IllegalStateException("Impossibile prenotare, la proiezione è già passata.");
         int postiLiberi = getPostiLiberi(proiezione);
         if (bigliettiRichiesti > postiLiberi) 
             throw new IllegalStateException("Posti insufficienti, posti dispondibili: " + postiLiberi);
+        if(bigliettiRichiesti > proiezione.getPostiSala())
+            throw new IllegalArgumentException("Il numero di biglietti (" + bigliettiRichiesti + 
+                ") supera la capienza della sala (" + proiezione.getPostiSala() + ").");
         // Genera una stringa casuale unica di 8 caratteri maiuscoli
         String codice = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Prenotazione nuova = new Prenotazione(codice, cliente, proiezione, bigliettiRichiesti);
         listaPrenotazioni.add(nuova);
         salvaSuFile();
         return true;
+    }
+
+    public static double venditaDiretta(Proiezione proiezione, int bigliettiRichiesti) {
+        if(bigliettiRichiesti <= 0)
+            throw new IllegalArgumentException("Il numero di biglietti deve essere maggiore di 0.");
+        if(proiezione.getData().isBefore(LocalDate.now()))
+            throw new IllegalStateException("Impossibile vendere biglietti: la proiezione è già passata.");
+        int postiLiberi = getPostiLiberi(proiezione);
+        // FIX: eccezione se si tenta di vendere più biglietti dei posti disponibili
+        if (bigliettiRichiesti > postiLiberi)
+            throw new IllegalStateException("Posti insufficienti. Posti disponibili: " + postiLiberi);
+        if (bigliettiRichiesti > proiezione.getPostiSala())
+            throw new IllegalArgumentException("Il numero di biglietti (" + bigliettiRichiesti + 
+                ") supera la capienza della sala (" + proiezione.getPostiSala() + ").");
+        // FIX: riduce i posti disponibili aggiornando direttamente postiSala nella proiezione
+        // (usiamo un "segnaposto" nel CSV riducendo il campo posti_sala)
+        proiezione.setPostiSala(proiezione.getPostiSala() - bigliettiRichiesti);
+        GestoreProiezione.salvaSuFile();
+        return bigliettiRichiesti * proiezione.getPrezzo();
+    }
+
+    public static void rimuoviPrenotazione(String codice) {
+        boolean rimossa = listaPrenotazioni.removeIf(p -> p.getCodiceUnivoco().equalsIgnoreCase(codice));
+        if(!rimossa)
+            throw new IllegalArgumentException("Nessuna prenotazione trovata con codice: " + codice);
+        salvaSuFile();
     }
 
     /**

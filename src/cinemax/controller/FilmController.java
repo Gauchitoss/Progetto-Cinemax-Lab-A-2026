@@ -249,6 +249,60 @@ public class FilmController {
         }
     }
 
+public static void gestisciModificaProiezione(Proiezione p, String[] datiFormTmp){
+        try {
+            GestoreProiezione.leggiProiezioni();
+
+            // Leggi e valida solo i campi non nulli
+            String nuovoRegista = datiFormTmp[Campi.ADD_REGISTA.i];
+            if(nuovoRegista != null) validaRegista(nuovoRegista);
+
+            int annoProduzioneInt = p.getAnno();
+            int durataInt = p.getDurata();
+            int etaMinimaInt = p.getEtaMin();
+            double costoDouble = p.getPrezzo();
+            int postiInt = p.getPostiSala();
+            LocalDate data = p.getData();
+
+            if(datiFormTmp[Campi.ADD_ANNO_PRODUZIONE.i] != null) annoProduzioneInt = Integer.parseInt(datiFormTmp[Campi.ADD_ANNO_PRODUZIONE.i]);
+            if(datiFormTmp[Campi.ADD_DURATA.i] != null) durataInt = Integer.parseInt(datiFormTmp[Campi.ADD_DURATA.i]);
+            if(datiFormTmp[Campi.ADD_ETA.i] != null) etaMinimaInt = Integer.parseInt(datiFormTmp[Campi.ADD_ETA.i]);
+            if(datiFormTmp[Campi.ADD_COSTO.i] != null) costoDouble = Double.parseDouble(datiFormTmp[Campi.ADD_COSTO.i].replace(",", "."));
+            if(datiFormTmp[Campi.ADD_POSTI.i] != null) postiInt = Integer.parseInt(datiFormTmp[Campi.ADD_POSTI.i]);
+
+            String giorno = datiFormTmp[Campi.ADD_GIORNO.i];
+            String mese = datiFormTmp[Campi.ADD_MESE.i];
+            String anno = datiFormTmp[Campi.ADD_ANNO.i];
+            if(giorno != null && mese != null && anno != null){
+                data = LocalDate.of(Integer.parseInt(anno), Integer.parseInt(mese), Integer.parseInt(giorno));
+            }
+
+            validaDatiProiezione(annoProduzioneInt, durataInt, etaMinimaInt, costoDouble, postiInt, data);
+
+            if(datiFormTmp[Campi.ADD_TITOLO.i] != null) p.setTitolo(datiFormTmp[Campi.ADD_TITOLO.i]);
+            if(datiFormTmp[Campi.ADD_GENERE.i] != null) p.setGenere(datiFormTmp[Campi.ADD_GENERE.i]);
+            if(nuovoRegista != null) p.setRegista(nuovoRegista);
+            p.setAnno(annoProduzioneInt);
+            p.setDurata(durataInt);
+            p.setEtaMin(etaMinimaInt);
+            p.setPrezzo(costoDouble);
+            p.setPostiSala(postiInt);
+            p.setData(data);
+            if(datiFormTmp[Campi.ADD_ORA.i] != null) p.setOra(datiFormTmp[Campi.ADD_ORA.i]);
+
+            GestoreProiezione.salvaSuFile(); 
+            CineMax.stackRecord.pop();
+            cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Proiezione modificata con successo.";
+            CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);
+        } catch(IllegalArgumentException e){
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = e.getMessage();
+            CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+        } catch(Exception e){
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore durante la modifica: " + e.getMessage();
+            CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+        }
+    }
+
     // ======================================================
     //                  HELPER
     // ======================================================
