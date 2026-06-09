@@ -117,19 +117,17 @@ public class GestorePrenotazione {
      * Requisito Inserimento: Controlla la disponibilità ed emette un codice unico alfanumerico.
      */
     public static boolean inserisciPrenotazione(Utente cliente, Proiezione proiezione, int bigliettiRichiesti) {
+        if(bigliettiRichiesti <= 0)
+            throw new IllegalArgumentException("Il numero di biglietti deve essrere maggiore a 0.");
         int postiLiberi = getPostiLiberi(proiezione);
-        if (bigliettiRichiesti > postiLiberi) {
-            System.err.println("Errore: Posti insufficienti per lo spettacolo. Disponibili: " + postiLiberi);
-            return false;
-        }
-
+        if (bigliettiRichiesti > postiLiberi) 
+            throw new IllegalStateException("Posti insufficienti, posti dispondibili: " + postiLiberi);
         // Genera una stringa casuale unica di 8 caratteri maiuscoli
         String codice = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Prenotazione nuova = new Prenotazione(codice, cliente, proiezione, bigliettiRichiesti);
         listaPrenotazioni.add(nuova);
         salvaSuFile();
-        System.out.println("Prenotazione salvata! Codice ricevuta: " + codice);
-        return true;
+        return nuova
     }
 
     /**
