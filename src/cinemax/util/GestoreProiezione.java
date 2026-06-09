@@ -1,6 +1,6 @@
 package cinemax.util;
 
-import cinemax.model.*;
+import cinemax.model.Proiezione;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,22 +18,23 @@ import java.time.DateTimeException;
 // ======================================================
 
         private static List<Proiezione> listaProiezioni = new ArrayList<>(); //lista per memorizzare le proiezioni lette dal file proiezioni.csv
-        private static final String FILE_PATH="data/proiezioni.csv"; // persorso del file proiezioni.csv
-        private static final DateTimeFormatter FORMATTA_DATA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        private static final String FILE_PATH = "data/proiezioni.csv"; // persorso del file proiezioni.csv
+        private static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 // ====================================================== 
 //                   metodo salvaSulFile
 // ======================================================
 
         public static void salvaSuFile(){
+            new File("data").mkdirs();
             try(PrintWriter pw = new PrintWriter(new FileWriter(FILE_PATH))){ // creazione PrintWriter e FileWriter
                 pw.println("data_proiezione|ora_proiezione|titolo_film|genere|regista|anno|durata_minuti|eta_minima|prezzo_biglietto|posti_sala");
                 for(Proiezione p: listaProiezioni){
-                    pw.printf(java.util.Locale.US, "%s|%s|%s|%s|%s|%d|%d|%d|%.2f|%d%n", p.getData().format(FORMATTA_DATA),p.getOra(), p.getTitolo(), p.getGenere(), p.getRegista(), p.getAnno(), p.getDurata(), p.getEtaMin(), p.getPrezzo(), p.getPostiSala()); /* uso printf al posto di println per poter sfruttare i sgenaposto
+                    pw.printf(java.util.Locale.US, "%s|%s|%s|%s|%s|%d|%d|%d|%.2f|%d%n", p.getData().format(FORMATO_DATA),p.getOraString(), p.getTitolo(), p.getGenere(), p.getRegista(), p.getAnno(), p.getDurata(), p.getEtaMin(), p.getPrezzo(), p.getPostiSala()); /* uso printf al posto di println per poter sfruttare i sgenaposto
                     e imposto il formato americano in modo da impedire che il prezzo possa essere scritto con la virgola */
                 }
             } catch (IOException e) {
-                System.err.println("Errore durante il salvataggio: " + e.getMessage());
+                System.err.println("Errore durante il salvataggio delle proiezioni: " + e.getMessage());
             }
         }
 
@@ -58,15 +59,15 @@ import java.time.DateTimeException;
                         for(int i=0; i<colonna.length; i++){
                             colonna[i] = colonna[i].replace("\"", "").trim(); // rimuovere virgolette se presenti e eventuali spazi vuoti
                         }
+                        LocalDate data = LocalDate.parse(colonna[0], FORMATO_DATA);
+                        String ora = colonna[1];
                         int anno = Integer.parseInt(colonna[5]);
                         int durata = Integer.parseInt(colonna[6]); 
                         int etaMin = Integer.parseInt(colonna[7]); 
-                        int postiSala = Integer.parseInt(colonna[9]);
                         double prezzo = Double.parseDouble(colonna[8].replace(",",".")); /*rimpiazo la virgola con il punto in modo da non generare 
                         confuzione con le virgole usate come separatori*/
-                        LocalDate data = LocalDate.parse(colonna[0], FORMATTA_DATA);
-                        Proiezione proiezione = new Proiezione(data, colonna[1], colonna[2], colonna[3], colonna[4], anno, durata, etaMin, prezzo, postiSala); //creazione oggetto proiezione
-                        listaProiezioni.add(proiezione); // aggiunta la proiezione alla lista in memoria
+                        int postiSala = Integer.parseInt(colonna[9]);
+                        listaProiezioni.add(new Proiezione(data, ora, colonna[2], colonna[3], colonna[4], anno, durata, etaMin, prezzo, postiSala)); // aggiunta la proiezione alla lista in memoria
                     } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DateTimeException e){
                         System.err.println("Salto riga corrotta " + riga);
                     }
@@ -95,79 +96,30 @@ import java.time.DateTimeException;
 //                   metodo cercaProiezione
 // ======================================================
 
-        public static List<Proiezione> cercaProiezione(String titolo, String daGiorno, String daMese, String daAnno, String aGiorno, String aMese, String aAnno, String prezzoStr, String genere){
-            LocalDate daData = null;
-            LocalDate aData = null;
-            try{
-                if(daAnno != null && daMese != null && daGiorno != null){
-                    int giornoInizio = Integer.parseInt(daGiorno);
-                    int meseInizio = Integer.parseInt(daMese);
-                    int annoInizio = Integer.parseInt(daAnno);
-                    daData = LocalDate.of(annoInizio, meseInizio, giornoInizio);
-                }
-                if(aAnno != null && aMese != null && aGiorno != null){
-                    int giornoFine = Integer.parseInt(aGiorno);
-                    int meseFine = Integer.parseInt(aMese);
-                    int annoFine = Integer.parseInt(aAnno);
-                    aData = LocalDate.of(annoFine, meseFine, giornoFine);
-                }
-            } catch(DateTimeException | NumberFormatException e){
-                System.err.println("L'intervallo di date inserito per la ricerca non risulta valido");
-                return new ArrayList<>();
-            }
-            double limitePrezzo = Double.MAX_VALUE;
-            if (prezzoStr != null && !prezzoStr.isEmpty()) {
-                try {
-                    limitePrezzo = Double.parseDouble(prezzoStr.replace(",", "."));
-                } catch (NumberFormatException e) {
-                System.err.println("Formato prezzo non valido nella ricerca.");
-            }
-        }
-            final LocalDate finalDaData = daData;
-            final LocalDate finalAData = aData;
-            final double finalLimitePrezzo = limitePrezzo;
+        public static List<Proiezione> cercaProiezione(String titolo, LocalDate dataDa, LocalDate dataA, Double prezzoMax, String genere){
             return listaProiezioni.stream()
+            .filter(p -> titolo == null || titolo.trim().isEmpty() || p.getTitolo().toLowerCase().contains(titolo.trim().toLowerCase()))
+            .filter(p -> genere == null || genere.isEmpty() || p.getGenere().equalsIgnoreCase(genere.trim()))
+            .filter(p -> prezzoMax == null || p.getPrezzo() <= prezzoMax)
             .filter(p -> {
-                if (titolo == null || titolo.trim().isEmpty()) return true; 
-                if (p.getTitolo() == null) return false;
-                return p.getTitolo().toLowerCase().contains(titolo.trim().toLowerCase());
-            })
-            .filter(p -> {
-                if (genere == null || genere.isEmpty()) return true;
-                if (p.getGenere() == null) return false;
-                return (p.getGenere().equalsIgnoreCase(genere.trim()));
-             })
-            .filter(p -> p.getPrezzo() <= finalLimitePrezzo)
-            .filter(p -> {
-                LocalDate pData = p.getData();
-                if(pData == null) return false;
-                if(finalDaData != null && finalAData == null){
-                    return pData.isEqual(finalDaData);
-                }
-                else if(finalDaData != null && finalAData != null){
-                    return !pData.isBefore(finalDaData) && !pData.isAfter(finalAData);
-                }
-                else if(finalDaData == null && finalAData != null){
-                    return !pData.isAfter(finalAData);
-                }
-                else
-                    return true;
+                LocalDate data = p.getData();
+                if(dataDa != null && dataA == null)
+                    return d.isEqual(dataDa);
+                if(dataDa != null && dataA != null)
+                    return !d.isBefore(dataDa) && !d.isAfter(dataA);
+                if(dataDa == null && dataA != null)
+                    return !d.isAfter(dataA);
+                return true;
             })
             .collect(Collectors.toList());
         }
-
-// ====================================================== 
-//                   metodo visualizzaProiezioni
-// ======================================================
-
 
 // ====================================================== 
 //                   metodi getter
 // ======================================================
         public static List<Proiezione> proiezioniDelGiorno(){
             LocalDate dataOggi = LocalDate.now();
-            List<Proiezione> proiezioniGiorno = cercaProiezione(null, ""+dataOggi.getDayOfMonth(), ""+dataOggi.getMonthValue(), ""+dataOggi.getYear(), null, null, null, null, null);
-            return proiezioniGiorno;
+            return cercaProiezione(null, oggi, oggi, null, null);
         }
 
         public static List<Proiezione> getListaProiezioni(){
