@@ -156,7 +156,6 @@ public class FilmController {
     public static void gestisciInserimentoProiezione(String[] datiFormTmp){
         try {
             GestoreProiezione.leggiProiezioni();
-
             String  titolo          = datiFormTmp[Campi.ADD_TITOLO.i];
             String  genere          = datiFormTmp[Campi.ADD_GENERE.i];
             String  regista         = datiFormTmp[Campi.ADD_REGISTA.i];

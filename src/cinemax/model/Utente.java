@@ -43,13 +43,13 @@ public abstract class Utente {
 //          			CAMPI
 // ======================================================
 
-	private String nome;
-	private String cognome;
-	private String username;
+	private final String nome;
+	private final String cognome;
+	private final String username;
 	private String password;//verrà successivamente cifrata  
-	private String dataDiNascita; //sarà (facoltativa)
-	private String domicilio;
-	private Ruolo ruolo; //(cliente/proiezionista/bigliettaio)
+	private final String dataDiNascita; //sarà (facoltativa)
+	private final String domicilio;
+	private final Ruolo ruolo; //(cliente/proiezionista/bigliettaio)
 		
 	
 // ======================================================
@@ -103,6 +103,17 @@ public abstract class Utente {
 	}
 
 // ======================================================
+//          		SEZIONE SETTER
+// ======================================================
+
+	public void setPassword(String nuovaPassword){
+		if(nuovaPassword == null || nuovaPassword.isEmpty())
+			throw new IllegalArgumentException("La nuova password non può essere vuota.");
+		this.password = nuovaPassword;
+	}
+
+// ======================================================
+//                   UTILI
 // ======================================================
 }
 @override
