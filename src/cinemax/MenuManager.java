@@ -3,6 +3,7 @@ package cinemax;
 import java.util.Scanner;
 import cinemax.controller.AutenticazioniController;
 import cinemax.controller.FilmController;
+import cinemax.controller.PrenotazioniController;
 import cinemax.util.GestorePrenotazione;
 import cinemax.util.GestoreProiezione;
 
@@ -146,6 +147,13 @@ public class MenuManager {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI};}
             @Override public void eseguiLogicaAssociata(){
                 cinemax.controller.PrenotazioniController.gestisciVisualizzaPrenotazione(input.nextLine(), this);
+            }
+        },
+        
+        DETTAGLIO_PRENOTAZIONE(new String[]{"rimuovi prenotazione", "torna indietro"}, true, "dettaglio prenotazione", "centro") {
+            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MIE_PRENOTAZIONI};}
+            @Override public void eseguiLogicaAssociata(){
+                PrenotazioniController.gestisciDettaglioPrenotazione(input.nextLine());
             }
         },
         
