@@ -45,6 +45,7 @@ public class LogicaStatiManager {
             if(statoSuccessivo == StatoMenu.BENVENUTO){
                 CineMax.stackRecord.clear();
                 CineMax.ruolo = Utente.Ruolo.CLIENTE_OSPITE;
+                messaggioErroreCorrente = "Spiacenti, si è verificato un errore.";
             }
 
             CineMax.stackRecord.push(statoSuccessivo);
