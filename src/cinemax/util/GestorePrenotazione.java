@@ -1,4 +1,4 @@
-package cinemax.util;
+package cinemax.controller;
 
 import cinemax.model.*;
 import java.io.*;
@@ -207,7 +207,9 @@ public class GestorePrenotazione {
             // Filtro Cognome
             .filter(p -> cognome == null || cognome.trim().isEmpty() || 
                          p.getCognomeCliente().toLowerCase().contains(cognome.trim().toLowerCase()))
-
+            
+            // Filtro titolo
+            .filter(p -> titolo == null || titolo.trim().isEmpty() || p.getTitoloFilm().toLowerCase().contains(titolo.trim().toLowerCase()))
             
             // Filtro Date (Inizio, Fine o Intervallo)
             .filter(p -> {
