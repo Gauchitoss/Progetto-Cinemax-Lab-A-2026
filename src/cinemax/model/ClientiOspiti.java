@@ -16,7 +16,7 @@ public class ClientiOspiti extends Clienti{
 // ======================================================
 
     public ClientiOspiti(String nome, String cognome, String username, String password, String dataDiNascita, String domicilio) {
-        super(nome, cognome, username, password, dataDiNascita, domicilio, "cliente ospite");
+        super(nome, cognome, username, password, dataDiNascita, domicilio, Ruolo.CLIENTE_OSPITE);
     }
 
 // ======================================================
@@ -24,7 +24,7 @@ public class ClientiOspiti extends Clienti{
 // ======================================================
 
     public ClientiOspiti(String nome, String cognome, String username, String password, String domicilio) {
-        super(nome, cognome, username, password, domicilio, "cliente ospite");
+        super(nome, cognome, username, password, domicilio, Ruolo.CLIENTE_OSPITE);
     }
     
 }

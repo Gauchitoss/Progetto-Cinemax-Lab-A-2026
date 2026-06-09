@@ -2,7 +2,8 @@
 package cinemax;
 
 import java.util.*;
-import cinemax.MenuMangaer.StatoMenu;
+import cinemax.MenuManager.StatoMenu;
+import cinemax.model.Utente;
 
 /**
  * Classe LogicaStatiManager
@@ -15,8 +16,8 @@ import cinemax.MenuMangaer.StatoMenu;
 public class LogicaStatiManager {
 
     //Stringa globale di errore, modificabile in ogni punto del codice in base all'occornza
-    public static String messaggioErroreCorrente = "spiacenti si è verificato un errore";
-    public static String messaggioConfermaCorrente = "operazione eseguita con successo";
+    public static String messaggioErroreCorrente = "Spiacenti si è verificato un errore.";
+    public static String messaggioConfermaCorrente = "Operazione eseguita con successo.";
     static Scanner input = new Scanner(System.in);
 
 // =========================================================================
@@ -43,7 +44,7 @@ public class LogicaStatiManager {
             }
             if(statoSuccessivo == StatoMenu.BENVENUTO){
                 CineMax.stackRecord.clear();
-                CineMax.ruolo = "cliente ospite";
+                CineMax.ruolo = Utente.Ruolo.CLIENTE_OSPITE;
             }
 
             CineMax.stackRecord.push(statoSuccessivo);
@@ -67,7 +68,7 @@ public class LogicaStatiManager {
      */
     public static boolean prendiDatiForm(String[] campiForm, String[] opzioniStatoMenu){
         // CONFIGURAZIONE DEL CURSORE
-       int cursoreY = 11; // riga di partenza dall'alto
+        int cursoreY = 11; // riga di partenza dall'alto
         boolean dueColonne = opzioniStatoMenu.length >= 8; // attivazione della doppia colonna
         
         int larghezzaMeu = CinemaxTUI.LARGHEZZA_MENU; 

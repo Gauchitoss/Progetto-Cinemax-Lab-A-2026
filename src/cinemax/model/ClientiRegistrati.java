@@ -16,7 +16,7 @@ public class ClientiRegistrati extends Clienti {
 // ======================================================
 
     public ClientiRegistrati(String nome, String cognome, String username, String password, String dataDiNascita, String domicilio) {
-        super(nome, cognome, username, password, dataDiNascita, domicilio, "cliente registrato");
+        super(nome, cognome, username, password, dataDiNascita, domicilio, Ruolo.CLIENTE_REGISTRATO);
     }
 
 // ======================================================
@@ -24,7 +24,7 @@ public class ClientiRegistrati extends Clienti {
 // ======================================================
 
     public ClientiRegistrati(String nome, String cognome, String username, String password, String domicilio) {
-        super(nome, cognome, username, password, domicilio, "cliente registrato");
+        super(nome, cognome, username, password, domicilio, Ruolo.CLIENTE_REGISTRATO);
     }
     
 }

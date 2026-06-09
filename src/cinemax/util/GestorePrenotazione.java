@@ -4,6 +4,7 @@ import cinemax.model.*;
 import java.io.*;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,22 +13,19 @@ import java.util.stream.Collectors;
 
 public class GestorePrenotazione {
 
-    private static List<Prenotazione> listaPrenotazioni = new ArrayList<>();
+    private static final List<Prenotazione> listaPrenotazioni = new ArrayList<>();
     private static final String FILE_PATH = "data/prenotazioni.csv";
-    private static final DateTimeFormatter FORMATTA_DATA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     // ====================================================== 
     //                  Metodo salvaSuFile
     // ======================================================
     public static void salvaSuFile() {
-        File folder = new File("data");
-        if (!folder.exists()) {
-            folder.mkdirs();
-        }
+        new File("data").mkdir();
         try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_PATH))) {
             pw.println("codice_prenotazione|nome_cliente|cognome_cliente|username_cliente|data_proiezione|ora_proiezione|titolo_film|numero_biglietti");
             for (Prenotazione p : listaPrenotazioni) {
-                pw.println(p.toCSV(FORMATTA_DATA));
+                pw.println(p.toCSV());
             }
         } catch (IOException e) {
             System.err.println("Errore durante il salvataggio delle prenotazioni: " + e.getMessage());
@@ -39,10 +37,8 @@ public class GestorePrenotazione {
     // ======================================================
     public static void leggiPrenotazioni() {
         listaPrenotazioni.clear();
-
         File file = new File(FILE_PATH);
         if (!file.exists()) return;
-
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             br.readLine(); // Salta l'intestazione
             String riga;
@@ -50,37 +46,25 @@ public class GestorePrenotazione {
                 try {
                     String[] colonna = riga.split("\\|");
                     if (colonna.length < 8) continue;
-
                     for (int i = 0; i < colonna.length; i++) {
                         colonna[i] = colonna[i].replace("\"", "").trim();
                     }
-
                     String codice = colonna[0];
                     // String nome = colonna[1];       
                     // String cognome = colonna[2];    
                     String username = colonna[3];
-                    LocalDate dataProiezione = LocalDate.parse(colonna[4], FORMATTA_DATA);
+                    LocalDate dataProiezione = LocalDate.parse(colonna[4], FORMATO_DATA);
                     String oraProiezione = colonna[5];
                     String titoloFilm = colonna[6];
                     int numeroBiglietti = Integer.parseInt(colonna[7]);
-
                     // 1. Recupero l'utente sfruttando il nuovo metodo aggiunto in GestoreUtenti
                     Utente cliente = GestoreUtenti.cercaPerUsername(username);
-
                     // 2. Recupero la proiezione corretta dalla vostra lista di GestoreProiezione
-                    Proiezione proiezioneScelta = null;
-                    for (Proiezione pr : GestoreProiezione.getListaProiezioni()) {
-
-                        boolean stessoTitolo = pr.getTitolo().trim().equalsIgnoreCase(titoloFilm);
-                        boolean stessaData = pr.getData().equals(dataProiezione);
-                        boolean stessaOra = pr.getOra().trim().equals(oraProiezione);
-                        
-                        if (stessoTitolo && stessaData && stessaOra) {
-                            proiezioneScelta = pr;
-                            break;
-                        }
-                    }
-
+                    Proiezione proiezioneScelta = GestoreProiezione.getListaProiezioni().stream()
+                        .filter(p -> p.getTitolo().trim().equalsIgnoreCase(titoloFilm)
+                                    && p.getData().equals(dataProiezione)
+                                    && p.getOraString().equals(oraProiezione))
+                        .findFirst().orElse(null);
                     // Ricostruisco il legame ad oggetti solo se i riferimenti incrociati sono validi
                     if (cliente != null && proiezioneScelta != null) {
                         listaPrenotazioni.add(new Prenotazione(codice, cliente, proiezioneScelta, numeroBiglietti));
@@ -103,32 +87,27 @@ public class GestorePrenotazione {
      * sottraendo le prenotazioni esistenti dalla capienza massima memorizzata nella proiezione.
      */
     public static int getPostiLiberi(Proiezione p) {
-        int postiOccupati = 0;
-        for (Prenotazione pre : listaPrenotazioni) {
-            Proiezione pr = pre.getProiezione();
-            if (pr.getTitolo().equals(p.getTitolo()) && pr.getData().equals(p.getData()) && pr.getOra().equals(p.getOra())) {
-                postiOccupati += pre.getNumeroBiglietti();
-            }
-        }
+        int postiOccupati = listaPrenotazioni.stream()
+                .filter(pre -> pre.getProiezione().equals(p))
+                .mapToInt(Prenotazione::getNumeroBiglietti)
+                .sum();
         return p.getPostiSala() - postiOccupati;
     }
 
     /**
      * Requisito Inserimento: Controlla la disponibilità ed emette un codice unico alfanumerico.
      */
-    public static boolean inserisciPrenotazione(Utente cliente, Proiezione proiezione, int bigliettiRichiesti) {
+    public static Boolean inserisciPrenotazione(Utente cliente, Proiezione proiezione, int bigliettiRichiesti) {
+        if(bigliettiRichiesti <= 0)
+            throw new IllegalArgumentException("Il numero di biglietti deve essrere maggiore a 0.");
         int postiLiberi = getPostiLiberi(proiezione);
-        if (bigliettiRichiesti > postiLiberi) {
-            System.err.println("Errore: Posti insufficienti per lo spettacolo. Disponibili: " + postiLiberi);
-            return false;
-        }
-
+        if (bigliettiRichiesti > postiLiberi) 
+            throw new IllegalStateException("Posti insufficienti, posti dispondibili: " + postiLiberi);
         // Genera una stringa casuale unica di 8 caratteri maiuscoli
         String codice = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Prenotazione nuova = new Prenotazione(codice, cliente, proiezione, bigliettiRichiesti);
         listaPrenotazioni.add(nuova);
         salvaSuFile();
-        System.out.println("Prenotazione salvata! Codice ricevuta: " + codice);
         return true;
     }
 
@@ -136,61 +115,37 @@ public class GestorePrenotazione {
      * Requisito Cliente: Consente lo spostamento ad un'altra proiezione 
      * a patto che la data di partenza e quella di arrivo siano entrambe nel futuro.
      */
-    public static boolean modificaDataPrenotazione(String codice, Proiezione nuovaProiezione) {
+    public static void modificaDataPrenotazione(String codice, Proiezione nuovaProiezione) {
     for (Prenotazione pre : listaPrenotazioni) {
         if (pre.getCodiceUnivoco().equalsIgnoreCase(codice)) {
-            
             // 1. Prendiamo la data e l'ora attuali del sistema
-            java.time.LocalDateTime adesso = java.time.LocalDateTime.now();
-            
+            LocalDateTime adesso = LocalDateTime.now();
             // 2. Convertiamo la stringa dell'ora della vecchia proiezione (es. "15:00") in LocalTime
-            java.time.LocalTime oraVecchia = java.time.LocalTime.parse(pre.getProiezione().getOra());
+            LocalDateTime dataOraVecchia = LocalDateTime.of(pre.getProiezione().getData(), pre.getProiezione().getOra());
             // Uniamo la data e l'ora della vecchia proiezione in un unico LocalDateTime
-            java.time.LocalDateTime dataOraVecchia = java.time.LocalDateTime.of(pre.getProiezione().getData(), oraVecchia);
-
-            // 3. Facciamo la stessa identica cosa per la NUOVA proiezione
-            java.time.LocalTime oraNuova = java.time.LocalTime.parse(nuovaProiezione.getOra());
-            java.time.LocalDateTime dataOraNuova = java.time.LocalDateTime.of(nuovaProiezione.getData(), oraNuova);
-            
+            LocalDateTime dataOraNuova = LocalDateTime.of(nuovaProiezione.getData(), nuovaProiezione.getOra());
             // 4. Controllo di sicurezza: nessuna delle due proiezioni deve essere antecedente a questo esatto momento
             if (dataOraVecchia.isBefore(adesso) || dataOraNuova.isBefore(adesso)) {
-                System.err.println("Errore: Non si possono modificare spettacoli già passati o spostarsi su orari passati.");
-                return false;
+                throw new IllegalStateException("Errore: Non si possono modificare spettacoli già passati o spostarsi su orari passati.");
             }
-
             // Controllo della disponibilità dei posti nella nuova sala
             if (getPostiLiberi(nuovaProiezione) < pre.getNumeroBiglietti()) {
-                System.err.println("Errore: La nuova proiezione selezionata non ha abbastanza posti liberi.");
-                return false;
+                throw new IllegalStateException("Errore: La nuova proiezione selezionata non ha abbastanza posti liberi.");
             }
-
             // Aggiornamento e persistenza
             pre.setProiezione(nuovaProiezione);
             salvaSuFile();
             System.out.println("Spostamento della prenotazione eseguito con successo.");
-            return true;
+            return ;
         }
     }
-    System.err.println("Errore: Il codice inserito non corrisponde a nessuna prenotazione attiva.");
-    return false;
+    throw new IllegalArgumentException("Errore: Il codice inserito non corrisponde a nessuna prenotazione attiva.");
 }
 
     /**
      * Requisito Bigliettaio: Ricerca avanzata incrociata tramite Stream (Speculare a GestoreProiezione)
      */
-    public static List<Prenotazione> cercaPrenotazioni(String codice, String nome, String cognome, String titolo, String dataInizioStr, String dataFineStr, String username) {
-        
-        final LocalDate dataDa;
-        final LocalDate dataA;
-
-        try {
-            dataDa = (dataInizioStr != null && !dataInizioStr.trim().isEmpty())? LocalDate.parse(dataInizioStr.trim(), FORMATTA_DATA) : null;
-            dataA  = (dataFineStr != null && !dataFineStr.trim().isEmpty()) ? LocalDate.parse(dataFineStr.trim(), FORMATTA_DATA) : null;    
-        } catch (DateTimeException e) {
-            System.err.println("Formato intervallo date di ricerca non valido.");
-            return new ArrayList<>();
-        }
-
+    public static List<Prenotazione> cercaPrenotazioni(String codice, String nome, String cognome, String titolo, LocalDate dataInizio, LocalDate dataFine, String username) {
         return listaPrenotazioni.stream()
             // Filtro Username
             .filter(p -> username == null || username.trim().isEmpty() ||
@@ -207,14 +162,16 @@ public class GestorePrenotazione {
             // Filtro Cognome
             .filter(p -> cognome == null || cognome.trim().isEmpty() || 
                          p.getCognomeCliente().toLowerCase().contains(cognome.trim().toLowerCase()))
-
+            
+            // Filtro titolo
+            .filter(p -> titolo == null || titolo.trim().isEmpty() || p.getTitoloFilm().toLowerCase().contains(titolo.trim().toLowerCase()))
             
             // Filtro Date (Inizio, Fine o Intervallo)
             .filter(p -> {
                 LocalDate pData = p.getProiezione().getData();
-                if (dataDa != null && dataA == null) return pData.isEqual(dataDa);
-                if (dataDa != null && dataA != null) return !pData.isBefore(dataDa) && !pData.isAfter(dataA);
-                if (dataDa == null && dataA != null) return !pData.isAfter(dataA);
+                if (dataInizio != null && dataFine == null) return pData.isEqual(dataInizio);
+                if (dataInizio != null && dataFine != null) return !pData.isBefore(dataInizio) && !pData.isAfter(dataFine);
+                if (dataInizio == null && dataFine != null) return !pData.isAfter(dataFine);
                 
                 return true;
             })
@@ -235,7 +192,7 @@ public class GestorePrenotazione {
         return new ArrayList<>(listaPrenotazioni);
     }
 
-    public static List<Prenotazione> getListaPrenotzioniUtente(String username){
+    public static List<Prenotazione> getPrenotzioniUtente(String username){
         List<Prenotazione> prenotzioniUtente = new ArrayList<>();
         for(Prenotazione p: listaPrenotazioni){
             if(p.getUsernameCliente().equals(username))

@@ -14,7 +14,7 @@ public abstract class Clienti extends Utente{
 //          		  COSTRUTTORE
 // ======================================================
 
-    public Clienti(String nome, String cognome, String username, String password, String dataDiNascita, String domicilio, String ruolo) {
+    public Clienti(String nome, String cognome, String username, String password, String dataDiNascita, String domicilio, Ruolo ruolo) {
         super(nome, cognome, username, password, dataDiNascita, domicilio, ruolo);
     }
 
@@ -22,8 +22,8 @@ public abstract class Clienti extends Utente{
 //          		  COSTRUTTORE SENZA CAMPI FACOLTATIVI
 // ======================================================
 
-    public Clienti(String nome, String cognome, String username, String password, String domicilio, String ruolo) {
-        super(nome, cognome, username, password, domicilio, ruolo);
+    public Clienti(String nome, String cognome, String username, String password, String domicilio, Ruolo ruolo) {
+        super(nome, cognome, username, password, null, domicilio, ruolo);
     }
     
 }

@@ -1,9 +1,9 @@
 package cinemax;
 
 import java.util.List;
-
-import cinemax.MenuMangaer.StatoMenu;
+import cinemax.MenuManager.StatoMenu;
 import cinemax.model.Proiezione;
+import cinemax.model.Utente;
 
 /**
  * Classe che gestisce l'interfaccia testuale (TUI - Terminal User Interface).
@@ -34,7 +34,6 @@ public class CinemaxTUI {
     public static void clearConsole() {
         // Forza la finestra a 45 righe di altezza e 135 di larghezza
         System.out.print("\033[8;45;135t");
-
         System.out.println("\033[H\033[2J");
         System.out.flush();
     }
@@ -47,17 +46,13 @@ public class CinemaxTUI {
      */
     public static void renderizzaMenu(StatoMenu statoMenu){
         clearConsole();
-
         System.out.println(bordoSuperiore);
         System.out.println(rigaVuota);
-
         formattaIntestazione(statoMenu.getNomeLogo());
-
         System.out.println(rigaVuota);
         System.out.println(bordoMezzo);
         System.out.println(rigaVuota);
         System.out.println(rigaVuota);
-
         if(statoMenu == StatoMenu.STATO_ERRORE){
             formattaTesto(LogicaStatiManager.messaggioErroreCorrente.toUpperCase(), "centro", true);
         }else if(statoMenu == StatoMenu.VISUALIZZA_PROGRAMMAZAIONE || statoMenu == StatoMenu.MIE_PRENOTAZIONI){
@@ -110,11 +105,9 @@ public class CinemaxTUI {
 
 
     public static void formattaIntestazione(String logo){
-
         if(logo.equals("cinemax"))  {formattaLogo(logoCinemax); return;}
         if(logo.equals("film"))     {formattaLogo(logoFilm); return;}
         if(logo.equals("error"))    {formattaLogo(logoErrore); return;}
-
         formattaTesto(logo, "centro", true);
     }
 
@@ -130,12 +123,10 @@ public class CinemaxTUI {
         // Utilizzo di Math.max() per evitare il cso in cui il programma va in crash se il logo è troppo largo
         int padding = Math.max(0,(LARGHEZZA_MENU - lunghezzaRigaLogo)/2);
         String pad= " ".repeat(padding);
-
         for (String linea : righelogo) {
             int extraSpazio = Math.max(0, (LARGHEZZA_MENU - lunghezzaRigaLogo) % 2);
             System.out.println("║"+ pad + (extraSpazio != 0 ? " " : "") + linea + pad +"║");
         }      
-
         return;
     }
 
@@ -160,7 +151,6 @@ public class CinemaxTUI {
     public static void formattaTesto(String[] possibiliOpzioni, String posizione, boolean visualizzaNumeri){
         
         if(possibiliOpzioni == null || possibiliOpzioni.length == 0) return;
-
         if(visualizzaNumeri){
             // =========================================================
             // MENU NUMERATI (1 Colonna, allineati al centro)
@@ -379,14 +369,14 @@ public class CinemaxTUI {
         System.out.println(rigaVuota);
         System.out.println(rigaVuota);
 
-        if(CineMax.ruolo.equals("cliente registrato")){
+        if(CineMax.ruolo.equals(Utente.Ruolo.CLIENTE_REGISTRATO)){
             formattaTesto("[1] PRENOTA BIGLIETTI", "centro", true);
             formattaTesto("[2] TORNA INDIETRO", "centro", true);
-        }else if(CineMax.ruolo.equals("proiezionista")){
+        }else if(CineMax.ruolo.equals(Utente.Ruolo.PROIEZIONISTA)){
             formattaTesto("[1] ELIMINA PROIEZIONE", "centro", true);
             formattaTesto("[2] MODIFICA PROIEZIONE", "centro", true);
             formattaTesto("[3] TORNA INDIETRO", "centro", true);
-        } else if(CineMax.ruolo.equals("bigliettaio")){
+        } else if(CineMax.ruolo.equals(Utente.Ruolo.BIGLIETTAIO)){
             formattaTesto("[1] VENDITA DIRETTA BIGLIETTI", "centro", true);
             formattaTesto("[2] TORNA INDIETRO", "centro", true);
         } else

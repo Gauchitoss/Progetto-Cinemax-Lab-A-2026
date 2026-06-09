@@ -1,7 +1,6 @@
 package cinemax;
 
 import java.util.Scanner;
-
 import cinemax.controller.AutenticazioniController;
 import cinemax.controller.FilmController;
 import cinemax.util.GestorePrenotazione;
@@ -16,7 +15,7 @@ import cinemax.util.GestoreProiezione;
  * @author Baroncelli Luca (Matricola: 761582) - VA
  * @author Bin Alessio (Matricola: 762387) - VA
  */
-public class MenuMangaer {
+public class MenuManager {
 
     static Scanner input = new Scanner(System.in);
 
@@ -51,7 +50,7 @@ public class MenuMangaer {
         // ======================================================
 
         LOGIN(new String[]{"username", "password"}, false, "accesso", "centro"){
-            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI, MENU_PROEZIONISTA, MENU_BIGLIETTAIO, BENVENUTO};}
+            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI, MENU_PROIEZIONISTA, MENU_BIGLIETTAIO, BENVENUTO};}
             @Override 
             public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[getOpzioni().length];
@@ -83,8 +82,8 @@ public class MenuMangaer {
             }
         },
         
-        MENU_PROEZIONISTA(new String[]{"inserisci film", "cerca e modifica poiezione", "logout"}, true, "sezione proezionisti", "centro"){
-            @Override public StatoMenu[] prossimi() {return new StatoMenu[]{INSERISCI_PROEZIONE,CERCA_FILM, BENVENUTO};}
+        MENU_PROIEZIONISTA(new String[]{"inserisci film", "cerca e modifica poiezione", "logout"}, true, "sezione proezionisti", "centro"){
+            @Override public StatoMenu[] prossimi() {return new StatoMenu[]{INSERISCI_PROIEZIONE,CERCA_FILM, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
 
@@ -106,7 +105,7 @@ public class MenuMangaer {
             public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[9];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; };
-                FilmController.gestisciCercaFlm(datiFormTmp);
+                FilmController.gestisciCercaFilmDaArray(datiFormTmp);
             }
         },
 
@@ -130,7 +129,7 @@ public class MenuMangaer {
                 String[] datiFormTmp = new String[getOpzioni().length];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; }
                 
-                boolean successo = GestorePrenotazione.inserisciPrenotazione(cinemax.controller.AutenticazioniController.utente, cinemax.controller.FilmController.filmSelezionatoTmp, Integer.parseInt(datiFormTmp[0]));
+                Boolean successo = GestorePrenotazione.inserisciPrenotazione(cinemax.controller.AutenticazioniController.utente, cinemax.controller.FilmController.filmSelezionatoTmp, Integer.parseInt(datiFormTmp[0]));
                 CineMax.stackRecord.pop();
                 
                 if (successo) {
@@ -175,8 +174,8 @@ public class MenuMangaer {
         // 6. GESTIONE PROIEZIONI (PROIEZIONISTA)
         // ======================================================
 
-        INSERISCI_PROEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "inserisci proiezione", "centro") {
-            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROEZIONISTA};}
+        INSERISCI_PROIEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "inserisci proiezione", "centro") {
+            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROIEZIONISTA};}
             @Override public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[12];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; };
@@ -184,8 +183,8 @@ public class MenuMangaer {
             }
         },
     
-        GESTISCI_PROEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "modifica proiezione", "centro") {
-            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROEZIONISTA};}
+        GESTISCI_PROIEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "modifica proiezione", "centro") {
+            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROIEZIONISTA};}
             @Override public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[12];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; };

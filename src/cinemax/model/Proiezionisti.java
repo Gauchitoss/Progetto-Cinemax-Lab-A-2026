@@ -16,7 +16,7 @@ public class Proiezionisti extends Utente{
 // ======================================================
 
     public Proiezionisti(String nome, String cognome, String username, String password, String dataDiNascita, String domicilio) {
-        super(nome, cognome, username, password, dataDiNascita, domicilio, "proiezionista");
+        super(nome, cognome, username, password, dataDiNascita, domicilio, Ruolo.PROIEZIONISTA);
     }
 
 // ======================================================
@@ -24,7 +24,7 @@ public class Proiezionisti extends Utente{
 // ======================================================
 
     public Proiezionisti(String nome, String cognome, String username, String password, String domicilio) {
-        super(nome, cognome, username, password, domicilio, "proiezionista");
+        super(nome, cognome, username, password, domicilio, Ruolo.PROIEZIONISTA);
     }
 
 }
