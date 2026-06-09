@@ -235,7 +235,7 @@ public class GestorePrenotazione {
         return new ArrayList<>(listaPrenotazioni);
     }
 
-    public static List<Prenotazione> getListaPrenotzioniUtente(String username){
+    public static List<Prenotazione> getPrenotzioniUtente(String username){
         List<Prenotazione> prenotzioniUtente = new ArrayList<>();
         for(Prenotazione p: listaPrenotazioni){
             if(p.getUsernameCliente().equals(username))

@@ -75,7 +75,7 @@ public class FilmController {
         }
     }
 
-    public static void aggiornaProezioniPerPagina(){
+    public static void aggiornaProiezioniPerPagina(){
         filmPaginaTmp.clear();
         esistenzaPaginaSuccessiva = false;
         esistenzaPrecedente = false;

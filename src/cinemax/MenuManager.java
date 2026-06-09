@@ -16,7 +16,7 @@ import cinemax.util.GestoreProiezione;
  * @author Baroncelli Luca (Matricola: 761582) - VA
  * @author Bin Alessio (Matricola: 762387) - VA
  */
-public class MenuMangaer {
+public class MenuManager {
 
     static Scanner input = new Scanner(System.in);
 
@@ -83,7 +83,7 @@ public class MenuMangaer {
             }
         },
         
-        MENU_PROEZIONISTA(new String[]{"inserisci film", "cerca e modifica poiezione", "logout"}, true, "sezione proezionisti", "centro"){
+        MENU_PROIEZIONISTA(new String[]{"inserisci film", "cerca e modifica poiezione", "logout"}, true, "sezione proezionisti", "centro"){
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{INSERISCI_PROEZIONE,CERCA_FILM, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
@@ -175,7 +175,7 @@ public class MenuMangaer {
         // 6. GESTIONE PROIEZIONI (PROIEZIONISTA)
         // ======================================================
 
-        INSERISCI_PROEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "inserisci proiezione", "centro") {
+        INSERISCI_PROIEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "inserisci proiezione", "centro") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROEZIONISTA};}
             @Override public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[12];
