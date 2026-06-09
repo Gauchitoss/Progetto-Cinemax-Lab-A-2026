@@ -1,6 +1,7 @@
 package cinemax.model;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Proiezione {
@@ -10,7 +11,7 @@ public class Proiezione {
 // ======================================================
 
         private LocalDate data;
-        private String ora;
+        private LocalTime ora;
         private String titolo;
         private String genere;
         private String regista;
@@ -19,15 +20,17 @@ public class Proiezione {
         private int etaMin;
         private int postiSala;
         private double prezzo;
-        private static final DateTimeFormatter FORMATTA_DATA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        private static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        private static final DateTimeFormatter FORMATO_ORA = DateTimeFormatter.ofPattern("HH:mm");
 
 // ====================================================== 
 //                   costruttore
 // ======================================================
 
-        public Proiezione(LocalDate data, String ora, String titolo, String genere, String regista, int anno, int durata, int etaMin, double prezzo, int postiSala) {
+        public Proiezione(LocalDate data, String oraStr, String titolo, String genere, String regista, int anno, int durata, int etaMin, double prezzo, int postiSala) {
             this.data = data;
-            this.ora = ora;
+            this.ora = LocalTime.parse(oraStr.trim(), FORMATO_ORA);
             this.titolo = titolo;
             this.genere = genere;
             this.regista = regista;
@@ -47,20 +50,19 @@ public class Proiezione {
     public String getTitolo()     { return titolo; }
     public String getGenere()     { return genere; }
     public String getRegista()    { return regista; }
-
     public int getAnno()          { return anno; }
     public int getDurata()        { return durata; }
     public int getEtaMin()        { return etaMin; }
     public int getPostiSala()     { return postiSala; }
-
     public double getPrezzo()     { return prezzo; }
+    public String getOraString()  { return ora.format(FORMATO_ORA); }
 
 // ====================================================== 
 //                   metodi setter
 // ======================================================
 
     public void setData(LocalDate data)       { this.data = data; }
-    public void setOra(String ora)            { this.ora = ora; }
+    public void setOra(String oraStr          { this.ora = LocalTime.parse(oraStr.trim(), FORMATO_ORA); }
     public void setTitolo(String titolo)      { this.titolo = titolo; }
     public void setGenere(String genere)      { this.genere = genere; }
     public void setRegista(String regista)    { this.regista = regista; }
@@ -77,19 +79,19 @@ public class Proiezione {
         @Override
         public boolean equals(Object o){
             if(this==o) return true;
-            if(o==null || getClass() != o.getClass()) return false;
-            Proiezione that = (Proiezione) o;
-            return titolo.equals(that.titolo) && data.equals(that.data) && ora.equals(that.ora);
+            if(!(o instanceof Proiezione)) return false;
+            Proiezione that = (Proiezione) o;  
+            return titolo.equalsIgnoreCase(that.titolo) && data.equals(that.data) && ora.equals(that.ora);
         }
 
         @Override
         public int hashCode(){
-            return java.util.Objects.hash(titolo, data, ora);
+            return java.util.Objects.hash(titolo.toLowerCase(), data, ora);
         }
 
         @Override
         public String toString(){ //ritorna la proiezione
 
-            return titolo + " ( " + data.format(FORMATTA_DATA) + " : " + ora + " ) |" + prezzo + " euro | età consigliata "  + etaMin + ")";
+            return titolo + " ( " + data.format(FORMATO_DATA) + " : " + getOraString() + " ) |" + prezzo + " euro | età consigliata "  + etaMin + ")";
         }
 }
