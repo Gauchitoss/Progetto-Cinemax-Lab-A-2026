@@ -1,7 +1,6 @@
 package cinemax;
 
 import java.util.Scanner;
-
 import cinemax.controller.AutenticazioniController;
 import cinemax.controller.FilmController;
 import cinemax.util.GestorePrenotazione;
@@ -51,7 +50,7 @@ public class MenuManager {
         // ======================================================
 
         LOGIN(new String[]{"username", "password"}, false, "accesso", "centro"){
-            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI, MENU_PROEZIONISTA, MENU_BIGLIETTAIO, BENVENUTO};}
+            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI, MENU_PROIEZIONISTA, MENU_BIGLIETTAIO, BENVENUTO};}
             @Override 
             public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[getOpzioni().length];
@@ -84,7 +83,7 @@ public class MenuManager {
         },
         
         MENU_PROIEZIONISTA(new String[]{"inserisci film", "cerca e modifica poiezione", "logout"}, true, "sezione proezionisti", "centro"){
-            @Override public StatoMenu[] prossimi() {return new StatoMenu[]{INSERISCI_PROEZIONE,CERCA_FILM, BENVENUTO};}
+            @Override public StatoMenu[] prossimi() {return new StatoMenu[]{INSERISCI_PROIEZIONE,CERCA_FILM, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
 
@@ -106,7 +105,7 @@ public class MenuManager {
             public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[9];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; };
-                FilmController.gestisciCercaFlm(datiFormTmp);
+                FilmController.gestisciCercaFilmDaArray(datiFormTmp);
             }
         },
 
@@ -130,7 +129,7 @@ public class MenuManager {
                 String[] datiFormTmp = new String[getOpzioni().length];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; }
                 
-                boolean successo = GestorePrenotazione.inserisciPrenotazione(cinemax.controller.AutenticazioniController.utente, cinemax.controller.FilmController.filmSelezionatoTmp, Integer.parseInt(datiFormTmp[0]));
+                Boolean successo = GestorePrenotazione.inserisciPrenotazione(cinemax.controller.AutenticazioniController.utente, cinemax.controller.FilmController.filmSelezionatoTmp, Integer.parseInt(datiFormTmp[0]));
                 CineMax.stackRecord.pop();
                 
                 if (successo) {
@@ -176,7 +175,7 @@ public class MenuManager {
         // ======================================================
 
         INSERISCI_PROIEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "inserisci proiezione", "centro") {
-            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROEZIONISTA};}
+            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROIEZIONISTA};}
             @Override public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[12];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; };
@@ -185,7 +184,7 @@ public class MenuManager {
         },
     
         GESTISCI_PROIEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "modifica proiezione", "centro") {
-            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROEZIONISTA};}
+            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROIEZIONISTA};}
             @Override public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[12];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; };

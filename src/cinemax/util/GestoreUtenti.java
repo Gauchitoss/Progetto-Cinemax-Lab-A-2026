@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GestoreUtenti {
         
-        private static List<Utente> listaUtenti = new ArrayList<>();
+        private static final List<Utente> listaUtenti = new ArrayList<>();
         private static final String PERCORSO_FILE = "data/utenti.csv";
         
         
@@ -18,8 +18,6 @@ public class GestoreUtenti {
                inizializzaStaffDefault(); 
                return; // se il file non esiste, esce dal metodo
             }
-            
-            
             try (BufferedReader br = new BufferedReader ( new FileReader(file)) ){
                 br.readLine(); // legge e ignora l'intestazione del file
                 String riga;
@@ -35,7 +33,13 @@ public class GestoreUtenti {
                     String password = dati[3].trim(); // Già cifrata
                     String dataDiNascita = dati[4].equals("null") ? null : dati[4].trim();
                     String domicilio = dati[5].trim();
-                    String ruolo = dati[6].trim();
+                    Utente.Ruolo ruolo;
+                    try{
+                        ruolo = Utente.Ruolo.daString(dati[6].trim());
+                    } catch(IllegalArgumentException e){
+                        System.err.println("Ruolo sconosciuto, riga ignorata: " + riga);
+                        continue;
+                    }
                      
                     Utente u = creaUtente(nome, cognome, username, password, dataDiNascita, domicilio, ruolo);
                     if(u != null) listaUtenti.add(u);
@@ -46,13 +50,24 @@ public class GestoreUtenti {
 
         }
 
+        private static Utente creaUtente(String nome, String cognome, String username, String password, String dataDiNascita, String domicilio, Utente.Ruolo ruolo){
+            switch(ruolo){
+                case PROIEZIONISTA: 
+                    return new Proiezionisti(nome, cognome, username, password, dataDiNascita, domicilio);
+                case BIGLIETTAIO:
+                    return new Bigliettai(nome, cognome, username, password, dataDiNascita, domicilio);
+                case CLIENTE_REGISTRATO: 
+                    return new ClientiRegistrati(nome, cognome, username, password, dataDiNascita, domicilio);
+                default:
+                    System.err.println("Ruolo non gestibile nel CSV: " + ruolo);
+                    return null;
+            }
+        }
+
         
         public static void salvaUtenti() {
-            File folder = new File("data");
-            if (!folder.exists()) {
-                folder.mkdirs(); // crea la cartella se non esiste
-            }
-            try (PrintWriter pw = new PrintWriter(new FileWriter(percorsoFile))) {
+            new File("data").mkdir();
+            try (PrintWriter pw = new PrintWriter(new FileWriter(PERCORSO_FILE))) {
                 pw.println("nome|cognome|username|password|dataDiNascita|domicilio|ruolo"); // intestazione del file
                 for (Utente u : listaUtenti) {
                     pw.printf("%s|%s|%s|%s|%s|%s|%s%n", u.getNome(), u.getCognome(), u.getUsername(), u.getPassword(),u.getDataDiNascita(), u.getDomicilio(), u.getRuolo());
@@ -72,11 +87,11 @@ public class GestoreUtenti {
             listaUtenti.add(new Bigliettai("Staff", "tre", "bigliettaio3", Cifratura.cifra("pass5"), "1990-01-01", "Sede"));
             listaUtenti.add(new Bigliettai("Staff", "quattro", "bigliettaio4", Cifratura.cifra("pass6"), "1992-01-01", "Sede"));
             listaUtenti.add(new Bigliettai("Staff", "cinque", "bigliettaio5", Cifratura.cifra("pass7"), "1990-01-01", "Sede"));
-         
-         salvaUtenti(); // salva i dati iniziali nel file   
+            salvaUtenti(); // salva i dati iniziali nel file   
         }
         
         public static Utente login(String username, String password) {
+            if(username ==  null || password == null) return null;
             String passwordCifrata =  Cifratura.cifra(password); // cifra la password inserita
             for (Utente u : listaUtenti) {
                 if (u.getUsername().equals(username) && u.getPassword().equals(passwordCifrata)) {
@@ -87,20 +102,15 @@ public class GestoreUtenti {
         }
 
         public static void registraUtente(String nome, String cognome, String username, String password, String confermaPassword, String dataDiNascita, String domicilio)throws IllegalArgumentException{
-            
-            if(nome == null || cognome == null || username == null || password == null || dataDiNascita == null)
-                throw new IllegalArgumentException("tutti i campi obbligatori devono essere compilati");
-
+            if(nome == null || nome.isEmpty() || cognome == null || cognome.isEmpty() || username == null || username.isEmpty() || password == null || password.isEmpty() || dataDiNascita == null || dataDiNascita.isEmpty())
+                throw new IllegalArgumentException("Tutti i campi obbligatori devono essere compilati.");
             if(!password.equals(confermaPassword))
-                throw new IllegalArgumentException("le password inserite non corrispondono");
-
+                throw new IllegalArgumentException("Le password inserite non corrispondono.");
             for(Utente u : listaUtenti){
                 if(u.getUsername().equals(username))
-                    throw new IllegalArgumentException("username già esistente");
+                    throw new IllegalArgumentException("Username già esistente.");
             }
-
-            String domicilioEffettivo = (domicilio==null)? "N/D" : domicilio;
-
+            String domicilioEffettivo = (domicilio==null || domicilio.isEmpty())? "N/D" : domicilio;
             listaUtenti.add(new ClientiRegistrati(nome, cognome, username, Cifratura.cifra(confermaPassword), dataDiNascita, domicilioEffettivo));
             salvaUtenti();
         }
@@ -108,12 +118,17 @@ public class GestoreUtenti {
         //  Metodo di supporto per cercare un utente tramite username
         // ======================================================
         public static Utente cercaPerUsername(String username) {
+            if(username == null) return null;
             for (Utente u : listaUtenti) {
                 if (u.getUsername().equals(username)) {
                     return u;
                 }
             }
             return null; // Ritorna null se lo username non esiste
+        }
+
+        public static List<Utente> getListaUtenti(){
+            return new ArrayList<>(listaUtenti);
         }
 
 }

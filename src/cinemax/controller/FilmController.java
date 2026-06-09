@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import cinemax.CineMax;
 import cinemax.CostantiForm.Campi;
-import cinemax.MenuMangaer.StatoMenu;
+import cinemax.MenuManager.StatoMenu;
 import cinemax.model.Proiezione;
 import cinemax.util.GestoreProiezione;
 
@@ -31,21 +31,21 @@ public class FilmController {
     public static void gestisciCercaFilm(List<Proiezione> lista){
         try {
             CineMax.stackRecord.pop();
-            GestoreProiezione.leggiProiezioni();
             proiezioniTrovate = lista;
             paginaCorrente = 0;
-            aggiornaProezioniPerPagina();
+            aggiornaProiezioniPerPagina();
             CineMax.stackRecord.push(StatoMenu.VISUALIZZA_PROGRAMMAZAIONE);
         } catch (Exception e) {
-            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore generico durante il caricamento del programma";
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore generico durante il caricamento del programma.";
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         }
     }
+
     /**
      * 
      * @param datiFormTmp
      */
-    public static void gestisciCercaFlm(String[] datiFormTmp){
+    public static void gestisciCercaFilmDaArray(String[] datiFormTmp){
         try{
             CineMax.stackRecord.pop();
             GestoreProiezione.leggiProiezioni();
@@ -56,18 +56,18 @@ public class FilmController {
             LocalDate dataDa = parseData(datiFormTmp[Campi.CERCA_GIORNO_1.i], datiFormTmp[Campi.CERCA_MESE_1.i], datiFormTmp[Campi.CERCA_ANNO_1.i]);
             LocalDate dataA = parseData(datiFormTmp[Campi.CERCA_GIORNO_2.i], datiFormTmp[Campi.CERCA_MESE_2.i], datiFormTmp[Campi.CERCA_ANNO_2.i]);
             Double prezzoMax = null;
-            if(costo != null && !costo.isBlank()){
+            if(costo != null && !costo.isEmpty()){
                 try{
                     prezzoMax = Double.parseDouble(costo.replace(",", "."));
                 }catch (NumberFormatException e){
-                    cinemax.LogicaStatiManager.messaggioErroreCorrente = "formsto prezzo non valido.";
+                    cinemax.LogicaStatiManager.messaggioErroreCorrente = "Formsto prezzo non valido.";
                     CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
                     return;
                 }
             }    
             proiezioniTrovate = GestoreProiezione.cercaProiezione(titolo, dataDa, dataA, prezzoMax, genere);
             paginaCorrente = 0;
-            aggiornaProezioniPerPagina();
+            aggiornaProiezioniPerPagina();
             CineMax.stackRecord.push(StatoMenu.VISUALIZZA_PROGRAMMAZAIONE);
         }catch(DateTimeException e){
             cinemax.LogicaStatiManager.messaggioErroreCorrente = "Intervallo di date non valido.";
@@ -95,19 +95,18 @@ public class FilmController {
             }
             if(scelta.equalsIgnoreCase("N") && esistenzaPaginaSuccessiva){
                 paginaCorrente++;
-                aggiornaProezioniPerPagina();
+                aggiornaProiezioniPerPagina();
                 CineMax.stackRecord.pop();
                 CineMax.stackRecord.push(StatoMenu.VISUALIZZA_PROGRAMMAZAIONE);
                 return;
             }
             if(scelta.equalsIgnoreCase("B")&& esistenzaPrecedente){
                 paginaCorrente--;
-                aggiornaProezioniPerPagina();
+                aggiornaProiezioniPerPagina();
                 CineMax.stackRecord.pop();
                 CineMax.stackRecord.push(StatoMenu.VISUALIZZA_PROGRAMMAZAIONE);
                 return;
             }
-
             int numeroFilm = Integer.parseInt(scelta);
             filmSelezionatoTmp = filmPaginaTmp.get(numeroFilm-1);
             CineMax.stackRecord.push(StatoMenu.MENU_INFO_FILM);
@@ -128,7 +127,7 @@ public class FilmController {
             case "proiezionista": 
                 if("1".equals(scelta)) {
                     GestoreProiezione.elimina(filmSelezionatoTmp);
-                    cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Proiezione eliminata con successo";
+                    cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Proiezione eliminata con successo.";
                     CineMax.stackRecord.pop();
                     CineMax.stackRecord.pop();
                     CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);   
@@ -178,13 +177,12 @@ public class FilmController {
             cinemax.LogicaStatiManager.messaggioErroreCorrente = "Dati non validi, controlla numeri e date.";
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         } catch(Exception e){
-            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore generico del programma";
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore generico del programma.";
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);            
         }
     }
 
     public static void gestisciModificaProiezione(Proiezione p, String[] datiFormTmp){
-    
         // cntrollare se salava anche in modod corretto su file o meno
         try {
             GestoreProiezione.leggiProiezioni();

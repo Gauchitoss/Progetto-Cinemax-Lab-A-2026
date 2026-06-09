@@ -17,7 +17,7 @@ import java.time.DateTimeException;
 //                   Campi
 // ======================================================
 
-        private static List<Proiezione> listaProiezioni = new ArrayList<>(); //lista per memorizzare le proiezioni lette dal file proiezioni.csv
+        private static final List<Proiezione> listaProiezioni = new ArrayList<>(); //lista per memorizzare le proiezioni lette dal file proiezioni.csv
         private static final String FILE_PATH = "data/proiezioni.csv"; // persorso del file proiezioni.csv
         private static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -69,7 +69,7 @@ import java.time.DateTimeException;
                         int postiSala = Integer.parseInt(colonna[9]);
                         listaProiezioni.add(new Proiezione(data, ora, colonna[2], colonna[3], colonna[4], anno, durata, etaMin, prezzo, postiSala)); // aggiunta la proiezione alla lista in memoria
                     } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DateTimeException e){
-                        System.err.println("Salto riga corrotta " + riga);
+                        System.err.println("Salto riga corrotta: " + riga);
                     }
                 }
             } catch (IOException e) {
@@ -104,11 +104,11 @@ import java.time.DateTimeException;
             .filter(p -> {
                 LocalDate data = p.getData();
                 if(dataDa != null && dataA == null)
-                    return d.isEqual(dataDa);
+                    return data.isEqual(dataDa);
                 if(dataDa != null && dataA != null)
-                    return !d.isBefore(dataDa) && !d.isAfter(dataA);
+                    return !data.isBefore(dataDa) && !data.isAfter(dataA);
                 if(dataDa == null && dataA != null)
-                    return !d.isAfter(dataA);
+                    return !data.isAfter(dataA);
                 return true;
             })
             .collect(Collectors.toList());
@@ -119,7 +119,7 @@ import java.time.DateTimeException;
 // ======================================================
         public static List<Proiezione> proiezioniDelGiorno(){
             LocalDate dataOggi = LocalDate.now();
-            return cercaProiezione(null, oggi, oggi, null, null);
+            return cercaProiezione(null, dataOggi, dataOggi, null, null);
         }
 
         public static List<Proiezione> getListaProiezioni(){

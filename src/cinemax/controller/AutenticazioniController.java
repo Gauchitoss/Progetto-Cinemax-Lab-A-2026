@@ -3,7 +3,7 @@ package cinemax.controller;
 import cinemax.CineMax;
 import cinemax.LogicaStatiManager;
 import cinemax.CostantiForm.Campi;
-import cinemax.MenuMangaer.StatoMenu;
+import cinemax.MenuManager.StatoMenu;
 import cinemax.model.Utente;
 import cinemax.util.GestoreUtenti;
 
@@ -21,7 +21,7 @@ public class AutenticazioniController {
             return;
         }
         switch (u.getRuolo()) {
-            case PROIEZIONISTA:       CineMax.stackRecord.push(StatoMenu.MENU_PROEZIONISTA);  break;
+            case PROIEZIONISTA:       CineMax.stackRecord.push(StatoMenu.MENU_PROIEZIONISTA);  break;
             case CLIENTE_REGISTRATO:  CineMax.stackRecord.push(StatoMenu.MENU_CLIENTI);       break;
             case BIGLIETTAIO:         CineMax.stackRecord.push(StatoMenu.MENU_BIGLIETTAIO);   break;
             default:

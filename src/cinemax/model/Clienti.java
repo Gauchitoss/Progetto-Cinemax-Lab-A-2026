@@ -23,7 +23,7 @@ public abstract class Clienti extends Utente{
 // ======================================================
 
     public Clienti(String nome, String cognome, String username, String password, String domicilio, Ruolo ruolo) {
-        super(nome, cognome, username, password, domicilio, ruolo);
+        super(nome, cognome, username, password, null, domicilio, ruolo);
     }
     
 }

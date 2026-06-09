@@ -1,7 +1,7 @@
 package cinemax;
 
 import java.util.Stack;
-import cinemax.MenuMangaer.StatoMenu;
+import cinemax.MenuManager.StatoMenu;
 import cinemax.model.Utente;
 import cinemax.util.GestorePrenotazione;
 import cinemax.util.GestoreProiezione;
@@ -21,7 +21,7 @@ public class CineMax {
      * Stack globale che mantiene la cronologia di navigazione dei menu.
      * Permette di implementare logiche di push (avanti) e pop (indietro).
      */
-    public static Stack<StatoMenu> stackRecord = new Stack<>();
+    public static final Stack<StatoMenu> stackRecord = new Stack<>();
     public static Utente.Ruolo ruolo = Utente.Ruolo.CLIENTE_OSPITE;
     public static void main(String[] args) {
 
@@ -32,27 +32,15 @@ public class CineMax {
         }catch(Exception e){
             System.out.println("Errore durante il caricamento dei file CSV: "+ e.getMessage());
         }
-
         stackRecord.push(StatoMenu.BENVENUTO);
-        StatoMenu statoAttuale;
-
-        boolean running = true;
-
-        while (running) {   
-            // Se lo stack si svuota accidentalmente, previene il crash e chiude pulito
-            if(stackRecord.isEmpty()){
-                System.out.println("Chiusura sistema...");
-                break;
-            }
+        while (!stackRecord.isEmpty()) {   
             // Prendi stato attuale
-            statoAttuale = stackRecord.peek();
-
+            StatoMenu statoAttuale = stackRecord.peek();
             // Renderizza la schermata
             CinemaxTUI.renderizzaMenu(statoAttuale);
-
             // Esegue le azioni associate allo stato attuale
             statoAttuale.eseguiLogicaAssociata();
-
         }
+        System.out.println("Chiusura sistema...");
     }
 }

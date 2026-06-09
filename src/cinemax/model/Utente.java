@@ -36,7 +36,7 @@ public abstract class Utente {
 			throw new IllegalArgumentException("Ruolo sconosciuto: " + s);
 		}
 
-		@overraide
+		@Override 
 		public String toString() {return etichetta;}
 	}
 // ======================================================
@@ -115,8 +115,9 @@ public abstract class Utente {
 // ======================================================
 //                   UTILI
 // ======================================================
-}
-@override
-public String toString(){
-	return String.format("[%s] %s %s (%s)", ruolo, nome, cognome, username);
+
+	@Override
+	public String toString(){
+		return String.format("[%s] %s %s (%s)", ruolo, nome, cognome, username);
+	}
 }

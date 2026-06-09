@@ -11,7 +11,7 @@ public class Cifratura {
 		try { 
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			//uso lo standard SHA-256
-			byte[] array= md.digest(password.getBytes(StandardCharsets.UTF_8));
+			byte[] hash= md.digest(password.getBytes(StandardCharsets.UTF_8));
 			// creo un array che conterrà un insieme di 32 byte 
 			StringBuilder sb= new StringBuilder();
 			for (byte b: hash) {

@@ -46,7 +46,7 @@ public class Proiezione {
 // ======================================================
 
     public LocalDate getData()    { return data; }
-    public String getOra()        { return ora; }
+    public LocalTime getOra()        { return ora; }
     public String getTitolo()     { return titolo; }
     public String getGenere()     { return genere; }
     public String getRegista()    { return regista; }
@@ -62,7 +62,7 @@ public class Proiezione {
 // ======================================================
 
     public void setData(LocalDate data)       { this.data = data; }
-    public void setOra(String oraStr          { this.ora = LocalTime.parse(oraStr.trim(), FORMATO_ORA); }
+    public void setOra(String oraStr)          { this.ora = LocalTime.parse(oraStr.trim(), FORMATO_ORA); }
     public void setTitolo(String titolo)      { this.titolo = titolo; }
     public void setGenere(String genere)      { this.genere = genere; }
     public void setRegista(String regista)    { this.regista = regista; }

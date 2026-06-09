@@ -2,12 +2,11 @@ package cinemax.controller;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import cinemax.CineMax;
 import cinemax.CostantiForm.Campi;
-import cinemax.MenuMangaer.StatoMenu;
+import cinemax.MenuManager.StatoMenu;
 import cinemax.model.Prenotazione;
 import cinemax.util.GestorePrenotazione;
 
@@ -32,7 +31,7 @@ public class PrenotazioniController {
     public static int paginaCorrente = 0;
     public static List<Prenotazione> prenotazioniTrovate = new ArrayList<>();
     public static Prenotazione prenotazioneSelezionataTmp;
-    private static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
     /**
      * Carica e mostra tutte le prenotazioni effettuate dall'utente attualmente loggato.
      * Inizializza la paginazione e cambia lo stato del menu in MIE_PRENOTAZIONI.
@@ -45,7 +44,7 @@ public class PrenotazioniController {
             aggiornaPrenotazioniPerPagina();
             CineMax.stackRecord.push(StatoMenu.MIE_PRENOTAZIONI);
         } catch (Exception e) {
-            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore durante il caricamento delle prenotazioni";
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore durante il caricamento delle prenotazioni.";
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         }
     }
@@ -133,10 +132,15 @@ public class PrenotazioniController {
         try {
             int numBiglietti = Integer.parseInt(datiFormTmp[0]);
             // Effettua la vendita registrandola a nome dell'account staff loggato
-            Prenotazione nuova = GestorePrenotazione.inserisciPrenotazione(AutenticazioniController.utente, FilmController.filmSelezionatoTmp, numBiglietti);
-            CineMax.stackRecord.pop(); // Rimuovo il form dalla cronologia
-            cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Vendita diretta completata con successo. Codice: " + nuova.getCodiceUnivoco();
-            CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);
+            Boolean successo = GestorePrenotazione.inserisciPrenotazione(AutenticazioniController.utente, FilmController.filmSelezionatoTmp, numBiglietti);
+            if(successo){
+                java.util.List<Prenotazione> lista = GestorePrenotazione.getListaPrenotazioni();
+                int ultimo = lista.size() - 1;
+                Prenotazione nuova = lista.get(ultimo);
+                CineMax.stackRecord.pop(); // Rimuovo il form dalla cronologia
+                cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Vendita diretta completata con successo. Codice: " + nuova.getCodiceUnivoco();
+                CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);
+            }
         } catch (NumberFormatException e) {
             CineMax.stackRecord.pop(); // Rimuovo il form
             cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore: Devi inserire un numero valido di biglietti.";
@@ -147,7 +151,7 @@ public class PrenotazioniController {
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         } catch (Exception e){
             CineMax.stackRecord.pop();
-            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore imprevisto0: " + e.getMessage();
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore imprevisto: " + e.getMessage();
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         }
     }
