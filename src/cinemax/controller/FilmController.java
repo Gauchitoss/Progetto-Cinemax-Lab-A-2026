@@ -24,6 +24,12 @@ public class FilmController {
     public static List<Proiezione> proiezioniTrovate = new ArrayList<>();
     public static Proiezione filmSelezionatoTmp;
 
+    private static final int ANNO_MIN = 1888;
+    private static final int ANNO_MAX_FUTURO = 5;
+    private static final int DURATA_MAX = 600;
+    private static final int ETA_MAX = 21;
+    private static final double PREZZO_MAX = 999.99;
+    private static final int POSTI_MAX = 200;
     /**
      * RICERCA TRAMITE UN SOLO PARAMETRO SPECIFO PROGRAMMAZIONE
      * @param dataOggi
@@ -121,7 +127,14 @@ public class FilmController {
         String ruolo = CineMax.ruolo.getEtichetta();
         switch(ruolo){
             case "cliente registrato": 
-                if("1".equals(scelta)) CineMax.stackRecord.push(StatoMenu.PRENOTA_POSTI);    
+                if("1".equals(scelta)) {
+                    if(filmSelezionatoTmp.getData().isBefore(LocalDate.now())){
+                        cinemax.LogicaStatiManager.messaggioErroreCorrente = "Impossibile prenotare: la proiezione è già passata.";
+                        CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+                    }
+                    else
+                        CineMax.stackRecord.push(StatoMenu.PRENOTA_POSTI);  
+                }  
                 else if("2".equals(scelta)) CineMax.stackRecord.pop();    
                 break;
             case "proiezionista": 
@@ -138,8 +151,14 @@ public class FilmController {
                     CineMax.stackRecord.pop();
                 break;
             case "bigliettaio":
-                if("1".equals(scelta))
+                if("1".equals(scelta)){
+                    if(filmSelezionatoTmp.getData().isBefore(LocalDate.now())){
+                        cinemax.LogicaStatiManager.messaggioErroreCorrente = "Impossibile vendere biglietti: la proiezione è già passata.";
+                        CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+                    }
+                else
                     CineMax.stackRecord.push(StatoMenu.VENDITA_DIRETTA);
+                }
                 else if("2".equals(scelta))
                     CineMax.stackRecord.pop();
                 break;
@@ -152,6 +171,42 @@ public class FilmController {
      * una nuova Proiezione. Gestisce il parsing assicurandosi che l'utente non
      * abbia inserito testo al posto di numeri.
      */
+
+    private static void validaDatiProiezione(int annoProduzione, int durata, int etaMinima, double costo, int posti, LocalDate dataProiezione) {
+        int annoCorrente = LocalDate.now().getYear();
+
+        if(annoProduzione < ANNO_MIN)
+            throw new IllegalArgumentException("Anno di produzione non valido: il cinema esiste dal " + ANNO_MIN + ".");
+        if(annoProduzione > annoCorrente + ANNO_MAX_FUTURO)
+            throw new IllegalArgumentException("Anno di produzione non può superare " + (annoCorrente + ANNO_MAX_FUTURO) + ".");
+        if(durata <= 0)
+            throw new IllegalArgumentException("La durata deve essere maggiore di 0 minuti.");
+        if(durata > DURATA_MAX)
+            throw new IllegalArgumentException("La durata non può superare " + DURATA_MAX + " minuti.");
+        if(etaMinima < 0)
+            throw new IllegalArgumentException("L'età consigliata non può essere negativa.");
+        if(etaMinima > ETA_MAX)
+            throw new IllegalArgumentException("L'età consigliata non può superare " + ETA_MAX + " anni.");
+        if(costo < 0)
+            throw new IllegalArgumentException("Il prezzo non può essere negativo.");
+        if(costo > PREZZO_MAX)
+            throw new IllegalArgumentException("Il prezzo non può superare " + PREZZO_MAX + " euro.");
+        if(posti <= 0)
+            throw new IllegalArgumentException("I posti in sala devono essere maggiori di 0.");
+        if(posti > POSTI_MAX)
+            throw new IllegalArgumentException("I posti in sala non possono superare " + POSTI_MAX + ".");
+        if(dataProiezione.isBefore(LocalDate.now()))
+            throw new IllegalArgumentException("La data della proiezione non può essere nel passato.");
+    }
+
+    private static void validaRegista(String regista) {
+        if(regista == null || regista.trim().isEmpty())
+            throw new IllegalArgumentException("Il nome del regista è obbligatorio.");
+        if(!regista.matches("[\\p{L} '.\\-]+"))
+            throw new IllegalArgumentException("Il nome del regista può contenere solo lettere, spazi, apostrofi e trattini.");
+    }
+
+
     public static void gestisciInserimentoProiezione(String[] datiFormTmp){
         try {
             GestoreProiezione.leggiProiezioni();
@@ -167,13 +222,25 @@ public class FilmController {
             String  mese            = datiFormTmp[Campi.ADD_MESE.i];
             String  anno            = datiFormTmp[Campi.ADD_ANNO.i];
             String  orario          = datiFormTmp[Campi.ADD_ORA.i];
+            if(titolo == null || titolo.trim().isEmpty())
+                throw new IllegalArgumentException("Il titolo è obbligatorio.");
+            validaRegista(regista);
+            int annoProduzioneInt = Integer.parseInt(annoProduzione);
+            int durataInt = Integer.parseInt(durata);
+            int etaMinimaInt = Integer.parseInt(etaMinima);
+            double costoDouble = Double.parseDouble(costo.replace(",", "."));
+            int postiInt = Integer.parseInt(posti);
             LocalDate data = LocalDate.of(Integer.parseInt(anno), Integer.parseInt(mese), Integer.parseInt(giorno));
+            validaDatiProiezione(annoProduzioneInt, durataInt, etaMinimaInt, costoDouble, postiInt, data);
             Proiezione nuovaProiezione = new Proiezione(data, orario, titolo, genere, regista, Integer.parseInt(annoProduzione), Integer.parseInt(durata), Integer.parseInt(etaMinima), Double.parseDouble(costo.replace(",", ".")), Integer.parseInt(posti));
             GestoreProiezione.inserisci(nuovaProiezione);
             CineMax.stackRecord.pop();
             cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Proiezione inserita.";
             CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);
-        } catch (NumberFormatException | DateTimeException e) {
+        } catch (IllegalArgumentException e) {
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = e.getMessage();
+            CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+        } catch (DateTimeException e) {
             cinemax.LogicaStatiManager.messaggioErroreCorrente = "Dati non validi, controlla numeri e date.";
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         } catch(Exception e){
