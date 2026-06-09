@@ -1,5 +1,6 @@
 package cinemax.controller;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +29,13 @@ public class FilmController {
      * RICERCA TRAMITE UN SOLO PARAMETRO SPECIFO PROGRAMMAZIONE
      * @param dataOggi
      */
-    public static void gestisciCercaFilm(List<Proiezione> dataOggi){
+    public static void gestisciCercaFilm(List<Proiezione> lista){
         try {
             CineMax.stackRecord.pop();
             GestoreProiezione.leggiProiezioni();
-
-            proiezioniTrovate = dataOggi;
-            aggiornaProezioniPerPagina();
+            proiezioniTrovate = lista;
             paginaCorrente = 0;
+            aggiornaProezioniPerPagina();
             CineMax.stackRecord.push(StatoMenu.VISUALIZZA_PROGRAMMAZAIONE);
         } catch (Exception e) {
             cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore generico durante il caricamento del programma";
@@ -206,30 +206,21 @@ public class FilmController {
         try {
             GestoreProiezione.leggiProiezioni();
 
-            String  titolo          = datiFormTmp[Campi.ADD_TITOLO.i];
-            String  genere          = datiFormTmp[Campi.ADD_GENERE.i];
-            String  regista         = datiFormTmp[Campi.ADD_REGISTA.i];
-            String  annoProduzione  = datiFormTmp[Campi.ADD_ANNO_PRODUZIONE.i];
-            String  durata          = datiFormTmp[Campi.ADD_DURATA.i];
-            String  etaMinima       = datiFormTmp[Campi.ADD_ETA.i];
-            String  costo           = datiFormTmp[Campi.ADD_COSTO.i];
-            String  posti           = datiFormTmp[Campi.ADD_POSTI.i];
-            String  giorno          = datiFormTmp[Campi.ADD_GIORNO.i];
-            String  mese            = datiFormTmp[Campi.ADD_MESE.i];
-            String  anno            = datiFormTmp[Campi.ADD_ANNO.i];
-            String  orario          = datiFormTmp[Campi.ADD_ORA.i];
-
-            if(titolo != null) p.setTitolo(titolo);
-            if(genere!= null) p.setGenere(genere);
-            if(regista != null) p.setRegista(regista);
-            if(annoProduzione != null) p.setAnno(Integer.parseInt(annoProduzione));
-            if(durata != null) p.setDurata(Integer.parseInt(durata));
-            if(etaMinima != null) p.setEtaMin(Integer.parseInt(etaMinima));
-            if(posti != null) p.setPostiSala(Integer.parseInt(posti));
-            if(etaMinima != null) p.setPrezzo(Double.parseDouble(costo.replace(",", ".")));
-            // TODO: modifica data
-            if(orario !=null) p.setOra(orario);
-
+            if(datiFormTmp[Campi.ADD_TITOLO.i] != null) p.setTitolo(datiFormTmp[Campi.ADD_TITOLO.i]);
+            if(datiFormTmp[Campi.ADD_GENERE.i] != null) p.setGenere(datiFormTmp[Campi.ADD_GENERE.i]);
+            if(datiFormTmp[Campi.ADD_REGISTA.i] != null) p.setRegista(datiFormTmp[Campi.ADD_REGISTA.i]);
+            if(datiFormTmp[Campi.ADD_ANNO_PRODUZIONE.i] != null) p.setAnno(Integer.parseInt(datiFormTmp[Campi.ADD_ANNO_PRODUZIONE.i]));
+            if(datiFormTmp[Campi.ADD_DURATA.i] != null) p.setDurata(Integer.parseInt(datiFormTmp[Campi.ADD_DURATA.i]));
+            if(datiFormTmp[Campi.ADD_ETA.i] != null) p.setEtaMin(Integer.parseInt(datiFormTmp[Campi.ADD_ETA.i]));
+            if(datiFormTmp[Campi.ADD_COSTO.i] != null) p.setPrezzo(Double.parseDouble(datiFormTmp[Campi.ADD_COSTO.i].replace(",", ".")));
+            if(datiFormTmp[Campi.ADD_POSTI.i] != null) p.setPostiSala(Integer.parseInt(datiFormTmp[Campi.ADD_POSTI.i]));
+            if(datiFormTmp[Campi.ADD_ORA.i] != null) p.setOra(datiFormTmp[Campi.ADD_ORA.i]);
+            String giorno = datiFormTmp[Campi.ADD_GIORNO.i];
+            String mese = datiFormTmp[Campi.ADD_MESE.i];
+            String anno = datiFormTmp[Campi.ADD_ANNO.i];
+            if(giorno != null && mese != null && anno != null){
+                p.setData(LocalDate.of(Integer.parseInt(anno), Integer.parseInt(mese), Integer.parseInt(giorno)));
+            }
             GestoreProiezione.salvaSuFile(); //non funziona
             CineMax.stackRecord.pop();
         }catch(Exception e){
