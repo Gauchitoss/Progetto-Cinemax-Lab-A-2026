@@ -37,6 +37,7 @@ public class MenuManager {
             public void eseguiLogicaAssociata(){
                 String scelta = input.nextLine();
                 if(scelta.equals("4"))  System.exit(0);
+                LogicaStatiManager.messaggioErroreCorrente = "Spiacenti, si è verificato un errore.";
                 LogicaStatiManager.statoMenuSuccessivo(scelta);
             }
         },
@@ -54,6 +55,7 @@ public class MenuManager {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI, MENU_PROIEZIONISTA, MENU_BIGLIETTAIO, BENVENUTO};}
             @Override 
             public void eseguiLogicaAssociata(){
+                LogicaStatiManager.messaggioErroreCorrente = "Spiacenti, si è verificato un errore.";
                 String[] datiFormTmp = new String[getOpzioni().length];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; };
                 AutenticazioniController.gestisciLogin(datiFormTmp);
@@ -64,6 +66,7 @@ public class MenuManager {
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{LOGIN, BENVENUTO};}
             @Override 
             public void eseguiLogicaAssociata(){
+                LogicaStatiManager.messaggioErroreCorrente = "Spiacenti, si è verificato un errore.";
                 String[] datiFormTmp = new String[getOpzioni().length];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; };
                 AutenticazioniController.gestisciRegistrazione(datiFormTmp);
@@ -77,6 +80,7 @@ public class MenuManager {
         MENU_CLIENTI( new String[]{"cerca film", "mie prenotazioni", "logout"}, true, "cinemax", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{CERCA_FILM, MIE_PRENOTAZIONI, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){
+                LogicaStatiManager.messaggioErroreCorrente = "Spiacenti, si è verificato un errore.";
                 String scelta = input.nextLine();
                 if(scelta.equals("2")) cinemax.controller.PrenotazioniController.gestisciMiePrenotazioni();
                 else LogicaStatiManager.statoMenuSuccessivo(scelta);
@@ -85,12 +89,15 @@ public class MenuManager {
         
         MENU_PROIEZIONISTA(new String[]{"inserisci film", "cerca e modifica poiezione", "logout"}, true, "sezione proezionisti", "centro"){
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{INSERISCI_PROIEZIONE,CERCA_FILM, BENVENUTO};}
-            @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
+            @Override public void eseguiLogicaAssociata(){
+                LogicaStatiManager.messaggioErroreCorrente = "Spiacenti, si è verificato un errore.";
+                LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
         },
 
         MENU_BIGLIETTAIO(new String[]{"proiezioni del giorno", "cerca prenotazione", "cerca proiezione", "logout"}, true, "sezione bigliettaio", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{VISUALIZZA_PROGRAMMAZAIONE, CERCA_PRENOTAZIONE, CERCA_FILM, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){
+                LogicaStatiManager.messaggioErroreCorrente = "Spiacenti, si è verificato un errore.";
                 String scelta = input.nextLine();
                 if(scelta.equals("1")) FilmController.gestisciCercaFilm(GestoreProiezione.proiezioniDelGiorno());
                 else LogicaStatiManager.statoMenuSuccessivo(scelta);}
@@ -129,15 +136,24 @@ public class MenuManager {
             @Override public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[getOpzioni().length];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; }
-                
-                Boolean successo = GestorePrenotazione.inserisciPrenotazione(cinemax.controller.AutenticazioniController.utente, cinemax.controller.FilmController.filmSelezionatoTmp, Integer.parseInt(datiFormTmp[0]));
-                CineMax.stackRecord.pop();
-                
-                if (successo) {
-                    LogicaStatiManager.messaggioConfermaCorrente = "Prenotazione completata con successo!";
-                    CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);
-                } else {
-                    LogicaStatiManager.messaggioErroreCorrente = "Errore durante la prenotazione: posti insufficienti.";
+                try {
+                    int numBiglietti = Integer.parseInt(datiFormTmp[0]);
+                    Boolean successo = GestorePrenotazione.inserisciPrenotazione(
+                        cinemax.controller.AutenticazioniController.utente,
+                        cinemax.controller.FilmController.filmSelezionatoTmp,
+                        numBiglietti);
+                    CineMax.stackRecord.pop();
+                    if (successo) {
+                        LogicaStatiManager.messaggioConfermaCorrente = "Prenotazione completata con successo!";
+                        CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);
+                    }
+                } catch(NumberFormatException e) {
+                    CineMax.stackRecord.pop();
+                    LogicaStatiManager.messaggioErroreCorrente = "Inserisci un numero valido di biglietti.";
+                    CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+                } catch(IllegalArgumentException | IllegalStateException e) {
+                    CineMax.stackRecord.pop();
+                    LogicaStatiManager.messaggioErroreCorrente = e.getMessage();
                     CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
                 }
             }
@@ -156,13 +172,20 @@ public class MenuManager {
                 PrenotazioniController.gestisciDettaglioPrenotazione(input.nextLine());
             }
         },
-        
+
         CERCA_PRENOTAZIONE(new String[]{"nome","cognome","titolo","dataInizio","dataFine","username","codice prenotazione"}, false, "cerca una prenotazione", "centro") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_BIGLIETTAIO};}
             @Override public void eseguiLogicaAssociata(){
                 String[] datiFormTmp =new String[11];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; }
                 cinemax.controller.PrenotazioniController.gestisciCercaPrenotazione(datiFormTmp);
+            }
+        },
+
+        CERCA_PRENOTAZIONE_RISULTATI(new String[]{}, true, "risultati prenotazioni", "sinistra") {
+            @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_BIGLIETTAIO};}
+            @Override public void eseguiLogicaAssociata(){
+                cinemax.controller.PrenotazioniController.gestisciVisualizzaPrenotazione(input.nextLine(), this);
             }
         },
 
@@ -209,6 +232,7 @@ public class MenuManager {
             public void eseguiLogicaAssociata(){
                 input.nextLine();
                 CineMax.stackRecord.pop();
+                LogicaStatiManager.messaggioErroreCorrente = "Spiacenti, si è verificato un errore.";
             }
         },
 
