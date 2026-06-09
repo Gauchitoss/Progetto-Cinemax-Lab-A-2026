@@ -4,7 +4,6 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import cinemax.CineMax;
 import cinemax.CostantiForm.Campi;
 import cinemax.MenuMangaer.StatoMenu;
@@ -52,63 +51,56 @@ public class FilmController {
             GestoreProiezione.leggiProiezioni();
 
             String  titolo          = datiFormTmp[Campi.CERCA_TITOLO.i];
-            String  giornoInizio    = datiFormTmp[Campi.CERCA_GIORNO_1.i];
-            String  meseInizio      = datiFormTmp[Campi.CERCA_MESE_1.i];
-            String  annoInizio      = datiFormTmp[Campi.CERCA_ANNO_1.i];
-            String  giornoFine      = datiFormTmp[Campi.CERCA_GIORNO_2.i];
-            String  meseFine        = datiFormTmp[Campi.CERCA_MESE_2.i];
-            String  annoFine        = datiFormTmp[Campi.CERCA_ANNO_2.i];
-            String  costo           = datiFormTmp[Campi.CERCA_COSTO.i];
             String  genere          = datiFormTmp[Campi.CERCA_GENERE.i];
-
-            proiezioniTrovate = GestoreProiezione.cercaProiezione(titolo, giornoInizio, meseInizio, annoInizio, giornoFine, meseFine, annoFine, costo, genere);
-            aggiornaProezioniPerPagina();
-            // Reset della pagina inziale
+            String  costo           = datiFormTmp[Campi.CERCA_COSTO.i];
+            LocalDate dataDa = parseData(datiFormTmp[Campi.CERCA_GIORNO_1.i], datiFormTmp[Campi.CERCA_MESE_1.i], datiFormTmp[Campi.CERCA_ANNO_1.i]);
+            LocalDate dataA = parseData(datiFormTmp[Campi.CERCA_GIORNO_2.i], datiFormTmp[Campi.CERCA_MESE_2.i], datiFormTmp[Campi.CERCA_ANNO_2.i]);
+            Double prezzoMax = null;
+            if(costo != null && !costo.isBlank()){
+                try{
+                    prezzoMax = Double.parseDouble(costo.replace(",", "."));
+                }catch (NumberFormatException e){
+                    cinemax.LogicaStatiManager.messaggioErroreCorrente = "formsto prezzo non valido.";
+                    CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+                    return;
+                }
+            }    
+            proiezioniTrovate = GestoreProiezione.cercaProiezione(titolo, dataDa, dataA, prezzoMax, genere);
             paginaCorrente = 0;
-            // Cambiamento stato
+            aggiornaProezioniPerPagina();
             CineMax.stackRecord.push(StatoMenu.VISUALIZZA_PROGRAMMAZAIONE);
-        }catch(IllegalArgumentException e){
-            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore durante la ricerca di proiezioni";
+        }catch(DateTimeException e){
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Intervallo di date non valido.";
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         }
     }
 
     public static void aggiornaProezioniPerPagina(){
-
         filmPaginaTmp.clear();
-
         esistenzaPaginaSuccessiva = false;
         esistenzaPrecedente = false;
-
         int indiceInizio = ELEMENTI_PAGINA * paginaCorrente;
-        int indiceFine = indiceInizio + ELEMENTI_PAGINA;
-
-        for(int i = indiceInizio; i < indiceFine && i <proiezioniTrovate.size(); i++){
+        for(int i = indiceInizio; i < indiceInizio + ELEMENTI_PAGINA && i <proiezioniTrovate.size(); i++){
             filmPaginaTmp.add(proiezioniTrovate.get(i));
         }
-
         if(indiceInizio + ELEMENTI_PAGINA < proiezioniTrovate.size()) esistenzaPaginaSuccessiva = true;
         if(paginaCorrente > 0) esistenzaPrecedente = true;
     }
     
     public static void gestisciVisualizzaProiezione(String scelta){
         try{
-           if(scelta.trim().isEmpty()){
+           if(scelta.trim().isEmpty() || scelta == null || scelta.equalsIgnoreCase("C")){
                 CineMax.stackRecord.pop();
                 return;
             }
-            if(scelta.toUpperCase().equals("C")){
-                CineMax.stackRecord.pop();
-                return;
-            }
-            if(scelta.toUpperCase().equals("N") && esistenzaPaginaSuccessiva){
+            if(scelta.equalsIgnoreCase("N") && esistenzaPaginaSuccessiva){
                 paginaCorrente++;
                 aggiornaProezioniPerPagina();
                 CineMax.stackRecord.pop();
                 CineMax.stackRecord.push(StatoMenu.VISUALIZZA_PROGRAMMAZAIONE);
                 return;
             }
-            if(scelta.toUpperCase().equals("B")&& esistenzaPrecedente){
+            if(scelta.equalsIgnoreCase("B")&& esistenzaPrecedente){
                 paginaCorrente--;
                 aggiornaProezioniPerPagina();
                 CineMax.stackRecord.pop();
@@ -120,46 +112,40 @@ public class FilmController {
             filmSelezionatoTmp = filmPaginaTmp.get(numeroFilm-1);
             CineMax.stackRecord.push(StatoMenu.MENU_INFO_FILM);
     
-        }catch(NumberFormatException e){
-            // TODO gestione
-        }catch(ArrayIndexOutOfBoundsException e){
-            // TODO gestione
-        }catch(Exception e){
-
+        }catch(NumberFormatException | IndexOutOfBoundsException e){
+            //scelta non valida, schermata rirendirizzata
         }
 
     }
 
     public static void gestisciMenuInfoFilm(String scelta){
-        try{
-            String ruolo = CineMax.ruolo;
-            
-            if(ruolo.equals("cliente registrato")){
-                switch(scelta){
-                    case "1": CineMax.stackRecord.push(StatoMenu.PRENOTA_POSTI);    break;
-                    case "2": CineMax.stackRecord.pop();    break; 
+        String ruolo = CineMax.ruolo.getEtichetta();
+        switch(ruolo){
+            case "cliente registrato": 
+                if("1".equals(scelta)) CineMax.stackRecord.push(StatoMenu.PRENOTA_POSTI);    
+                else if("2".equals(scelta)) CineMax.stackRecord.pop();    
+                break;
+            case "proiezionista": 
+                if("1".equals(scelta)) {
+                    GestoreProiezione.elimina(filmSelezionatoTmp);
+                    cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Proiezione eliminata con successo";
+                    CineMax.stackRecord.pop();
+                    CineMax.stackRecord.pop();
+                    CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);   
                 }
-            }else if(ruolo.equals("proiezionista")){
-                switch(scelta){
-                    case "1": {
-                        GestoreProiezione.elimina(filmSelezionatoTmp);
-                        // TODO aggiungere conferma di rimozione  
-                        CineMax.stackRecord.pop(); // singolo back per uscire pagina film, 
-                        // TODO aggiornare la schemrata dei film senza il film appena cancelato
-                    } break;
-                    case "2": CineMax.stackRecord.push(StatoMenu.GESTISCI_PROEZIONE);   break;
-                    case "3": CineMax.stackRecord.pop();    break; 
-                }
-            } else if(ruolo.equals("bigliettaio")){
-                switch(scelta){
-                    case "1": CineMax.stackRecord.push(StatoMenu.VENDITA_DIRETTA);   break;
-                    case "2": CineMax.stackRecord.pop();   break; 
-                }
-            }else
+                else if("2".equals(scelta))
+                    CineMax.stackRecord.push(StatoMenu.GESTISCI_PROIEZIONE);
+                else if("3".equals(scelta))
+                    CineMax.stackRecord.pop();
+                break;
+            case "bigliettaio":
+                if("1".equals(scelta))
+                    CineMax.stackRecord.push(StatoMenu.VENDITA_DIRETTA);
+                else if("2".equals(scelta))
+                    CineMax.stackRecord.pop();
+                break;
+            default:
                 CineMax.stackRecord.pop();
-        }catch(Exception e){
-
-        }
     }
 /**
      * Metodo che si occupa di formattare i dati presi dal form per istanziare
@@ -182,17 +168,14 @@ public class FilmController {
             String  mese            = datiFormTmp[Campi.ADD_MESE.i];
             String  anno            = datiFormTmp[Campi.ADD_ANNO.i];
             String  orario          = datiFormTmp[Campi.ADD_ORA.i];
-
             LocalDate data = LocalDate.of(Integer.parseInt(anno), Integer.parseInt(mese), Integer.parseInt(giorno));
-
             Proiezione nuovaProiezione = new Proiezione(data, orario, titolo, genere, regista, Integer.parseInt(annoProduzione), Integer.parseInt(durata), Integer.parseInt(etaMinima), Double.parseDouble(costo.replace(",", ".")), Integer.parseInt(posti));
-            
             GestoreProiezione.inserisci(nuovaProiezione);
-
             CineMax.stackRecord.pop();
-            // TODO aggiungere conferma di inserimento
-        } catch (IllegalArgumentException e) {
-            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore disastroso durante l'aggiunta di una proiezione";
+            cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Proiezione inserita.";
+            CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);
+        } catch (NumberFormatException | DateTimeException e) {
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Dati non validi, controlla numeri e date.";
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         } catch(Exception e){
             cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore generico del programma";
@@ -221,11 +204,25 @@ public class FilmController {
             if(giorno != null && mese != null && anno != null){
                 p.setData(LocalDate.of(Integer.parseInt(anno), Integer.parseInt(mese), Integer.parseInt(giorno)));
             }
-            GestoreProiezione.salvaSuFile(); //non funziona
+            GestoreProiezione.salvaSuFile(); 
             CineMax.stackRecord.pop();
+            cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Proiezione modificata.";
+            CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);
         }catch(Exception e){
-
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore durante la modifica: " + e.getMessage();
+            CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         }
+    }
 
+    // ======================================================
+    //                  HELPER
+    // ======================================================
+
+    private static LocalDate parseData(String gg, String mm, String aaaa){
+        if(gg == null || mm == null || aaaa == null)
+            return null;
+        if(gg.isEmpty() || mm.isEmpty() || aaaa.isEmpty())
+            return null;
+        return LocalDate.of(Integer.parseInt(aaaa), Integer.parseInt(mm), Integer.parseInt(gg));
     }
 }

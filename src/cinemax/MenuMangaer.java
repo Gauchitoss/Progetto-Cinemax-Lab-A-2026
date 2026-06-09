@@ -184,7 +184,7 @@ public class MenuMangaer {
             }
         },
     
-        GESTISCI_PROEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "modifica proiezione", "centro") {
+        GESTISCI_PROIEZIONE(new String[]{"titolo","genere","regista","anno","durata minuti","eta minima", "costo", "posti sala", "dataInizio", "orario"}, false, "modifica proiezione", "centro") {
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_PROEZIONISTA};}
             @Override public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[12];
