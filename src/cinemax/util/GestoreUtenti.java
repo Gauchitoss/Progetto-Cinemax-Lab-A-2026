@@ -2,6 +2,9 @@ package cinemax.util;
 
 import cinemax.model.*;
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;  
 
@@ -29,7 +32,7 @@ public class GestoreUtenti {
                     }
                     String nome = dati[0].trim();
                     String cognome = dati[1].trim();
-                    String username = dati[2].trim();
+                    String username = dati[2].trim().toUpperCase();
                     String password = dati[3].trim(); // Già cifrata
                     String dataDiNascita = dati[4].equals("null") ? null : dati[4].trim();
                     String domicilio = dati[5].trim();
@@ -92,9 +95,10 @@ public class GestoreUtenti {
         
         public static Utente login(String username, String password) {
             if(username ==  null || password == null) return null;
+            String usernameUpperCase = username.toUpperCase();
             String passwordCifrata =  Cifratura.cifra(password); // cifra la password inserita
             for (Utente u : listaUtenti) {
-                if (u.getUsername().equals(username) && u.getPassword().equals(passwordCifrata)) {
+                if (u.getUsername().equals(usernameUpperCase) && u.getPassword().equals(passwordCifrata)) {
                     return u; // restituisce l'utente se le credenziali sono corrette
                 }
             }
@@ -104,23 +108,58 @@ public class GestoreUtenti {
         public static void registraUtente(String nome, String cognome, String username, String password, String confermaPassword, String dataDiNascita, String domicilio)throws IllegalArgumentException{
             if(nome == null || nome.isEmpty() || cognome == null || cognome.isEmpty() || username == null || username.isEmpty() || password == null || password.isEmpty() || dataDiNascita == null || dataDiNascita.isEmpty())
                 throw new IllegalArgumentException("Tutti i campi obbligatori devono essere compilati.");
+            if(!nome.matches("[\\p{L} '\\-]+"))
+                throw new IllegalArgumentException("Il nome può contenere solo lettere, spazi, apostrofi e trattini.");
+            if(!cognome.matches("[\\p{L} '\\-]+"))
+                throw new IllegalArgumentException("Il cognome può contenere solo lettere, spazi, apostrofi e trattini.");
+            if(password.length() < 6)
+                throw new IllegalArgumentException("La password deve essere lunga almeno 6 caratteri.");
             if(!password.equals(confermaPassword))
                 throw new IllegalArgumentException("Le password inserite non corrispondono.");
+            validaDataNascita(dataDiNascita);
+            String usernameUpperCase = username.trim().toUpperCase();
             for(Utente u : listaUtenti){
-                if(u.getUsername().equals(username))
+                if(u.getUsername().toUpperCase().equals(usernameUpperCase))
                     throw new IllegalArgumentException("Username già esistente.");
             }
             String domicilioEffettivo = (domicilio==null || domicilio.isEmpty())? "N/D" : domicilio;
             listaUtenti.add(new ClientiRegistrati(nome, cognome, username, Cifratura.cifra(confermaPassword), dataDiNascita, domicilioEffettivo));
             salvaUtenti();
         }
+
+        private static void validaDataNascita(String dataDiNascita) {
+            if(dataDiNascita == null || dataDiNascita.trim().isEmpty())
+                throw new IllegalArgumentException("La data di nascita non può essere vuota.");
+            LocalDate nascita = null;
+            String[] formati = {"yyyy-MM-dd", "dd-MM-yyyy", "dd/MM/yyyy"};
+            for(String fmt : formati){
+                try {
+                    nascita = LocalDate.parse(dataDiNascita.trim(), DateTimeFormatter.ofPattern(fmt));
+                    break;
+                } catch(DateTimeParseException e) {
+                
+                }
+            }
+            if(nascita == null)
+                throw new IllegalArgumentException("Data di nascita non valida. Usa il formato GG-MM-AAAA o AAAA-MM-GG.");
+
+            LocalDate oggi = LocalDate.now();
+            if(nascita.isAfter(oggi))
+                throw new IllegalArgumentException("La data di nascita non può essere nel futuro.");
+
+            // Età minima 5 anni (per evitare dati assurdi), nessun massimo
+            if(nascita.isAfter(oggi.minusYears(5)))
+                throw new IllegalArgumentException("La data di nascita non è valida.");
+        }
+
         // ====================================================== 
         //  Metodo di supporto per cercare un utente tramite username
         // ======================================================
         public static Utente cercaPerUsername(String username) {
             if(username == null) return null;
+            String usernameUpperCase = username.toUpperCase();
             for (Utente u : listaUtenti) {
-                if (u.getUsername().equals(username)) {
+                if (u.getUsername().toUpperCase().equals(usernameUpperCase)) {
                     return u;
                 }
             }
