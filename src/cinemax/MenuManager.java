@@ -188,7 +188,7 @@ public class MenuManager {
             @Override public void eseguiLogicaAssociata(){
                 String[] datiFormTmp = new String[12];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; };
-                FilmController.gestisciModificaProiezione(cinemax.controller.FilmController.filmSelezionatoTmp, datiFormTmp);}
+                GestoreProiezione.modificaProiezione(FilmController.filmSelezionatoTmp, datiFormTmp);}
         },
 
         // ======================================================

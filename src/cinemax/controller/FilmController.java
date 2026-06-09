@@ -182,36 +182,6 @@ public class FilmController {
         }
     }
 
-    public static void gestisciModificaProiezione(Proiezione p, String[] datiFormTmp){
-        // cntrollare se salava anche in modod corretto su file o meno
-        try {
-            GestoreProiezione.leggiProiezioni();
-
-            if(datiFormTmp[Campi.ADD_TITOLO.i] != null) p.setTitolo(datiFormTmp[Campi.ADD_TITOLO.i]);
-            if(datiFormTmp[Campi.ADD_GENERE.i] != null) p.setGenere(datiFormTmp[Campi.ADD_GENERE.i]);
-            if(datiFormTmp[Campi.ADD_REGISTA.i] != null) p.setRegista(datiFormTmp[Campi.ADD_REGISTA.i]);
-            if(datiFormTmp[Campi.ADD_ANNO_PRODUZIONE.i] != null) p.setAnno(Integer.parseInt(datiFormTmp[Campi.ADD_ANNO_PRODUZIONE.i]));
-            if(datiFormTmp[Campi.ADD_DURATA.i] != null) p.setDurata(Integer.parseInt(datiFormTmp[Campi.ADD_DURATA.i]));
-            if(datiFormTmp[Campi.ADD_ETA.i] != null) p.setEtaMin(Integer.parseInt(datiFormTmp[Campi.ADD_ETA.i]));
-            if(datiFormTmp[Campi.ADD_COSTO.i] != null) p.setPrezzo(Double.parseDouble(datiFormTmp[Campi.ADD_COSTO.i].replace(",", ".")));
-            if(datiFormTmp[Campi.ADD_POSTI.i] != null) p.setPostiSala(Integer.parseInt(datiFormTmp[Campi.ADD_POSTI.i]));
-            if(datiFormTmp[Campi.ADD_ORA.i] != null) p.setOra(datiFormTmp[Campi.ADD_ORA.i]);
-            String giorno = datiFormTmp[Campi.ADD_GIORNO.i];
-            String mese = datiFormTmp[Campi.ADD_MESE.i];
-            String anno = datiFormTmp[Campi.ADD_ANNO.i];
-            if(giorno != null && mese != null && anno != null){
-                p.setData(LocalDate.of(Integer.parseInt(anno), Integer.parseInt(mese), Integer.parseInt(giorno)));
-            }
-            GestoreProiezione.salvaSuFile(); 
-            CineMax.stackRecord.pop();
-            cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Proiezione modificata.";
-            CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);
-        }catch(Exception e){
-            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore durante la modifica: " + e.getMessage();
-            CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
-        }
-    }
-
     // ======================================================
     //                  HELPER
     // ======================================================
