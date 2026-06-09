@@ -14,23 +14,19 @@ public class AutenticazioniController {
 
         String username = datiFormTmp[Campi.LOGIN_USER.i];
         String password = datiFormTmp[Campi.LOGIN_PASSWORD.i];
-
-        try {
-            Utente u = GestoreUtenti.login(username, password);
-
-            switch (u.getRuolo()) {
-                case "proiezionista":       CineMax.stackRecord.push(StatoMenu.MENU_PROEZIONISTA);  break;
-                case "cliente registrato":  CineMax.stackRecord.push(StatoMenu.MENU_CLIENTI);       break;
-                case "bigliettaio":         CineMax.stackRecord.push(StatoMenu.MENU_BIGLIETTAIO);   break;
-            }
-
-            CineMax.ruolo = u.getRuolo();
-            utente = u;
-
-        } catch (Exception e) {
-            LogicaStatiManager.messaggioErroreCorrente = "credenziali non valide o utente inesistente";
+        Utente u = GestoreUtenti.login(username, password);
+        if(u == null){
+            LogicaStatiManager.messaggioErroreCorrente = "Credenziali non valide o utente inesistente.";
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+            return;
         }
+        switch (u.getRuolo()) {
+            case "proiezionista":       CineMax.stackRecord.push(StatoMenu.MENU_PROEZIONISTA);  break;
+            case "cliente registrato":  CineMax.stackRecord.push(StatoMenu.MENU_CLIENTI);       break;
+            case "bigliettaio":         CineMax.stackRecord.push(StatoMenu.MENU_BIGLIETTAIO);   break;
+        }
+        CineMax.ruolo = u.getRuolo();
+        utente = u;
     }
 
     public static void gestisciRegistrazione(String[] datiFormTmp){
