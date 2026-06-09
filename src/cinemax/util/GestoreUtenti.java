@@ -1,19 +1,19 @@
 package cinemax.util;
+
 import cinemax.model.*;
 import java.io.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;  
 
 public class GestoreUtenti {
         
-        private static List<Utente> listaUtenti = new LinkedList<>();
-        private static final String percorsoFile = "data/utenti.csv";
+        private static List<Utente> listaUtenti = new ArrayList<>();
+        private static final String PERCORSO_FILE = "data/utenti.csv";
         
         
         public static void caricaUtenti() {
-            
             listaUtenti.clear(); // pulisce la lista prima di caricare i dati dal file
-            File file = new File(percorsoFile);
+            File file = new File(PERCORSO_FILE);
             if (!file.exists()) {
                inizializzaStaffDefault(); 
                return; // se il file non esiste, esce dal metodo
@@ -21,29 +21,25 @@ public class GestoreUtenti {
             
             
             try (BufferedReader br = new BufferedReader ( new FileReader(file)) ){
-               String riga;
-               br.readLine(); // legge e ignora l'intestazione del file
-               while((riga= br.readLine())!=null){
-                    String[] dati=riga.split ("\\|");//usa la virgola come separatore
-                     if (dati.length >=7 ) { // verifica che ci siano esattamente 7 campi
-                           String nome = dati[0];
-                           String cognome = dati[1];
-                           String username = dati[2];
-                           String password = dati[3]; // Già cifrata
-                           String dataDiNascita = dati[4].equals("null") ? null : dati[4];
-                           String domicilio = dati[5];
-                           String ruolo = dati[6];
+                br.readLine(); // legge e ignora l'intestazione del file
+                String riga;
+                while((riga = br.readLine()) != null) {
+                    String[] dati = riga.split ("\\|");//usa la | come separatore
+                    if (dati.length != 7 ) { // verifica che ci siano esattamente 7 campi
+                        System.err.println("Riga utenti ignorata (formato errato): " + riga);
+                        continue;
+                    }
+                    String nome = dati[0].trim();
+                    String cognome = dati[1].trim();
+                    String username = dati[2].trim();
+                    String password = dati[3].trim(); // Già cifrata
+                    String dataDiNascita = dati[4].equals("null") ? null : dati[4].trim();
+                    String domicilio = dati[5].trim();
+                    String ruolo = dati[6].trim();
                      
-                     if (ruolo.equalsIgnoreCase("proiezionista")) {
-                            listaUtenti.add(new Proiezionisti(nome, cognome, username, password, dataDiNascita, domicilio));
-                        } else if (ruolo.equalsIgnoreCase("bigliettaio")) {
-                            listaUtenti.add(new Bigliettai(nome, cognome, username, password, dataDiNascita, domicilio));
-                        } else if (ruolo.equalsIgnoreCase("Cliente registrato")) {
-                            listaUtenti.add(new ClientiRegistrati(nome, cognome, username, password, dataDiNascita, domicilio));
-                        }
-                     }
-               }
-
+                    Utente u = creaUtente(nome, cognome, username, password, dataDiNascita, domicilio, ruolo);
+                    if(u != null) listaUtenti.add(u);
+                }
             } catch (IOException e) {
                 System.err.println("Errore durante la lettura del file utenti: " + e.getMessage());
             }
