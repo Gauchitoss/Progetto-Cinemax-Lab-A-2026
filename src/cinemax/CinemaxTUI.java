@@ -59,6 +59,8 @@ public class CinemaxTUI {
             stampaListaPagina();
         }else if(statoMenu == StatoMenu.MENU_INFO_FILM){
             gestisciInformazioniFilm(cinemax.controller.FilmController.filmSelezionatoTmp);
+        }else if(statoMenu == StatoMenu.DETTAGLIO_PRENOTAZIONE){
+            gestisciDettaglioPrenotazione(cinemax.controller.PrenotazioniController.prenotazioneSelezionataTmp);
         }else
             formattaTesto(statoMenu.getOpzioni(), statoMenu.getPosizione(), statoMenu.getVisualizzaNumeri());
 
@@ -127,7 +129,6 @@ public class CinemaxTUI {
             int extraSpazio = Math.max(0, (LARGHEZZA_MENU - lunghezzaRigaLogo) % 2);
             System.out.println("║"+ pad + (extraSpazio != 0 ? " " : "") + linea + pad +"║");
         }      
-        return;
     }
 
 // ======================================================    
@@ -360,10 +361,12 @@ public class CinemaxTUI {
 
         String formatoColonne = "║  %-56s │ %-69s║";
 
+        int postiLiberi = cinemax.util.GestorePrenotazione.getPostiLiberi(p);
+
         System.out.println(String.format(formatoColonne, "REGISTA: " + p.getRegista(), "DURATA: " + p.getDurata() + " MINUTI"));
         System.out.println(String.format(formatoColonne, "GENERE: " + p.getGenere(), "ETA' CONSIGLIATA: " + p.getEtaMin() + "+"));
         System.out.println(String.format(formatoColonne, "ANNO DI PRODUZIONE: " + p.getAnno(), "PREZZO BIGLIETTO: " + String.format(java.util.Locale.US, "%.2f", p.getPrezzo()) + " EURO"));
-        System.out.println(String.format(formatoColonne, "DATA PROIEZIONE: " + p.getData(), "POSTI IN SALA: " + p.getPostiSala()));
+        System.out.println(String.format(formatoColonne, "DATA PROIEZIONE: " + p.getData(), "POSTI IN SALA: " + p.getPostiSala() + "  |  POSTI LIBERI: " + postiLiberi));
         System.out.println(String.format(formatoColonne, "ORARIO: " + p.getOra(), ""));
 
         System.out.println(rigaVuota);
@@ -383,6 +386,29 @@ public class CinemaxTUI {
             formattaTesto("INVIO PER TORNARE INDIETRO", "centro", true);
     }
 
+    public static void gestisciDettaglioPrenotazione(cinemax.model.Prenotazione pre){
+        if(pre == null) {
+            formattaTesto("ERRORE: NESSUNA PRENOTAZIONE SELEZIONATA", "centro", true);
+            return;
+        }
+
+        formattaTesto("DETTAGLIO PRENOTAZIONE: " + pre.getCodiceUnivoco(), "centro", true);
+        System.out.println(rigaVuota);
+        System.out.println(bordoMezzo);
+        System.out.println(rigaVuota);
+
+        String fmt = "║  %-56s │ %-69s║";
+        System.out.println(String.format(fmt, "FILM: " + pre.getTitoloFilm(), "DATA: " + pre.getProiezione().getData()));
+        System.out.println(String.format(fmt, "UTENTE: " + pre.getUsernameCliente(), "ORARIO: " + pre.getProiezione().getOra()));
+        System.out.println(String.format(fmt, "BIGLIETTI: " + pre.getNumeroBiglietti(), "IMPORTO TOTALE: " + String.format(java.util.Locale.US, "%.2f", pre.getCostoTotale()) + " EURO"));
+
+        System.out.println(rigaVuota);
+        System.out.println(rigaVuota);
+
+        formattaTesto("[1] RIMUOVI PRENOTAZIONE", "centro", true);
+        formattaTesto("[2] TORNA INDIETRO", "centro", true);
+    }
+    
     // ======================================================
     // HELPER PER I FORM (Supporto a 2 colonne)
     // ======================================================
