@@ -2,6 +2,7 @@ package cinemax;
 
 import java.util.Stack;
 import cinemax.MenuMangaer.StatoMenu;
+import cinemax.model.Utente;
 import cinemax.util.GestorePrenotazione;
 import cinemax.util.GestoreProiezione;
 import cinemax.util.GestoreUtenti;
@@ -21,7 +22,7 @@ public class CineMax {
      * Permette di implementare logiche di push (avanti) e pop (indietro).
      */
     public static Stack<StatoMenu> stackRecord = new Stack<>();
-    public static String ruolo;
+    public static Utente.Ruolo ruolo = Utente.Ruolo.CLIENTE_OSPITE;
     public static void main(String[] args) {
 
         try{
@@ -36,7 +37,6 @@ public class CineMax {
         StatoMenu statoAttuale;
 
         boolean running = true;
-        ruolo = "cliente ospite";
 
         while (running) {   
             // Se lo stack si svuota accidentalmente, previene il crash e chiude pulito
