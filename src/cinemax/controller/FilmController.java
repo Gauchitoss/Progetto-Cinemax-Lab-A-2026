@@ -146,6 +146,7 @@ public class FilmController {
                 break;
             default:
                 CineMax.stackRecord.pop();
+        }
     }
 /**
      * Metodo che si occupa di formattare i dati presi dal form per istanziare

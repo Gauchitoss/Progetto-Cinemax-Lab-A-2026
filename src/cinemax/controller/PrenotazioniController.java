@@ -1,13 +1,14 @@
 package cinemax.controller;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import cinemax.CineMax;
 import cinemax.CostantiForm.Campi;
 import cinemax.MenuMangaer.StatoMenu;
 import cinemax.model.Prenotazione;
-import cinemax.model.Proiezione;
 import cinemax.util.GestorePrenotazione;
 
 /**
@@ -29,11 +30,9 @@ public class PrenotazioniController {
     public static boolean esistenzaPrecedente;
     public static final int ELEMENTI_PAGINA = 10; 
     public static int paginaCorrente = 0;
-
-    public static List<Proiezione> proiezioniTrovate = new ArrayList<>();
     public static List<Prenotazione> prenotazioniTrovate = new ArrayList<>();
     public static Prenotazione prenotazioneSelezionataTmp;
-
+    private static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     /**
      * Carica e mostra tutte le prenotazioni effettuate dall'utente attualmente loggato.
      * Inizializza la paginazione e cambia lo stato del menu in MIE_PRENOTAZIONI.
@@ -41,11 +40,9 @@ public class PrenotazioniController {
     public static void gestisciMiePrenotazioni(){
         try {
             String usernameUtente = AutenticazioniController.utente.getUsername();
-            prenotazioniTrovate = GestorePrenotazione.getListaPrenotzioniUtente(usernameUtente);
-
+            prenotazioniTrovate = GestorePrenotazione.getPrenotzioniUtente(usernameUtente);
             paginaCorrente = 0;
             aggiornaPrenotazioniPerPagina();
-
             CineMax.stackRecord.push(StatoMenu.MIE_PRENOTAZIONI);
         } catch (Exception e) {
             cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore durante il caricamento delle prenotazioni";
@@ -62,14 +59,10 @@ public class PrenotazioniController {
         prenotazioniPaginaTmp.clear();
         esistenzaPaginaSuccessiva = false;
         esistenzaPrecedente = false;
-
         int indiceInizio = ELEMENTI_PAGINA * paginaCorrente;
-        int indiceFine = indiceInizio + ELEMENTI_PAGINA;
-
-        for(int i = indiceInizio; i < indiceFine && i <prenotazioniTrovate.size(); i++){
+        for(int i = indiceInizio; i < indiceInizio + ELEMENTI_PAGINA && i <prenotazioniTrovate.size(); i++){
             prenotazioniPaginaTmp.add(prenotazioniTrovate.get(i));
         }
-
         if(indiceInizio + ELEMENTI_PAGINA < prenotazioniTrovate.size()) esistenzaPaginaSuccessiva = true;
         if(paginaCorrente > 0) esistenzaPrecedente = true;
     }
@@ -81,30 +74,24 @@ public class PrenotazioniController {
      * @param statoAttuale Lo stato in cui ci si trova, necessario per "ricaricare" la pagina (pop e push).
      */
     public static void gestisciVisualizzaPrenotazione(String scelta, StatoMenu statoAttuale) {
-        try {
             if(scelta == null || scelta.trim().isEmpty() || scelta.equalsIgnoreCase("C")) {
                 CineMax.stackRecord.pop();
                 return;
             }
-
-            if(scelta.toUpperCase().equals("N") && esistenzaPaginaSuccessiva){
+            if(scelta.equalsIgnoreCase("N") && esistenzaPaginaSuccessiva){
                 paginaCorrente++;
                 aggiornaPrenotazioniPerPagina();
                 CineMax.stackRecord.pop();
                 CineMax.stackRecord.push(statoAttuale);
                 return;
             }
-            if(scelta.toUpperCase().equals("B") && esistenzaPrecedente){
+            if(scelta.equalsIgnoreCase("B") && esistenzaPrecedente){
                 paginaCorrente--;
                 aggiornaPrenotazioniPerPagina();
                 CineMax.stackRecord.pop();
                 CineMax.stackRecord.push(statoAttuale);
                 return;
             }
-            
-        } catch(Exception e) {
-            // TODO EX
-        }
     }
 
     /**
@@ -122,33 +109,15 @@ public class PrenotazioniController {
             String username = datiFormTmp[Campi.PRENOTAZIONE_USERNAME.i];
             
             // Parsing dataInizio
-            String g1 = datiFormTmp[Campi.PRENOTAZIONE_GIORNO1.i];
-            String m1 = datiFormTmp[Campi.PRENOTAZIONE_MESE1.i];
-            String a1 = datiFormTmp[Campi.PRENOTAZIONE_ANNO1.i];
-            String dataInizio = null;
-            if (g1 != null && m1 != null && a1 != null) {
-                dataInizio = String.format("%02d-%02d-%04d", Integer.parseInt(g1), Integer.parseInt(m1), Integer.parseInt(a1));
-            }
-            
-            // Parsing dataFine
-            String g2 = datiFormTmp[Campi.PRENOTAZIONE_GIORNO2.i];
-            String m2 = datiFormTmp[Campi.PRENOTAZIONE_MESE2.i];
-            String a2 = datiFormTmp[Campi.PRENOTAZIONE_ANNO2.i];
-            String dataFine = null;
-            if (g2 != null && m2 != null && a2 != null) {
-                dataFine = String.format("%02d-%02d-%04d", Integer.parseInt(g2), Integer.parseInt(m2), Integer.parseInt(a2));
-            }
-
-
-            prenotazioniTrovate = GestorePrenotazione.cercaPrenotazioni(codice, nome, cognome, titolo, dataInizio, dataFine, username); 
-            
+            LocalDate dataDa = parseData(datiFormTmp[Campi.PRENOTAZIONE_GIORNO1.i], datiFormTmp[Campi.PRENOTAZIONE_MESE1.i], datiFormTmp[Campi.PRENOTAZIONE_ANNO1.i]);
+            LocalDate dataA  = parseData(datiFormTmp[Campi.PRENOTAZIONE_GIORNO2.i], datiFormTmp[Campi.PRENOTAZIONE_MESE2.i], datiFormTmp[Campi.PRENOTAZIONE_ANNO2.i]);
+            prenotazioniTrovate = GestorePrenotazione.cercaPrenotazioni(codice, nome, cognome, titolo, dataDa, dataA, username); 
             paginaCorrente = 0;
             aggiornaPrenotazioniPerPagina();
-
             CineMax.stackRecord.pop();
             CineMax.stackRecord.push(StatoMenu.MIE_PRENOTAZIONI);
-        } catch(NumberFormatException e){
-            cinemax.LogicaStatiManager.messaggioErroreCorrente = "hai inserito parametri non numerici in un campo data";
+        } catch(NumberFormatException | DateTimeException e){
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Hai inserito parametri non numerici in un campo data.";
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         } catch (Exception e) {
             cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore durante la ricerca delle prenotazioni: " + e.getMessage();
@@ -163,32 +132,29 @@ public class PrenotazioniController {
     public static void gestisciVenditaDiretta(String[] datiFormTmp){
         try {
             int numBiglietti = Integer.parseInt(datiFormTmp[0]);
-            
             // Effettua la vendita registrandola a nome dell'account staff loggato
-            boolean successo = GestorePrenotazione.inserisciPrenotazione(
-                AutenticazioniController.utente, 
-                FilmController.filmSelezionatoTmp, 
-                numBiglietti
-            );
-            
+            Prenotazione nuova = GestorePrenotazione.inserisciPrenotazione(AutenticazioniController.utente, FilmController.filmSelezionatoTmp, numBiglietti);
             CineMax.stackRecord.pop(); // Rimuovo il form dalla cronologia
-            
-            if (successo) {
-                cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Vendita diretta completata con successo!";
-                CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);
-            } else {
-                cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore: posti in sala insufficienti.";
-                CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
-            }
-            
+            cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Vendita diretta completata con successo. Codice: " + nuova.getCodiceUnivoco();
+            CineMax.stackRecord.push(StatoMenu.STATO_CONFERMA);
         } catch (NumberFormatException e) {
             CineMax.stackRecord.pop(); // Rimuovo il form
             cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore: Devi inserire un numero valido di biglietti.";
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             CineMax.stackRecord.pop(); // Rimuovo il form
-            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore imprevisto durante la vendita: " + e.getMessage();
+            cinemax.LogicaStatiManager.messaggioErroreCorrente =  e.getMessage();
+            CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+        } catch (Exception e){
+            CineMax.stackRecord.pop();
+            cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore imprevisto0: " + e.getMessage();
             CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
         }
+    }
+
+    private static LocalDate parseData(String gg, String mm, String aaaa) {
+        if (gg == null || mm == null || aaaa == null) return null;
+        if (gg.isEmpty() || mm.isEmpty() || aaaa.isEmpty()) return null;
+        return LocalDate.of(Integer.parseInt(aaaa), Integer.parseInt(mm), Integer.parseInt(gg));
     }
 }
