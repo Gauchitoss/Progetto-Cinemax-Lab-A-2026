@@ -112,6 +112,8 @@ public class GestoreUtenti {
                 throw new IllegalArgumentException("Il nome può contenere solo lettere, spazi, apostrofi e trattini.");
             if(!cognome.matches("[\\p{L} '\\-]+"))
                 throw new IllegalArgumentException("Il cognome può contenere solo lettere, spazi, apostrofi e trattini.");
+            if(username.length() > 12 && username.length() < 3)
+                throw new IllegalArgumentException("L'username deve essere lungo dai 3 ai 12 caratteri.");
             if(password.length() < 6)
                 throw new IllegalArgumentException("La password deve essere lunga almeno 6 caratteri.");
             if(!password.equals(confermaPassword))
