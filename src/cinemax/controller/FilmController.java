@@ -27,6 +27,7 @@ public class FilmController {
     private static final int ANNO_MIN = 1888;
     private static final int ANNO_MAX_FUTURO = 5;
     private static final int DURATA_MAX = 600;
+    private static final int DURATA_MIN = 10;
     private static final int ETA_MAX = 21;
     private static final double PREZZO_MAX = 999.99;
     private static final int POSTI_MAX = 200;
@@ -179,10 +180,8 @@ public class FilmController {
             throw new IllegalArgumentException("Anno di produzione non valido: il cinema esiste dal " + ANNO_MIN + ".");
         if(annoProduzione > annoCorrente + ANNO_MAX_FUTURO)
             throw new IllegalArgumentException("Anno di produzione non può superare " + (annoCorrente + ANNO_MAX_FUTURO) + ".");
-        if(durata <= 0)
-            throw new IllegalArgumentException("La durata deve essere maggiore di 0 minuti.");
-        if(durata > DURATA_MAX)
-            throw new IllegalArgumentException("La durata non può superare " + DURATA_MAX + " minuti.");
+        if(durata > DURATA_MAX && durata > DURATA_MIN)
+            throw new IllegalArgumentException("La durata non può superare " + DURATA_MAX + " minuti e deve essere maggiore di ." + DURATA_MIN + " minuti");
         if(etaMinima < 0)
             throw new IllegalArgumentException("L'età consigliata non può essere negativa.");
         if(etaMinima > ETA_MAX)
