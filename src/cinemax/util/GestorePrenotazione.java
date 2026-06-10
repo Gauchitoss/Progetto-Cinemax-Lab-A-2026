@@ -86,13 +86,7 @@ public class GestorePrenotazione {
      * Calcola dinamicamente quanti posti sono effettivamente disponibili 
      * sottraendo le prenotazioni esistenti dalla capienza massima memorizzata nella proiezione.
      */
-    public static int getPostiLiberi(Proiezione p) {
-        int postiOccupati = listaPrenotazioni.stream()
-                .filter(pre -> pre.getProiezione().equals(p))
-                .mapToInt(Prenotazione::getNumeroBiglietti)
-                .sum();
-        return p.getPostiSala() - postiOccupati;
-    }
+    
 
     /**
      * Requisito Inserimento: Controlla la disponibilità ed emette un codice unico alfanumerico.
@@ -102,7 +96,7 @@ public class GestorePrenotazione {
             throw new IllegalArgumentException("Il numero di biglietti deve essrere maggiore a 0.");
         if(proiezione.getData().isBefore(LocalDate.now()))
             throw new IllegalStateException("Impossibile prenotare, la proiezione è già passata.");
-        int postiLiberi = getPostiLiberi(proiezione);
+        int postiLiberi = proiezione.getPostiLiberi();
         if (bigliettiRichiesti > postiLiberi) 
             throw new IllegalStateException("Posti insufficienti, posti dispondibili: " + postiLiberi);
         if(bigliettiRichiesti > proiezione.getPostiSala())
@@ -111,6 +105,7 @@ public class GestorePrenotazione {
         // Genera una stringa casuale unica di 8 caratteri maiuscoli
         String codice = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Prenotazione nuova = new Prenotazione(codice, cliente, proiezione, bigliettiRichiesti);
+        proiezione.setPostiLiberi(proiezione.getPostiLiberi() - bigliettiRichiesti);
         listaPrenotazioni.add(nuova);
         salvaSuFile();
         return true;
@@ -121,17 +116,15 @@ public class GestorePrenotazione {
             throw new IllegalArgumentException("Il numero di biglietti deve essere maggiore di 0.");
         if(proiezione.getData().isBefore(LocalDate.now()))
             throw new IllegalStateException("Impossibile vendere biglietti: la proiezione è già passata.");
-        int postiLiberi = getPostiLiberi(proiezione);
+        int postiLiberi = proiezione.getPostiLiberi();
         // FIX: eccezione se si tenta di vendere più biglietti dei posti disponibili
         if (bigliettiRichiesti > postiLiberi)
             throw new IllegalStateException("Posti insufficienti. Posti disponibili: " + postiLiberi);
         if (bigliettiRichiesti > proiezione.getPostiSala())
             throw new IllegalArgumentException("Il numero di biglietti (" + bigliettiRichiesti + 
                 ") supera la capienza della sala (" + proiezione.getPostiSala() + ").");
-        // FIX: riduce i posti disponibili aggiornando direttamente postiSala nella proiezione
-        // (usiamo un "segnaposto" nel CSV riducendo il campo posti_sala)
-        proiezione.setPostiSala(proiezione.getPostiSala() - bigliettiRichiesti);
-        GestoreProiezione.salvaSuFile();
+        proiezione.setPostiLiberi(proiezione.getPostiLiberi() - bigliettiRichiesti);
+        salvaSuFile();
         return bigliettiRichiesti * proiezione.getPrezzo();
     }
 
@@ -160,7 +153,7 @@ public class GestorePrenotazione {
                 throw new IllegalStateException("Errore: Non si possono modificare spettacoli già passati o spostarsi su orari passati.");
             }
             // Controllo della disponibilità dei posti nella nuova sala
-            if (getPostiLiberi(nuovaProiezione) < pre.getNumeroBiglietti()) {
+            if (nuovaProiezione.getPostiLiberi() < pre.getNumeroBiglietti()) {
                 throw new IllegalStateException("Errore: La nuova proiezione selezionata non ha abbastanza posti liberi.");
             }
             // Aggiornamento e persistenza

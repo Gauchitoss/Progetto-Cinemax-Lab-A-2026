@@ -1,358 +1,337 @@
-data_proiezione|ora_proiezione|titolo_film|genere|regista|anno|durata_minuti|eta_minima|prezzo_biglietto|posti_sala
-30-12-2026|17:00|Pulp Fiction|Crime|Luca Baroncelli|1994|154|12|7.50|92
-30-12-2026|14:00|One Flew Over the Cuckoo's Nest|Drama|Milos Forman|1975|133|12|8.50|64
-30-12-2026|10:30|Breaking the Waves|Drama|Lars von Trier|1996|159|16|8.50|70
-29-12-2026|13:00|Stalker|Drama|Andrei Tarkovsky|1979|162|0|8.00|88
-29-12-2026|10:30|Kung fu|Azione|Stephen Chow|2004|99|12|6.50|70
-28-12-2026|15:30|The Day of the Jackal|Crime|Fred Zinnemann|1973|143|12|8.50|88
-28-12-2026|12:30|Pirates of the Caribbean: The Curse of the Black Pearl|Azione|Gore Verbinski|2003|143|12|7.00|99
-28-12-2026|10:00|Sanjuro|Azione|Akira Kurosawa|1962|96|0|6.50|73
-27-12-2026|16:00|Kung fu|Azione|Stephen Chow|2004|99|12|8.00|52
-27-12-2026|13:00|Pirates of the Caribbean: The Curse of the Black Pearl|Azione|Gore Verbinski|2003|143|12|7.00|71
-27-12-2026|10:30|His Girl Friday|Comedy|Howard Hawks|1940|92|12|7.00|51
-26-12-2026|16:00|Bringing Up Baby|Comedy|Howard Hawks|1938|102|12|8.50|73
-26-12-2026|13:00|Rear Window|Mystery|Alfred Hitchcock|1954|112|0|8.50|79
-25-12-2026|15:30|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|7.00|51
-25-12-2026|12:30|The Fifth Element|Azione|Luc Besson|1997|126|12|6.50|70
-24-12-2026|10:00|The Little Mermaid|Animation|Ron Clements|1989|83|0|7.50|61
-23-12-2026|10:30|Toy Story|Animation|John Lasseter|1995|81|0|7.50|71
-22-12-2026|10:30|The Princess Bride|Adventure|Rob Reiner|1987|98|0|6.50|74
-21-12-2026|15:30|Brazil|Drama|Terry Gilliam|1985|132|0|8.00|93
-21-12-2026|13:00|The Princess Bride|Adventure|Rob Reiner|1987|98|0|7.50|52
-21-12-2026|10:00|The Untouchables|Crime|Brian De Palma|1987|119|12|8.50|54
-20-12-2026|16:30|The Untouchables|Crime|Brian De Palma|1987|119|12|7.00|76
-20-12-2026|14:00|Le charme discret de la bourgeoisie|Comedy|Luis Buñuel|1972|102|6|8.50|70
-20-12-2026|10:00|Giant|Drama|George Stevens|1956|201|0|6.50|51
-19-12-2026|17:30|Giant|Drama|George Stevens|1956|201|0|6.50|79
-19-12-2026|15:00|The Little Mermaid|Animation|Ron Clements|1989|83|0|7.00|87
-18-12-2026|16:30|Toy Story|Animation|John Lasseter|1995|81|0|6.50|71
-18-12-2026|13:30|Tôkyô monogatari|Drama|Yasujirô Ozu|1953|136|0|7.00|98
-18-12-2026|10:00|The Day of the Jackal|Crime|Fred Zinnemann|1973|143|12|8.50|98
-17-12-2026|16:30|This Is England|Crime|Shane Meadows|2006|101|12|6.50|74
-17-12-2026|13:30|Rear Window|Mystery|Alfred Hitchcock|1954|112|0|8.00|76
-17-12-2026|10:30|The Untouchables|Crime|Brian De Palma|1987|119|12|8.00|59
-16-12-2026|12:30|Stand by Me|Adventure|Rob Reiner|1986|89|0|7.50|73
-16-12-2026|10:00|Det sjunde inseglet|Drama|Ingmar Bergman|1957|96|12|8.00|52
-15-12-2026|10:00|Toy Story|Animation|John Lasseter|1995|81|0|8.50|51
-14-12-2026|14:00|Sanjuro|Azione|Akira Kurosawa|1962|96|0|8.00|63
-14-12-2026|10:30|The Lives of Others|Drama|Florian Henckel von Donnersmarck|2006|137|12|6.50|58
-13-12-2026|21:30|This Is England|Crime|Shane Meadows|2006|101|12|9.00|70
-13-12-2026|18:00|Pulp Fiction|Crime|Quentin Tarantino|1994|154|12|10.00|100
-13-12-2026|15:00|The Killing Fields|Biography|Roland Joffé|1984|141|12|8.00|57
-13-12-2026|10:30|Once Upon a Time in America|Crime|Sergio Leone|1984|229|12|7.00|71
-12-12-2026|15:30|The Little Mermaid|Animation|Ron Clements|1989|83|0|6.50|97
-12-12-2026|12:30|Donnie Darko|Drama|Richard Kelly|2001|113|16|6.50|75
-12-12-2026|10:00|Psycho|Horror|Alfred Hitchcock|1960|109|12|8.00|64
-11-12-2026|10:00|The Little Mermaid|Animation|Ron Clements|1989|83|0|7.00|92
-10-12-2026|16:30|Blow|Biography|Ted Demme|2001|124|16|8.50|68
-10-12-2026|13:30|Das Experiment|Drama|Oliver Hirschbiegel|2001|120|16|8.50|72
-10-12-2026|10:00|Stalker|Drama|Andrei Tarkovsky|1979|162|0|7.00|60
-09-12-2026|15:30|Harry Potter and the Sorcerer's Stone|Adventure|Chris Columbus|2001|152|0|7.00|60
-09-12-2026|13:00|The Lost Weekend|Drama|Billy Wilder|1945|101|12|7.00|73
-09-12-2026|10:30|Hannah and Her Sisters|Comedy|Woody Allen|1986|107|12|7.50|85
-08-12-2026|15:30|Stalker|Drama|Andrei Tarkovsky|1979|162|0|8.00|71
-08-12-2026|13:00|Das Experiment|Drama|Oliver Hirschbiegel|2001|120|16|7.50|99
-08-12-2026|10:00|Psycho|Horror|Alfred Hitchcock|1960|109|12|7.50|87
-07-12-2026|12:30|Bringing Up Baby|Comedy|Howard Hawks|1938|102|12|8.00|51
-07-12-2026|10:00|Stand by Me|Adventure|Rob Reiner|1986|89|0|8.50|73
-06-12-2026|16:30|Once Upon a Time in America|Crime|Sergio Leone|1984|229|12|7.00|99
-06-12-2026|13:00|The Day of the Jackal|Crime|Fred Zinnemann|1973|143|12|6.50|52
-06-12-2026|10:00|Salinui chueok|Crime|Bong Joon Ho|2003|131|12|8.00|71
-05-12-2026|17:00|Donnie Darko|Drama|Richard Kelly|2001|113|16|6.50|52
-05-12-2026|14:30|Le charme discret de la bourgeoisie|Comedy|Luis Buñuel|1972|102|6|7.00|91
-05-12-2026|10:00|Once Upon a Time in America|Crime|Sergio Leone|1984|229|12|6.50|87
-04-12-2026|10:00|Breaking the Waves|Drama|Lars von Trier|1996|159|16|8.00|64
-03-12-2026|10:00|Smultronstället|Drama|Ingmar Bergman|1957|91|0|7.00|52
-02-12-2026|15:30|Notorious|Drama|Alfred Hitchcock|1946|102|0|8.00|71
-02-12-2026|12:30|The Exorcist|Horror|William Friedkin|1973|122|12|6.50|55
-02-12-2026|10:00|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|7.50|82
-01-12-2026|12:30|Stand by Me|Adventure|Rob Reiner|1986|89|0|6.50|90
-01-12-2026|10:00|Psycho|Horror|Alfred Hitchcock|1960|109|12|6.50|56
-30-11-2026|12:30|Dawn of the Dead|Azione|George A. Romero|1978|127|12|8.00|70
-30-11-2026|10:00|Planes, Trains & Automobiles|Comedy|John Hughes|1987|93|0|7.00|88
-29-11-2026|15:30|The Lost Weekend|Drama|Billy Wilder|1945|101|12|6.50|88
-29-11-2026|13:00|Le charme discret de la bourgeoisie|Comedy|Luis Buñuel|1972|102|6|7.50|63
-29-11-2026|10:30|Office Space|Comedy|Mike Judge|1999|89|16|6.50|52
-28-11-2026|19:00|The Exorcist|Horror|William Friedkin|1973|122|12|8.50|54
-28-11-2026|16:30|Shrek|Animation|Andrew Adamson|2001|90|0|7.00|93
-28-11-2026|14:00|Shrek|Animation|Andrew Adamson|2001|90|0|8.50|67
-28-11-2026|10:30|Breaking the Waves|Drama|Lars von Trier|1996|159|16|8.50|80
-27-11-2026|10:00|Le charme discret di la bourgeoisie|Comedy|Luis Buñuel|1972|102|6|7.00|58
-26-11-2026|10:30|Dogville|Crime|Lars von Trier|2003|178|16|7.50|61
-25-11-2026|12:30|The Little Mermaid|Animation|Ron Clements|1989|83|0|8.50|82
-25-11-2026|10:00|Sanjuro|Azione|Akira Kurosawa|1962|96|0|7.00|64
-24-11-2026|10:00|The Day of the Jackal|Crime|Fred Zinnemann|1973|143|12|6.50|92
-23-11-2026|10:30|The Kid|Comedy|Charles Chaplin|1921|68|12|7.00|69
-22-11-2026|16:30|Salinui chueok|Crime|Bong Joon Ho|2003|131|12|8.50|56
-22-11-2026|13:30|The Killing Fields|Biography|Roland Joffé|1984|141|12|8.00|68
-22-11-2026|10:00|Harry Potter and the Sorcerer's Stone|Adventure|Chris Columbus|2001|152|0|8.50|61
-21-11-2026|16:30|Rang De Basanti|Comedy|Rakeysh Omprakash Mehra|2006|167|12|7.00|69
-21-11-2026|13:30|L.A. Confidential|Crime|Curtis Hanson|1997|138|12|8.00|64
-21-11-2026|10:30|Dead Man|Adventure|Jim Jarmusch|1995|121|16|7.00|68
-20-11-2026|15:30|Once Upon a Time in America|Crime|Sergio Leone|1984|229|12|8.00|61
-20-11-2026|13:00|Hana-bi|Crime|Takeshi Kitano|1997|103|12|7.00|72
-20-11-2026|10:30|Sanjuro|Azione|Akira Kurosawa|1962|96|0|6.50|64
-19-11-2026|10:00|Gilda|Drama|Charles Vidor|1946|110|12|7.50|52
-18-11-2026|12:30|The 39 Steps|Crime|Alfred Hitchcock|1935|86|12|7.50|76
-18-11-2026|10:00|Double Indemnity|Crime|Billy Wilder|1944|107|12|8.50|70
-17-11-2026|16:00|L.A. Confidential|Crime|Curtis Hanson|1997|138|12|7.50|82
-17-11-2026|13:30|Trois couleurs: Bleu|Drama|Krzysztof Kieslowski|1993|94|0|8.50|88
-17-11-2026|10:30|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|8.00|56
-16-11-2026|16:00|Shrek|Animation|Andrew Adamson|2001|90|0|8.50|75
-16-11-2026|12:30|Giù la testa|Drama|Sergio Leone|1971|157|6|8.00|58
-16-11-2026|10:30|Stand by Me|Adventure|Rob Reiner|1986|89|0|7.50|98
-15-11-2026|15:30|Hana-bi|Crime|Takeshi Kitano|1997|103|12|7.00|73
-15-11-2026|13:00|Shrek|Animation|Andrew Adamson|2001|90|0|8.00|51
-15-11-2026|10:00|Goodfellas|Biography|Martin Scorsese|1990|146|12|6.50|80
-14-11-2026|17:00|Goodfellas|Biography|Martin Scorsese|1990|146|12|8.50|63
-14-11-2026|13:00|Dogville|Crime|Lars von Trier|2003|178|16|7.50|54
-14-11-2026|10:30|Majo no takkyûbin|Animation|Hayao Miyazaki|1989|103|0|6.50|51
-13-11-2026|12:30|Majo no takkyûbin|Animation|Hayao Miyazaki|1989|103|0|7.00|55
-13-11-2026|10:00|Smultronstället|Drama|Ingmar Bergman|1957|91|0|6.50|59
-12-11-2026|10:00|Dà hóng denglong gaogao guà|Drama|Yimou Zhang|1991|125|6|7.50|82
-11-11-2026|10:30|Toy Story 2|Animation|John Lasseter|1999|92|0|7.00|97
-10-11-2026|12:30|Dà hóng denglong gaogao guà|Drama|Yimou Zhang|1991|125|6|7.50|52
-10-11-2026|10:00|The Station Agent|Comedy|Tom McCarthy|2003|89|16|6.50|51
-09-11-2026|10:30|Gilda|Drama|Charles Vidor|1946|110|12|8.50|73
-08-11-2026|18:00|Per un pugno di dollari|Azione|Sergio Leone|1964|99|12|9.50|99
-08-11-2026|14:30|Giù la testa|Drama|Sergio Leone|1971|157|6|6.50|82
-08-11-2026|12:30|The 39 Steps|Crime|Alfred Hitchcock|1935|86|12|8.50|51
-08-11-2026|10:00|The 39 Steps|Crime|Alfred Hitchcock|1935|86|12|8.00|73
-07-11-2026|19:00|The King of Comedy|Comedy|Martin Scorsese|1982|109|0|9.50|79
-07-11-2026|16:00|V for Vendetta|Azione|James McTeigue|2005|132|12|7.50|87
-07-11-2026|13:00|Brazil|Drama|Terry Gilliam|1985|132|0|7.50|51
-07-11-2026|10:00|Dà hóng denglong gaogao guà|Drama|Yimou Zhang|1991|125|6|7.50|70
-06-11-2026|15:00|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|8.00|82
-06-11-2026|12:30|The 39 Steps|Crime|Alfred Hitchcock|1935|86|12|8.00|61
-06-11-2026|10:30|The Kid|Comedy|Charles Chaplin|1921|68|12|7.00|71
-05-11-2026|10:00|Annie Hall|Comedy|Woody Allen|1977|93|12|8.50|74
-04-11-2026|10:00|Dead Man|Adventure|Jim Jarmusch|1995|121|16|8.50|93
-03-11-2026|10:00|Laura|Drama|Otto Preminger|1944|88|12|7.00|52
-02-11-2026|13:00|Notorious|Drama|Alfred Hitchcock|1946|102|0|6.50|54
-02-11-2026|10:30|Shrek|Animation|Andrew Adamson|2001|90|0|8.50|76
-01-11-2026|18:30|Brazil|Drama|Terry Gilliam|1985|132|0|9.00|70
-01-11-2026|16:00|Majo no takkyûbin|Animation|Hayao Miyazaki|1989|103|0|8.00|51
-01-11-2026|13:00|Dead Man|Adventure|Jim Jarmusch|1995|121|16|8.50|79
-01-11-2026|10:30|Shrek|Animation|Andrew Adamson|2001|90|0|8.00|87
-31-10-2026|18:00|All About Eve|Drama|Joseph L. Mankiewicz|1950|138|12|9.00|75
-31-10-2026|15:30|Toy Story 2|Animation|John Lasseter|1999|92|0|8.50|71
-31-10-2026|13:00|Hana-bi|Crime|Takeshi Kitano|1997|103|12|6.50|98
-31-10-2026|10:30|The Day the Earth Stood Still|Drama|Robert Wise|1951|92|0|8.50|98
-30-10-2026|10:30|V for Vendetta|Azione|James McTeigue|2005|132|12|7.00|74
-29-10-2026|10:30|The Station Agent|Comedy|Tom McCarthy|2003|89|16|7.50|76
-28-10-2026|10:30|Gilda|Drama|Charles Vidor|1946|110|12|8.50|59
-27-10-2026|16:00|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|7.50|73
-27-10-2026|13:30|Toy Story 2|Animation|John Lasseter|1999|92|0|8.50|52
-27-10-2026|10:30|Dip huet seung hung|Azione|John Woo|1989|111|16|8.50|51
-26-10-2026|16:30|Giù la testa|Drama|Sergio Leone|1971|157|6|8.00|63
-26-10-2026|13:30|Blow|Biography|Ted Demme|2001|124|16|8.00|58
-26-10-2026|10:30|Brazil|Drama|Terry Gilliam|1985|132|0|8.50|70
-25-10-2026|15:00|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|7.50|100
-25-10-2026|12:30|Per un pugno di dollari|Azione|Sergio Leone|1964|99|12|6.50|57
-25-10-2026|10:00|Bacheha-Ye aseman|Drama|Majid Majidi|1997|89|6|8.00|71
-24-10-2026|18:00|Notorious|Drama|Alfred Hitchcock|1946|102|0|9.00|97
-24-10-2026|15:00|Star Trek II: The Wrath of Khan|Azione|Nicholas Meyer|1982|113|0|8.00|75
-24-10-2026|12:30|Notorious|Drama|Alfred Hitchcock|1946|102|0|7.50|64
-24-10-2026|10:00|Majo no takkyûbin|Animation|Hayao Miyazaki|1989|103|0|8.50|92
-23-10-2026|10:00|La leggenda del pianista sull'oceano|Drama|Giuseppe Tornatore|1998|169|0|7.50|68
-22-10-2026|13:00|The King of Comedy|Comedy|Martin Scorsese|1982|109|0|7.50|72
-21-10-2026|10:00|The Day the Earth Stood Still|Drama|Robert Wise|1951|92|0|8.50|60
-20-10-2026|10:00|The Station Agent|Comedy|Tom McCarthy|2003|89|16|8.00|73
-19-10-2026|10:00|8½|Drama|Federico Fellini|1963|138|12|8.00|85
-18-10-2026|15:00|Bacheha-Ye aseman|Drama|Majid Majidi|1997|89|6|8.50|71
-18-10-2026|12:00|L.A. Confidential|Crime|Curtis Hanson|1997|138|12|8.00|99
-18-10-2026|10:00|Lola rennt|Crime|Tom Tykwer|1998|81|12|7.50|87
-17-10-2026|19:00|Brazil|Drama|Terry Gilliam|1985|132|0|8.50|51
-17-10-2026|16:00|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|7.50|73
-17-10-2026|13:00|8½|Drama|Federico Fellini|1963|138|12|7.50|99
-17-10-2026|10:00|The Sting|Comedy|George Roy Hill|1973|129|0|8.50|52
-16-10-2026|12:30|Donnie Darko|Drama|Richard Kelly|2001|113|16|6.50|71
-16-10-2026|10:00|Majo no takkyûbin|Animation|Hayao Miyazaki|1989|103|0|8.50|52
-15-10-2026|10:00|Bacheha-Ye aseman|Drama|Majid Majidi|1997|89|6|7.50|91
-14-10-2026|15:30|Secrets & Lies|Comedy|Mike Leigh|1996|136|0|7.50|87
-14-10-2026|13:00|Hana-bi|Crime|Takeshi Kitano|1997|103|12|7.00|64
-14-10-2026|10:00|Efter brylluppet|Drama|Susanne Bier|2006|120|16|8.00|52
-13-10-2026|13:00|Before Sunrise|Drama|Richard Linklater|1995|101|16|7.00|71
-13-10-2026|10:00|All About Eve|Drama|Joseph L. Mankiewicz|1950|138|12|7.50|55
-12-10-2026|16:00|What's Eating Gilbert Grape|Drama|Lasse Hallström|1993|118|0|7.50|82
-12-10-2026|13:00|Dancer in the Dark|Crime|Lars von Trier|2000|140|0|6.50|90
-12-10-2026|10:30|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|8.00|56
-11-10-2026|18:30|Efter brylluppet|Drama|Susanne Bier|2006|120|16|8.50|70
-11-10-2026|16:00|The Shop Around the Corner|Comedy|Ernst Lubitsch|1940|99|12|8.00|88
-11-10-2026|13:30|To Be or Not to Be|Comedy|Ernst Lubitsch|1942|99|12|8.00|88
-11-10-2026|10:00|Goodfellas|Biography|Martin Scorsese|1990|146|12|8.50|63
-10-10-2026|18:00|The Station Agent|Comedy|Tom McCarthy|2003|89|16|9.00|52
-10-10-2026|15:00|Goodfellas|Biography|Martin Scorsese|1990|146|12|8.00|54
-10-10-2026|12:30|Bacheha-Ye aseman|Drama|Majid Majidi|1997|89|6|6.50|76
-10-10-2026|10:00|Annie Hall|Comedy|Woody Allen|1977|93|12|8.50|67
-09-10-2026|10:00|Brokeback Mountain|Drama|Ang Lee|2005|134|12|7.50|80
-08-10-2026|12:30|The Sting|Comedy|George Roy Hill|1973|129|0|8.00|58
-08-10-2026|10:00|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|8.00|61
-07-10-2026|15:30|Secrets & Lies|Comedy|Mike Leigh|1996|136|0|8.50|82
-07-10-2026|13:00|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|8.50|64
-07-10-2026|10:00|Secrets & Lies|Comedy|Mike Leigh|1996|136|0|6.50|92
-06-10-2026|14:30|Efter brylluppet|Drama|Susanne Bier|2006|120|16|7.00|69
-06-10-2026|12:30|Lola rennt|Crime|Tom Tykwer|1998|81|12|7.00|56
-06-10-2026|10:00|Kung fu|Azione|Stephen Chow|2004|99|12|7.50|68
-05-10-2026|10:30|Funny Games|Crime|Michael Haneke|1997|108|12|8.00|61
-04-10-2026|16:00|Awakenings|Biography|Penny Marshall|1990|121|0|7.50|69
-04-10-2026|13:00|Die Hard|Azione|John McTiernan|1988|132|12|8.50|64
-04-10-2026|10:30|To Be or Not to Be|Comedy|Ernst Lubitsch|1942|99|12|6.50|68
-03-10-2026|18:00|The Sting|Comedy|George Roy Hill|1973|129|0|9.00|61
-03-10-2026|15:00|Ed Wood|Biography|Tim Burton|1994|127|0|8.50|72
-03-10-2026|12:30|O Brother, Where Art Thou?|Adventure|Joel Coen|2000|107|0|8.50|64
-03-10-2026|10:00|Kung fu|Azione|Stephen Chow|2004|99|12|7.00|52
-02-10-2026|12:30|Brokeback Mountain|Drama|Ang Lee|2005|134|12|7.50|76
-02-10-2026|10:00|The Night of the Hunter|Crime|Charles Laughton|1955|92|12|8.50|70
-01-10-2026|14:00|Die Hard: With a Vengeance|Azione|John McTiernan|1995|128|12|7.50|82
-01-10-2026|10:00|La leggenda del pianista sull'oceano|Drama|Giuseppe Tornatore|1998|169|0|8.00|88
-30-09-2026|10:00|Annie Hall|Comedy|Woody Allen|1977|93|12|6.50|56
-29-09-2026|15:30|Die Hard|Azione|John McTiernan|1988|132|12|8.00|75
-29-09-2026|13:00|Aguirre, der Zorn Gottes|Azione|Werner Herzog|1972|95|12|8.00|58
-29-09-2026|10:00|Guess Who's Coming to Dinner|Comedy|Stanley Kramer|1967|108|12|7.00|98
-28-09-2026|13:00|O Brother, Where Art Thou?|Adventure|Joel Coen|2000|107|0|6.50|73
-28-09-2026|10:30|O Brother, Where Art Thou?|Adventure|Joel Coen|2000|107|0|8.50|51
-27-09-2026|17:00|Once Were Warriors|Crime|Lee Tamahori|1994|102|12|8.00|80
-27-09-2026|14:30|Laura|Drama|Otto Preminger|1944|88|12|7.00|63
-27-09-2026|12:30|Lola rennt|Crime|Tom Tykwer|1998|81|12|8.00|54
-27-09-2026|10:00|Brief Encounter|Drama|David Lean|1945|86|0|8.00|51
-26-09-2026|18:00|Dead Man|Adventure|Jim Jarmusch|1995|121|16|10.00|55
-26-09-2026|15:00|Witness for the Prosecution|Crime|Billy Wilder|1957|116|0|7.00|59
-26-09-2026|12:30|To Be or Not to Be|Comedy|Ernst Lubitsch|1942|99|12|7.00|82
-26-09-2026|10:00|The Night of the Hunter|Crime|Charles Laughton|1955|92|12|7.00|97
-25-09-2026|15:30|Central do Brasil|Drama|Walter Salles|1998|110|16|8.00|52
-25-09-2026|13:00|Brief Encounter|Drama|David Lean|1945|86|0|7.00|51
-25-09-2026|10:30|Donnie Darko|Drama|Richard Kelly|2001|113|16|7.50|73
-24-09-2026|13:00|Star Trek II: The Wrath of Khan|Azione|Nicholas Meyer|1982|113|0|8.00|99
-24-09-2026|10:30|Strangers on a Train|Crime|Alfred Hitchcock|1951|101|12|8.50|82
-23-09-2026|13:00|Laura|Drama|Otto Preminger|1944|88|12|6.50|51
-23-09-2026|10:00|V for Vendetta|Azione|James McTeigue|2005|132|12|6.50|73
-22-09-2026|10:30|Sholay|Azione|Ramesh Sippy|1975|204|0|8.50|79
-21-09-2026|12:30|Wo hu cang long|Azione|Ang Lee|2000|120|12|7.00|87
-21-09-2026|10:00|A Christmas Story|Comedy|Bob Clark|1983|93|0|7.50|51
-20-09-2026|19:30|Funny Games|Crime|Michael Haneke|1997|108|12|10.00|70
-20-09-2026|17:00|The Night of the Hunter|Crime|Charles Laughton|1955|92|12|8.50|82
-20-09-2026|13:30|Paris, Texas|Drama|Wim Wenders|1984|145|0|8.50|61
-20-09-2026|10:30|Efter brylluppet|Drama|Susanne Bier|2006|120|16|7.00|71
-19-09-2026|20:00|Ed Wood|Biography|Tim Burton|1994|127|0|8.50|74
-19-09-2026|17:00|Anand|Drama|Hrishikesh Mukherjee|1971|122|0|7.50|93
-19-09-2026|14:00|Wo hu cang long|Azione|Ang Lee|2000|120|12|7.00|52
-19-09-2026|10:30|Stalker|Drama|Andrei Tarkovsky|1979|162|0|6.50|54
-18-09-2026|10:00|A Christmas Story|Comedy|Bob Clark|1983|93|0|6.50|76
-17-09-2026|13:00|Mad Max 2|Azione|George Miller|1981|96|12|7.00|70
-17-09-2026|10:30|No Man's Land|Comedy|Danis Tanovic|2001|98|16|6.50|51
-16-09-2026|16:00|Ed Wood|Biography|Tim Burton|1994|127|0|8.00|79
-16-09-2026|12:30|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|7.50|87
-16-09-2026|10:00|Mad Max 2|Azione|George Miller|1981|96|12|7.50|75
-15-09-2026|16:30|Yeopgijeogin geunyeo|Comedy|Jae-young Kwak|2001|137|12|7.50|71
-15-09-2026|13:30|Kumonosu-jô|Drama|Akira Kurosawa|1957|110|12|8.00|98
-15-09-2026|10:30|Witness for the Prosecution|Crime|Billy Wilder|1957|116|0|8.50|98
-14-09-2026|16:00|Star Wars|Azione|George Lucas|1977|121|12|7.50|74
-14-09-2026|13:30|Roman Holiday|Comedy|William Wyler|1953|118|12|7.00|76
-14-09-2026|10:30|Efter brylluppet|Drama|Susanne Bier|2006|120|16|7.00|59
-13-09-2026|20:00|Star Trek II: The Wrath of Khan|Azione|Nicholas Meyer|1982|113|0|9.00|73
-13-09-2026|16:30|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|8.00|52
-13-09-2026|13:30|Blood Diamond|Adventure|Edward Zwick|2006|143|12|7.50|51
-13-09-2026|10:00|Blood Diamond|Adventure|Edward Zwick|2006|143|12|7.00|63
-12-09-2026|15:30|Sleuth|Mystery|Joseph L. Mankiewicz|1972|138|6|8.50|58
-12-09-2026|13:00|The Station Agent|Comedy|Tom McCarthy|2003|89|16|8.50|70
-12-09-2026|10:30|Funny Games|Crime|Michael Haneke|1997|108|12|7.00|100
-11-09-2026|16:00|The Exorcist|Horror|William Friedkin|1973|122|12|7.50|57
-11-09-2026|13:30|O Brother, Where Art Thou?|Adventure|Joel Coen|2000|107|0|7.00|71
-11-09-2026|10:30|Star Trek II: The Wrath of Khan|Azione|Nicholas Meyer|1982|113|0|8.50|97
-10-09-2026|10:00|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|8.50|75
-09-09-2026|13:00|O Brother, Where Art Thou?|Adventure|Joel Coen|2000|107|0|7.00|64
-09-09-2026|10:00|Lat sau san taam|Azione|John Woo|1992|128|16|7.50|92
-08-09-2026|16:30|Stalag 17|Comedy|Billy Wilder|1953|120|12|8.50|68
-08-09-2026|13:00|Yeopgijeogin geunyeo|Comedy|Jae-young Kwak|2001|137|12|6.50|72
-08-09-2026|10:30|Guess Who's Coming to Dinner|Comedy|Stanley Kramer|1967|108|12|6.50|60
-07-09-2026|13:30|Funny Games|Crime|Michael Haneke|1997|108|12|6.50|60
-07-09-2026|10:00|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|8.50|73
-06-09-2026|15:00|Guess Who's Coming to Dinner|Comedy|Stanley Kramer|1967|108|12|7.00|85
-06-09-2026|12:30|The Night of the Hunter|Crime|Charles Laughton|1955|92|12|6.50|71
-06-09-2026|10:00|Rope|Crime|Alfred Hitchcock|1948|80|12|8.00|99
-05-09-2026|17:00|La Grande Illusion|Drama|Jean Renoir|1937|113|12|8.50|87
-05-09-2026|13:30|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|7.00|51
-05-09-2026|10:00|Once Upon a Time in the West|Western|Sergio Leone|1968|165|0|7.50|73
-04-09-2026|12:30|Efter brylluppet|Drama|Susanne Bier|2006|120|16|8.00|99
-04-09-2026|10:00|Once Were Warriors|Crime|Lee Tamahori|1994|102|12|8.50|52
-03-09-2026|10:30|What Ever Happened to Baby Jane?|Drama|Robert Aldrich|1962|134|12|8.00|71
-02-09-2026|10:00|Once Were Warriors|Crime|Lee Tamahori|1994|102|12|6.50|52
-01-09-2026|10:00|Paris, Texas|Drama|Wim Wenders|1984|145|0|8.50|91
-31-08-2026|12:00|Stalker|Drama|Andrei Tarkovsky|1979|162|0|7.50|87
-31-08-2026|10:00|The Circus|Comedy|Charles Chaplin|1928|72|12|7.50|64
-30-08-2026|15:00|V for Vendetta|Azione|James McTeigue|2005|132|12|8.00|52
-30-08-2026|12:30|The Truman Show|Comedy|Peter Weir|1998|103|0|7.50|71
-30-08-2026|10:00|Funny Games|Crime|Michael Haneke|1997|108|12|6.50|55
-29-08-2026|17:00|Kumonosu-jô|Drama|Akira Kurosawa|1957|110|12|8.00|82
-29-08-2026|14:00|The Bourne Identity|Azione|Doug Liman|2002|119|12|7.50|90
-29-08-2026|10:00|The Right Stuff|Adventure|Philip Kaufman|1983|193|6|7.00|56
-28-08-2026|10:30|The Color Purple|Drama|Steven Spielberg|1985|154|0|8.50|70
-27-08-2026|15:30|Blood Diamond|Adventure|Edward Zwick|2006|143|12|6.50|88
-27-08-2026|13:30|The General|Azione|Clyde Bruckman|1926|67|12|6.50|88
-27-08-2026|10:30|Lat sau san taam|Azione|John Woo|1992|128|16|8.00|63
-26-08-2026|10:30|The Notebook|Drama|Nick Cassavetes|2004|123|12|6.50|52
-25-08-2026|15:30|Rope|Crime|Alfred Hitchcock|1948|80|12|7.00|54
-25-08-2026|12:30|Stalag 17|Comedy|Billy Wilder|1953|120|12|7.00|93
-25-08-2026|10:30|Zelig|Comedy|Woody Allen|1983|79|6|8.50|67
-24-08-2026|10:00|Rope|Crime|Alfred Hitchcock|1948|80|12|8.50|80
-22-08-2026|19:00|Pride & Prejudice|Drama|Joe Wright|2005|129|6|9.00|58
-21-08-2026|14:30|Glengarry Glen Ross|Crime|James Foley|1992|100|16|7.00|61
-21-08-2026|10:30|Judgment at Nuremberg|Drama|Stanley Kramer|1961|179|12|7.50|82
-20-08-2026|10:00|The Color Purple|Drama|Steven Spielberg|1985|154|0|7.50|64
-19-08-2026|12:30|Spoorloos|Mystery|George Sluizer|1988|107|12|7.00|92
-19-08-2026|10:00|Harold and Maude|Comedy|Hal Ashby|1971|91|6|8.00|69
-18-08-2026|13:30|The Game|Azione|David Fincher|1997|129|12|6.50|56
-18-08-2026|10:30|Sleuth|Mystery|Joseph L. Mankiewicz|1972|138|6|7.00|68
-17-08-2026|15:00|Sleuth|Mystery|Joseph L. Mankiewicz|1972|138|6|6.50|61
-16-08-2026|10:30|Blood Diamond|Adventure|Edward Zwick|2006|143|12|7.00|69
-14-08-2026|13:30|Kumonosu-jô|Drama|Akira Kurosawa|1957|110|12|8.00|64
-13-08-2026|13:30|Doctor Zhivago|Drama|David Lean|1965|197|12|8.50|68
-13-08-2026|10:30|La battaglia di Algeri|Drama|Gillo Pontecorvo|1966|121|12|8.50|61
-12-08-2026|17:00|Blood Diamond|Adventure|Edward Zwick|2006|143|12|7.00|72
-11-08-2026|10:00|The Wild Bunch|Azione|Sam Peckinpah|1969|145|12|6.50|64
-09-08-2026|10:30|Das Cabinet des Dr. Caligari|Fantasy|Robert Wiene|1920|76|12|8.00|52
-08-08-2026|18:00|Being John Malkovich|Comedy|Spike Jonze|1999|113|16|8.50|76
-07-08-2026|10:30|Badlands|Azione|Terrence Malick|1973|94|6|8.50|70
-06-08-2026|10:30|On the Waterfront|Crime|Elia Kazan|1954|108|12|8.00|52
-05-08-2026|10:00|The Station Agent|Comedy|Tom McCarthy|2003|89|16|8.50|76
-04-08-2026|10:30|Pride & Prejudice|Drama|Joe Wright|2005|129|6|8.50|98
-03-08-2026|10:00|Midnight Cowboy|Drama|John Schlesinger|1969|113|12|6.50|88
-02-08-2026|16:00|No Man's Land|Comedy|Danis Tanovic|2001|98|16|6.50|70
-02-08-2026|13:00|Awakenings|Biography|Penny Marshall|1990|121|0|7.50|55
-31-07-2026|10:00|Das Cabinet des Dr. Caligari|Fantasy|Robert Wiene|1920|76|12|8.00|59
-30-07-2026|12:30|Miracle on 34th Street|Comedy|George Seaton|1947|96|12|7.50|82
-30-07-2026|10:00|On the Waterfront|Crime|Elia Kazan|1954|108|12|8.00|97
-29-07-2026|10:00|The Bridges of Madison County|Drama|Clint Eastwood|1995|135|12|7.50|52
-28-07-2026|15:30|The World's Fastest Indian|Biography|Roger Donaldson|2005|127|0|6.50|51
-28-07-2026|12:30|Being John Malkovich|Comedy|Spike Jonze|1999|113|16|7.50|73
-27-07-2026|10:30|The Wild Bunch|Azione|Sam Peckinpah|1969|145|12|8.00|97
-26-07-2026|19:00|Star Wars|Azione|George Lucas|1977|121|12|8.50|52
-26-07-2026|10:30|Pride & Prejudice|Drama|Joe Wright|2005|129|6|8.50|51
-25-07-2026|15:30|Rebecca|Drama|Alfred Hitchcock|1940|130|12|8.50|73
-24-07-2026|10:00|Manhattan|Comedy|Woody Allen|1979|96|16|7.00|85
-23-07-2026|13:00|On the Waterfront|Crime|Elia Kazan|1954|108|12|6.50|71
-23-07-2026|10:30|The Adventures of Robin Hood|Azione|Michael Curtiz|1938|102|6|7.00|99
-22-07-2026|13:30|Miracle on 34th Street|Comedy|George Seaton|1947|96|12|8.50|87
-22-07-2026|10:30|The Bridges of Madison County|Drama|Clint Eastwood|1995|135|12|7.00|51
-20-07-2026|10:00|Doctor Zhivago|Drama|David Lean|1965|197|12|7.00|73
-19-07-2026|10:00|Tôkyô goddofâzâzu|Animation|Satoshi Kon|2003|90|12|8.50|99
-18-07-2026|10:00|Tôkyô goddofâzâzu|Animation|Satoshi Kon|2003|90|12|7.00|52
-17-07-2026|10:00|Badlands|Azione|Terrence Malick|1973|94|6|8.00|71
-16-07-2026|15:00|The World's Fastest Indian|Biography|Roger Donaldson|2005|127|0|8.50|52
-15-07-2026|10:30|The Wild Bunch|Azione|Sam Peckinpah|1969|145|12|7.50|91
-14-07-2026|14:00|The World's Fastest Indian|Biography|Roger Donaldson|2005|127|0|7.00|87
-13-07-2026|10:00|The Graduate|Comedy|Mike Nichols|1967|106|12|6.50|64
-12-07-2026|10:30|Trois couleurs: Blanc|Comedy|Krzysztof Kieslowski|1994|92|0|6.50|52
-11-07-2026|16:30|Jungfrukällan|Drama|Ingmar Bergman|1960|89|12|7.50|71
-10-07-2026|10:30|The World's Fastest Indian|Biography|Roger Donaldson|2005|127|0|8.50|55
-09-07-2026|16:00|Manhattan|Comedy|Woody Allen|1979|96|16|7.00|82
-08-07-2026|10:30|Vizontele|Comedy|Yilmaz Erdogan|2001|110|12|6.50|90
-07-07-2026|10:30|Funny Games|Crime|Michael Haneke|1997|108|12|8.00|56
-06-07-2026|10:30|À bout de souffle|Crime|Jean-Luc Godard|1960|90|0|8.00|70
-05-07-2026|10:00|La battaglia di Algeri|Drama|Gillo Pontecorvo|1966|121|12|7.00|88
-04-07-2026|19:00|Spoorloos|Mystery|George Sluizer|1988|107|12|9.00|88
-03-07-2026|10:30|The World's Fastest Indian|Biography|Roger Donaldson|2005|127|0|6.50|63
-02-07-2026|10:00|Kal Ho Naa Ho|Comedy|Nikkhil Advani|2003|186|0|8.50|52
-24-05-2026|10:00|À bout de souffle|Crime|Jean-Luc Godard|1960|90|0|7.50|54
-10-10-1010|20:30|ciqwo|cioa|cia|193|392|3242|42.00|342
+data_proiezione| ora_proiezione| titolo_film                                           | genere    | regista                         | anno| durata_minuti| eta_minima| prezzo_biglietto| posti_sala| posti_liberi
+21-09-2026     | 14:00         | One Flew Over the Cuckoo's Nest                       | Drammatico| Milos Forman                    | 1975|           133|         12|             8.50|        180|          180
+07-12-2026     | 10:30         | Breaking the Waves                                    | Drammatico| Lars von Trier                  | 1996|           159|         16|             8.50|        200|          200
+11-09-2026     | 13:00         | Stalker                                               | Drammatico| Andrei Tarkovsky                | 1979|           162|          0|             8.00|        180|          180
+25-06-2026     | 10:30         | Kung fu                                               | Azione    | Stephen Chow                    | 2004|            99|         12|             6.50|         50|           50
+25-09-2026     | 15:30         | The Day of the Jackal                                 | Poliziesco| Fred Zinnemann                  | 1973|           143|         12|             8.50|         50|           50
+21-08-2026     | 12:30         | Pirates of the Caribbean: The Curse of the Black Pearl| Azione    | Gore Verbinski                  | 2003|           143|         12|             7.00|        180|          180
+16-12-2026     | 10:00         | Sanjuro                                               | Azione    | Akira Kurosawa                  | 1962|            96|          0|             6.50|         50|           50
+01-07-2026     | 16:00         | Kung fu                                               | Azione    | Stephen Chow                    | 2004|            99|         12|             8.00|        180|          180
+21-09-2026     | 13:00         | Pirates of the Caribbean: The Curse of the Black Pearl| Azione    | Gore Verbinski                  | 2003|           143|         12|             7.00|        200|          200
+10-10-2026     | 10:30         | His Girl Friday                                       | Commedia  | Howard Hawks                    | 1940|            92|         12|             7.00|        180|          180
+17-10-2026     | 16:00         | Bringing Up Baby                                      | Commedia  | Howard Hawks                    | 1938|           102|         12|             8.50|        120|          120
+07-09-2026     | 13:00         | Rear Window                                           | Giallo    | Alfred Hitchcock                | 1954|           112|          0|             8.50|        120|          120
+28-11-2026     | 15:30         | Aguirre der Zorn Gottes                               | Azione    | Werner Herzog                   | 1972|            95|         12|             7.00|         50|           50
+02-09-2026     | 12:30         | The Fifth Element                                     | Azione    | Luc Besson                      | 1997|           126|         12|             6.50|        120|          120
+28-12-2026     | 10:00         | The Little Mermaid                                    | Animazione| Ron Clements                    | 1989|            83|          0|             7.50|         50|           50
+14-12-2026     | 10:30         | Toy Story                                             | Animazione| John Lasseter                   | 1995|            81|          0|             7.50|        120|          120
+17-08-2026     | 10:30         | The Princess Bride                                    | Avventura | Rob Reiner                      | 1987|            98|          0|             6.50|        120|          120
+24-07-2026     | 15:30         | Brazil                                                | Drammatico| Terry Gilliam                   | 1985|           132|          0|             8.00|        200|          200
+13-10-2026     | 13:00         | The Princess Bride                                    | Avventura | Rob Reiner                      | 1987|            98|          0|             7.50|        180|          180
+15-10-2026     | 10:00         | The Untouchables                                      | Poliziesco| Brian De Palma                  | 1987|           119|         12|             8.50|        180|          180
+17-09-2026     | 16:30         | The Untouchables                                      | Poliziesco| Brian De Palma                  | 1987|           119|         12|             7.00|        120|          120
+15-12-2026     | 14:00         | Le charme discret de la bourgeoisie                   | Commedia  | Luis Buñuel                     | 1972|           102|          6|             8.50|        180|          180
+13-11-2026     | 10:00         | Giant                                                 | Drammatico| George Stevens                  | 1956|           201|          0|             6.50|         50|           50
+08-11-2026     | 17:30         | Giant                                                 | Drammatico| George Stevens                  | 1956|           201|          0|             6.50|        200|          200
+29-08-2026     | 15:00         | The Little Mermaid                                    | Animazione| Ron Clements                    | 1989|            83|          0|             7.00|        200|          200
+07-07-2026     | 16:30         | Toy Story                                             | Animazione| John Lasseter                   | 1995|            81|          0|             6.50|        120|          120
+28-10-2026     | 13:30         | Tôkyô monogatari                                      | Drammatico| Yasujirô Ozu                    | 1953|           136|          0|             7.00|         50|           50
+25-07-2026     | 10:00         | The Day of the Jackal                                 | Poliziesco| Fred Zinnemann                  | 1973|           143|         12|             8.50|        200|          200
+17-10-2026     | 16:30         | This Is England                                       | Poliziesco| Shane Meadows                   | 2006|           101|         12|             6.50|         50|           50
+14-11-2026     | 13:30         | Rear Window                                           | Giallo    | Alfred Hitchcock                | 1954|           112|          0|             8.00|        180|          180
+08-08-2026     | 10:30         | The Untouchables                                      | Poliziesco| Brian De Palma                  | 1987|           119|         12|             8.00|        120|          120
+27-07-2026     | 12:30         | Stand by Me                                           | Avventura | Rob Reiner                      | 1986|            89|          0|             7.50|        120|          120
+16-08-2026     | 10:00         | Det sjunde inseglet                                   | Drammatico| Ingmar Bergman                  | 1957|            96|         12|             8.00|        120|          120
+25-09-2026     | 10:00         | Toy Story                                             | Animazione| John Lasseter                   | 1995|            81|          0|             8.50|        120|          120
+17-06-2026     | 14:00         | Sanjuro                                               | Azione    | Akira Kurosawa                  | 1962|            96|          0|             8.00|         50|           50
+13-09-2026     | 10:30         | The Lives of Others                                   | Drammatico| Florian Henckel von Donnersmarck| 2006|           137|         12|             6.50|        120|          120
+09-12-2026     | 21:30         | This Is England                                       | Poliziesco| Shane Meadows                   | 2006|           101|         12|             9.00|        180|          180
+20-10-2026     | 18:00         | Pulp Fiction                                          | Poliziesco| Quentin Tarantino               | 1994|           154|         12|            10.00|        120|          120
+24-09-2026     | 15:00         | The Killing Fields                                    | Biografici| Roland Joffé                    | 1984|           141|         12|             8.00|        200|          200
+15-10-2026     | 10:30         | Once Upon a Time in America                           | Poliziesco| Sergio Leone                    | 1984|           229|         12|             7.00|         50|           50
+14-06-2026     | 15:30         | The Little Mermaid                                    | Animazione| Ron Clements                    | 1989|            83|          0|             6.50|        200|          200
+27-10-2026     | 12:30         | Donnie Darko                                          | Drammatico| Richard Kelly                   | 2001|           113|         16|             6.50|        180|          180
+15-12-2026     | 10:00         | Psycho                                                | Horror    | Alfred Hitchcock                | 1960|           109|         12|             8.00|         50|           50
+10-08-2026     | 10:00         | The Little Mermaid                                    | Animazione| Ron Clements                    | 1989|            83|          0|             7.00|         50|           50
+12-10-2026     | 16:30         | Blow                                                  | Biografici| Ted Demme                       | 2001|           124|         16|             8.50|        120|          120
+25-06-2026     | 13:30         | Das Experiment                                        | Drammatico| Oliver Hirschbiegel             | 2001|           120|         16|             8.50|        120|          120
+16-09-2026     | 10:00         | Stalker                                               | Drammatico| Andrei Tarkovsky                | 1979|           162|          0|             7.00|        120|          120
+17-11-2026     | 15:30         | Harry Potter and the Sorcerer's Stone                 | Avventura | Chris Columbus                  | 2001|           152|          0|             7.00|        200|          200
+18-12-2026     | 13:00         | The Lost Weekend                                      | Drammatico| Billy Wilder                    | 1945|           101|         12|             7.00|        120|          120
+04-10-2026     | 10:30         | Hannah and Her Sisters                                | Commedia  | Woody Allen                     | 1986|           107|         12|             7.50|         50|           50
+25-11-2026     | 15:30         | Stalker                                               | Drammatico| Andrei Tarkovsky                | 1979|           162|          0|             8.00|        180|          180
+17-10-2026     | 13:00         | Das Experiment                                        | Drammatico| Oliver Hirschbiegel             | 2001|           120|         16|             7.50|        200|          200
+07-09-2026     | 10:00         | Psycho                                                | Horror    | Alfred Hitchcock                | 1960|           109|         12|             7.50|        180|          180
+01-10-2026     | 12:30         | Bringing Up Baby                                      | Commedia  | Howard Hawks                    | 1938|           102|         12|             8.00|        180|          180
+18-09-2026     | 10:00         | Stand by Me                                           | Avventura | Rob Reiner                      | 1986|            89|          0|             8.50|        200|          200
+07-08-2026     | 16:30         | Once Upon a Time in America                           | Poliziesco| Sergio Leone                    | 1984|           229|         12|             7.00|         50|           50
+05-09-2026     | 13:00         | The Day of the Jackal                                 | Poliziesco| Fred Zinnemann                  | 1973|           143|         12|             6.50|        120|          120
+19-06-2026     | 10:00         | Salinui chueok                                        | Poliziesco| Bong Joon Ho                    | 2003|           131|         12|             8.00|        120|          120
+28-11-2026     | 17:00         | Donnie Darko                                          | Drammatico| Richard Kelly                   | 2001|           113|         16|             6.50|         50|           50
+22-12-2026     | 14:30         | Le charme discret de la bourgeoisie                   | Commedia  | Luis Buñuel                     | 1972|           102|          6|             7.00|        120|          120
+12-08-2026     | 10:00         | Once Upon a Time in America                           | Poliziesco| Sergio Leone                    | 1984|           229|         12|             6.50|        200|          200
+27-09-2026     | 10:00         | Breaking the Waves                                    | Drammatico| Lars von Trier                  | 1996|           159|         16|             8.00|        180|          180
+17-12-2026     | 10:00         | Smultronstället                                       | Drammatico| Ingmar Bergman                  | 1957|            91|          0|             7.00|        180|          180
+13-10-2026     | 15:30         | Notorious                                             | Drammatico| Alfred Hitchcock                | 1946|           102|          0|             8.00|         50|           50
+06-11-2026     | 12:30         | The Exorcist                                          | Horror    | William Friedkin                | 1973|           122|         12|             6.50|        200|          200
+11-06-2026     | 10:00         | Aguirre, der Zorn Gottes                              | Azione    | Werner Herzog                   | 1972|            95|         12|             7.50|        180|          180
+15-11-2026     | 12:30         | Stand by Me                                           | Avventura | Rob Reiner                      | 1986|            89|          0|             6.50|        120|          120
+17-10-2026     | 10:00         | Psycho                                                | Horror    | Alfred Hitchcock                | 1960|           109|         12|             6.50|        200|          200
+29-10-2026     | 12:30         | Dawn of the Dead                                      | Azione    | George A. Romero                | 1978|           127|         12|             8.00|         50|           50
+12-09-2026     | 10:00         | Planes, Trains & Automobiles                          | Commedia  | John Hughes                     | 1987|            93|          0|             7.00|         50|           50
+07-09-2026     | 15:30         | The Lost Weekend                                      | Drammatico| Billy Wilder                    | 1945|           101|         12|             6.50|        120|          120
+19-09-2026     | 13:00         | Le charme discret de la bourgeoisie                   | Commedia  | Luis Buñuel                     | 1972|           102|          6|             7.50|         50|           50
+01-12-2026     | 10:30         | Office Space                                          | Commedia  | Mike Judge                      | 1999|            89|         16|             6.50|        120|          120
+14-11-2026     | 19:00         | The Exorcist                                          | Horror    | William Friedkin                | 1973|           122|         12|             8.50|        200|          200
+15-12-2026     | 16:30         | Shrek                                                 | Animazione| Andrew Adamson                  | 2001|            90|          0|             7.00|        200|          200
+07-09-2026     | 14:00         | Shrek                                                 | Animazione| Andrew Adamson                  | 2001|            90|          0|             8.50|        120|          120
+09-12-2026     | 10:30         | Breaking the Waves                                    | Drammatico| Lars von Trier                  | 1996|           159|         16|             8.50|        180|          180
+14-11-2026     | 10:00         | Le charme discret de la bourgeoisie                   | Commedia  | Luis Buñuel                     | 1972|           102|          6|             7.00|        180|          180
+22-10-2026     | 10:30         | Dogville                                              | Poliziesco| Lars von Trier                  | 2003|           178|         16|             7.50|        120|          120
+28-11-2026     | 12:30         | The Little Mermaid                                    | Animazione| Ron Clements                    | 1989|            83|          0|             8.50|        200|          200
+05-09-2026     | 10:00         | Sanjuro                                               | Azione    | Akira Kurosawa                  | 1962|            96|          0|             7.00|        180|          180
+18-11-2026     | 10:00         | The Day of the Jackal                                 | Poliziesco| Fred Zinnemann                  | 1973|           143|         12|             6.50|        200|          200
+10-10-2026     | 10:30         | The Kid                                               | Commedia  | Charles Chaplin                 | 1921|            68|         12|             7.00|        180|          180
+22-09-2026     | 16:30         | Salinui chueok                                        | Poliziesco| Bong Joon Ho                    | 2003|           131|         12|             8.50|        180|          180
+14-11-2026     | 13:30         | The Killing Fields                                    | Biografici| Roland Joffé                    | 1984|           141|         12|             8.00|         50|           50
+08-08-2026     | 10:00         | Harry Potter and the Sorcerer's Stone                 | Avventura | Chris Columbus                  | 2001|           152|          0|             8.50|        180|          180
+13-10-2026     | 16:30         | Rang De Basanti                                       | Commedia  | Rakeysh Omprakash Mehra         | 2006|           167|         12|             7.00|        200|          200
+27-08-2026     | 13:30         | L.A. Confidential                                     | Poliziesco| Curtis Hanson                   | 1997|           138|         12|             8.00|         50|           50
+14-07-2026     | 10:30         | Dead Man                                              | Avventura | Jim Jarmusch                    | 1995|           121|         16|             7.00|        180|          180
+28-11-2026     | 15:30         | Once Upon a Time in America                           | Poliziesco| Sergio Leone                    | 1984|           229|         12|             8.00|        120|          120
+09-12-2026     | 13:00         | Hana-bi                                               | Poliziesco| Takeshi Kitano                  | 1997|           103|         12|             7.00|         50|           50
+04-10-2026     | 10:30         | Sanjuro                                               | Azione    | Akira Kurosawa                  | 1962|            96|          0|             6.50|         50|           50
+19-08-2026     | 10:00         | Gilda                                                 | Drammatico| Charles Vidor                   | 1946|           110|         12|             7.50|        120|          120
+07-09-2026     | 12:30         | The 39 Steps                                          | Poliziesco| Alfred Hitchcock                | 1935|            86|         12|             7.50|        200|          200
+14-06-2026     | 10:00         | Double Indemnity                                      | Poliziesco| Billy Wilder                    | 1944|           107|         12|             8.50|        180|          180
+16-08-2026     | 16:00         | L.A. Confidential                                     | Poliziesco| Curtis Hanson                   | 1997|           138|         12|             7.50|        120|          120
+28-08-2026     | 13:30         | Trois couleurs: Bleu                                  | Drammatico| Krzysztof Kieslowski            | 1993|            94|          0|             8.50|        120|          120
+29-10-2026     | 10:30         | Dancer in the Dark                                    | Poliziesco| Lars von Trier                  | 2000|           140|          0|             8.00|        200|          200
+22-11-2026     | 16:00         | Shrek                                                 | Animazione| Andrew Adamson                  | 2001|            90|          0|             8.50|        180|          180
+07-08-2026     | 12:30         | Giù la testa                                          | Drammatico| Sergio Leone                    | 1971|           157|          6|             8.00|        200|          200
+08-11-2026     | 10:30         | Stand by Me                                           | Avventura | Rob Reiner                      | 1986|            89|          0|             7.50|        180|          180
+06-11-2026     | 15:30         | Hana-bi                                               | Poliziesco| Takeshi Kitano                  | 1997|           103|         12|             7.00|         50|           50
+10-12-2026     | 13:00         | Shrek                                                 | Animazione| Andrew Adamson                  | 2001|            90|          0|             8.00|        180|          180
+12-10-2026     | 10:00         | Goodfellas                                            | Biografici| Martin Scorsese                 | 1990|           146|         12|             6.50|        200|          200
+26-12-2026     | 17:00         | Goodfellas                                            | Biografici| Martin Scorsese                 | 1990|           146|         12|             8.50|        180|          180
+07-08-2026     | 13:00         | Dogville                                              | Poliziesco| Lars von Trier                  | 2003|           178|         16|             7.50|        120|          120
+26-11-2026     | 10:30         | Majo no takkyûbin                                     | Animazione| Hayao Miyazaki                  | 1989|           103|          0|             6.50|        200|          200
+10-11-2026     | 12:30         | Majo no takkyûbin                                     | Animazione| Hayao Miyazaki                  | 1989|           103|          0|             7.00|         50|           50
+27-08-2026     | 10:00         | Smultronstället                                       | Drammatico| Ingmar Bergman                  | 1957|            91|          0|             6.50|        120|          120
+11-09-2026     | 10:00         | Dà hóng denglong gaogao guà                           | Drammatico| Yimou Zhang                     | 1991|           125|          6|             7.50|         50|           50
+24-06-2026     | 10:30         | Toy Story 2                                           | Animazione| John Lasseter                   | 1999|            92|          0|             7.00|        180|          180
+02-12-2026     | 12:30         | Dà hóng denglong gaogao guà                           | Drammatico| Yimou Zhang                     | 1991|           125|          6|             7.50|        200|          200
+12-09-2026     | 10:00         | The Station Agent                                     | Commedia  | Tom McCarthy                    | 2003|            89|         16|             6.50|        180|          180
+25-07-2026     | 10:30         | Gilda                                                 | Drammatico| Charles Vidor                   | 1946|           110|         12|             8.50|        120|          120
+24-09-2026     | 18:00         | Per un pugno di dollari                               | Azione    | Sergio Leone                    | 1964|            99|         12|             9.50|        180|          180
+20-11-2026     | 14:30         | Giù la testa                                          | Drammatico| Sergio Leone                    | 1971|           157|          6|             6.50|        180|          180
+14-11-2026     | 12:30         | The 39 Steps                                          | Poliziesco| Alfred Hitchcock                | 1935|            86|         12|             8.50|         50|           50
+20-10-2026     | 10:00         | The 39 Steps                                          | Poliziesco| Alfred Hitchcock                | 1935|            86|         12|             8.00|        120|          120
+20-11-2026     | 19:00         | The King of Comedy                                    | Commedia  | Martin Scorsese                 | 1982|           109|          0|             9.50|        180|          180
+05-09-2026     | 16:00         | V for Vendetta                                        | Azione    | James McTeigue                  | 2005|           132|         12|             7.50|         50|           50
+26-10-2026     | 13:00         | Brazil                                                | Drammatico| Terry Gilliam                   | 1985|           132|          0|             7.50|        180|          180
+08-09-2026     | 10:00         | Dà hóng denglong gaogao guà                           | Drammatico| Yimou Zhang                     | 1991|           125|          6|             7.50|         50|           50
+03-08-2026     | 15:00         | Dancer in the Dark                                    | Poliziesco| Lars von Trier                  | 2000|           140|          0|             8.00|        120|          120
+11-09-2026     | 12:30         | The 39 Steps                                          | Poliziesco| Alfred Hitchcock                | 1935|            86|         12|             8.00|        120|          120
+09-12-2026     | 10:30         | The Kid                                               | Commedia  | Charles Chaplin                 | 1921|            68|         12|             7.00|        180|          180
+06-12-2026     | 10:00         | Annie Hall                                            | Commedia  | Woody Allen                     | 1977|            93|         12|             8.50|        200|          200
+25-06-2026     | 10:00         | Dead Man                                              | Avventura | Jim Jarmusch                    | 1995|           121|         16|             8.50|        180|          180
+26-08-2026     | 10:00         | Laura                                                 | Drammatico| Otto Preminger                  | 1944|            88|         12|             7.00|        120|          120
+16-09-2026     | 13:00         | Notorious                                             | Drammatico| Alfred Hitchcock                | 1946|           102|          0|             6.50|         50|           50
+07-08-2026     | 10:30         | Shrek                                                 | Animazione| Andrew Adamson                  | 2001|            90|          0|             8.50|        180|          180
+21-08-2026     | 18:30         | Brazil                                                | Drammatico| Terry Gilliam                   | 1985|           132|          0|             9.00|         50|           50
+06-07-2026     | 16:00         | Majo no takkyûbin                                     | Animazione| Hayao Miyazaki                  | 1989|           103|          0|             8.00|        120|          120
+25-06-2026     | 13:00         | Dead Man                                              | Avventura | Jim Jarmusch                    | 1995|           121|         16|             8.50|        200|          200
+27-11-2026     | 10:30         | Shrek                                                 | Animazione| Andrew Adamson                  | 2001|            90|          0|             8.00|         50|           50
+01-11-2026     | 18:00         | All About Eve                                         | Drammatico| Joseph L. Mankiewicz            | 1950|           138|         12|             9.00|        200|          200
+01-10-2026     | 15:30         | Toy Story 2                                           | Animazione| John Lasseter                   | 1999|            92|          0|             8.50|         50|           50
+28-09-2026     | 13:00         | Hana-bi                                               | Poliziesco| Takeshi Kitano                  | 1997|           103|         12|             6.50|        120|          120
+28-07-2026     | 10:30         | The Day the Earth Stood Still                         | Drammatico| Robert Wise                     | 1951|            92|          0|             8.50|        180|          180
+29-12-2026     | 10:30         | V for Vendetta                                        | Azione    | James McTeigue                  | 2005|           132|         12|             7.00|         50|           50
+20-11-2026     | 10:30         | The Station Agent                                     | Commedia  | Tom McCarthy                    | 2003|            89|         16|             7.50|         50|           50
+02-12-2026     | 10:30         | Gilda                                                 | Drammatico| Charles Vidor                   | 1946|           110|         12|             8.50|        120|          120
+22-11-2026     | 16:00         | Dancer in the Dark                                    | Poliziesco| Lars von Trier                  | 2000|           140|          0|             7.50|        120|          120
+13-12-2026     | 13:30         | Toy Story 2                                           | Animazione| John Lasseter                   | 1999|            92|          0|             8.50|        120|          120
+14-06-2026     | 10:30         | Dip huet seung hung                                   | Azione    | John Woo                        | 1989|           111|         16|             8.50|        180|          180
+11-12-2026     | 16:30         | Giù la testa                                          | Drammatico| Sergio Leone                    | 1971|           157|          6|             8.00|        200|          200
+07-09-2026     | 13:30         | Blow                                                  | Biografici| Ted Demme                       | 2001|           124|         16|             8.00|        120|          120
+13-11-2026     | 10:30         | Brazil                                                | Drammatico| Terry Gilliam                   | 1985|           132|          0|             8.50|         50|           50
+29-10-2026     | 15:00         | Dancer in the Dark                                    | Poliziesco| Lars von Trier                  | 2000|           140|          0|             7.50|        200|          200
+15-11-2026     | 12:30         | Per un pugno di dollari                               | Azione    | Sergio Leone                    | 1964|            99|         12|             6.50|        180|          180
+16-08-2026     | 10:00         | Bacheha-Ye aseman                                     | Drammatico| Majid Majidi                    | 1997|            89|          6|             8.00|        180|          180
+25-06-2026     | 18:00         | Notorious                                             | Drammatico| Alfred Hitchcock                | 1946|           102|          0|             9.00|        180|          180
+08-11-2026     | 15:00         | Star Trek II: The Wrath of Khan                       | Azione    | Nicholas Meyer                  | 1982|           113|          0|             8.00|        120|          120
+17-10-2026     | 12:30         | Notorious                                             | Drammatico| Alfred Hitchcock                | 1946|           102|          0|             7.50|        200|          200
+18-12-2026     | 10:00         | Majo no takkyûbin                                     | Animazione| Hayao Miyazaki                  | 1989|           103|          0|             8.50|        120|          120
+28-12-2026     | 10:00         | La leggenda del pianista sull'oceano                  | Drammatico| Giuseppe Tornatore              | 1998|           169|          0|             7.50|         50|           50
+06-12-2026     | 13:00         | The King of Comedy                                    | Commedia  | Martin Scorsese                 | 1982|           109|          0|             7.50|        200|          200
+29-08-2026     | 10:00         | The Day the Earth Stood Still                         | Drammatico| Robert Wise                     | 1951|            92|          0|             8.50|        120|          120
+23-08-2026     | 10:00         | The Station Agent                                     | Commedia  | Tom McCarthy                    | 2003|            89|         16|             8.00|         50|           50
+02-09-2026     | 10:00         | 8½                                                    | Drammatico| Federico Fellini                | 1963|           138|         12|             8.00|        180|          180
+03-08-2026     | 15:00         | Bacheha-Ye aseman                                     | Drammatico| Majid Majidi                    | 1997|            89|          6|             8.50|        120|          120
+27-08-2026     | 12:00         | L.A. Confidential                                     | Poliziesco| Curtis Hanson                   | 1997|           138|         12|             8.00|         50|           50
+14-11-2026     | 10:00         | Lola rennt                                            | Poliziesco| Tom Tykwer                      | 1998|            81|         12|             7.50|        180|          180
+12-07-2026     | 19:00         | Brazil                                                | Drammatico| Terry Gilliam                   | 1985|           132|          0|             8.50|        120|          120
+16-09-2026     | 16:00         | Dancer in the Dark                                    | Poliziesco| Lars von Trier                  | 2000|           140|          0|             7.50|        120|          120
+15-12-2026     | 13:00         | 8½                                                    | Drammatico| Federico Fellini                | 1963|           138|         12|             7.50|        120|          120
+07-09-2026     | 10:00         | The Sting                                             | Commedia  | George Roy Hill                 | 1973|           129|          0|             8.50|        200|          200
+07-08-2026     | 12:30         | Donnie Darko                                          | Drammatico| Richard Kelly                   | 2001|           113|         16|             6.50|        200|          200
+25-08-2026     | 10:00         | Majo no takkyûbin                                     | Animazione| Hayao Miyazaki                  | 1989|           103|          0|             8.50|        180|          180
+10-12-2026     | 10:00         | Bacheha-Ye aseman                                     | Drammatico| Majid Majidi                    | 1997|            89|          6|             7.50|        120|          120
+15-08-2026     | 15:30         | Secrets & Lies                                        | Commedia  | Mike Leigh                      | 1996|           136|          0|             7.50|        120|          120
+14-12-2026     | 13:00         | Hana-bi                                               | Poliziesco| Takeshi Kitano                  | 1997|           103|         12|             7.00|         50|           50
+26-11-2026     | 10:00         | Efter brylluppet                                      | Drammatico| Susanne Bier                    | 2006|           120|         16|             8.00|         50|           50
+07-09-2026     | 13:00         | Before Sunrise                                        | Drammatico| Richard Linklater               | 1995|           101|         16|             7.00|         50|           50
+01-09-2026     | 10:00         | All About Eve                                         | Drammatico| Joseph L. Mankiewicz            | 1950|           138|         12|             7.50|        120|          120
+11-09-2026     | 16:00         | What's Eating Gilbert Grape                           | Drammatico| Lasse Hallström                 | 1993|           118|          0|             7.50|         50|           50
+04-10-2026     | 13:00         | Dancer in the Dark                                    | Poliziesco| Lars von Trier                  | 2000|           140|          0|             6.50|        120|          120
+17-06-2026     | 10:30         | Aguirre, der Zorn Gottes                              | Azione    | Werner Herzog                   | 1972|            95|         12|             8.00|        180|          180
+13-11-2026     | 18:30         | Efter brylluppet                                      | Drammatico| Susanne Bier                    | 2006|           120|         16|             8.50|        120|          120
+27-11-2026     | 16:00         | The Shop Around the Corner                            | Commedia  | Ernst Lubitsch                  | 1940|            99|         12|             8.00|        180|          180
+27-12-2026     | 13:30         | To Be or Not to Be                                    | Commedia  | Ernst Lubitsch                  | 1942|            99|         12|             8.00|        120|          120
+17-10-2026     | 10:00         | Goodfellas                                            | Biografici| Martin Scorsese                 | 1990|           146|         12|             8.50|        120|          120
+25-07-2026     | 18:00         | The Station Agent                                     | Commedia  | Tom McCarthy                    | 2003|            89|         16|             9.00|        120|          120
+28-09-2026     | 15:00         | Goodfellas                                            | Biografici| Martin Scorsese                 | 1990|           146|         12|             8.00|        120|          120
+24-06-2026     | 12:30         | Bacheha-Ye aseman                                     | Drammatico| Majid Majidi                    | 1997|            89|          6|             6.50|        180|          180
+07-07-2026     | 10:00         | Annie Hall                                            | Commedia  | Woody Allen                     | 1977|            93|         12|             8.50|        120|          120
+09-08-2026     | 10:00         | Brokeback Mountain                                    | Drammatico| Ang Lee                         | 2005|           134|         12|             7.50|        180|          180
+14-12-2026     | 12:30         | The Sting                                             | Commedia  | George Roy Hill                 | 1973|           129|          0|             8.00|         50|           50
+01-12-2026     | 10:00         | Aguirre, der Zorn Gottes                              | Azione    | Werner Herzog                   | 1972|            95|         12|             8.00|         50|           50
+12-09-2026     | 15:30         | Secrets & Lies                                        | Commedia  | Mike Leigh                      | 1996|           136|          0|             8.50|        180|          180
+11-09-2026     | 13:00         | Aguirre, der Zorn Gottes                              | Azione    | Werner Herzog                   | 1972|            95|         12|             8.50|        120|          120
+11-08-2026     | 10:00         | Secrets & Lies                                        | Commedia  | Mike Leigh                      | 1996|           136|          0|             6.50|        180|          180
+17-11-2026     | 14:30         | Efter brylluppet                                      | Drammatico| Susanne Bier                    | 2006|           120|         16|             7.00|        120|          120
+20-10-2026     | 12:30         | Lola rennt                                            | Poliziesco| Tom Tykwer                      | 1998|            81|         12|             7.00|        180|          180
+29-10-2026     | 10:00         | Kung fu                                               | Azione    | Stephen Chow                    | 2004|            99|         12|             7.50|        120|          120
+07-12-2026     | 10:30         | Funny Games                                           | Poliziesco| Michael Haneke                  | 1997|           108|         12|             8.00|         50|           50
+04-09-2026     | 16:00         | Awakenings                                            | Biografici| Penny Marshall                  | 1990|           121|          0|             7.50|        120|          120
+17-10-2026     | 13:00         | Die Hard                                              | Azione    | John McTiernan                  | 1988|           132|         12|             8.50|         50|           50
+26-06-2026     | 10:30         | To Be or Not to Be                                    | Commedia  | Ernst Lubitsch                  | 1942|            99|         12|             6.50|        200|          200
+27-08-2026     | 18:00         | The Sting                                             | Commedia  | George Roy Hill                 | 1973|           129|          0|             9.00|        200|          200
+20-12-2026     | 15:00         | Ed Wood                                               | Biografici| Tim Burton                      | 1994|           127|          0|             8.50|         50|           50
+07-09-2026     | 12:30         | O Brother, Where Art Thou?                            | Avventura | Joel Coen                       | 2000|           107|          0|             8.50|         50|           50
+14-11-2026     | 10:00         | Kung fu                                               | Azione    | Stephen Chow                    | 2004|            99|         12|             7.00|        120|          120
+16-09-2026     | 12:30         | Brokeback Mountain                                    | Drammatico| Ang Lee                         | 2005|           134|         12|             7.50|         50|           50
+01-09-2026     | 10:00         | The Night of the Hunter                               | Poliziesco| Charles Laughton                | 1955|            92|         12|             8.50|        120|          120
+28-06-2026     | 14:00         | Die Hard: With a Vengeance                            | Azione    | John McTiernan                  | 1995|           128|         12|             7.50|        180|          180
+11-06-2026     | 10:00         | La leggenda del pianista sull'oceano                  | Drammatico| Giuseppe Tornatore              | 1998|           169|          0|             8.00|         50|           50
+12-06-2026     | 10:00         | Annie Hall                                            | Commedia  | Woody Allen                     | 1977|            93|         12|             6.50|        200|          200
+14-08-2026     | 15:30         | Die Hard                                              | Azione    | John McTiernan                  | 1988|           132|         12|             8.00|         50|           50
+18-12-2026     | 13:00         | Aguirre, der Zorn Gottes                              | Azione    | Werner Herzog                   | 1972|            95|         12|             8.00|        180|          180
+18-09-2026     | 10:00         | Guess Who's Coming to Dinner                          | Commedia  | Stanley Kramer                  | 1967|           108|         12|             7.00|        180|          180
+17-10-2026     | 13:00         | O Brother, Where Art Thou?                            | Avventura | Joel Coen                       | 2000|           107|          0|             6.50|        120|          120
+17-10-2026     | 10:30         | O Brother, Where Art Thou?                            | Avventura | Joel Coen                       | 2000|           107|          0|             8.50|        120|          120
+12-07-2026     | 17:00         | Once Were Warriors                                    | Poliziesco| Lee Tamahori                    | 1994|           102|         12|             8.00|        200|          200
+17-10-2026     | 14:30         | Laura                                                 | Drammatico| Otto Preminger                  | 1944|            88|         12|             7.00|        200|          200
+11-12-2026     | 12:30         | Lola rennt                                            | Poliziesco| Tom Tykwer                      | 1998|            81|         12|             8.00|         50|           50
+06-12-2026     | 10:00         | Brief Encounter                                       | Drammatico| David Lean                      | 1945|            86|          0|             8.00|        120|          120
+19-06-2026     | 18:00         | Dead Man                                              | Avventura | Jim Jarmusch                    | 1995|           121|         16|            10.00|        200|          200
+08-09-2026     | 15:00         | Witness for the Prosecution                           | Poliziesco| Billy Wilder                    | 1957|           116|          0|             7.00|        120|          120
+28-07-2026     | 12:30         | To Be or Not to Be                                    | Commedia  | Ernst Lubitsch                  | 1942|            99|         12|             7.00|         50|           50
+17-06-2026     | 10:00         | The Night of the Hunter                               | Poliziesco| Charles Laughton                | 1955|            92|         12|             7.00|        120|          120
+28-06-2026     | 15:30         | Central do Brasil                                     | Drammatico| Walter Salles                   | 1998|           110|         16|             8.00|        180|          180
+19-11-2026     | 13:00         | Brief Encounter                                       | Drammatico| David Lean                      | 1945|            86|          0|             7.00|         50|           50
+15-08-2026     | 10:30         | Donnie Darko                                          | Drammatico| Richard Kelly                   | 2001|           113|         16|             7.50|        120|          120
+23-08-2026     | 13:00         | Star Trek II: The Wrath of Khan                       | Azione    | Nicholas Meyer                  | 1982|           113|          0|             8.00|        180|          180
+03-08-2026     | 10:30         | Strangers on a Train                                  | Poliziesco| Alfred Hitchcock                | 1951|           101|         12|             8.50|        180|          180
+12-06-2026     | 13:00         | Laura                                                 | Drammatico| Otto Preminger                  | 1944|            88|         12|             6.50|        120|          120
+07-07-2026     | 10:00         | V for Vendetta                                        | Azione    | James McTeigue                  | 2005|           132|         12|             6.50|        180|          180
+19-09-2026     | 10:30         | Sholay                                                | Azione    | Ramesh Sippy                    | 1975|           204|          0|             8.50|         50|           50
+12-11-2026     | 12:30         | Wo hu cang long                                       | Azione    | Ang Lee                         | 2000|           120|         12|             7.00|        120|          120
+29-08-2026     | 10:00         | A Christmas Story                                     | Commedia  | Bob Clark                       | 1983|            93|          0|             7.50|        180|          180
+19-11-2026     | 19:30         | Funny Games                                           | Poliziesco| Michael Haneke                  | 1997|           108|         12|            10.00|         50|           50
+07-09-2026     | 17:00         | The Night of the Hunter                               | Poliziesco| Charles Laughton                | 1955|            92|         12|             8.50|        120|          120
+21-12-2026     | 13:30         | Paris, Texas                                          | Drammatico| Wim Wenders                     | 1984|           145|          0|             8.50|        200|          200
+29-08-2026     | 10:30         | Efter brylluppet                                      | Drammatico| Susanne Bier                    | 2006|           120|         16|             7.00|        120|          120
+19-09-2026     | 20:00         | Ed Wood                                               | Biografici| Tim Burton                      | 1994|           127|          0|             8.50|        200|          200
+24-06-2026     | 17:00         | Anand                                                 | Drammatico| Hrishikesh Mukherjee            | 1971|           122|          0|             7.50|        120|          120
+29-10-2026     | 14:00         | Wo hu cang long                                       | Azione    | Ang Lee                         | 2000|           120|         12|             7.00|        120|          120
+20-07-2026     | 10:30         | Stalker                                               | Drammatico| Andrei Tarkovsky                | 1979|           162|          0|             6.50|        180|          180
+08-11-2026     | 10:00         | A Christmas Story                                     | Commedia  | Bob Clark                       | 1983|            93|          0|             6.50|         50|           50
+26-06-2026     | 13:00         | Mad Max 2                                             | Azione    | George Miller                   | 1981|            96|         12|             7.00|         50|           50
+18-10-2026     | 10:30         | No Man's Land                                         | Commedia  | Danis Tanovic                   | 2001|            98|         16|             6.50|        120|          120
+19-11-2026     | 16:00         | Ed Wood                                               | Biografici| Tim Burton                      | 1994|           127|          0|             8.00|        180|          180
+01-10-2026     | 12:30         | Once Upon a Time in the West                          | Western   | Sergio Leone                    | 1968|           165|          0|             7.50|        120|          120
+20-11-2026     | 10:00         | Mad Max 2                                             | Azione    | George Miller                   | 1981|            96|         12|             7.50|        180|          180
+11-12-2026     | 16:30         | Yeopgijeogin geunyeo                                  | Commedia  | Jae-young Kwak                  | 2001|           137|         12|             7.50|         50|           50
+12-07-2026     | 13:30         | Kumonosu-jô                                           | Drammatico| Akira Kurosawa                  | 1957|           110|         12|             8.00|        180|          180
+29-12-2026     | 10:30         | Witness for the Prosecution                           | Poliziesco| Billy Wilder                    | 1957|           116|          0|             8.50|         50|           50
+28-09-2026     | 16:00         | Star Wars                                             | Azione    | George Lucas                    | 1977|           121|         12|             7.50|        120|          120
+13-10-2026     | 13:30         | Roman Holiday                                         | Commedia  | William Wyler                   | 1953|           118|         12|             7.00|         50|           50
+20-07-2026     | 10:30         | Efter brylluppet                                      | Drammatico| Susanne Bier                    | 2006|           120|         16|             7.00|         50|           50
+07-09-2026     | 20:00         | Star Trek II: The Wrath of Khan                       | Azione    | Nicholas Meyer                  | 1982|           113|          0|             9.00|         50|           50
+10-10-2026     | 16:30         | Once Upon a Time in the West                          | Western   | Sergio Leone                    | 1968|           165|          0|             8.00|        120|          120
+14-11-2026     | 13:30         | Blood Diamond                                         | Avventura | Edward Zwick                    | 2006|           143|         12|             7.50|        120|          120
+28-09-2026     | 10:00         | Blood Diamond                                         | Avventura | Edward Zwick                    | 2006|           143|         12|             7.00|        200|          200
+23-11-2026     | 15:30         | Sleuth                                                | Mistero   | Joseph L. Mankiewicz            | 1972|           138|          6|             8.50|        200|          200
+28-11-2026     | 13:00         | The Station Agent                                     | Commedia  | Tom McCarthy                    | 2003|            89|         16|             8.50|        200|          200
+11-06-2026     | 10:30         | Funny Games                                           | Poliziesco| Michael Haneke                  | 1997|           108|         12|             7.00|         50|           50
+24-06-2026     | 16:00         | The Exorcist                                          | Horror    | William Friedkin                | 1973|           122|         12|             7.50|        120|          120
+20-09-2026     | 13:30         | O Brother, Where Art Thou?                            | Avventura | Joel Coen                       | 2000|           107|          0|             7.00|         50|           50
+10-08-2026     | 10:30         | Star Trek II: The Wrath of Khan                       | Azione    | Nicholas Meyer                  | 1982|           113|          0|             8.50|        120|          120
+22-10-2026     | 10:00         | Once Upon a Time in the West                          | Western   | Sergio Leone                    | 1968|           165|          0|             8.50|        180|          180
+18-09-2026     | 13:00         | O Brother, Where Art Thou?                            | Avventura | Joel Coen                       | 2000|           107|          0|             7.00|        180|          180
+26-11-2026     | 10:00         | Lat sau san taam                                      | Azione    | John Woo                        | 1992|           128|         16|             7.50|         50|           50
+07-11-2026     | 16:30         | Stalag 17                                             | Commedia  | Billy Wilder                    | 1953|           120|         12|             8.50|        180|          180
+16-09-2026     | 13:00         | Yeopgijeogin geunyeo                                  | Commedia  | Jae-young Kwak                  | 2001|           137|         12|             6.50|        200|          200
+11-12-2026     | 10:30         | Guess Who's Coming to Dinner                          | Commedia  | Stanley Kramer                  | 1967|           108|         12|             6.50|         50|           50
+17-10-2026     | 13:30         | Funny Games                                           | Poliziesco| Michael Haneke                  | 1997|           108|         12|             6.50|        120|          120
+04-09-2026     | 10:00         | Once Upon a Time in the West                          | Western   | Sergio Leone                    | 1968|           165|          0|             8.50|         50|           50
+14-11-2026     | 15:00         | Guess Who's Coming to Dinner                          | Commedia  | Stanley Kramer                  | 1967|           108|         12|             7.00|        180|          180
+10-10-2026     | 12:30         | The Night of the Hunter                               | Poliziesco| Charles Laughton                | 1955|            92|         12|             6.50|         50|           50
+14-11-2026     | 10:00         | Rope                                                  | Poliziesco| Alfred Hitchcock                | 1948|            80|         12|             8.00|        180|          180
+07-09-2026     | 17:00         | La Grande Illusion                                    | Drammatico| Jean Renoir                     | 1937|           113|         12|             8.50|        120|          120
+17-06-2026     | 13:30         | Once Upon a Time in the West                          | Western   | Sergio Leone                    | 1968|           165|          0|             7.00|        180|          180
+10-08-2026     | 10:00         | Once Upon a Time in the West                          | Western   | Sergio Leone                    | 1968|           165|          0|             7.50|        180|          180
+20-11-2026     | 12:30         | Efter brylluppet                                      | Drammatico| Susanne Bier                    | 2006|           120|         16|             8.00|        200|          200
+12-07-2026     | 10:00         | Once Were Warriors                                    | Poliziesco| Lee Tamahori                    | 1994|           102|         12|             8.50|        120|          120
+28-06-2026     | 10:30         | What Ever Happened to Baby Jane?                      | Drammatico| Robert Aldrich                  | 1962|           134|         12|             8.00|        120|          120
+21-08-2026     | 10:00         | Once Were Warriors                                    | Poliziesco| Lee Tamahori                    | 1994|           102|         12|             6.50|        200|          200
+10-12-2026     | 10:00         | Paris,Texas                                           | Drammatico| Wim Wenders                     | 1984|           145|          0|             8.50|         50|           50
+26-06-2026     | 12:00         | Stalker                                               | Drammatico| Andrei Tarkovsky                | 1979|           162|          0|             7.50|        180|          180
+08-11-2026     | 10:00         | The Circus                                            | Commedia  | Charles Chaplin                 | 1928|            72|         12|             7.50|        120|          120
+24-09-2026     | 15:00         | V for Vendetta                                        | Azione    | James McTeigue                  | 2005|           132|         12|             8.00|        120|          120
+18-12-2026     | 12:30         | The Truman Show                                       | Commedia  | Peter Weir                      | 1998|           103|          0|             7.50|        120|          120
+18-08-2026     | 10:00         | Funny Games                                           | Poliziesco| Michael Haneke                  | 1997|           108|         12|             6.50|        200|          200
+20-07-2026     | 17:00         | Kumonosu-jô                                           | Drammatico| Akira Kurosawa                  | 1957|           110|         12|             8.00|        120|          120
+14-11-2026     | 14:00         | The Bourne Identity                                   | Azione    | Doug Liman                      | 2002|           119|         12|             7.50|        120|          120
+26-12-2026     | 10:00         | The Right Stuff                                       | Avventura | Philip Kaufman                  | 1983|           193|          6|             7.00|        200|          200
+01-10-2026     | 10:30         | The Color Purple                                      | Drammatico| Steven Spielberg                | 1985|           154|          0|             8.50|         50|           50
+23-10-2026     | 15:30         | Blood Diamond                                         | Avventura | Edward Zwick                    | 2006|           143|         12|             6.50|         50|           50
+12-08-2026     | 13:30         | The General                                           | Azione    | Clyde Bruckman                  | 1926|            67|         12|             6.50|        200|          200
+11-06-2026     | 10:30         | Lat sau san taam                                      | Azione    | John Woo                        | 1992|           128|         16|             8.00|         50|           50
+23-07-2026     | 10:30         | The Notebook                                          | Drammatico| Nick Cassavetes                 | 2004|           123|         12|             6.50|        180|          180
+13-11-2026     | 15:30         | Rope                                                  | Poliziesco| Alfred Hitchcock                | 1948|            80|         12|             7.00|        200|          200
+24-06-2026     | 12:30         | Stalag 17                                             | Commedia  | Billy Wilder                    | 1953|           120|         12|             7.00|        200|          200
+12-10-2026     | 10:30         | Zelig                                                 | Commedia  | Woody Allen                     | 1983|            79|          6|             8.50|        180|          180
+22-10-2026     | 10:00         | Rope                                                  | Poliziesco| Alfred Hitchcock                | 1948|            80|         12|             8.50|        200|          200
+15-11-2026     | 19:00         | Pride & Prejudice                                     | Drammatico| Joe Wright                      | 2005|           129|          6|             9.00|        120|          120
+20-09-2026     | 14:30         | Glengarry Glen Ross                                   | Poliziesco| James Foley                     | 1992|           100|         16|             7.00|        200|          200
+19-09-2026     | 10:30         | Judgment at Nuremberg                                 | Drammatico| Stanley Kramer                  | 1961|           179|         12|             7.50|        120|          120
+17-10-2026     | 10:00         | The Color Purple                                      | Drammatico| Steven Spielberg                | 1985|           154|          0|             7.50|        180|          180
+28-09-2026     | 12:30         | Spoorloos                                             | Giallo    | George Sluizer                  | 1988|           107|         12|             7.00|        200|          200
+07-09-2026     | 10:00         | Harold and Maude                                      | Commedia  | Hal Ashby                       | 1971|            91|          6|             8.00|        120|          120
+07-09-2026     | 13:30         | The Game                                              | Azione    | David Fincher                   | 1997|           129|         12|             6.50|        120|          120
+06-12-2026     | 10:30         | Sleuth                                                | Mistero   | Joseph L. Mankiewicz            | 1972|           138|          6|             7.00|         50|           50
+05-09-2026     | 15:00         | Sleuth                                                | Mistero   | Joseph L. Mankiewicz            | 1972|           138|          6|             6.50|        180|          180
+03-08-2026     | 10:30         | Blood Diamond                                         | Avventura | Edward Zwick                    | 2006|           143|         12|             7.00|        200|          200
+06-08-2026     | 13:30         | Kumonosu-jô                                           | Drammatico| Akira Kurosawa                  | 1957|           110|         12|             8.00|         50|           50
+12-07-2026     | 13:30         | Doctor Zhivago                                        | Drammatico| David Lean                      | 1965|           197|         12|             8.50|         50|           50
+12-07-2026     | 10:30         | La battaglia di Algeri                                | Drammatico| Gillo Pontecorvo                | 1966|           121|         12|             8.50|        120|          120
+02-09-2026     | 17:00         | Blood Diamond                                         | Avventura | Edward Zwick                    | 2006|           143|         12|             7.00|        120|          120
+12-09-2026     | 10:00         | The Wild Bunch                                        | Azione    | Sam Peckinpah                   | 1969|           145|         12|             6.50|        120|          120
+10-09-2026     | 10:30         | Das Cabinet des Dr. Caligari                          | Fantasy   | Robert Wiene                    | 1920|            76|         12|             8.00|        200|          200
+29-08-2026     | 18:00         | Being John Malkovich                                  | Commedia  | Spike Jonze                     | 1999|           113|         16|             8.50|         50|           50
+11-09-2026     | 10:30         | Badlands                                              | Azione    | Terrence Malick                 | 1973|            94|          6|             8.50|        200|          200
+20-07-2026     | 10:30         | On the Waterfront                                     | Poliziesco| Elia Kazan                      | 1954|           108|         12|             8.00|        120|          120
+28-11-2026     | 10:00         | The Station Agent                                     | Commedia  | Tom McCarthy                    | 2003|            89|         16|             8.50|         50|           50
+26-06-2026     | 10:30         | Pride & Prejudice                                     | Drammatico| Joe Wright                      | 2005|           129|          6|             8.50|        180|          180
+11-12-2026     | 10:00         | Midnight Cowboy                                       | Drammatico| John Schlesinger                | 1969|           113|         12|             6.50|         50|           50
+20-07-2026     | 16:00         | No Man's Land                                         | Commedia  | Danis Tanovic                   | 2001|            98|         16|             6.50|        120|          120
+02-08-2026     | 13:00         | Awakenings                                            | Biografici| Penny Marshall                  | 1990|           121|          0|             7.50|         50|           50
+31-07-2026     | 10:00         | Das Cabinet des Dr. Caligari                          | Fantasy   | Robert Wiene                    | 1920|            76|         12|             8.00|        120|          120
+28-11-2026     | 12:30         | Miracle on 34th Street                                | Commedia  | George Seaton                   | 1947|            96|         12|             7.50|        180|          180
+28-11-2026     | 10:00         | On the Waterfront                                     | Poliziesco| Elia Kazan                      | 1954|           108|         12|             8.00|        120|          120
+11-11-2026     | 10:00         | The Bridges of Madison County                         | Drammatico| Clint Eastwood                  | 1995|           135|         12|             7.50|        180|          180
+20-11-2026     | 15:30         | The World's Fastest Indian                            | Biografici| Roger Donaldson                 | 2005|           127|          0|             6.50|        180|          180
+28-09-2026     | 12:30         | Being John Malkovich                                  | Commedia  | Spike Jonze                     | 1999|           113|         16|             7.50|         50|           50
+16-09-2026     | 10:30         | The Wild Bunch                                        | Azione    | Sam Peckinpah                   | 1969|           145|         12|             8.00|        200|          200
+23-11-2026     | 19:00         | Star Wars                                             | Azione    | George Lucas                    | 1977|           121|         12|             8.50|        180|          180
+16-12-2026     | 10:30         | Pride & Prejudice                                     | Drammatico| Joe Wright                      | 2005|           129|          6|             8.50|         50|           50
+14-11-2026     | 15:30         | Rebecca                                               | Drammatico| Alfred Hitchcock                | 1940|           130|         12|             8.50|         50|           50
+26-10-2026     | 10:00         | Manhattan                                             | Commedia  | Woody Allen                     | 1979|            96|         16|             7.00|        180|          180
+13-09-2026     | 13:00         | On the Waterfront                                     | Poliziesco| Elia Kazan                      | 1954|           108|         12|             6.50|         50|           50
+14-11-2026     | 10:30         | The Adventures of Robin Hood                          | Azione    | Michael Curtiz                  | 1938|           102|          6|             7.00|        180|          180
+13-10-2026     | 13:30         | Miracle on 34th Street                                | Commedia  | George Seaton                   | 1947|            96|         12|             8.50|        120|          120
+12-10-2026     | 10:30         | The Bridges of Madison County                         | Drammatico| Clint Eastwood                  | 1995|           135|         12|             7.00|        120|          120
+20-07-2026     | 10:00         | Doctor Zhivago                                        | Drammatico| David Lean                      | 1965|           197|         12|             7.00|         50|           50

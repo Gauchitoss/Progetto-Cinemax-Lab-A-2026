@@ -55,6 +55,8 @@ public class CinemaxTUI {
         System.out.println(rigaVuota);
         if(statoMenu == StatoMenu.STATO_ERRORE){
             formattaTesto(LogicaStatiManager.messaggioErroreCorrente.toUpperCase(), "centro", true);
+        } else if(statoMenu == StatoMenu.STATO_CONFERMA){
+            formattaTesto(LogicaStatiManager.messaggioConfermaCorrente.toUpperCase(), "centro", true);
         }else if(statoMenu == StatoMenu.VISUALIZZA_PROGRAMMAZAIONE || statoMenu == StatoMenu.MIE_PRENOTAZIONI){
             stampaListaPagina();
         }else if(statoMenu == StatoMenu.MENU_INFO_FILM){
@@ -361,7 +363,7 @@ public class CinemaxTUI {
 
         String formatoColonne = "║  %-56s │ %-69s║";
 
-        int postiLiberi = cinemax.util.GestorePrenotazione.getPostiLiberi(p);
+        int postiLiberi = p.getPostiLiberi();
 
         System.out.println(String.format(formatoColonne, "REGISTA: " + p.getRegista(), "DURATA: " + p.getDurata() + " MINUTI"));
         System.out.println(String.format(formatoColonne, "GENERE: " + p.getGenere(), "ETA' CONSIGLIATA: " + p.getEtaMin() + "+"));

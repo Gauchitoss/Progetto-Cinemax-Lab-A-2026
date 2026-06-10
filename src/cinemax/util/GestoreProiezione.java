@@ -31,9 +31,9 @@ import java.time.DateTimeException;
         public static void salvaSuFile(){
             new File("data").mkdirs();
             try(PrintWriter pw = new PrintWriter(new FileWriter(FILE_PATH))){ // creazione PrintWriter e FileWriter
-                pw.println("data_proiezione|ora_proiezione|titolo_film|genere|regista|anno|durata_minuti|eta_minima|prezzo_biglietto|posti_sala");
+                pw.println("data_proiezione|ora_proiezione|titolo_film|genere|regista|anno|durata_minuti|eta_minima|prezzo_biglietto|posti_sala|posti_liberi");
                 for(Proiezione p: listaProiezioni){
-                    pw.printf(java.util.Locale.US, "%s|%s|%s|%s|%s|%d|%d|%d|%.2f|%d%n", p.getData().format(FORMATO_DATA),p.getOraString(), p.getTitolo(), p.getGenere(), p.getRegista(), p.getAnno(), p.getDurata(), p.getEtaMin(), p.getPrezzo(), p.getPostiSala()); /* uso printf al posto di println per poter sfruttare i sgenaposto
+                    pw.printf(java.util.Locale.US, "%s|%s|%s|%s|%s|%d|%d|%d|%.2f|%d|%d%n", p.getData().format(FORMATO_DATA),p.getOraString(), p.getTitolo(), p.getGenere(), p.getRegista(), p.getAnno(), p.getDurata(), p.getEtaMin(), p.getPrezzo(), p.getPostiSala(), p.getPostiSala()); /* uso printf al posto di println per poter sfruttare i sgenaposto
                     e imposto il formato americano in modo da impedire che il prezzo possa essere scritto con la virgola */
                 }
             } catch (IOException e) {
@@ -55,7 +55,7 @@ import java.time.DateTimeException;
                 while((riga = br.readLine()) != null){ //lettura del file riga per riga
                     try{
                         String[] colonna = riga.split("\\|"); //spezzetta la riga usando come separatore la barretta  verticale
-                        if (colonna.length < 10) { //controllo di sicurezza
+                        if (colonna.length < 11) { //controllo di sicurezza
                             System.err.println("Salto riga incompleta: " + riga);
                             continue;
                         }
@@ -70,7 +70,8 @@ import java.time.DateTimeException;
                         double prezzo = Double.parseDouble(colonna[8].replace(",",".")); /*rimpiazo la virgola con il punto in modo da non generare 
                         confuzione con le virgole usate come separatori*/
                         int postiSala = Integer.parseInt(colonna[9]);
-                        listaProiezioni.add(new Proiezione(data, ora, colonna[2], colonna[3], colonna[4], anno, durata, etaMin, prezzo, postiSala)); // aggiunta la proiezione alla lista in memoria
+                        int postiLiberi = Integer.parseInt(colonna[10]);
+                        listaProiezioni.add(new Proiezione(data, ora, colonna[2], colonna[3], colonna[4], anno, durata, etaMin, prezzo, postiSala, postiLiberi)); // aggiunta la proiezione alla lista in memoria
                     } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DateTimeException e){
                         System.err.println("Salto riga corrotta: " + riga);
                     }
@@ -108,6 +109,7 @@ import java.time.DateTimeException;
                 if(datiFormTmp[Campi.ADD_COSTO.i] != null) p.setPrezzo(Double.parseDouble(datiFormTmp[Campi.ADD_COSTO.i].replace(",", ".")));
                 if(datiFormTmp[Campi.ADD_POSTI.i] != null) p.setPostiSala(Integer.parseInt(datiFormTmp[Campi.ADD_POSTI.i]));
                 if(datiFormTmp[Campi.ADD_ORA.i] != null) p.setOra(datiFormTmp[Campi.ADD_ORA.i]);
+                if(datiFormTmp[Campi.ADD_POSTI_LIBERI.i] != null) p.setPostiLiberi(Integer.parseInt(datiFormTmp[Campi.ADD_POSTI_LIBERI.i]));
                 String giorno = datiFormTmp[Campi.ADD_GIORNO.i];
                 String mese = datiFormTmp[Campi.ADD_MESE.i];
                 String anno = datiFormTmp[Campi.ADD_ANNO.i];

@@ -20,6 +20,7 @@ public class Proiezione {
         private int etaMin;
         private int postiSala;
         private double prezzo;
+        private int postiLiberi;
 
         private static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         private static final DateTimeFormatter FORMATO_ORA = DateTimeFormatter.ofPattern("HH:mm");
@@ -28,7 +29,7 @@ public class Proiezione {
 //                   costruttore
 // ======================================================
 
-        public Proiezione(LocalDate data, String oraStr, String titolo, String genere, String regista, int anno, int durata, int etaMin, double prezzo, int postiSala) {
+        public Proiezione(LocalDate data, String oraStr, String titolo, String genere, String regista, int anno, int durata, int etaMin, double prezzo, int postiSala, int postiLiberi) {
             this.data = data;
             this.ora = LocalTime.parse(oraStr.trim(), FORMATO_ORA);
             this.titolo = titolo;
@@ -39,6 +40,7 @@ public class Proiezione {
             this.etaMin = etaMin;
             this.prezzo = prezzo;
             this.postiSala = postiSala;
+            this.postiLiberi = postiLiberi;
         }
 
 // ====================================================== 
@@ -56,6 +58,7 @@ public class Proiezione {
     public int getPostiSala()     { return postiSala; }
     public double getPrezzo()     { return prezzo; }
     public String getOraString()  { return ora.format(FORMATO_ORA); }
+    public int getPostiLiberi() { return postiLiberi;}
 
 // ====================================================== 
 //                   metodi setter
@@ -66,13 +69,12 @@ public class Proiezione {
     public void setTitolo(String titolo)      { this.titolo = titolo; }
     public void setGenere(String genere)      { this.genere = genere; }
     public void setRegista(String regista)    { this.regista = regista; }
-
     public void setAnno(int anno)             { this.anno = anno; }
     public void setDurata(int durata)         { this.durata = durata; }
     public void setEtaMin(int etaMin)         { this.etaMin = etaMin; }
     public void setPostiSala(int postiSala)   { this.postiSala = postiSala; }
-
     public void setPrezzo(double prezzo)      { this.prezzo = prezzo; }
+    public void setPostiLiberi(int postiLiberi) {this.postiLiberi = postiLiberi;}
 
 // ======================================================
 
