@@ -105,7 +105,7 @@ public class GestorePrenotazione {
         // Genera una stringa casuale unica di 8 caratteri maiuscoli
         String codice = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         Prenotazione nuova = new Prenotazione(codice, cliente, proiezione, bigliettiRichiesti);
-        proiezione.setPostiLiberi(proiezione.getPostiLiberi() - bigliettiRichiesti);
+        GestoreProiezione.modificaPostiLiberi(proiezione, bigliettiRichiesti);
         listaPrenotazioni.add(nuova);
         salvaSuFile();
         return true;
@@ -123,15 +123,23 @@ public class GestorePrenotazione {
         if (bigliettiRichiesti > proiezione.getPostiSala())
             throw new IllegalArgumentException("Il numero di biglietti (" + bigliettiRichiesti + 
                 ") supera la capienza della sala (" + proiezione.getPostiSala() + ").");
-        proiezione.setPostiLiberi(proiezione.getPostiLiberi() - bigliettiRichiesti);
+        GestoreProiezione.modificaPostiLiberi(proiezione, bigliettiRichiesti);
         salvaSuFile();
         return bigliettiRichiesti * proiezione.getPrezzo();
     }
 
     public static void rimuoviPrenotazione(String codice) {
+        List<Prenotazione> listaPrenotazioniTrovate = new ArrayList<>();
+        listaPrenotazioniTrovate = listaPrenotazioni.stream()
+        .filter(p -> p.getCodiceUnivoco().equals(codice))
+        .collect(Collectors.toList());
+        if(listaPrenotazioniTrovate.size() != 1)
+            throw new IllegalArgumentException("Nessuna prenotazione trovata con codice: " + codice);
+        Prenotazione unica = listaPrenotazioniTrovate.get(0);
         boolean rimossa = listaPrenotazioni.removeIf(p -> p.getCodiceUnivoco().equalsIgnoreCase(codice));
         if(!rimossa)
             throw new IllegalArgumentException("Nessuna prenotazione trovata con codice: " + codice);
+        GestoreProiezione.annullaModificaPostiLiberi(GestoreProiezione.individuaProiezione(unica.getTitoloFilm(), unica.getData(), unica.getOra()), unica.getNumeroBiglietti());
         salvaSuFile();
     }
 

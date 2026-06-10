@@ -1,6 +1,8 @@
 package cinemax.model;
 
 import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
+import java.time.LocalDate;
 /**
  * Rappresenta una prenotazione effettuata nel sistema CineMax.
  * Collega logicamente un Utente a una specifica Proiezione.
@@ -37,6 +39,8 @@ public class Prenotazione {
     public String getNomeCliente() { return cliente.getNome(); }
     public String getCognomeCliente() { return cliente.getCognome(); }
     public String getTitoloFilm() { return proiezione.getTitolo(); }
+    public LocalTime getOra() {return proiezione.getOra();}
+    public LocalDate getData() {return proiezione.getData();}
     public double getCostoTotale() { 
         return numeroBiglietti * proiezione.getPrezzo(); 
     }

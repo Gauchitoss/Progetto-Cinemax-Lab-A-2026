@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.DateTimeException;
+import java.time.LocalTime;
 
 //Contiene il BufferedReader e il FileReader per il file proiezioni
 
@@ -33,7 +34,7 @@ import java.time.DateTimeException;
             try(PrintWriter pw = new PrintWriter(new FileWriter(FILE_PATH))){ // creazione PrintWriter e FileWriter
                 pw.println("data_proiezione|ora_proiezione|titolo_film|genere|regista|anno|durata_minuti|eta_minima|prezzo_biglietto|posti_sala|posti_liberi");
                 for(Proiezione p: listaProiezioni){
-                    pw.printf(java.util.Locale.US, "%s|%s|%s|%s|%s|%d|%d|%d|%.2f|%d|%d%n", p.getData().format(FORMATO_DATA),p.getOraString(), p.getTitolo(), p.getGenere(), p.getRegista(), p.getAnno(), p.getDurata(), p.getEtaMin(), p.getPrezzo(), p.getPostiSala(), p.getPostiSala()); /* uso printf al posto di println per poter sfruttare i sgenaposto
+                    pw.printf(java.util.Locale.US, "%s|%s|%s|%s|%s|%d|%d|%d|%.2f|%d|%d%n", p.getData().format(FORMATO_DATA),p.getOraString(), p.getTitolo(), p.getGenere(), p.getRegista(), p.getAnno(), p.getDurata(), p.getEtaMin(), p.getPrezzo(), p.getPostiSala(), p.getPostiLiberi()); /* uso printf al posto di println per poter sfruttare i sgenaposto
                     e imposto il formato americano in modo da impedire che il prezzo possa essere scritto con la virgola */
                 }
             } catch (IOException e) {
@@ -128,6 +129,32 @@ import java.time.DateTimeException;
             }
         }
 
+        public static void modificaPostiLiberi(Proiezione p, int numPosti){
+            try{
+                int indicePoiezioneDaModificare = listaProiezioni.indexOf(p);
+                p.setPostiLiberi(p.getPostiLiberi() - numPosti);
+                listaProiezioni.set(indicePoiezioneDaModificare, p);
+                salvaSuFile();
+            }catch(Exception e){
+                cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore durante la prenotazione dei posti: " + e.getMessage();
+                CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+            }
+
+        }
+
+        public static void annullaModificaPostiLiberi(Proiezione p, int numPosti){
+            try{
+                int indicePoiezioneDaModificare = listaProiezioni.indexOf(p);
+                p.setPostiLiberi(p.getPostiLiberi() + numPosti);
+                listaProiezioni.set(indicePoiezioneDaModificare, p);
+                salvaSuFile();
+            }catch(Exception e){
+                cinemax.LogicaStatiManager.messaggioErroreCorrente = "Errore durante la prenotazione dei posti: " + e.getMessage();
+                CineMax.stackRecord.push(StatoMenu.STATO_ERRORE);
+            }
+
+        }
+
 // ======================================================
 //                   metodo cercaProiezione
 // ======================================================
@@ -148,6 +175,19 @@ import java.time.DateTimeException;
                 return true;
             })
             .collect(Collectors.toList());
+        }
+
+        public static Proiezione individuaProiezione(String titolo, LocalDate data, LocalTime ora){
+            List<Proiezione> listaProiezioniTrovate = new ArrayList<>();
+            listaProiezioniTrovate = listaProiezioni.stream()
+            .filter(p -> p.getTitolo().equalsIgnoreCase(titolo))
+            .filter(p -> p.getData().isEqual(data))
+            .filter(p -> p.getOra().equals(ora))
+            .collect(Collectors.toList());
+            if(listaProiezioniTrovate.size() != 1)
+                return null;
+            Proiezione unica = listaProiezioniTrovate.get(0);
+            return unica;
         }
 
 // ====================================================== 
