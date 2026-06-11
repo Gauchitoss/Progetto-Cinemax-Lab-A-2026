@@ -12,8 +12,10 @@ public class CostantiForm {
         REG_USERNAME(2),
         REG_PASSWORD(3),
         REG_CONFERMA_PASSWORD(4),
-        REG_DATA(5),
-        REG_DOMICILIO(6),
+        REG_GIORNO_NASCITA(5),
+        REG_MESE_NASCITA(6),
+        REG_ANNO_NASCITA(7),
+        REG_DOMICILIO(8),
         // CAMPI CERCA FILM
         CERCA_TITOLO(0),
         CERCA_GIORNO_1(1),

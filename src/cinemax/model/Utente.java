@@ -12,9 +12,14 @@ package cinemax.model;
 
 public abstract class Utente {
 
-// ======================================================
-//          			ENUM PER I RUOLI 
-// ======================================================
+	// ======================================================
+	//          			ENUM PER I RUOLI 
+	// ======================================================
+
+	/**
+     * Enumerazione dei ruoli disponibili all'interno del sistema CineMax.
+     * Associa a ciascun ruolo un'etichetta testuale descrittiva.
+     */
 	public enum Ruolo {
 		CLIENTE_OSPITE("cliente ospite"), 
 		CLIENTE_REGISTRATO("cliente registrato"),
@@ -23,10 +28,24 @@ public abstract class Utente {
 
 		private final String etichetta;
 
+		/**
+		 * Costruttore dell'enum Ruolo.
+		 * @param etichetta l'etichetta testuale del ruolo
+		 */
 		Ruolo(String etichetta) {this.etichetta = etichetta;}
 
+		/**
+		 * Restituisce l'etichetta testuale associata al ruolo.
+		 * @return l'etichetta del ruolo come stringa
+		 */
 		public String getEtichetta() {return etichetta;}
 
+		/**
+		 * Converte una stringa nell'istanza corrispondente dell'enum Ruolo.
+		 * @param s la stringa da convertire
+		 * @return l'istanza di {@link Ruolo} corrispondente
+		 * @throws IllegalArgumentException se la stringa è null o non corrisponde a nessun ruolo noto
+		 */
 		public static Ruolo daString(String s){
 			if(s == null)
 				throw new IllegalArgumentException("Ruolo non può essere null.");
@@ -39,23 +58,34 @@ public abstract class Utente {
 		@Override 
 		public String toString() {return etichetta;}
 	}
-// ======================================================
-//          			CAMPI
-// ======================================================
+	// ======================================================
+	//          			CAMPI
+	// ======================================================
 
 	private final String nome;
 	private final String cognome;
 	private final String username;
-	private String password;//verrà successivamente cifrata  
-	private final String dataDiNascita; //sarà (facoltativa)
+	private String password;	//memorizzata in formato cifrato
+	private final String dataDiNascita;	//facoltativo
 	private final String domicilio;
 	private final Ruolo ruolo; //(cliente/proiezionista/bigliettaio)
 		
 	
-// ======================================================
-//          		  COSTRUTTORE
-// ======================================================
+	// ======================================================
+	//          		  COSTRUTTORE
+	// ======================================================
 
+	/**
+	 * Costruttore completo per inizializzare un utente con tutti i parametri anagrafici.
+	 * @param nome           il nome dell'utente
+	 * @param cognome        il cognome dell'utente
+	 * @param username       l'username univoco dell'utente
+	 * @param password       la password 
+	 * @param dataDiNascita  la data di nascita 
+	 * @param domicilio      il domicilio dell'utente
+	 * @param ruolo          il ruolo gerarchico dell'utente
+	 * @throws IllegalArgumentException se uno dei campi obbligatori (nome, cognome, username, password, ruolo) è null
+	 */
 	public Utente (String nome, String cognome, String username, String password, String dataDiNascita, String domicilio, Ruolo ruolo) {
 		if(nome == null || cognome == null || username == null || password == null || ruolo == null)
 			throw new IllegalArgumentException("Nome, Cognome, username, password e ruolo sono obbligatori.");
@@ -68,53 +98,67 @@ public abstract class Utente {
 		this. ruolo = ruolo;
 	}
 
-// ======================================================
-//          		  COSTRUTTORE SENZA CAMPI FACOLTATIVI
-// ======================================================
+	// ======================================================
+	//          COSTRUTTORE SENZA CAMPI FACOLTATIVI
+	// ======================================================
 
-	public Utente(String nome, String cognome, String username, String password, String domicilio, Ruolo ruolo) {
-		this(nome, cognome, username, password, null, domicilio, ruolo);
-	}
-
-// ======================================================
-//          		SEZIONE GETTER
-// ======================================================
-
-	public String getNome(){
-		return nome;
-}
-	public String getCognome(){
-		return cognome;
-	}
-	public String getUsername(){
-		return username;
-	}
-	public String getPassword(){
-		return password;
-	}
-	public String getDataDiNascita(){
-		return dataDiNascita;
-	}
-	public String getDomicilio(){
-		return domicilio;
-	}
-	public Ruolo getRuolo(){
-		return ruolo;
+	/**
+	 * Costruttore compatto senza il campo facoltativo del domicilio.
+	 * @param nome      il nome dell'utente
+	 * @param cognome   il cognome dell'utente
+	 * @param username  l'username univoco dell'utente
+	 * @param password  la password dell'utente
+	 * @param dataDiNascita la data di anscita dell'utente
+	 * @param ruolo     il ruolo gerarchico dell'utente
+	 */
+	public Utente(String nome, String cognome, String username, String password, String dataDiNascita, Ruolo ruolo) {
+		this(nome, cognome, username, password, dataDiNascita, null, ruolo);
 	}
 
-// ======================================================
-//          		SEZIONE SETTER
-// ======================================================
+	// ======================================================
+	//          		SEZIONE GETTER
+	// ======================================================
 
-	public void setPassword(String nuovaPassword){
-		if(nuovaPassword == null || nuovaPassword.isEmpty())
-			throw new IllegalArgumentException("La nuova password non può essere vuota.");
-		this.password = nuovaPassword;
-	}
+	/**
+	 * Restituisce il nome dell'utente.
+	 * @return il nome dell'utente
+	 */
+	public String getNome(){ return nome; }
+	/**
+	 * Restituisce il cognome dell'utente.
+	 * @return il cognome dell'utente
+	 */
+	public String getCognome(){ return cognome; }
+	/**
+	 * Restituisce l'username dell'utente.
+	 * @return l'username dell'utente
+	 */
+	public String getUsername(){ return username; }
+	/**
+	 * Restituisce la password cifrata dell'utente.
+	 * @return la password cifrata
+	 */
+	public String getPassword(){ return password; }
+	/**
+	 * Restituisce la data di nascita dell'utente.
+	 * @return la data di nascita
+	 */
+	public String getDataDiNascita(){ return dataDiNascita; }
+    /**
+	 * Restituisce il domicilio dell'utente.
+	 * @return il domicilio dell'utente, oppure <code>null</code> se non specificata
+	 */
+	public String getDomicilio(){ return domicilio; }
+	/**
+	 * Restituisce il ruolo dell'utente.
+	 * @return il ruolo dell'utente come istanza dell'enum {@link Ruolo}
+	 */
+	public Ruolo getRuolo(){ return ruolo; }
 
-// ======================================================
-//                   UTILI
-// ======================================================
+
+	// ======================================================
+	//                   UTILI
+	// ======================================================
 
 	@Override
 	public String toString(){

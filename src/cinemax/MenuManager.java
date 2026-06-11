@@ -62,12 +62,12 @@ public class MenuManager {
             }
         },
 
-        REGISTRAZIONE(new String[]{"nome", "cognome", "username", "password", "conferma password", "data di nascita", "domicilio"}, false, "registrazione", "centro"){
+        REGISTRAZIONE(new String[]{"nome", "cognome", "username", "password", "conferma password", "dataInizio", "domicilio"}, false, "registrazione", "centro"){
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{LOGIN, BENVENUTO};}
             @Override 
             public void eseguiLogicaAssociata(){
                 LogicaStatiManager.messaggioErroreCorrente = "Spiacenti, si è verificato un errore.";
-                String[] datiFormTmp = new String[getOpzioni().length];
+                String[] datiFormTmp = new String[getOpzioni().length+2];
                 if(!LogicaStatiManager.prendiDatiForm(datiFormTmp, getOpzioni())) { CineMax.stackRecord.pop(); return; };
                 AutenticazioniController.gestisciRegistrazione(datiFormTmp);
             }

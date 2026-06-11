@@ -417,9 +417,13 @@ public class CinemaxTUI {
     private static String ottieniIstruzione(String campo, boolean primoCampo){
         if(primoCampo) return "(Digita :q per annullare)";
         String c = campo.toUpperCase();
-        if(c.startsWith("DATAINIZIO")) return "(Inserisci data inziale)";
+        if(c.startsWith("DATAINIZIO")&& CineMax.stackRecord.peek()==StatoMenu.REGISTRAZIONE)
+            return "Data di nascita (facoltativo)";
+        else if(c.startsWith("DATAINIZIO"))
+            return "(Inserisci la data inziiale)";
         if(c.startsWith("DATAFINE")) return "(Inserisci data finale)";
         if(c.startsWith("DOMICILIO")) return "(Campo facoltativo)";
+        if(c.startsWith("DATA DI NASCITA")) return "(Campo facoltativo)";
         if(c.startsWith("ORARIO")) return "(Es. 20:30)";
         return "";
     }

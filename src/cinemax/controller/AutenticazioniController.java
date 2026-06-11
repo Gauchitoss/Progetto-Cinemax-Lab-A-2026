@@ -1,5 +1,11 @@
 package cinemax.controller;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.zip.DataFormatException;
+
 import cinemax.CineMax;
 import cinemax.LogicaStatiManager;
 import cinemax.CostantiForm.Campi;
@@ -40,8 +46,34 @@ public class AutenticazioniController {
             String  username            = datiFormTmp[Campi.REG_USERNAME.i];
             String  password            = datiFormTmp[Campi.REG_PASSWORD.i];
             String  confermaPassword    = datiFormTmp[Campi.REG_CONFERMA_PASSWORD.i];
-            String  dataNascita         = datiFormTmp[Campi.REG_DATA.i];
+            String  giornoNascita       = datiFormTmp[Campi.REG_GIORNO_NASCITA.i];
+            String  meseNascita         = datiFormTmp[Campi.REG_MESE_NASCITA.i];
+            String  annoNascita         = datiFormTmp[Campi.REG_ANNO_NASCITA.i];
             String  domicilio           = datiFormTmp[Campi.REG_DOMICILIO.i];
+
+            String dataNascita = null; //all'inizio viene impostata come null
+
+            if (giornoNascita != null && meseNascita != null && annoNascita != null) {
+                //rimozion e spazi extra
+                String g = giornoNascita.trim();
+                String m = meseNascita.trim();
+                String a = annoNascita.trim();
+
+                // Pad a 2 cifre per giorno e mese se inseriti come "1" anziché "01"
+                if (g.length() == 1) g = "0" + g;
+                if (m.length() == 1) m = "0" + m;
+                
+                String dataNascitaTmp = g + "-" + m + "-" + a;
+
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    LocalDate.parse(dataNascitaTmp, formatter);
+
+                    dataNascita = dataNascitaTmp;
+                } catch (DateTimeParseException e) {
+                    throw new IllegalArgumentException("La data di nascita inserita non è valida (es. usa GG-MM-AAAA).");
+                }
+            }
             GestoreUtenti.registraUtente(nome, cognome, username, password, confermaPassword, dataNascita, domicilio);
             //Auto login dopo la registrazione
             utente = GestoreUtenti.cercaPerUsername(username);
