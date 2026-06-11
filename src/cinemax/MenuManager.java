@@ -9,15 +9,13 @@ import cinemax.util.GestoreProiezione;
 
 /**
  * Classe che gestisce la logica di navigazione e gli stati del sistema CineMax.
- * Utilizza il pattern State tramite un'enumerazione per definire le schermate 
- * dell'applicazione, le opzioni disponibili e le transizioni tra di esse.
- *
+ * Modella l'intero comportamento logico del programma mediante una macchina a stati finiti (FSM),
+ * mappando ogni schermata visibile in una costante di tipo enum e associandovi l'esecuzione della relativa logica.
  * @author Modena Matteo (Matricola: 765099) - VA
  * @author Baroncelli Luca (Matricola: 761582) - VA
  * @author Bin Alessio (Matricola: 762387) - VA
  */
 public class MenuManager {
-
     static Scanner input = new Scanner(System.in);
 
     /**
@@ -31,6 +29,7 @@ public class MenuManager {
         // 1. AVVIO E NAVIGAZIONE DI BASE
         // ======================================================
 
+        // Schermata iniziale di benvenuto
         BENVENUTO(new String[]{"accedi", "entra come guest", "registrati", "esci"}, true, "cinemax", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{LOGIN, MENU_GUEST, REGISTRAZIONE};}
             @Override
@@ -42,6 +41,7 @@ public class MenuManager {
             }
         },
 
+        // Menu in caso di mancato accesso
         MENU_GUEST( new String[]{"cerca film", "accedi", "indietro"}, true, "cinemax", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{CERCA_FILM, LOGIN, BENVENUTO};}
             @Override public void eseguiLogicaAssociata(){LogicaStatiManager.statoMenuSuccessivo(input.nextLine());}
@@ -51,6 +51,7 @@ public class MenuManager {
         // 2. AUTENTICAZIONE
         // ======================================================
 
+        // Grafica accesso 
         LOGIN(new String[]{"username", "password"}, false, "accesso", "centro"){
             @Override public StatoMenu[] prossimi() { return new StatoMenu[]{MENU_CLIENTI, MENU_PROIEZIONISTA, MENU_BIGLIETTAIO, BENVENUTO};}
             @Override 
@@ -62,6 +63,7 @@ public class MenuManager {
             }
         },
 
+        // Grafica registrazione
         REGISTRAZIONE(new String[]{"nome", "cognome", "username", "password", "conferma password", "dataInizio", "domicilio"}, false, "registrazione", "centro"){
             @Override public StatoMenu[] prossimi() {return new StatoMenu[]{LOGIN, BENVENUTO};}
             @Override 

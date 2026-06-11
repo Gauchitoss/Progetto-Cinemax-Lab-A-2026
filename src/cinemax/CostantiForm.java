@@ -1,7 +1,17 @@
 package cinemax;
 
+/**
+ * Classe di utilità che definisce le strutture dati e le enumerazioni per la mappatura dei form.
+ * @author Modena Matteo (Matricola: 765099) - VA
+ * @author Baroncelli Luca (Matricola: 761582) - VA
+ * @author Bin Alessio (Matricola: 762387) - VA
+ */
 public class CostantiForm {
-
+    
+    /**
+     * Enumerazione dei campi utilizzati nel form di inserimento e modifica delle proiezioni.
+     * Associa a ciascun campo logico il rispettivo indice posizionale all'interno dell'array dei dati.
+     */
     public enum Campi{
         // CAMPI ACCESSO
         LOGIN_USER(0),
@@ -53,7 +63,10 @@ public class CostantiForm {
         PRENOTAZIONE_CODICE(10)
         ;
 
-
+        /**
+         * Costruttore dell'enum Campi.
+         * * @param i l'indice numerico associato al campo del form
+         */
         public final int i;
 
         Campi(int indice){

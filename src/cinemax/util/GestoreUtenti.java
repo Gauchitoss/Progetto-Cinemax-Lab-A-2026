@@ -8,12 +8,24 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;  
 
+/**
+ * Gestore logico e di persistenza del bacino utenza del sistema CineMax.
+ * Amministra il file CSV utenti, sovraintende alle operazioni di autenticazione (login), 
+ * registrazione dei clienti, validazione anagrafica delle date e inizializzazione dello staff.
+ * @author Modena Matteo (Matricola: 765099) - VA
+ * @author Baroncelli Luca (Matricola: 765099) - VA
+ * @author Bin Alessio (Matricola: 762387) - VA
+ */
 public class GestoreUtenti {
         
+        // Lista di memorizzazione di tutti gli utenti pronta all'uso
         private static final List<Utente> listaUtenti = new ArrayList<>();
         private static final String PERCORSO_FILE = "data/utenti.csv";
         
-        
+        /**
+         * Svuota la cache locale e procede con l'acquisizione ordinata di tutti i record utenti presenti nel CSV.
+         * Qualora il database risulti mancante, provvede ad invocare la generazione automatica dello staff di fabbrica.
+         */
         public static void caricaUtenti() {
             listaUtenti.clear(); // pulisce la lista prima di caricare i dati dal file
             File file = new File(PERCORSO_FILE);
@@ -53,6 +65,17 @@ public class GestoreUtenti {
 
         }
 
+        /**
+         * Factory Method di supporto interno preposto alla corretta istanziazione delle sottoclassi di Utente.
+         * @param nome          il nome proprio
+         * @param cognome       il cognome
+         * @param username      l'username univoco identificativo
+         * @param password      la stringa della password (già cifrata)
+         * @param dataDiNascita la data di nascita (stringa o null)
+         * @param domicilio     l'indirizzo di domicilio o sede lavorativa
+         * @param ruolo         l'istanza dell'enum {@link Utente.Ruolo} associata
+         * @return Utente la sottoclasse polimorfica istanziata, o null se il ruolo inserito non è supportato
+         */
         private static Utente creaUtente(String nome, String cognome, String username, String password, String dataDiNascita, String domicilio, Utente.Ruolo ruolo){
             switch(ruolo){
                 case PROIEZIONISTA: 
@@ -67,7 +90,9 @@ public class GestoreUtenti {
             }
         }
 
-        
+        /**
+         * Serializza l'intera lista utenti strutturandolo in righe CSV e lo salva nel file.
+         */
         public static void salvaUtenti() {
             new File("data").mkdir();
             try (PrintWriter pw = new PrintWriter(new FileWriter(PERCORSO_FILE))) {
@@ -80,6 +105,11 @@ public class GestoreUtenti {
                 System.err.println("Errore durante il salvataggio del file utenti: " + e.getMessage());
             }
         }
+
+        /**
+         * Routine di pre-popolamento aziendale. Genera 2 account Proiezionista e 5 account Bigliettaio 
+         * predefiniti crittografandone le credenziali d'accesso nel caso in cui il database sia vuoto o rimosso.
+         */
         public static void inizializzaStaffDefault() {
          //inserisco due proiezionisti 
             listaUtenti.add(new Proiezionisti("Admin", "Uno", "proiezionista1", Cifratura.cifra("pass1"), "1990-01-01", "Sede"));
@@ -93,6 +123,13 @@ public class GestoreUtenti {
             salvaUtenti(); // salva i dati iniziali nel file   
         }
         
+        /**
+         * Sovraintende alle procedure di controllo delle credenziali per l'accesso protetto all'interfaccia.
+         * Effettua la cifratura istantanea dell'input e la confronta con i record presenti in memoria.
+         * @param username l'username trasmesso dalla console d'accesso
+         * @param password la password in chiaro digitata dall'operatore
+         * @return Utente l'istanza dell'utente autenticato se corrispondente, altrimenti null
+         */
         public static Utente login(String username, String password) {
             if(username ==  null || password == null) return null;
             String usernameUpperCase = username.toUpperCase();
@@ -105,6 +142,21 @@ public class GestoreUtenti {
             return null; // restituisce null se le credenziali sono errate
         }
 
+        /**
+         * Registra un nuovo utente cliente nel sistema CineMax, eseguendo controlli di validità sui campi.
+         * Verifica la presenza dei dati obbligatori, la conformità dei formati di nome e cognome, 
+         * i vincoli di lunghezza di credenziali e password, la corrispondenza della conferma password,
+         * la validità della data di nascita e l'univocità dell'username all'interno del registro.
+         * @param nome             il nome proprio dell'utente da registrare
+         * @param cognome          il cognome dell'utente da registrare
+         * @param username         l'username scelto, che deve essere univoco
+         * @param password         la password scelta per l'account
+         * @param confermaPassword la stringa di verifica che deve coincidere con la password
+         * @param dataDiNascita    la data di nascita espressa in formato testuale (opzionale)
+         * @param domicilio        l'indirizzo di domicilio dell'utente (opzionale)
+         * @throws IllegalArgumentException se un campo obbligatorio è vuoto, se i formati testuali non 
+         * sono validi, se le password non coincidono o se l'username esiste già
+         */
         public static void registraUtente(String nome, String cognome, String username, String password, String confermaPassword, String dataDiNascita, String domicilio)throws IllegalArgumentException{
             if(nome == null || nome.isEmpty() || cognome == null || cognome.isEmpty() || username == null || username.isEmpty() || password == null || password.isEmpty())
                 throw new IllegalArgumentException("Tutti i campi obbligatori devono essere compilati.");
@@ -129,6 +181,15 @@ public class GestoreUtenti {
             salvaUtenti();
         }
 
+        /**
+         * Valida la stringa della data di nascita provando molteplici formati di parsing.
+         * Verifica inoltre che la data inserita non appartenga al futuro e rispetti un 
+         * criterio precauzionale di età minima pari a 5 anni.
+         * @param dataDiNascita la stringa testuale contenente la data di nascita da verificare
+         * @throws IllegalArgumentException se la stringa non è conforme ai formati attesi o 
+         * se viola i limiti temporali stabiliti
+         * 
+        */
         private static void validaDataNascita(String dataDiNascita) {
             if (dataDiNascita == null || dataDiNascita.isEmpty()) 
                 return;
@@ -157,6 +218,13 @@ public class GestoreUtenti {
         // ====================================================== 
         //  Metodo di supporto per cercare un utente tramite username
         // ======================================================
+
+        /**
+         * Esegue una ricerca lineare sequenziale all'interno della lista utenti per individuare
+         * un utente specifico a partire dal suo username.
+         * @param username l'username da cercare (la ricerca è case-insensitive)
+         * @return l'istanza di {@link Utente} corrispondente, oppure <code>null</code> se non esiste
+         */
         public static Utente cercaPerUsername(String username) {
             if(username == null) return null;
             String usernameUpperCase = username.toUpperCase();
@@ -168,6 +236,11 @@ public class GestoreUtenti {
             return null; // Ritorna null se lo username non esiste
         }
 
+        /**
+         * Restituisce una copia shallow indipendente della lista contenente tutti gli utenti
+         * attualmente caricati e registrati in memoria centrale.
+         * * @return una nuova lista contenente gli oggetti {@link Utente} del sistema
+         */
         public static List<Utente> getListaUtenti(){
             return new ArrayList<>(listaUtenti);
         }
