@@ -13,7 +13,6 @@ import cinemax.model.Utente;
  * @author Baroncelli Luca (Matricola: 765099 ) - VA
  * @author Bin Alessio (Matricola: 762387 ) - VA
  */
-
 public class CinemaxTUI {
 
     public static final int LARGHEZZA_MENU = 130;
@@ -29,7 +28,8 @@ public class CinemaxTUI {
 // ======================================================
 
     /**
-     * Pulisce la console
+     * Ripulisce la console di sistema e forza la ridimensione della finestra 
+     * del terminale a dimensioni fisse tramite sequenze speciali di escape ANSI.
      */
     public static void clearConsole() {
         // Forza la finestra a 45 righe di altezza e 135 di larghezza
@@ -39,10 +39,9 @@ public class CinemaxTUI {
     }
 
     /**
-     * Renderizza l'intera interfaccia a schermo in base allo stato corrente del programma
-     * 
-     * @param statoMenu Oggetto enum che contiene tutte le informazioni per costruire il menu
-     * (logo da mostrare, opzioni disponibili, allinemamento, stile di lista)
+     * Renderizza l'intera interfaccia grafica a schermo calcolando i posizionamenti in base allo stato corrente.
+     * Proietta sequenzialmente intestazioni, loghi dedicati,box di form o stringhe di errore e conferma.
+     * * @param statoMenu Oggetto enum che contiene tutte le informazioni per costruire il menu
      */
     public static void renderizzaMenu(StatoMenu statoMenu){
         clearConsole();
@@ -106,9 +105,13 @@ public class CinemaxTUI {
         " ██╔══╝  ██╔══██╗██╔══██╗██║   ██║██╔══██╗",
         " ███████╗██║  ██║██║  ██║╚██████╔╝██║  ██║",
         " ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝"
-};
+    };
 
-
+    /**
+     * Intercetta la stringa identificativa passata come argomento e indirizza la stampa
+     * del logo corretto provvedendo a formattarlo e centrarlo.
+     * @param logo la stringa testuale chiave (es. "cinemax", "film", "error")
+     */
     public static void formattaIntestazione(String logo){
         if(logo.equals("cinemax"))  {formattaLogo(logoCinemax); return;}
         if(logo.equals("film"))     {formattaLogo(logoFilm); return;}
@@ -117,11 +120,9 @@ public class CinemaxTUI {
     }
 
     /**
-     * Centra e stampa un logo testuale all'interno del menu.
-     * Gestisce automaticamente il calcolo delgi spazi (padding) da lasciare, al fine
-     * di compensare la lunghezza.
-     * 
-     * @param logo array contenente le linee del logo da stampare,
+     * Centra e stampa un logo testuale multilinea all'interno della cornice del menu.
+     * Gestisce automaticamente il calcolo degli spazi vuoti (padding) laterali per compensarne la larghezza.
+     * @param righelogo array contenente le linee del logo da stampare
      */
     public static void formattaLogo(String[] righelogo){
         int lunghezzaRigaLogo = righelogo[1].length();
@@ -145,20 +146,21 @@ public class CinemaxTUI {
 
 
     /**
-     * Costruisce l'intera riga del menu completa di bordi `║`, calcolando gli spazi mancanti a destra.
-     * 
-     * @param opzione Stringa contenente il testo finale dell'opzione da inserire
-     * @param padding Int, numero di caselle vuote lasciare per allineare il tutto
-     * @param visualizzaNumeri Booleano che indica se è un menu a scelta (true) o un form di input (false)
-     * @return Stringa formattata (con eventuali \n), pronta per essere stampata a schermo
+     * Dispone le scritte del menu o i box dei form calcolando la disposizione ideale.
+     * Gestisce in autonomia la suddivisione asimmetrica delle colonne e le etichette per l'input.
+     * @param possibiliOpzioni Array contenente le voci testuali da visualizzare
+     * @param posizione        Stringa descrittiva dell'orientamento richiesto
+     * @param visualizzaNumeri Booleano che discrimina tra un menu numerato (true) o campi form (false)
      */
     public static void formattaTesto(String[] possibiliOpzioni, String posizione, boolean visualizzaNumeri){
         
         if(possibiliOpzioni == null || possibiliOpzioni.length == 0) return;
         if(visualizzaNumeri){
+
             // =========================================================
             // MENU NUMERATI (1 Colonna, allineati al centro)
             // =========================================================
+
             int lunghezzaMax = 0;
             String[] righeMenu = new String[possibiliOpzioni.length];
 
@@ -224,8 +226,9 @@ public class CinemaxTUI {
     }
 
     /**
-     * Metodo di supporto per l'allineamento.
-     * Impedisce ai bordi destri di sbgagliare.
+     * Metodo di supporto per l'allineamento dei blocchi form centrandoli perfettamente.
+     * Impedisce ai bordi destri dell'interfaccia di subire disallineamenti o sfasamenti.
+     * @param contenuto il testo complessivo dei box formati da stampare
      */
     private static void stampaRigaCentrataForm(String contenuto) {
         int spazioRimanente = LARGHEZZA_MENU - contenuto.length();
@@ -234,6 +237,13 @@ public class CinemaxTUI {
         System.out.println("║" + " ".repeat(padSx) + contenuto + " ".repeat(padDx) + "║");
     }
 
+    /**
+     * Stampa a schermo una singola stringa testuale all'interno delle cornici verticali.
+     * Ne calcola gli spazi in base alla posizione (es. "centro" o allineamento sinistro).
+     * @param opzione          il testo da visualizzare
+     * @param posizione        criterio di posizionamento ("centro" o "sinistra")
+     * @param visualizzaNumeri parametro di controllo ausiliario
+     */
     public static void formattaTesto(String opzione, String posizione, boolean visualizzaNumeri){
         if (opzione.length() > LARGHEZZA_MENU - 4) {
             opzione = opzione.substring(0, LARGHEZZA_MENU - 7) + "...";
@@ -249,10 +259,10 @@ public class CinemaxTUI {
     }
 
     /**
-     * Genera un box decorativo in caratteri Unicode, per l'inserimento dei dati da parte dell'utente
-     * 
-     * @param opzione Nome del dato richiesto
-     * @return Array di 3 stringhe rappresentanti la riga superiore, centrale e inferiore.
+     * Genera un box decorativo rettangolare integrando la stringa dell'opzione richiesta 
+     * nel bordo superiore mediante l'ausilio di caratteri speciali Unicode Box-Drawing.
+     * @param opzione il nome della proprietà o campo richiesto (es. "USERNAME")
+     * @return un array di 3 stringhe rappresentanti la scomposizione orizzontale del box grafico
      */
     public static String[] generaBoxInputUnicode(String opzione){
         String[] boxInput = new String[3];
@@ -267,7 +277,11 @@ public class CinemaxTUI {
         
         return boxInput;
     }
-
+    /**
+     * Genera e compone la grafica di tre piccoli box adiacenti in linea per facilitare
+     * l'inserimento separato dei parametri di una data (Giorno, Mese, Anno).
+     * * @return un array di 3 stringhe configurate graficamente per l'acquisizione della data
+     */
     public static String[] chiediData(){
         String[] dataInput = new String[3];
 
@@ -353,7 +367,12 @@ public class CinemaxTUI {
         formattaTesto("[C] ANNULLA / ESCI", "centro", true);
 
     }
-
+    /**
+     * Renderizza il prospetto informativo completo legato a una specifica proiezione.
+     * Allinea i metadati descrittivi del film (regista, durata, prezzo, posti) ed espone
+     * le scelte operative permesse in base ai privilegi del ruolo correntemente attivo.
+     * * @param p l'istanza della {@link Proiezione} da esaminare
+     */
     public static void gestisciInformazioniFilm(Proiezione p){
 
         formattaTesto("TITOLO: " + p.getTitolo(), "centro", true);
@@ -362,7 +381,7 @@ public class CinemaxTUI {
         System.out.println(bordoMezzo);
         System.out.println(rigaVuota);
 
-        String formatoColonne = "║  %-56s │ %-69s║";
+        String formatoColonne = "║  %-56s │ %-69s║"; // '-', testo a sinistra. 's' stringa, 'numeoro' larghezza fissa colonna
 
         int postiLiberi = p.getPostiLiberi();
 
@@ -389,6 +408,11 @@ public class CinemaxTUI {
             formattaTesto("INVIO PER TORNARE INDIETRO", "centro", true);
     }
 
+    /**
+     * Renderizza lo specchietto dettagliato relativo a una singola prenotazione.
+     * Estrae e formatta il codice alfanumerico univoco, l'intestatario, i biglietti e il costo totale.
+     * @param pre l'istanza di {@link cinemax.model.Prenotazione} da visualizzare
+     */
     public static void gestisciDettaglioPrenotazione(cinemax.model.Prenotazione pre){
         if(pre == null) {
             formattaTesto("ERRORE: NESSUNA PRENOTAZIONE SELEZIONATA", "centro", true);
@@ -415,6 +439,13 @@ public class CinemaxTUI {
     // ======================================================
     // HELPER PER I FORM (Supporto a 2 colonne)
     // ======================================================
+
+    /**
+     * Determina la stringa di suggerimento informativo o vincolo testuale da stampare sopra i box form.
+     * *@param campo       il nome del parametro richiesto
+     * @param primoCampo  booleano che segnala se si tratta del primo campo assoluto del form
+     * @return String la stringa di istruzioni specifiche da proiettare
+     */
     private static String ottieniIstruzione(String campo, boolean primoCampo){
         if(primoCampo) return "(Digita :q per annullare)";
         String c = campo.toUpperCase();
@@ -429,6 +460,12 @@ public class CinemaxTUI {
         return "";
     }
 
+    /**
+     * Centra un testo inserendo spazi a sinistra e a destra per pareggiare la larghezza di colonna impostata.
+     * @param testo la stringa da allineare
+     * @param width il limite di caratteri orizzontali disponibili della colonna
+     * @return String la stringa centrata e completata dal padding
+     */
     private static String centraTesto(String testo, int width){
         if (testo.length() >= width) return testo.substring(0, width);
         int padSx = (width - testo.length()) / 2;
@@ -436,13 +473,22 @@ public class CinemaxTUI {
         return " ".repeat(padSx) + testo + " ".repeat(padDx);
     }
 
+    /**
+     * Risolve quale tipologia di box stampare discriminando l'inserimento generico o i tripli box data.
+     * @param campo l'etichetta del campo da esaminare
+     * @return un array di 3 stringhe rappresentanti le righe del box grafico appropriato
+     */
     private static String[] generaBoxAvanzato(String campo) {
         if (campo.toUpperCase().startsWith("DATAINIZIO") || campo.toUpperCase().startsWith("DATAFINE")) {
             return chiediData();
         }
         return generaBoxInputUnicode(campo);
     }
-
+    /**
+     * Genera righe interamente vuote utilizzate per bilanciare visivamente i form asimmetrici a due colonne.
+     * @param width il quantitativo di spazi vuoti orizzontali richiesti
+     * @return un array di stringhe vuote spaziate
+     */
     private static String[] generaBoxVuoto(int width) {
         String vuoto = " ".repeat(width);
         return new String[]{vuoto, vuoto, vuoto};

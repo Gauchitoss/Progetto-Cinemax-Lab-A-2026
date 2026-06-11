@@ -11,11 +11,15 @@ import cinemax.model.Proiezione;
 import cinemax.util.GestoreProiezione;
 
 /**
- * Gestisce la logica di business relativa ai film e alle proiezioni.
- * Si occupa dell'impaginazione, della ricerca e dell'aggiunta di proiezioni.
+ * Questa classe controlla tutto quello che riguarda la proiezione.
+ * Serve per inserire una nuova proiezione, cercare una proiezione con i filtri e cancellare una proiezione.
+ * @author Modena Matteo (Matricola: 765099) - VA
+ * @author Baroncelli Luca (Matricola: 761582) - VA
+ * @author Bin Alessio (Matricola: 762387) - VA
  */
 public class FilmController {
 
+    // Campi utili per la gestione della TUI
     public static List<Proiezione> filmPaginaTmp = new ArrayList<>();
     public static boolean esistenzaPaginaSuccessiva;
     public static boolean esistenzaPrecedente;
@@ -31,9 +35,10 @@ public class FilmController {
     private static final int ETA_MAX = 21;
     private static final double PREZZO_MAX = 999.99;
     private static final int POSTI_MAX = 200;
+
     /**
-     * RICERCA TRAMITE UN SOLO PARAMETRO SPECIFO PROGRAMMAZIONE
-     * @param dataOggi
+     * Questo metodo riceve una lista pronta di proiezioni e la prepara per essere mostrata nella pagina.
+     * @param lista la lista contenente le proiezioni da caricare e mostrare
      */
     public static void gestisciCercaFilm(List<Proiezione> lista){
         try {
@@ -47,9 +52,9 @@ public class FilmController {
         }
     }
 
-    /**
-     * 
-     * @param datiFormTmp
+/**
+     * Legge i filtri scritti dall'utente nel form e cerca le proiezioni corrispondenti.
+     * @param datiFormTmp l'array con tutti i testi scritti nel form per filtrare la proiezione
      */
     public static void gestisciCercaFilmDaArray(String[] datiFormTmp){
         try{
@@ -81,6 +86,10 @@ public class FilmController {
         }
     }
 
+    /**
+     * Calcola quali proiezioni inserire nella pagina attuale in base al numero della pagina.
+     * Prende solo il gruppo di proiezioni corretto e attiva o disattiva i tasti per andare avanti e indietro.
+     */
     public static void aggiornaProiezioniPerPagina(){
         filmPaginaTmp.clear();
         esistenzaPaginaSuccessiva = false;
@@ -93,6 +102,11 @@ public class FilmController {
         if(paginaCorrente > 0) esistenzaPrecedente = true;
     }
     
+    /**
+     * Gestisce la scelta dell'utente dentro la lista delle proiezioni.
+     * Permette di andare avanti di pagina, tornare indietro, uscire oppure selezionare una proiezione specifica.
+     * @param scelta la stringa che rappresenta il comando digitato (numero della proiezione, N, B, o C)
+     */
     public static void gestisciVisualizzaProiezione(String scelta){
         try{
            if(scelta.trim().isEmpty() || scelta == null || scelta.equalsIgnoreCase("C")){
@@ -123,6 +137,11 @@ public class FilmController {
 
     }
 
+    /**
+     * Controlla i pulsanti premuti dentro la schermata delle informazioni di una proiezione.
+     * Cambia i comandi disponibili in base al ruolo di chi sta usando il programma (cliente, proiezionista o bigliettaio).
+     * @param scelta il numero del comando inserito dall'utente per la proiezione corrente
+     */
     public static void gestisciMenuInfoFilm(String scelta){
         String ruolo = CineMax.ruolo.getEtichetta();
         switch(ruolo){
@@ -166,12 +185,18 @@ public class FilmController {
                 CineMax.stackRecord.pop();
         }
     }
-/**
-     * Metodo che si occupa di formattare i dati presi dal form per istanziare
-     * una nuova Proiezione. Gestisce il parsing assicurandosi che l'utente non
-     * abbia inserito testo al posto di numeri.
+    
+    /**
+     * Questo metodo controlla che tutti i valori inseriti per una nuova proiezione siano corretti e accettabili.
+     * Controlla che i numeri non siano negativi e che non superino i limiti massimi decisi per la proiezione.
+     * @param annoProduzione l'anno in cui è stata prodotta la proiezione
+     * @param durata la durata in minuti della proiezione
+     * @param etaMinima l'età minima per vedere la proiezione
+     * @param costo il prezzo del biglietto per la proiezione
+     * @param posti il numero di posti della sala per la proiezione
+     * @param dataProiezione il giorno in cui si tiene la proiezione
+     * @throws IllegalArgumentException se uno dei valori inseriti viola le regole della proiezione
      */
-
     private static void validaDatiProiezione(int annoProduzione, int durata, int etaMinima, double costo, int posti, LocalDate dataProiezione) {
         int annoCorrente = LocalDate.now().getYear();
 
@@ -197,6 +222,11 @@ public class FilmController {
             throw new IllegalArgumentException("La data della proiezione non può essere nel passato.");
     }
 
+    /**
+     * Questo metodo controlla che il testo inserito per il nome del regista non sia vuoto e contenga solo lettere.
+     * @param regista il nome del regista da controllare per la proiezione
+     * @throws IllegalArgumentException se il testo è vuoto o contiene caratteri non validi
+     */
     private static void validaRegista(String regista) {
         if(regista == null || regista.trim().isEmpty())
             throw new IllegalArgumentException("Il nome del regista è obbligatorio.");
@@ -204,7 +234,10 @@ public class FilmController {
             throw new IllegalArgumentException("Il nome del regista può contenere solo lettere, spazi, apostrofi e trattini.");
     }
 
-
+    /**
+     * Questo metodo prende tutti i testi scritti nel form per una nuova proiezione, li controlla e li salva nel file.
+     * * @param datiFormTmp l'array con tutti i valori in formato testo inviati dal form della proiezione
+     */
     public static void gestisciInserimentoProiezione(String[] datiFormTmp){
         try {
             GestoreProiezione.leggiProiezioni();
@@ -249,7 +282,13 @@ public class FilmController {
         }
     }
 
-public static void gestisciModificaProiezione(Proiezione p, String[] datiFormTmp){
+    /**
+     * Questo metodo legge i campi modificati dall'utente per una proiezione esistente e aggiorna i dati salvati.
+     * Se l'utente lascia dei campi vuoti, il metodo mantiene i valori vecchi già presenti nella proiezione.
+     * @param p la proiezione originale scelta che si vuole modificare
+     * @param datiFormTmp l'array contenente i nuovi testi scritti dentro i campi del form
+     */
+    public static void gestisciModificaProiezione(Proiezione p, String[] datiFormTmp){
         try {
             GestoreProiezione.leggiProiezioni();
 
@@ -306,7 +345,14 @@ public static void gestisciModificaProiezione(Proiezione p, String[] datiFormTmp
     // ======================================================
     //                  HELPER
     // ======================================================
-
+    /**
+     * Questo metodo di supporto riceve le stringhe separate di giorno, mese e anno e crea un oggetto data.
+     * Se uno dei testi manca o è vuoto, restituisce un valore nullo.
+     * @param gg la stringa che contiene il giorno del mese
+     * @param mm la stringa che contiene il numero del mese
+     * @param aaaa la stringa che contiene l'anno con quattro cifre
+     * @return un oggetto {@link LocalDate} che rappresenta la data calcolata, oppure null se i dati sono incompleti
+     */
     private static LocalDate parseData(String gg, String mm, String aaaa){
         if(gg == null || mm == null || aaaa == null)
             return null;

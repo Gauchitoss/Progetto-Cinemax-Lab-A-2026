@@ -14,16 +14,17 @@ import cinemax.util.GestorePrenotazione;
  * Controller per la gestione della logica di business relativa alle prenotazioni.
  * Gestisce l'interazione tra i dati del modello (Prenotazione) e l'interfaccia utente (TUI),
  * occupandosi di paginazione, visualizzazione, ricerca e navigazione.
- * * @author Modena Matteo (Matricola: 765099) - VA
+ * @author Modena Matteo (Matricola: 765099) - VA
  * @author Baroncelli Luca (Matricola: 761582) - VA
  * @author Bin Alessio (Matricola: 762387) - VA
  */
-
 public class PrenotazioniController {
     
-//======================================================
-// VARIABILI GLOBALI PER LA STAMPA
-// ======================================================
+    //======================================================
+    // VARIABILI GLOBALI PER LA STAMPA
+    // ======================================================
+
+    // Campi pubblici perche' utili per la TUI
     public static List<Prenotazione> prenotazioniPaginaTmp = new ArrayList<>();
     public static boolean esistenzaPaginaSuccessiva;
     public static boolean esistenzaPrecedente;
@@ -33,8 +34,8 @@ public class PrenotazioniController {
     public static Prenotazione prenotazioneSelezionataTmp;
 
     /**
-     * Carica e mostra tutte le prenotazioni effettuate dall'utente attualmente loggato.
-     * Inizializza la paginazione e cambia lo stato del menu in MIE_PRENOTAZIONI.
+     * Questo metodo trova e mostra tutte le prenotazioni fatte dall'utente che è entrato nel programma.
+     * Mette a zero il numero della pagina e cambia la schermata del menu.
      */
     public static void gestisciMiePrenotazioni(){
         try {
@@ -69,7 +70,7 @@ public class PrenotazioniController {
     /**
      * Gestisce l'input dell'utente durante la visualizzazione paginata delle prenotazioni.
      * Permette di navigare tra le pagine (N = Next, B = Back) o di annullare (C = Cancel).
-     * * @param scelta       L'input digitato dall'utente.
+     * @param scelta       L'input digitato dall'utente.
      * @param statoAttuale Lo stato in cui ci si trova, necessario per "ricaricare" la pagina (pop e push).
      */
     public static void gestisciVisualizzaPrenotazione(String scelta, StatoMenu statoAttuale) {
@@ -102,6 +103,11 @@ public class PrenotazioniController {
             }
     }
 
+    /**
+     * Questo metodo gestisce le azioni disponibili dentro la schermata con i dettagli di una singola prenotazione.
+     * Permette di cancellare la prenotazione dal file oppure di tornare indietro alla lista.
+     * @param scelta la stringa che rappresenta il comando premuto (1 per cancellare, 2 per tornare alla lista)
+     */
     public static void gestisciDettaglioPrenotazione(String scelta){
         if("1".equals(scelta)){
             // Rimuovi prenotazione
@@ -127,7 +133,7 @@ public class PrenotazioniController {
     /**
      * Metodo dedicato al Bigliettaio. Raccoglie i parametri inseriti tramite form testuale
      * e richiede a GestorePrenotazione di filtrare le prenotazioni nel sistema.
-     * * @param datiFormTmp Array di stringhe contenente i dati grezzi digitati nel form.
+     * @param datiFormTmp Array di stringhe contenente i dati grezzi digitati nel form.
      */
     public static void gestisciCercaPrenotazione(String[] datiFormTmp){
         try {
@@ -182,6 +188,14 @@ public class PrenotazioniController {
         }
     }
 
+    /**
+     * Questo metodo di supporto riceve le stringhe separate di giorno, mese e anno e crea un oggetto data.
+     * Se uno dei testi manca o è vuoto, restituisce un valore nullo.
+     * @param gg la stringa che contiene il giorno del mese
+     * @param mm la stringa che contiene il numero del mese
+     * @param aaaa la stringa che contiene l'anno con quattro cifre
+     * @return un oggetto {@link LocalDate} che rappresenta la data calcolata, oppure null se i dati sono incompleti
+     */
     private static LocalDate parseData(String gg, String mm, String aaaa) {
         if (gg == null || mm == null || aaaa == null) return null;
         if (gg.isEmpty() || mm.isEmpty() || aaaa.isEmpty()) return null;

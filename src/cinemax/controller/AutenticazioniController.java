@@ -11,10 +11,24 @@ import cinemax.MenuManager.StatoMenu;
 import cinemax.model.Utente;
 import cinemax.util.GestoreUtenti;
 
+/**
+ * Controller utilzzato per gestione dei flussi di autenticazione e registrazione del sistema CineMax.
+ * Coordina l'interazione tra i form dell'interfaccia utente (TUI) e le funzioni di logica
+ * per il login e la creazione di nuovi account di tipo cliente.
+ * @author Modena Matteo (Matricola: 765099) - VA
+ * @author Baroncelli Luca (Matricola: 761582) - VA
+ * @author Bin Alessio (Matricola: 762387) - VA
+ */
 public class AutenticazioniController {
 
     public static Utente utente;
 
+    /**
+     * Elabora i dati immessi nel form di login per autenticare un utente all'interno del sistema.
+     * In caso di credenziali corrette, aggiorna lo stato corrente del menu e il ruolo globale; 
+     * in caso di errore, imposta il relativo messaggio testuale e reindirizza alla schermata di errore.
+     * @param datiForm un array di stringhe contenente l'username (indice 0) e la password (indice 1)
+     */
     public static void gestisciLogin(String[] datiFormTmp) {
         String username = datiFormTmp[Campi.LOGIN_USER.i];
         String password = datiFormTmp[Campi.LOGIN_PASSWORD.i];
@@ -37,6 +51,11 @@ public class AutenticazioniController {
         utente = u;
     }
 
+    /**
+     * Elabora i dati immessi nel form di registrazione per iscrivere un nuovo cliente registrato.
+     * Valida le informazioni tramite il gestore di persistenza e reindirizza l'utente allo stato di conferma o di errore.
+     * * @param datiForm un array di stringhe contenente nell'ordine: nome, cognome, username, password, conferma password, data di nascita e domicilio
+     */
     public static void gestisciRegistrazione(String[] datiFormTmp){
         try{
             String  nome                = datiFormTmp[Campi.REG_NOME.i];

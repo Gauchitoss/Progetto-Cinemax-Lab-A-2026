@@ -11,7 +11,7 @@ import cinemax.util.GestoreUtenti;
  * Main Class del progetto CineMax.
  * Punto di ingresso dell'applicazione, gestisce il ciclo di vita principale
  * attraverso una macchina a stati implementata tramite Stack (State Machine).
- * * @author Modena Matteo (Matricola: 765099) - VA
+ * @author Modena Matteo (Matricola: 765099) - VA
  * @author Baroncelli Luca (Matricola: 761582) - VA
  * @author Bin Alessio (Matricola: 762387) - VA
  */
@@ -23,6 +23,13 @@ public class CineMax {
      */
     public static final Stack<StatoMenu> stackRecord = new Stack<>();
     public static Utente.Ruolo ruolo = Utente.Ruolo.CLIENTE_OSPITE;
+    
+    /**
+     * Metodo principale (Main) dell'applicazione.
+     * Carica i record dai file CSV di utenti, proiezioni e prenotazioni all'interno della memoria centrale,
+     * inserisce lo stato iniziale di BENVENUTO nello stack ed esegue il loop principale della macchina a stati.
+     * @param args gli argomenti passati da riga di comando (non utilizzati)
+     */
     public static void main(String[] args) {
 
         try{

@@ -62,10 +62,11 @@ public class LogicaStatiManager {
      * Metodo principale per la gestione dei Form.
      * Utilizza sequenze di escape ANSI per posizionare il cursore all'interno dei box grafici
      * disegnati dalla TUI e popola l'array passato come parametro.
-     * In caso una delle opzione deve generare un triplo form in linea, ne calcola lo spostamento
-     * anche laterale, utilizzato per la richista data
+     * In caso una delle opzioni debba generare un triplo form in linea, ne calcola lo spostamento
+     * anche laterale, utilizzato per la richiesta della data.
      * @param campiForm Array dove salvare cosa ha scritto l'utente
-     * @param opzioniStatoMenu Array contente tutte le opzioni dello stato del programma
+     * @param opzioniStatoMenu Array contenente tutte le opzioni dello stato del programma
+     * @return boolean true se il form è stato compilato con successo, false se l'utente ha inserito :q per annullare
      */
     public static boolean prendiDatiForm(String[] campiForm, String[] opzioniStatoMenu){
         // CONFIGURAZIONE DEL CURSORE
