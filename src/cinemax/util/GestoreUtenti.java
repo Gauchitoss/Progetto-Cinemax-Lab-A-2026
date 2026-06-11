@@ -106,7 +106,7 @@ public class GestoreUtenti {
         }
 
         public static void registraUtente(String nome, String cognome, String username, String password, String confermaPassword, String dataDiNascita, String domicilio)throws IllegalArgumentException{
-            if(nome == null || nome.isEmpty() || cognome == null || cognome.isEmpty() || username == null || username.isEmpty() || password == null || password.isEmpty() || dataDiNascita == null || dataDiNascita.isEmpty())
+            if(nome == null || nome.isEmpty() || cognome == null || cognome.isEmpty() || username == null || username.isEmpty() || password == null || password.isEmpty())
                 throw new IllegalArgumentException("Tutti i campi obbligatori devono essere compilati.");
             if(!nome.matches("[\\p{L} '\\-]+"))
                 throw new IllegalArgumentException("Il nome può contenere solo lettere, spazi, apostrofi e trattini.");
@@ -130,8 +130,8 @@ public class GestoreUtenti {
         }
 
         private static void validaDataNascita(String dataDiNascita) {
-            if(dataDiNascita == null || dataDiNascita.trim().isEmpty())
-                throw new IllegalArgumentException("La data di nascita non può essere vuota.");
+            if (dataDiNascita == null || dataDiNascita.isEmpty()) 
+                return;
             LocalDate nascita = null;
             String[] formati = {"yyyy-MM-dd", "dd-MM-yyyy", "dd/MM/yyyy"};
             for(String fmt : formati){
