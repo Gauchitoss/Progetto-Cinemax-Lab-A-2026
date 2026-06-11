@@ -70,6 +70,7 @@ public class CinemaxTUI {
         System.out.println(rigaVuota);
         System.out.println(bordoInferiore);
         if(CineMax.stackRecord.peek().getVisualizzaNumeri())System.out.print("\nSELEZIONA UN'OPZIONE: ");
+        System.out.println(CineMax.stackRecord);
 
     }
 

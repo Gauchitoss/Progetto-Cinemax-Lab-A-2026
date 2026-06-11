@@ -13,9 +13,16 @@ import java.time.format.DateTimeFormatter;
 import java.time.DateTimeException;
 import java.time.LocalTime;
 
-//Contiene il BufferedReader e il FileReader per il file proiezioni
-
-    public class GestoreProiezione {
+/**
+ * Gestore logico e di persistenza per il palinsesto delle proiezioni del cinema.
+ * Amministra il file CSV proiezioni e offre funzioni di inserimento, rimozione, 
+ * ricerca e aggiornamento della capienza dei posti liberi per ogni singola sala.
+ * @author Modena Matteo (Matricola: 765099) - VA
+ * @author Baroncelli Luca (Matricola: 765099) - VA
+ * @author Bin Alessio (Matricola: 762387) - VA
+ * @version 1.0
+ */
+public class GestoreProiezione {
 
 // ====================================================== 
 //                   Campi
@@ -110,7 +117,6 @@ import java.time.LocalTime;
                 if(datiFormTmp[Campi.ADD_COSTO.i] != null) p.setPrezzo(Double.parseDouble(datiFormTmp[Campi.ADD_COSTO.i].replace(",", ".")));
                 if(datiFormTmp[Campi.ADD_POSTI.i] != null) p.setPostiSala(Integer.parseInt(datiFormTmp[Campi.ADD_POSTI.i]));
                 if(datiFormTmp[Campi.ADD_ORA.i] != null) p.setOra(datiFormTmp[Campi.ADD_ORA.i]);
-                if(datiFormTmp[Campi.ADD_POSTI_LIBERI.i] != null) p.setPostiLiberi(Integer.parseInt(datiFormTmp[Campi.ADD_POSTI_LIBERI.i]));
                 String giorno = datiFormTmp[Campi.ADD_GIORNO.i];
                 String mese = datiFormTmp[Campi.ADD_MESE.i];
                 String anno = datiFormTmp[Campi.ADD_ANNO.i];

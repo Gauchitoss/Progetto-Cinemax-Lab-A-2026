@@ -220,7 +220,7 @@ public class FilmController {
             String  mese            = datiFormTmp[Campi.ADD_MESE.i];
             String  anno            = datiFormTmp[Campi.ADD_ANNO.i];
             String  orario          = datiFormTmp[Campi.ADD_ORA.i];
-            String postiLiberi = datiFormTmp[Campi.ADD_POSTI_LIBERI.i];
+
 
             if(titolo == null || titolo.trim().isEmpty())
                 throw new IllegalArgumentException("Il titolo è obbligatorio.");
@@ -232,7 +232,7 @@ public class FilmController {
             int postiInt = Integer.parseInt(posti);
             LocalDate data = LocalDate.of(Integer.parseInt(anno), Integer.parseInt(mese), Integer.parseInt(giorno));
             validaDatiProiezione(annoProduzioneInt, durataInt, etaMinimaInt, costoDouble, postiInt, data);
-            Proiezione nuovaProiezione = new Proiezione(data, orario, titolo, genere, regista, Integer.parseInt(annoProduzione), Integer.parseInt(durata), Integer.parseInt(etaMinima), Double.parseDouble(costo.replace(",", ".")), Integer.parseInt(posti), Integer.parseInt(postiLiberi));
+            Proiezione nuovaProiezione = new Proiezione(data, orario, titolo, genere, regista, Integer.parseInt(annoProduzione), Integer.parseInt(durata), Integer.parseInt(etaMinima), Double.parseDouble(costo.replace(",", ".")), Integer.parseInt(posti), Integer.parseInt(posti));
             GestoreProiezione.inserisci(nuovaProiezione);
             CineMax.stackRecord.pop();
             cinemax.LogicaStatiManager.messaggioConfermaCorrente = "Proiezione inserita.";
