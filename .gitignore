@@ -7,3 +7,4 @@
 *.class
 *.iml
 .vs/
+!/bin/**/*.jar
